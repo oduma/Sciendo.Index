@@ -32,5 +32,15 @@ namespace Sciendo.Index.Tests
             Assert.AreEqual(doc.title.set, actualDoc.title.set);
 
         }
+        [Test]
+        public void SendAPackageToSolrOk()
+        {
+            Document doc = new Document("C:\\Users\\octo\\Music\\a\\Accept\\The Hungry Years\\Fast As a Shark.wav",
+                "C:\\Users\\octo\\Music", new[] { "Accept" }, "The Hungry Years", "Fast As a Shark",
+                "[Intro:]\n\"Hei--di, heido, heida\nHei--di, heido, heida\nHeidi, heido, heidahahahahahahaha...\"\n\n[Scratching sounds:]\n\n[Udo screaming:]\n\n[Fast As A Shark begins:]\n\nFog in the streets\nA[...]");
+
+            Package package = new Package {add = new PackageContent {doc = doc}};
+            SolrSender.Send("http://localhost:8090/solr/update/json",package);
+        }
     }
 }
