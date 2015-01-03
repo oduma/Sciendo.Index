@@ -1,9 +1,9 @@
-﻿namespace Sciendo.Index.Solr
+﻿using Sciendo.Lyrics.Common;
+namespace Sciendo.Index.Solr
 {
     public class TrySendResponse
     {
-        public bool Status { get; set; }
+        public Status Status { get; set; }
         public double Time { get; set; }
-        public string FilePath { get; set; }
     }
 }
