@@ -13,16 +13,25 @@ namespace Sciendo.Index.Tests
     [TestFixture]
     public class ReaderTests
     {
-        private FilesProcessor _fileProcessor = new FilesProcessor(@"c:\users\octo\music");
+        private MusicFilesProcessor _fileProcessor = new MusicFilesProcessor();
 
         [Test]
-        public void ReaderTestsOk()
+        public void ReaderMusicTestsOk()
         {
-            MusicReader reader = new MusicReader();
-            reader.RootDirectory = @"c:\users\octo\music";
+            Reader reader = new Reader();
             reader.ProcessFiles = _fileProcessor.ProcessFilesBatch;
-            reader.RootReader();
+            reader.ParseDirectory(@"c:\users\octo\music","*.mp3|*.ogg");
             Console.WriteLine(_fileProcessor.Counter);
         }
+        [Test]
+        public void ReaderLyricsTestsOk()
+        {
+            LyricsFilesProcessor processor = new LyricsFilesProcessor(@"c:\users\octo\music");
+            Reader reader = new Reader();
+            reader.ProcessFiles = processor.ProcessFilesBatch;
+            reader.ParseDirectory(@"C:\Code\Sciendo\Sciendo.RESTl\target", "*.lrc");
+            Console.WriteLine(processor.Counter);
+        }
+
     }
 }
