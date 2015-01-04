@@ -4,15 +4,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{5E5FAE5D-0401-4BF0-ACA0-88E1AE109F8F}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <ProjectGuid>{21292BD9-8060-466E-B2D3-FAF9DF88F2F4}</ProjectGuid>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Sciendo.Index.Tests</RootNamespace>
-    <AssemblyName>Sciendo.Index.Tests</AssemblyName>
+    <RootNamespace>Sciendo.Indexer</RootNamespace>
+    <AssemblyName>Sciendo.Indexer</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -22,6 +23,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -30,12 +32,15 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Id3">
+      <HintPath>..\3rdParty\Id3.dll</HintPath>
+    </Reference>
+    <Reference Include="Id3.Files">
+      <HintPath>..\3rdParty\Id3.Files.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Newtonsoft.Json.6.0.7\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="nunit.framework">
-      <HintPath>..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -46,21 +51,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FilesProcessor.cs" />
+    <Compile Include="PackageTrace.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ReaderTests.cs" />
-    <Compile Include="SolrPackageJsonGenerationTests.cs" />
+    <Compile Include="MusicReader.cs" />
+    <Compile Include="ReaderBase.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Sciendo.Index.Solr\Sciendo.Index.Solr.csproj">
       <Project>{83149074-f073-4dec-917d-0bbece6e81ca}</Project>
       <Name>Sciendo.Index.Solr</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Sciendo.Indexer\Sciendo.Indexer.csproj">
-      <Project>{21292bd9-8060-466e-b2d3-faf9df88f2f4}</Project>
-      <Name>Sciendo.Indexer</Name>
     </ProjectReference>
     <ProjectReference Include="..\Sciendo.Lyrics.Common\Sciendo.Lyrics.Common.csproj">
       <Project>{7a14b0f9-5358-4dd0-b38c-daafc9ec50d4}</Project>
