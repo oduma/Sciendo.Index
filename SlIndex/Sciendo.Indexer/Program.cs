@@ -10,12 +10,22 @@ namespace Sciendo.Indexer
     {
         static void Main(string[] args)
         {
-            MusicFilesProcessor _fileProcessor = new MusicFilesProcessor();
+            MusicFilesProcessor _musicFileProcessor = new MusicFilesProcessor();
+            LyricsFilesProcessor lyricsFileProcessor = new LyricsFilesProcessor(args[0]);
 
             Reader reader = new Reader();
-            reader.ProcessFiles = _fileProcessor.ProcessFilesBatch;
-            reader.ParseDirectory(args[0], args[1]);
-            Console.WriteLine(_fileProcessor.Counter);
+            if (args[1].ToLower() != "*.lrc")
+            {
+                reader.ProcessFiles = _musicFileProcessor.ProcessFilesBatch;
+                reader.ParseDirectory(args[0], args[1]);
+                Console.WriteLine("Music files indexed: {0}", _musicFileProcessor.Counter);
+            }
+            else
+            {
+                reader.ProcessFiles = lyricsFileProcessor.ProcessFilesBatch;
+                reader.ParseDirectory(args[2], args[1]);
+                Console.WriteLine("Lyrics files indexed: {0}", lyricsFileProcessor.Counter);
+            }
             Console.ReadLine();
 
         }
