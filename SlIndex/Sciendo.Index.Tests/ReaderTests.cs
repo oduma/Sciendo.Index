@@ -32,6 +32,14 @@ namespace Sciendo.Index.Tests
             reader.ParseDirectory(@"C:\Code\Sciendo\Sciendo.RESTl\target", "*.lrc");
             Console.WriteLine(processor.Counter);
         }
+        [Test]
+        public void ReaderMusicTestsForWronglyFormattedStringsOk()
+        {
+            Reader reader = new Reader();
+            reader.ProcessFiles = _fileProcessor.ProcessFilesBatch;
+            reader.ParseDirectory(@"c:\users\octo\music\p\paul_oakenfoald", "*.mp3|*.ogg");
+            Console.WriteLine(_fileProcessor.Counter);
+        }
 
     }
 }

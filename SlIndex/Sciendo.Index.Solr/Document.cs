@@ -17,7 +17,7 @@ namespace Sciendo.Index.Solr
             file_path = new Field<string> { set = "file:///" + filePath };
 
             extension_f = new Field<string> { set = Path.GetExtension(file_path_id).Replace(".", "") };
-            letter_catalog_f = new Field<string> { set = file_path_id.Replace(rootFolder, "").Split(new char[] { '\\' })[1] };
+            letter_catalog_f = new Field<string> { set = file_path_id.ToLower().Replace(rootFolder.ToLower(), "").Split(new char[] { '\\' })[1] };
 
         }
 

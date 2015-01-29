@@ -36,7 +36,7 @@ namespace Sciendo.Indexer
                         catch { }
                         if (id3Tag != null)
                         {
-                            artists = id3Tag.Artists.Value.ToArray();
+                            artists = id3Tag.Artists.Value.Select(a=>string.Join("",a.ToCharArray().Where(c=>((int)c)>=32))).ToArray();
                             title = id3Tag.Title.TextValue;
                             album = id3Tag.Album.TextValue;
                         }
