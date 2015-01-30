@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Sciendo.Lyrics.Common;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -8,6 +9,13 @@ namespace Sciendo.Indexer
 {
     public class Reader
     {
+        private Action<Status, string> _progressEvent;
+
+        public Reader(Action<Status, string> progressEvent)
+        {
+            _progressEvent = progressEvent;
+        }
+
         public void ParseDirectory(string directory,string searchPattern)
         {
             if (string.IsNullOrEmpty(directory) || !Directory.Exists(directory))
@@ -23,7 +31,7 @@ namespace Sciendo.Indexer
 
             if (files.Any())
             {
-                ProcessFiles(files, rootFolder);
+                ProcessFiles(files, rootFolder, _progressEvent);
             }
         }
 
@@ -32,6 +40,6 @@ namespace Sciendo.Indexer
             return filters.Split('|').SelectMany(filter => System.IO.Directory.GetFiles(sourceFolder, filter, searchOption));
         }
 
-        public Action<IEnumerable<string>, string> ProcessFiles { private get; set; }
+        public Action<IEnumerable<string>, string, Action<Status,string>> ProcessFiles { private get; set; }
     }
 }

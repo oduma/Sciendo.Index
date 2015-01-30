@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Sciendo.Lyrics.Common;
+using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,26 +10,40 @@ namespace Sciendo.Indexer
 {
     class Program
     {
+
         static void Main(string[] args)
         {
+            IndexerConfigurationSection indexerConfigurationSection = (IndexerConfigurationSection)ConfigurationManager.GetSection("indexer");
             MusicFilesProcessor _musicFileProcessor = new MusicFilesProcessor();
-            LyricsFilesProcessor lyricsFileProcessor = new LyricsFilesProcessor(args[0]);
+            LyricsFilesProcessor lyricsFileProcessor = new LyricsFilesProcessor(indexerConfigurationSection.Music.SourceDirectory);
 
-            Reader reader = new Reader();
-            if (args[1].ToLower() != "*.lrc")
+            Reader reader = new Reader(ProgressEvent);
+
+            reader.ProcessFiles = _musicFileProcessor.ProcessFilesBatch;
+            reader.ParseDirectory(indexerConfigurationSection.Music.SourceDirectory, indexerConfigurationSection.Music.SearchPattern);
+            Console.WriteLine("Music files indexed: {0}", _musicFileProcessor.Counter);
+
+            reader.ProcessFiles = lyricsFileProcessor.ProcessFilesBatch;
+            reader.ParseDirectory(indexerConfigurationSection.Lyrics.SourceDirectory, indexerConfigurationSection.Lyrics.SearchPattern);
+            Console.WriteLine("Lyrics files indexed: {0}", lyricsFileProcessor.Counter);
+            Console.ReadLine();
+
+        }
+
+        private static void ProgressEvent(Status arg1, string arg2)
+        {
+            if (arg1 != Status.Done)
             {
-                reader.ProcessFiles = _musicFileProcessor.ProcessFilesBatch;
-                reader.ParseDirectory(args[0], args[1]);
-                Console.WriteLine("Music files indexed: {0}", _musicFileProcessor.Counter);
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.Write("error indexing: ");
             }
             else
             {
-                reader.ProcessFiles = lyricsFileProcessor.ProcessFilesBatch;
-                reader.ParseDirectory(args[2], args[1]);
-                Console.WriteLine("Lyrics files indexed: {0}", lyricsFileProcessor.Counter);
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.Write("Indexed Ok: ");
             }
-            Console.ReadLine();
-
+            Console.ResetColor();
+            Console.WriteLine(arg2);
         }
     }
 }

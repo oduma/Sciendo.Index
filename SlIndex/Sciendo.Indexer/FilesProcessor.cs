@@ -3,6 +3,7 @@ using Sciendo.Index.Solr;
 using Sciendo.Lyrics.Common;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 
@@ -12,25 +13,19 @@ namespace Sciendo.Indexer
     {
         public int Counter { get; protected set; }
 
+        private IndexerConfigurationSection _indexerConfiguration;
         protected FilesProcessor()
         {
             Counter = 0;
+            _indexerConfiguration = ((IndexerConfigurationSection)ConfigurationManager.GetSection("indexer"));
         }
 
-        public virtual void ProcessFilesBatch(IEnumerable<string> files, string rootFolder)
+        public virtual void ProcessFilesBatch(IEnumerable<string> files, string rootFolder,Action<Status,string> progressEvent)
         {
             var package = PrepareDocuments(files, rootFolder).ToArray();
-            var response = SolrSender.TrySend("http://localhost:8080/solr/medialib/update/json?commitWithin=1000", package);
-            if (response.Status != Status.Done)
-            {
-                Console.ForegroundColor = ConsoleColor.Red;
-            }
-            else
-            {
-                Console.ForegroundColor = ConsoleColor.Green;
-            }
-            Console.WriteLine("error indexing: {0}", JsonConvert.SerializeObject(package));
-            Console.ResetColor();
+            var response = SolrSender.TrySend(_indexerConfiguration.SolrConnectionString, package);
+            if (progressEvent != null)
+                progressEvent(response.Status, JsonConvert.SerializeObject(package));
             Counter += package.Length;
         }
 

@@ -6,6 +6,7 @@ namespace Sciendo.Index.Solr
 {
     public class Document
     {
+        private const string Prefix = "file:///";
         public Document()
         { }
 
@@ -14,10 +15,10 @@ namespace Sciendo.Index.Solr
             if (string.IsNullOrEmpty(filePath))
                 throw new ArgumentNullException("filePath");
             file_path_id = filePath.ToLower();
-            file_path = new Field<string> { set = "file:///" + filePath };
+            file_path = new Field<string> { set = Prefix + filePath };
 
             extension_f = new Field<string> { set = Path.GetExtension(file_path_id).Replace(".", "") };
-            letter_catalog_f = new Field<string> { set = file_path_id.ToLower().Replace(rootFolder.ToLower(), "").Split(new char[] { '\\' })[1] };
+            letter_catalog_f = new Field<string> { set = file_path_id.ToLower().Replace(rootFolder.ToLower(), "").Split(new char[] { Path.DirectorySeparatorChar })[1] };
 
         }
 
