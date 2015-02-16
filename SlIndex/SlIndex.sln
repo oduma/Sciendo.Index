@@ -18,6 +18,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3rdParty", "3rdParty", "{13
 		3rdParty\Sciendo.Common.dll = 3rdParty\Sciendo.Common.dll
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sciendo.Indexer.Agent", "Sciendo.Indexer.Agent\Sciendo.Indexer.Agent.csproj", "{866D1694-DD87-4F37-B542-FF50863317DF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sciendo.Indexer.Contracts", "Sciendo.Indexer.Contracts\Sciendo.Indexer.Contracts.csproj", "{CF8F5494-336B-45A3-B63F-2B0532FCF5D2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -40,6 +44,14 @@ Global
 		{21292BD9-8060-466E-B2D3-FAF9DF88F2F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{21292BD9-8060-466E-B2D3-FAF9DF88F2F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{21292BD9-8060-466E-B2D3-FAF9DF88F2F4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{866D1694-DD87-4F37-B542-FF50863317DF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{866D1694-DD87-4F37-B542-FF50863317DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{866D1694-DD87-4F37-B542-FF50863317DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{866D1694-DD87-4F37-B542-FF50863317DF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CF8F5494-336B-45A3-B63F-2B0532FCF5D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CF8F5494-336B-45A3-B63F-2B0532FCF5D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CF8F5494-336B-45A3-B63F-2B0532FCF5D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CF8F5494-336B-45A3-B63F-2B0532FCF5D2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
