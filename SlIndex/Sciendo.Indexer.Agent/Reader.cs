@@ -1,28 +1,30 @@
-﻿using Sciendo.Lyrics.Common;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
+using Sciendo.Lyrics.Common;
 
-namespace Sciendo.Indexer
+namespace Sciendo.Indexer.Agent
 {
     public class Reader
     {
-        private Action<Status, string> _progressEvent;
+        private readonly Action<Status, string> _progressEvent;
 
         public Reader(Action<Status, string> progressEvent)
         {
             _progressEvent = progressEvent;
         }
 
-        public void ParseDirectory(string directory,string searchPattern)
+        public void ParsePath(string path,string searchPattern)
         {
-            if (string.IsNullOrEmpty(directory) || !Directory.Exists(directory))
-                throw new ArgumentException("root has to be a directory");
-            Directory.GetDirectories(directory, "*", SearchOption.AllDirectories)
-                .ToList()
-                .ForEach(s => ContinueWithDirectory(s, searchPattern, directory));
+            if (string.IsNullOrEmpty(path))
+                throw new ArgumentNullException("path");
+            if(Directory.Exists(path))
+                Directory.GetDirectories(path, "*", SearchOption.AllDirectories)
+                    .ToList()
+                    .ForEach(s => ContinueWithDirectory(s, searchPattern, path));
+            else if (File.Exists(path))
+                ProcessFiles(new string[] {path},Path.GetDirectoryName(path), _progressEvent);
         }
 
         private void ContinueWithDirectory(string directory, string searchPattern, string rootFolder)

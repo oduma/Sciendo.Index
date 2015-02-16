@@ -1,15 +1,11 @@
-﻿using Id3;
-using Id3.Id3;
-using Newtonsoft.Json;
-using Sciendo.Index.Solr;
-using Sciendo.Lyrics.Common;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Id3;
+using Id3.Id3;
+using Sciendo.Index.Solr;
 
-namespace Sciendo.Indexer
+namespace Sciendo.Indexer.Agent
 {
     public class MusicFilesProcessor:FilesProcessor
     {
@@ -25,7 +21,7 @@ namespace Sciendo.Indexer
                 IMp3Stream mp3File = new Mp3File(file);
                 if (mp3File.HasTags && mp3File.AvailableTagVersions != null)
                 {
-                    var version = mp3File.AvailableTagVersions.FirstOrDefault();
+                    var version = Enumerable.FirstOrDefault<Version>(mp3File.AvailableTagVersions);
                     if (version != null)
                     {
                         IId3Tag id3Tag=null;
@@ -36,7 +32,7 @@ namespace Sciendo.Indexer
                         catch { }
                         if (id3Tag != null)
                         {
-                            artists = id3Tag.Artists.Value.Select(a=>string.Join("",a.ToCharArray().Where(c=>((int)c)>=32))).ToArray();
+                            artists = Enumerable.Select<string, string>(id3Tag.Artists.Value, a=>string.Join("",Enumerable.Where<char>(a.ToCharArray(), c=>((int)c)>=32))).ToArray();
                             title = id3Tag.Title.TextValue;
                             album = id3Tag.Album.TextValue;
                         }

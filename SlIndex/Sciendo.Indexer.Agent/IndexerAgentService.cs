@@ -1,22 +1,49 @@
-﻿using Sciendo.Indexer.Contracts;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Sciendo.Lyrics.Common;
 
 namespace Sciendo.Indexer.Agent
 {
     internal class IndexerAgentService:IIndexerAgent
     {
-        public void IndexLyricsOnDemand(string fromPath)
+        private static void ProgressEvent(Status arg1, string arg2)
         {
-            throw new NotImplementedException();
+            if (arg1 != Status.Done)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.Write("error indexing: ");
+            }
+            else
+            {
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.Write("Indexed Ok: ");
+            }
+            Console.ResetColor();
+            Console.WriteLine(arg2);
         }
 
-        public void IndexMusicOnDemand(string fromPath, bool includeLyrics =false)
+        public int IndexLyricsOnDemand(string fromPath, string lyricsSearchPattern)
         {
-            throw new NotImplementedException();
+            Reader reader = new Reader(ProgressEvent);
+            LyricsFilesProcessor lyricsFileProcessor = new LyricsFilesProcessor(fromPath);
+            reader.ProcessFiles = lyricsFileProcessor.ProcessFilesBatch;
+            reader.ParsePath(fromPath, lyricsSearchPattern);
+            return lyricsFileProcessor.Counter;
+        }
+
+        public int IndexMusicOnDemand(string fromPath, string musicSearchPattern)
+        {
+            MusicFilesProcessor _musicFileProcessor = new MusicFilesProcessor();
+
+            Reader reader = new Reader(ProgressEvent);
+
+            reader.ProcessFiles = _musicFileProcessor.ProcessFilesBatch;
+            reader.ParsePath(fromPath, musicSearchPattern);
+            return _musicFileProcessor.Counter;
+
         }
     }
 }

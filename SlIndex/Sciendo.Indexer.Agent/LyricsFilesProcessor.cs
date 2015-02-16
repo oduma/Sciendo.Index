@@ -1,15 +1,9 @@
-﻿using Newtonsoft.Json;
-using Sciendo.Common.Serialization;
+﻿using System.Collections.Generic;
+using System.IO;
 using Sciendo.Index.Solr;
 using Sciendo.Lyrics.Common;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Sciendo.Indexer
+namespace Sciendo.Indexer.Agent
 {
     public class LyricsFilesProcessor:FilesProcessor
     {

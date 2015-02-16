@@ -1,4 +1,5 @@
-﻿using Sciendo.Lyrics.Common;
+﻿using Sciendo.Indexer.Agent;
+using Sciendo.Lyrics.Common;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -20,11 +21,11 @@ namespace Sciendo.Indexer
             Reader reader = new Reader(ProgressEvent);
 
             reader.ProcessFiles = _musicFileProcessor.ProcessFilesBatch;
-            reader.ParseDirectory(indexerConfigurationSection.Music.SourceDirectory, indexerConfigurationSection.Music.SearchPattern);
+            reader.ParsePath(indexerConfigurationSection.Music.SourceDirectory, indexerConfigurationSection.Music.SearchPattern);
             Console.WriteLine("Music files indexed: {0}", _musicFileProcessor.Counter);
 
             reader.ProcessFiles = lyricsFileProcessor.ProcessFilesBatch;
-            reader.ParseDirectory(indexerConfigurationSection.Lyrics.SourceDirectory, indexerConfigurationSection.Lyrics.SearchPattern);
+            reader.ParsePath(indexerConfigurationSection.Lyrics.SourceDirectory, indexerConfigurationSection.Lyrics.SearchPattern);
             Console.WriteLine("Lyrics files indexed: {0}", lyricsFileProcessor.Counter);
             Console.ReadLine();
 
