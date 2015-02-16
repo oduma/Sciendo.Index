@@ -15,16 +15,24 @@ namespace Sciendo.Indexer.Agent
             _progressEvent = progressEvent;
         }
 
-        public void ParsePath(string path,string searchPattern)
+        public void ParsePath(string path, string searchPattern)
         {
             if (string.IsNullOrEmpty(path))
                 throw new ArgumentNullException("path");
+            if(string.IsNullOrEmpty(searchPattern))
+                throw new ArgumentNullException("searchPattern");
             if(Directory.Exists(path))
+            {
                 Directory.GetDirectories(path, "*", SearchOption.AllDirectories)
                     .ToList()
                     .ForEach(s => ContinueWithDirectory(s, searchPattern, path));
+                //Search the current directory also
+                ContinueWithDirectory(path,searchPattern,path);
+            }
             else if (File.Exists(path))
                 ProcessFiles(new string[] {path},Path.GetDirectoryName(path), _progressEvent);
+            else 
+                throw new ArgumentException("Invalid path");
         }
 
         private void ContinueWithDirectory(string directory, string searchPattern, string rootFolder)

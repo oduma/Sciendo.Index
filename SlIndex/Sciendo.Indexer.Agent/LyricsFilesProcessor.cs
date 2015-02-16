@@ -9,7 +9,7 @@ namespace Sciendo.Indexer.Agent
     {
         private string _musicRootDirectory;
 
-        public LyricsFilesProcessor(string musicRootDirectory):base()
+        public LyricsFilesProcessor(string musicRootDirectory, SolrSender solrSender):base(solrSender)
         {
             _musicRootDirectory = musicRootDirectory;
         }

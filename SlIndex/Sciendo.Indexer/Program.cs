@@ -1,11 +1,8 @@
-﻿using Sciendo.Indexer.Agent;
+﻿using Sciendo.Index.Solr;
+using Sciendo.Indexer.Agent;
 using Sciendo.Lyrics.Common;
 using System;
-using System.Collections.Generic;
 using System.Configuration;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Sciendo.Indexer
 {
@@ -15,8 +12,8 @@ namespace Sciendo.Indexer
         static void Main(string[] args)
         {
             IndexerConfigurationSection indexerConfigurationSection = (IndexerConfigurationSection)ConfigurationManager.GetSection("indexer");
-            MusicFilesProcessor _musicFileProcessor = new MusicFilesProcessor();
-            LyricsFilesProcessor lyricsFileProcessor = new LyricsFilesProcessor(indexerConfigurationSection.Music.SourceDirectory);
+            MusicFilesProcessor _musicFileProcessor = new MusicFilesProcessor(new SolrSender(indexerConfigurationSection.SolrConnectionString));
+            LyricsFilesProcessor lyricsFileProcessor = new LyricsFilesProcessor(indexerConfigurationSection.Music.SourceDirectory, new SolrSender(indexerConfigurationSection.SolrConnectionString));
 
             Reader reader = new Reader(ProgressEvent);
 

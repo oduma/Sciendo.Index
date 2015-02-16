@@ -45,7 +45,8 @@ namespace Sciendo.Index.Tests
                 "[Intro:]\n\"Hei--di, heido, heida\nHei--di, heido, heida\nHeidi, heido, heidahahahahahahaha...\"\n\n[Scratching sounds:]\n\n[Udo screaming:]\n\n[Fast As A Shark begins:]\n\nFog in the streets\nA[...]");
 
             FullDocument[] package = new FullDocument[] { doc1 ,doc2};
-            var response = SolrSender.TrySend("http://localhost:8080/solr/medialib/update/json?commitWithin=1000", package);
+            SolrSender solrSender = new SolrSender("http://localhost:8080/solr/medialib/update/json?commitWithin=1000");
+            var response = solrSender.TrySend(package);
             //SolrSender.TrySend("http://localhost:8080/solr/medialib/update/json", new CommitWithin(1000));
             Assert.True(response.Status==Status.Done);
             Assert.Greater(response.Time, 0);
@@ -63,7 +64,8 @@ namespace Sciendo.Index.Tests
 
             doc2.file_path = null;
             FullDocument[] package = new FullDocument[] { doc1, doc2 };
-            var response = SolrSender.TrySend("http://localhost:8090/solr/medialib/update?wt=json", package);
+            SolrSender solrSender = new SolrSender("http://localhost:8080/solr/medialib/update/json?commitWithin=1000");
+            var response = solrSender.TrySend(package);
             Assert.True(response.Status == Status.NotIndexed);
             Assert.AreEqual(response.Time, 0);
         }

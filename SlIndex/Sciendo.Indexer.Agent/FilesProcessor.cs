@@ -9,17 +9,19 @@ namespace Sciendo.Indexer.Agent
 {
     public abstract class FilesProcessor
     {
+        private SolrSender _solrSender;
         public int Counter { get; protected set; }
 
-        protected FilesProcessor()
+        protected FilesProcessor(SolrSender solrSender)
         {
             Counter = 0;
+            _solrSender = solrSender;
         }
 
-        public virtual void ProcessFilesBatch(IEnumerable<string> files, string rootFolder,Action<Status,string> progressEvent, string solrConnectionString)
+        public virtual void ProcessFilesBatch(IEnumerable<string> files, string rootFolder,Action<Status,string> progressEvent)
         {
             var package = PrepareDocuments(files, rootFolder).ToArray();
-            var response = SolrSender.TrySend(solrConnectionString, package);
+            var response = _solrSender.TrySend(package);
             if (progressEvent != null)
                 progressEvent(response.Status, JsonConvert.SerializeObject(package));
             Counter += package.Length;

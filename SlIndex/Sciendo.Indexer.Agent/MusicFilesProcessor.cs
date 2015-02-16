@@ -9,7 +9,10 @@ namespace Sciendo.Indexer.Agent
 {
     public class MusicFilesProcessor:FilesProcessor
     {
-
+        public MusicFilesProcessor(SolrSender solrSender) : base(solrSender)
+        {
+            
+        }
         protected override IEnumerable<Document> PrepareDocuments(IEnumerable<string> files, string rootFolder)
         {
             string[] artists = null;
