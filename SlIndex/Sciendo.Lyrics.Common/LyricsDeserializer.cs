@@ -8,16 +8,16 @@ using System.Xml.Serialization;
 
 namespace Sciendo.Lyrics.Common
 {
-    public static class LyricsDeserializer
+    public class LyricsDeserializer
     {
-        public static T Deserialize<T>(string xmlString) where T : class
+        public virtual T Deserialize<T>(string xmlString) where T : class
         {
             XmlSerializer xmlSerializer = new XmlSerializer(typeof(T));
             MemoryStream ms = new MemoryStream(new UTF8Encoding().GetBytes(xmlString));
             return xmlSerializer.Deserialize(ms) as T;
         }
 
-        public static T DeserializeOneFromFile<T>(string fileName) where T : class
+        public virtual T DeserializeOneFromFile<T>(string fileName) where T : class
         {
             if (!File.Exists(fileName))
                 return null;

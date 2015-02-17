@@ -13,7 +13,7 @@ namespace Sciendo.Indexer
         {
             IndexerConfigurationSection indexerConfigurationSection = (IndexerConfigurationSection)ConfigurationManager.GetSection("indexer");
             MusicFilesProcessor _musicFileProcessor = new MusicFilesProcessor(new SolrSender(indexerConfigurationSection.SolrConnectionString));
-            LyricsFilesProcessor lyricsFileProcessor = new LyricsFilesProcessor(indexerConfigurationSection.Music.SourceDirectory, new SolrSender(indexerConfigurationSection.SolrConnectionString));
+            LyricsFilesProcessor lyricsFileProcessor = new LyricsFilesProcessor(indexerConfigurationSection.Music.SourceDirectory, new SolrSender(indexerConfigurationSection.SolrConnectionString), new LyricsDeserializer());
 
             Reader reader = new Reader(ProgressEvent);
 

@@ -46,6 +46,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MockLyricsDeserializer.cs" />
+    <Compile Include="MockLyricsFilesProcessor.cs" />
+    <Compile Include="MockMusicFilesProcessor.cs" />
     <Compile Include="MockSender.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReaderTests.cs" />
@@ -54,6 +57,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="TestData\Lyrics\MockMp3.lrc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\Lyrics\Sub\MockOgg.lrc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\Music\Sub\MockOgg.ogg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Sciendo.Index.Solr\Sciendo.Index.Solr.csproj">
@@ -78,9 +90,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="TestData\Lyrics\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

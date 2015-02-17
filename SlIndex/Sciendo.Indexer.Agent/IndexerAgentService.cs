@@ -7,10 +7,12 @@ namespace Sciendo.Indexer.Agent
     public class IndexerAgentService:IIndexerAgent
     {
         private readonly SolrSender _solrSender;
+        private LyricsDeserializer _lyricsDeserializer;
 
-        public IndexerAgentService(SolrSender solrSender)
+        public IndexerAgentService(SolrSender solrSender, LyricsDeserializer lyricsDeserializer)
         {
             _solrSender = solrSender;
+            _lyricsDeserializer = lyricsDeserializer;
         }
 
         private static void ProgressEvent(Status arg1, string arg2)
@@ -29,10 +31,10 @@ namespace Sciendo.Indexer.Agent
             Console.WriteLine(arg2);
         }
 
-        public int IndexLyricsOnDemand(string fromPath, string lyricsSearchPattern)
+        public int IndexLyricsOnDemand(string fromPath, string forMusicPath, string lyricsSearchPattern)
         {
             Reader reader = new Reader(ProgressEvent);
-            LyricsFilesProcessor lyricsFileProcessor = new LyricsFilesProcessor(fromPath,_solrSender);
+            LyricsFilesProcessor lyricsFileProcessor = new LyricsFilesProcessor(forMusicPath,_solrSender,_lyricsDeserializer);
             reader.ProcessFiles = lyricsFileProcessor.ProcessFilesBatch;
             reader.ParsePath(fromPath, lyricsSearchPattern);
             return lyricsFileProcessor.Counter;
