@@ -1,9 +1,13 @@
-﻿namespace Sciendo.Indexer.Agent
+﻿using System.ServiceModel;
+namespace Sciendo.Indexer.Agent
 {
+    [ServiceContract(Name="IndexerAgent",Namespace="Sciendo.Indexer.Agent")]
     public interface IIndexerAgent
     {
-        int IndexLyricsOnDemand(string fromPath, string forMusicPath, string searchPattern);
-        int IndexMusicOnDemand(string fromPath, string searchPattern);
+        [OperationContract]
+        int IndexLyricsOnDemand(string fromPath);
+        [OperationContract]
+        int IndexMusicOnDemand(string fromPath);
 
     }
 }
