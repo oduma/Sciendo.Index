@@ -10,10 +10,6 @@ namespace Sciendo.Index.Tests
     public class MockMusicFilesProcessor:FilesProcessor
     {
 
-        public MockMusicFilesProcessor():base(new MockSender())
-        {
-
-        }
         protected override IEnumerable<Document> PrepareDocuments(IEnumerable<string> files, string rootFolder)
         {
             yield return new FullDocument(files.First(), rootFolder, new string[] { "test artist" }, "test song", "test alubm");

@@ -1,15 +1,11 @@
-﻿using Sciendo.Index.Solr;
-using Sciendo.Indexer.Agent;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using Sciendo.Indexer.Agent;
+using Sciendo.Lyrics.Common;
 
 namespace Sciendo.Index.Tests
 {
     public class MockLyricsFilesProcessor:LyricsFilesProcessor
     {
-        public MockLyricsFilesProcessor(string musicRootFolder):base(musicRootFolder,new MockSender(), new MockLyricsDeserializer())
+        public MockLyricsFilesProcessor(string musicRootFolder):base(musicRootFolder,new MockLyricsDeserializer())
         {
 
         }

@@ -42,6 +42,7 @@
     <Compile Include="ArtistSong.cs" />
     <Compile Include="LyricsResult.cs" />
     <Compile Include="LyricsDeserializer.cs" />
+    <Compile Include="MockLyricsDeserializer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Status.cs" />
   </ItemGroup>

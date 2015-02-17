@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Linq;
-using System.Text;
+﻿using System.Configuration;
 
 namespace Sciendo.Indexer.Agent
 {
-    public class IndexerConfigurationSource:ConfigurationElement
+    public class IndexerConfigurationSourceBase:ConfigurationElement
     {
         [ConfigurationProperty("sourceDirectory")]
         public string SourceDirectory 

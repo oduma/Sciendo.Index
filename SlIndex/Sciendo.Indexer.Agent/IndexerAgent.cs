@@ -1,4 +1,5 @@
 ﻿using Sciendo.Index.Solr;
+using Sciendo.IOC;
 using Sciendo.Lyrics.Common;
 using System;
 using System.Collections.Generic;
@@ -18,14 +19,21 @@ namespace Sciendo.Indexer.Agent
     {
         private IndexerAgentService _agentService;
         private ServiceHost _agentServiceHost;
-        private  string _hostUrl;
 
         public IndexerAgent()
         {
             InitializeComponent();
             IndexerConfigurationSection indexerConfigurationSection = (IndexerConfigurationSection)ConfigurationManager.GetSection("indexer");
-            _agentService = new IndexerAgentService(new SolrSender(indexerConfigurationSection.SolrConnectionString), 
-                new LyricsDeserializer(), 
+
+            
+            IOC.Container.GetInstance().Add(new RegisteredType().For<MockSender>().BasedOn<ISolrSender>().IdentifiedBy("mockSender").With(LifeStyle.Transient).WithConstructorParameters("something"));
+            IOC.Container.GetInstance().Add(new RegisteredType().For<SolrSender>().BasedOn<ISolrSender>().IdentifiedBy("solrSender").With(LifeStyle.Transient).WithConstructorParameters(indexerConfigurationSection.SolrConnectionString));
+            IOC.Container.GetInstance().Add(new RegisteredType().For<MockLyricsDeserializer>().BasedOn<ILyricsDeserializer>().IdentifiedBy("mockLyrics").With(LifeStyle.Transient));
+            IOC.Container.GetInstance().Add(new RegisteredType().For<LyricsDeserializer>().BasedOn<ILyricsDeserializer>().IdentifiedBy("lyrics").With(LifeStyle.Transient));
+
+            _agentService = new IndexerAgentService(IOC.Container.GetInstance().Resolve<ISolrSender>(indexerConfigurationSection.CurrentSender), 
+                IOC.Container.GetInstance()
+                    .Resolve<ILyricsDeserializer>(indexerConfigurationSection.Lyrics.CurrentImplementation), 
                 indexerConfigurationSection.Music.SourceDirectory, 
                 indexerConfigurationSection.Lyrics.SourceDirectory, 
                 indexerConfigurationSection.Music.SearchPattern, 

@@ -48,6 +48,8 @@
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -57,10 +59,23 @@
   <ItemGroup>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service References\Sciendo.Indexer.Agent.Client\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+    <None Include="Service References\Sciendo.Indexer.Agent.Client\IndexerAgentService.wsdl" />
+    <None Include="Service References\Sciendo.Indexer.Agent.Client\IndexerAgentService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\Sciendo.Indexer.Agent.Client\IndexerAgentService1.wsdl" />
+    <None Include="Service References\Sciendo.Indexer.Agent.Client\IndexerAgentService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Sciendo.Index.Solr\Sciendo.Index.Solr.csproj">
@@ -75,6 +90,27 @@
       <Project>{7a14b0f9-5358-4dd0-b38c-daafc9ec50d4}</Project>
       <Name>Sciendo.Lyrics.Common</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\Sciendo.Indexer.Agent.Client\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\Sciendo.Indexer.Agent.Client\IndexerAgentService.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\Sciendo.Indexer.Agent.Client\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\Sciendo.Indexer.Agent.Client\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\Sciendo.Indexer.Agent.Client\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

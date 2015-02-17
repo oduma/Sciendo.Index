@@ -6,18 +6,34 @@ using System.Threading.Tasks;
 
 namespace Sciendo.Index.Solr
 {
-    public class SolrSender
+    public interface ISolrSender
+    {
+        string Url { get; set; }
+        TrySendResponse TrySend<T>(T package);
+    }
+
+    public class SolrSender : ISolrSender
     {
         private string _url;
         public SolrSender(string solrConnectionString)
         {
-            _url = solrConnectionString;
+            Url = solrConnectionString;
+        }
+
+        public SolrSender()
+        {
+            
+        }
+        public string Url
+        {
+            get { return _url; }
+            set { _url = value; }
         }
 
         public virtual TrySendResponse TrySend<T>(T package)
         {
             HttpClient httpClient = new HttpClient();
-            using (var postTask = httpClient.PostAsJsonAsync<T>(new Uri(_url), package)
+            using (var postTask = httpClient.PostAsJsonAsync<T>(new Uri(Url), package)
                 .ContinueWith((p)=>p).Result)
             {
                 if (postTask.Status != TaskStatus.RanToCompletion || !postTask.Result.IsSuccessStatusCode || postTask.Result.Content==null)

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="11c060ae-dc47-411d-8005-0f314defab62" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:7000/IndexerAgentService" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="IndexerAgentService.wsdl" MetadataType="Wsdl" ID="812c0551-4f24-40cd-b121-27224bcda951" SourceId="1" SourceUrl="http://localhost:7000/IndexerAgentService?wsdl" />
+    <MetadataFile FileName="IndexerAgentService.xsd" MetadataType="Schema" ID="28b8eff0-b330-4827-9212-adcb343e4d41" SourceId="1" SourceUrl="http://localhost:7000/IndexerAgentService?xsd=xsd1" />
+    <MetadataFile FileName="IndexerAgentService1.wsdl" MetadataType="Wsdl" ID="622ece2f-8d2b-4705-9c08-d9a9f6992fea" SourceId="1" SourceUrl="http://localhost:7000/IndexerAgentService?wsdl=wsdl0" />
+    <MetadataFile FileName="IndexerAgentService1.xsd" MetadataType="Schema" ID="c63aff40-4de5-4b53-aa6d-6a985227741a" SourceId="1" SourceUrl="http://localhost:7000/IndexerAgentService?xsd=xsd0" />
+    <MetadataFile FileName="IndexerAgentService.disco" MetadataType="Disco" ID="62507a99-05c2-4270-a51b-3c946ce92293" SourceId="1" SourceUrl="http://localhost:7000/IndexerAgentService?disco" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

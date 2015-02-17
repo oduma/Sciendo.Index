@@ -72,7 +72,8 @@
     </Compile>
     <Compile Include="IndexerAgentService.cs" />
     <Compile Include="IndexerConfigurationSection.cs" />
-    <Compile Include="IndexerConfigurationSource.cs" />
+    <Compile Include="IndexerConfigurationSourceBase.cs" />
+    <Compile Include="IndexerConfigurationSourceWithImplementation.cs" />
     <Compile Include="LyricsFilesProcessor.cs" />
     <Compile Include="MusicFilesProcessor.cs" />
     <Compile Include="Program.cs" />
@@ -87,6 +88,10 @@
     <ProjectReference Include="..\Sciendo.Index.Solr\Sciendo.Index.Solr.csproj">
       <Project>{83149074-f073-4dec-917d-0bbece6e81ca}</Project>
       <Name>Sciendo.Index.Solr</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Sciendo.IOC\Sciendo.IOC.csproj">
+      <Project>{a88b9c50-7737-4c4c-abe0-9aa2f4c35f2c}</Project>
+      <Name>Sciendo.IOC</Name>
     </ProjectReference>
     <ProjectReference Include="..\Sciendo.Lyrics.Common\Sciendo.Lyrics.Common.csproj">
       <Project>{7a14b0f9-5358-4dd0-b38c-daafc9ec50d4}</Project>

@@ -9,21 +9,28 @@ namespace Sciendo.Indexer.Agent
 {
     public abstract class FilesProcessor
     {
-        private SolrSender _solrSender;
+        public ISolrSender SolrSender { protected get; set; }
         public int Counter { get; protected set; }
 
-        protected FilesProcessor(SolrSender solrSender)
+        protected FilesProcessor()
         {
             Counter = 0;
-            _solrSender = solrSender;
+        }
+
+        public void ResetCounter()
+        {
+            Counter = 0;
         }
 
         public virtual void ProcessFilesBatch(IEnumerable<string> files, string rootFolder,Action<Status,string> progressEvent)
         {
             var package = PrepareDocuments(files, rootFolder).ToArray();
-            var response = _solrSender.TrySend(package);
-            if (progressEvent != null)
-                progressEvent(response.Status, JsonConvert.SerializeObject(package));
+            if (SolrSender != null)
+            {
+                var response = SolrSender.TrySend(package);
+                if (progressEvent != null)
+                    progressEvent(response.Status, JsonConvert.SerializeObject(package));
+            }
             Counter += package.Length;
         }
 

@@ -9,9 +9,9 @@ namespace Sciendo.Indexer.Agent
     public class LyricsFilesProcessor:FilesProcessor
     {
         private string _musicPath;
-        private LyricsDeserializer _lyricsDeserializer;
+        private ILyricsDeserializer _lyricsDeserializer;
 
-        public LyricsFilesProcessor(string musicPath, SolrSender solrSender, LyricsDeserializer lyricsDeserializer):base(solrSender)
+        public LyricsFilesProcessor(string musicPath, ILyricsDeserializer lyricsDeserializer)
         {
             if (string.IsNullOrEmpty(musicPath))
                 throw new ArgumentNullException("musicPath");

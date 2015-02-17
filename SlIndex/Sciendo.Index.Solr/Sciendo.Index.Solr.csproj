@@ -80,6 +80,7 @@
     <Compile Include="Document.cs" />
     <Compile Include="Field.cs" />
     <Compile Include="FullDocument.cs" />
+    <Compile Include="MockSender.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SolrResponseHeader.cs" />
     <Compile Include="SolrSender.cs" />

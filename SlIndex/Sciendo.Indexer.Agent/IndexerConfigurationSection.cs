@@ -21,12 +21,24 @@ namespace Sciendo.Indexer.Agent
             }
         }
 
-        [ConfigurationProperty("music")]
-        public IndexerConfigurationSource Music
+        [ConfigurationProperty("currentSender", DefaultValue = "solrSender", IsRequired = false)]
+        public string CurrentSender
         {
             get
             {
-                return (IndexerConfigurationSource)this["music"];
+                return (string)this["currentSender"];
+            }
+            set
+            {
+                this["currentSender"] = value;
+            }
+        }
+        [ConfigurationProperty("music")]
+        public IndexerConfigurationSourceBase Music
+        {
+            get
+            {
+                return (IndexerConfigurationSourceBase)this["music"];
             }
             set
             {
@@ -34,11 +46,11 @@ namespace Sciendo.Indexer.Agent
             }
         }
         [ConfigurationProperty("lyrics")]
-        public IndexerConfigurationSource Lyrics
+        public IndexerConfigurationSourceWithImplementation Lyrics
         {
             get
             {
-                return (IndexerConfigurationSource)this["lyrics"];
+                return (IndexerConfigurationSourceWithImplementation)this["lyrics"];
             }
             set
             {

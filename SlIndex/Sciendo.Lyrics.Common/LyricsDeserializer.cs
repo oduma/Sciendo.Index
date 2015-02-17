@@ -8,7 +8,13 @@ using System.Xml.Serialization;
 
 namespace Sciendo.Lyrics.Common
 {
-    public class LyricsDeserializer
+    public interface ILyricsDeserializer
+    {
+        T Deserialize<T>(string xmlString) where T : class;
+        T DeserializeOneFromFile<T>(string fileName) where T : class;
+    }
+
+    public class LyricsDeserializer : ILyricsDeserializer
     {
         public virtual T Deserialize<T>(string xmlString) where T : class
         {
