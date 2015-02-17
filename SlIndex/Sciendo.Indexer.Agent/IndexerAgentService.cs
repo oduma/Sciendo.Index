@@ -1,10 +1,12 @@
 ﻿using System;
+using System.ServiceModel;
 using Sciendo.Index.Solr;
 using Sciendo.Lyrics.Common;
 using System.IO;
 
 namespace Sciendo.Indexer.Agent
 {
+    [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single)]
     public class IndexerAgentService:IIndexerAgent
     {
         private readonly SolrSender _solrSender;
