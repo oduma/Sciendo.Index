@@ -9,7 +9,7 @@ namespace Sciendo.Indexer
 
         [Option('t', "type", Required = false,
           HelpText = "Type of indexing")]
-        public IndexingType IndexMusicPath { get; set; }
+        public IndexingType IndexType { get; set; }
 
     }
 }
