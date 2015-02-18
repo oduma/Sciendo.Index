@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using Newtonsoft.Json;
 using Sciendo.Index.Solr;
@@ -9,7 +10,10 @@ namespace Sciendo.Indexer.Agent
 {
     public abstract class FilesProcessor
     {
-        public ISolrSender SolrSender { protected get; set; }
+        protected ISolrSender Sender { private get; set; }
+
+        public IndexerConfigurationSource CurrentConfiguration { get; protected set; }
+
         public int Counter { get; protected set; }
 
         protected FilesProcessor()
@@ -22,19 +26,25 @@ namespace Sciendo.Indexer.Agent
             Counter = 0;
         }
 
-        public virtual void ProcessFilesBatch(IEnumerable<string> files, string rootFolder,Action<Status,string> progressEvent)
+        protected string CatalogLetter(string musicFile, string rootFolder)
         {
-            var package = PrepareDocuments(files, rootFolder).ToArray();
-            if (SolrSender != null)
+            return musicFile.ToLower().Replace(rootFolder.ToLower(), "").Split(new char[] { Path.DirectorySeparatorChar })[1];
+        }
+
+
+        public virtual void ProcessFilesBatch(IEnumerable<string> files, Action<Status,string> progressEvent)
+        {
+            var package = PrepareDocuments(files).ToArray();
+            if (Sender != null)
             {
-                var response = SolrSender.TrySend(package);
+                var response = Sender.TrySend(package);
                 if (progressEvent != null)
                     progressEvent(response.Status, JsonConvert.SerializeObject(package));
             }
             Counter += package.Length;
         }
 
-        protected abstract IEnumerable<Document> PrepareDocuments(IEnumerable<string> files, string rootFolder);
+        protected abstract IEnumerable<Document> PrepareDocuments(IEnumerable<string> files);
 
     }
 }

@@ -1,17 +1,8 @@
-﻿using Sciendo.Index.Solr;
+﻿using Sciendo.Common.Logging;
 using Sciendo.IOC;
-using Sciendo.Lyrics.Common;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Configuration;
-using System.Data;
-using System.Diagnostics;
-using System.Linq;
 using System.ServiceModel;
 using System.ServiceProcess;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Sciendo.Indexer.Agent
 {
@@ -22,30 +13,36 @@ namespace Sciendo.Indexer.Agent
 
         public IndexerAgent()
         {
+            LoggingManager.Debug("Constructing the Agent...");
             InitializeComponent();
-            IndexerConfigurationSection indexerConfigurationSection = (IndexerConfigurationSection)ConfigurationManager.GetSection("indexer");
 
-            
-            IOC.Container.GetInstance().Add(new RegisteredType().For<MockSender>().BasedOn<ISolrSender>().IdentifiedBy("mockSender").With(LifeStyle.Transient).WithConstructorParameters("something"));
-            IOC.Container.GetInstance().Add(new RegisteredType().For<SolrSender>().BasedOn<ISolrSender>().IdentifiedBy("solrSender").With(LifeStyle.Transient).WithConstructorParameters(indexerConfigurationSection.SolrConnectionString));
-            IOC.Container.GetInstance().Add(new RegisteredType().For<MockLyricsDeserializer>().BasedOn<ILyricsDeserializer>().IdentifiedBy("mockLyrics").With(LifeStyle.Transient));
-            IOC.Container.GetInstance().Add(new RegisteredType().For<LyricsDeserializer>().BasedOn<ILyricsDeserializer>().IdentifiedBy("lyrics").With(LifeStyle.Transient));
-
-            _agentService = new IndexerAgentService(IOC.Container.GetInstance().Resolve<ISolrSender>(indexerConfigurationSection.CurrentSender), 
-                IOC.Container.GetInstance()
-                    .Resolve<ILyricsDeserializer>(indexerConfigurationSection.Lyrics.CurrentImplementation), 
-                indexerConfigurationSection.Music.SourceDirectory, 
-                indexerConfigurationSection.Lyrics.SourceDirectory, 
-                indexerConfigurationSection.Music.SearchPattern, 
-                indexerConfigurationSection.Lyrics.SearchPattern);
+            LoggingManager.Debug("Agent constructed.");
         }
 
         protected override void OnStart(string[] args)
         {
+            LoggingManager.Debug("Starting the Agent...");
+            IndexerConfigurationSection indexerConfigurationSection = (IndexerConfigurationSection)ConfigurationManager.GetSection("indexer");
+
+
+            IOC.Container.GetInstance().Add(new RegisteredType().For<MockMusicFilesProcessor>().BasedOn<FilesProcessor>().IdentifiedBy("mock").With(LifeStyle.Transient));
+            IOC.Container.GetInstance().Add(new RegisteredType().For<MusicFilesProcessor>().BasedOn<FilesProcessor>().IdentifiedBy("real").With(LifeStyle.Transient));
+            IOC.Container.GetInstance().Add(new RegisteredType().For<MockLyricsFilesProcessor>().BasedOn<LyricsFilesProcessor>().IdentifiedBy("mock").With(LifeStyle.Transient).WithConstructorParameters(
+                indexerConfigurationSection.Lyrics.SourceDirectory,indexerConfigurationSection.Music.SourceDirectory));
+            IOC.Container.GetInstance().Add(new RegisteredType().For<LyricsFilesProcessor>().BasedOn<LyricsFilesProcessor>().IdentifiedBy("real").With(LifeStyle.Transient));
+
+            LoggingManager.Debug(indexerConfigurationSection.ToString());
+
+            _agentService = new IndexerAgentService(IOC.Container.GetInstance().Resolve<FilesProcessor>(indexerConfigurationSection.Music.CurrentImplementation),
+                IOC.Container.GetInstance()
+                    .Resolve<LyricsFilesProcessor>(indexerConfigurationSection.Lyrics.CurrentImplementation));
+            LoggingManager.Debug("Opening service host...");
             if (_agentServiceHost != null)
                 _agentServiceHost.Close();
             _agentServiceHost = new ServiceHost(_agentService);
             _agentServiceHost.Open();
+            LoggingManager.Debug("Service host opened.");
+            LoggingManager.Debug("Agent started.");
         }
 
         protected override void OnStop()

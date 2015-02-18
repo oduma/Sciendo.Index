@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Sciendo.Common.Logging;
 using Sciendo.Lyrics.Common;
 using System;
 using System.Net.Http;
@@ -17,7 +18,9 @@ namespace Sciendo.Index.Solr
         private string _url;
         public SolrSender(string solrConnectionString)
         {
+            LoggingManager.Debug("Constructing SolrSender with: " +solrConnectionString);
             Url = solrConnectionString;
+            LoggingManager.Debug("SolrSender constructed.");
         }
 
         public SolrSender()

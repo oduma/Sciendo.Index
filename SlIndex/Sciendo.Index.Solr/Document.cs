@@ -10,7 +10,7 @@ namespace Sciendo.Index.Solr
         public Document()
         { }
 
-        public Document (string filePath, string rootFolder)
+        public Document (string filePath, string catalogLetter)
         {
             if (string.IsNullOrEmpty(filePath))
                 throw new ArgumentNullException("filePath");
@@ -18,12 +18,12 @@ namespace Sciendo.Index.Solr
             file_path = new Field<string> { set = Prefix + filePath };
 
             extension_f = new Field<string> { set = Path.GetExtension(file_path_id).Replace(".", "") };
-            letter_catalog_f = new Field<string> { set = file_path_id.ToLower().Replace(rootFolder.ToLower(), "").Split(new char[] { Path.DirectorySeparatorChar })[1] };
+            letter_catalog_f = new Field<string> { set = catalogLetter };
 
         }
 
-        public Document(string filePath, string rootFolder, string songLyrics)
-            :this(filePath,rootFolder)
+        public Document(string filePath, string catalogLetter, string songLyrics)
+            :this(filePath,catalogLetter)
         {
             
             lyrics = new Field<string> {set = songLyrics};

@@ -13,6 +13,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3rdParty", "3rdParty", "{13
 	ProjectSection(SolutionItems) = preProject
 		3rdParty\Id3.dll = 3rdParty\Id3.dll
 		3rdParty\Id3.Files.dll = 3rdParty\Id3.Files.dll
+		3rdParty\log4net.dll = 3rdParty\log4net.dll
+		3rdParty\log4net.xml = 3rdParty\log4net.xml
 		3rdParty\Sciendo.Common.dll = 3rdParty\Sciendo.Common.dll
 	EndProjectSection
 EndProject

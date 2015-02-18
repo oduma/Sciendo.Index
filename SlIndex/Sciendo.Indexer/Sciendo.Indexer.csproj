@@ -32,16 +32,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Id3">
-      <HintPath>..\3rdParty\Id3.dll</HintPath>
+    <Reference Include="CommandLine">
+      <HintPath>..\packages\CommandLineParser20.2.0.0.0\lib\net40\CommandLine.dll</HintPath>
     </Reference>
-    <Reference Include="Id3.Files">
-      <HintPath>..\3rdParty\Id3.Files.dll</HintPath>
-    </Reference>
-    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Newtonsoft.Json.6.0.7\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
+    <Reference Include="Microsoft.QualityTools.Testing.Fakes, Version=11.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="Sciendo.Common">
       <HintPath>..\3rdParty\Sciendo.Common.dll</HintPath>
     </Reference>
@@ -57,9 +51,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IndexingType.cs" />
+    <Compile Include="Options.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Service References\Sciendo.Indexer.Agent.Client\Reference.cs">
+    <Compile Include="Service References\Client\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
@@ -68,46 +64,38 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
-    <None Include="Service References\Sciendo.Indexer.Agent.Client\IndexerAgentService.wsdl" />
-    <None Include="Service References\Sciendo.Indexer.Agent.Client\IndexerAgentService.xsd">
+    <None Include="Service References\Client\IndexerAgentService.wsdl" />
+    <None Include="Service References\Client\IndexerAgentService.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\Sciendo.Indexer.Agent.Client\IndexerAgentService1.wsdl" />
-    <None Include="Service References\Sciendo.Indexer.Agent.Client\IndexerAgentService1.xsd">
+    <None Include="Service References\Client\IndexerAgentService1.wsdl" />
+    <None Include="Service References\Client\IndexerAgentService1.xsd">
       <SubType>Designer</SubType>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Sciendo.Index.Solr\Sciendo.Index.Solr.csproj">
-      <Project>{83149074-f073-4dec-917d-0bbece6e81ca}</Project>
-      <Name>Sciendo.Index.Solr</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Sciendo.Indexer.Agent\Sciendo.Indexer.Agent.csproj">
-      <Project>{866D1694-DD87-4F37-B542-FF50863317DF}</Project>
-      <Name>Sciendo.Indexer.Agent</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Sciendo.Lyrics.Common\Sciendo.Lyrics.Common.csproj">
-      <Project>{7a14b0f9-5358-4dd0-b38c-daafc9ec50d4}</Project>
-      <Name>Sciendo.Lyrics.Common</Name>
-    </ProjectReference>
+    <None Include="Service References\Client\Sciendo.Indexer.Client.IndexLyricsOnDemandResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Client\Sciendo.Indexer.Client.IndexMusicOnDemandResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadataStorage Include="Service References\Sciendo.Indexer.Agent.Client\" />
+    <WCFMetadataStorage Include="Service References\Client\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\Sciendo.Indexer.Agent.Client\IndexerAgentService.disco" />
+    <None Include="Service References\Client\IndexerAgentService.disco" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\Sciendo.Indexer.Agent.Client\configuration91.svcinfo" />
+    <None Include="Service References\Client\configuration91.svcinfo" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\Sciendo.Indexer.Agent.Client\configuration.svcinfo" />
+    <None Include="Service References\Client\configuration.svcinfo" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\Sciendo.Indexer.Agent.Client\Reference.svcmap">
+    <None Include="Service References\Client\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>

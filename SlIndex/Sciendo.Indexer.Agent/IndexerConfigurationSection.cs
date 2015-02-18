@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Linq;
-using System.Text;
+﻿using System.Configuration;
 
 namespace Sciendo.Indexer.Agent
 {
@@ -21,24 +17,12 @@ namespace Sciendo.Indexer.Agent
             }
         }
 
-        [ConfigurationProperty("currentSender", DefaultValue = "solrSender", IsRequired = false)]
-        public string CurrentSender
-        {
-            get
-            {
-                return (string)this["currentSender"];
-            }
-            set
-            {
-                this["currentSender"] = value;
-            }
-        }
         [ConfigurationProperty("music")]
-        public IndexerConfigurationSourceBase Music
+        public IndexerConfigurationSource Music
         {
             get
             {
-                return (IndexerConfigurationSourceBase)this["music"];
+                return (IndexerConfigurationSource)this["music"];
             }
             set
             {
@@ -46,11 +30,11 @@ namespace Sciendo.Indexer.Agent
             }
         }
         [ConfigurationProperty("lyrics")]
-        public IndexerConfigurationSourceWithImplementation Lyrics
+        public IndexerConfigurationSource Lyrics
         {
             get
             {
-                return (IndexerConfigurationSourceWithImplementation)this["lyrics"];
+                return (IndexerConfigurationSource)this["lyrics"];
             }
             set
             {
@@ -58,5 +42,10 @@ namespace Sciendo.Indexer.Agent
             }
         }
 
+        public override string ToString()
+        {
+            return string.Format("SolrConnectionString: {0}\r\nMusic:\r\n{1}\r\nLyrics:\r\n{2}.", SolrConnectionString, Music.ToString(),
+                Lyrics.ToString());
+        }
     }
 }

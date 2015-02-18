@@ -38,9 +38,15 @@
     <Reference Include="Id3.Files">
       <HintPath>..\3rdParty\Id3.Files.dll</HintPath>
     </Reference>
+    <Reference Include="log4net">
+      <HintPath>..\3rdParty\log4net.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Newtonsoft.Json.6.0.7\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Sciendo.Common">
+      <HintPath>..\3rdParty\Sciendo.Common.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
@@ -72,9 +78,10 @@
     </Compile>
     <Compile Include="IndexerAgentService.cs" />
     <Compile Include="IndexerConfigurationSection.cs" />
-    <Compile Include="IndexerConfigurationSourceBase.cs" />
-    <Compile Include="IndexerConfigurationSourceWithImplementation.cs" />
+    <Compile Include="IndexerConfigurationSource.cs" />
     <Compile Include="LyricsFilesProcessor.cs" />
+    <Compile Include="MockLyricsFilesProcessor.cs" />
+    <Compile Include="MockMusicFilesProcessor.cs" />
     <Compile Include="MusicFilesProcessor.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -82,6 +89,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="log4net.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

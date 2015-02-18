@@ -25,23 +25,23 @@ namespace Sciendo.Indexer.Agent
             {
                 Directory.GetDirectories(path, "*", SearchOption.AllDirectories)
                     .ToList()
-                    .ForEach(s => ContinueWithDirectory(s, searchPattern, path));
+                    .ForEach(s => ContinueWithDirectory(s, searchPattern));
                 //Search the current directory also
-                ContinueWithDirectory(path,searchPattern,path);
+                ContinueWithDirectory(path,searchPattern);
             }
             else if (File.Exists(path))
-                ProcessFiles(new string[] {path},Path.GetDirectoryName(path), _progressEvent);
+                ProcessFiles(new string[] {path}, _progressEvent);
             else 
                 throw new ArgumentException("Invalid path");
         }
 
-        private void ContinueWithDirectory(string directory, string searchPattern, string rootFolder)
+        private void ContinueWithDirectory(string directory, string searchPattern)
         {
             var files = GetFiles(directory, searchPattern, SearchOption.TopDirectoryOnly);
 
             if (files.Any())
             {
-                ProcessFiles(files, rootFolder, _progressEvent);
+                ProcessFiles(files, _progressEvent);
             }
         }
 
@@ -50,6 +50,6 @@ namespace Sciendo.Indexer.Agent
             return filters.Split('|').SelectMany(filter => System.IO.Directory.GetFiles(sourceFolder, filter, searchOption));
         }
 
-        public Action<IEnumerable<string>, string, Action<Status,string>> ProcessFiles { private get; set; }
+        public Action<IEnumerable<string>, Action<Status,string>> ProcessFiles { private get; set; }
     }
 }

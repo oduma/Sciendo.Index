@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="e5VsflBATdRYmJ37qXjNaaJsZ4k=">
+<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="kpMNbtzRazMk80hwAz9yGab1Mu4=">
   <bindingConfigurations>
     <bindingConfiguration bindingType="wsHttpBinding" name="WSHttpBinding_IIndexerAgent">
       <properties>
@@ -127,7 +127,7 @@
     </bindingConfiguration>
   </bindingConfigurations>
   <endpoints>
-    <endpoint name="WSHttpBinding_IIndexerAgent" contract="Sciendo.Indexer.Agent.Client.IIndexerAgent" bindingType="wsHttpBinding" address="http://localhost:7000/IndexerAgentService" bindingConfiguration="WSHttpBinding_IIndexerAgent">
+    <endpoint name="WSHttpBinding_IIndexerAgent" contract="Client.IIndexerAgent" bindingType="wsHttpBinding" address="http://localhost:7000/IndexerAgentService" bindingConfiguration="WSHttpBinding_IIndexerAgent">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue>http://localhost:7000/IndexerAgentService</serializedValue>
@@ -142,7 +142,7 @@
           <serializedValue>WSHttpBinding_IIndexerAgent</serializedValue>
         </property>
         <property path="/contract" isComplexType="false" isExplicitlyDefined="true" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>Sciendo.Indexer.Agent.Client.IIndexerAgent</serializedValue>
+          <serializedValue>Client.IIndexerAgent</serializedValue>
         </property>
         <property path="/headers" isComplexType="true" isExplicitlyDefined="false" clrType="System.ServiceModel.Configuration.AddressHeaderCollectionElement, System.ServiceModel, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue>System.ServiceModel.Configuration.AddressHeaderCollectionElement</serializedValue>

@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
+using System.Configuration;
 using System.IO;
+using Sciendo.Common.Logging;
 using Sciendo.Index.Solr;
 using Sciendo.Lyrics.Common;
 using System;
@@ -8,31 +10,52 @@ namespace Sciendo.Indexer.Agent
 {
     public class LyricsFilesProcessor:FilesProcessor
     {
-        private string _musicPath;
-        private ILyricsDeserializer _lyricsDeserializer;
+        protected ILyricsDeserializer LyricsDeserializer { private get; set; }
+        private readonly string _musicRootFolder;
 
-        public LyricsFilesProcessor(string musicPath, ILyricsDeserializer lyricsDeserializer)
+        public LyricsFilesProcessor()
         {
-            if (string.IsNullOrEmpty(musicPath))
-                throw new ArgumentNullException("musicPath");
-            if (!Directory.Exists(musicPath) && !File.Exists(musicPath))
-                throw new ArgumentException("Invalid path");
-            _musicPath = musicPath;
-            _lyricsDeserializer = lyricsDeserializer;
+            LoggingManager.Debug("Constructing LyricsFilesprocessor...");
+            var configSection = (IndexerConfigurationSection) ConfigurationManager.GetSection("indexer");
+            Sender=new SolrSender(configSection.SolrConnectionString);
+            CurrentConfiguration = configSection.Lyrics;
+            _musicRootFolder = configSection.Music.SourceDirectory;
+            LyricsDeserializer = new LyricsDeserializer();
+            LoggingManager.Debug("LyricsFilesprocessor constructed.");
         }
 
-        protected override IEnumerable<Document> PrepareDocuments(IEnumerable<string> files, string rootFolder)
+        public LyricsFilesProcessor(IndexerConfigurationSource givenConfig, string musicRootFolder)
+        {
+            _musicRootFolder = musicRootFolder;
+            CurrentConfiguration = givenConfig;
+        }
+
+        protected override IEnumerable<Document> PrepareDocuments(IEnumerable<string> files)
         {
             foreach (string file in files)
             {
-                var lyricsResult = _lyricsDeserializer.DeserializeOneFromFile<LyricsResult>(file);
+                var lyricsResult = LyricsDeserializer.DeserializeOneFromFile<LyricsResult>(file);
                 if (lyricsResult != null)
                 {
-                    var musicFile = file.Replace(rootFolder, _musicPath);
-                    musicFile = Directory.GetFiles(Path.GetDirectoryName(musicFile), Path.GetFileNameWithoutExtension(musicFile) + ".*")[0];
-                    yield return new Document(musicFile, _musicPath, lyricsResult.lyrics);
+                    var musicFile = GetMusicFile(file);
+                    if(!string.IsNullOrEmpty(musicFile))
+                    {
+                        yield return new Document(musicFile,CatalogLetter(musicFile,_musicRootFolder), lyricsResult.lyrics);
+                    }
+                    else
+                    {
+                        throw new Exception("Cannot determine the music file for the lyrics file: " + file);
+                    }
                 }
             }
+        }
+
+        private string GetMusicFile(string file)
+        {
+            var musicFile = file.Replace(CurrentConfiguration.SourceDirectory, _musicRootFolder);
+
+            return Directory.GetFiles(Path.GetDirectoryName(musicFile),
+                                Path.GetFileNameWithoutExtension(musicFile) + ".*")[0];
         }
     }
 }

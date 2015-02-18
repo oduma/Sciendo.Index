@@ -1,12 +1,5 @@
-﻿using Newtonsoft.Json;
-using NUnit.Framework;
-using Sciendo.Index.Solr;
-using Sciendo.Indexer;
+﻿using NUnit.Framework;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Sciendo.Indexer.Agent;
 
 namespace Sciendo.Index.Tests
@@ -46,31 +39,10 @@ namespace Sciendo.Index.Tests
         }
 
         [Test]
-        [ExpectedException(typeof(ArgumentNullException))]
-        public void ReaderLyricsTestsNoMusicPathGiven()
-        {
-            MockLyricsFilesProcessor processor = new MockLyricsFilesProcessor(@"");
-        }
-
-        [Test]
-        [ExpectedException(typeof(ArgumentException), ExpectedMessage="Invalid path")]
-        public void ReaderLyricsTestsInvaldiMusicPathGiven()
-        {
-            MockLyricsFilesProcessor processor = new MockLyricsFilesProcessor(@"c:\something\something");
-        }
-
-        [Test]
-        [ExpectedException(typeof(ArgumentException), ExpectedMessage = "Invalid path")]
-        public void ReaderLyricsTestsInvaldiMusicPathFileGiven()
-        {
-            MockLyricsFilesProcessor processor = new MockLyricsFilesProcessor(@"TestData\Music\MockMp31.mp3");
-        }
-
-        [Test]
         [ExpectedException(typeof(ArgumentException), ExpectedMessage = "Invalid path")]
         public void ReaderLyricsTestsInvalidLyricsPathGiven()
         {
-            MockLyricsFilesProcessor processor = new MockLyricsFilesProcessor(@"TestData\Music");
+            MockLyricsFilesProcessor processor = new MockLyricsFilesProcessor(@"TestData\Lyrics", @"TestData\Music");
             Reader reader = new Reader(null);
             reader.ProcessFiles = processor.ProcessFilesBatch;
             reader.ParsePath(@"C:\something\something", "*.lrc");
@@ -78,7 +50,7 @@ namespace Sciendo.Index.Tests
         [Test]
         public void ReaderLyricsTestsFolderOk()
         {
-            MockLyricsFilesProcessor processor = new MockLyricsFilesProcessor(@"TestData\Music");
+            MockLyricsFilesProcessor processor = new MockLyricsFilesProcessor(@"TestData\Lyrics", @"TestData\Music");
             Reader reader = new Reader(null);
             reader.ProcessFiles = processor.ProcessFilesBatch;
             reader.ParsePath(@"TestData\Lyrics", "*.lrc");
@@ -87,7 +59,7 @@ namespace Sciendo.Index.Tests
         [Test]
         public void ReaderLyricsTestsFileOk()
         {
-            MockLyricsFilesProcessor processor = new MockLyricsFilesProcessor(@"TestData\Music\Sub");
+            MockLyricsFilesProcessor processor = new MockLyricsFilesProcessor(@"TestData\Lyrics", @"TestData\Music");
             Reader reader = new Reader(null);
             reader.ProcessFiles = processor.ProcessFilesBatch;
             reader.ParsePath(@"TestData\Lyrics\Sub\MockOgg.lrc", "*.lrc");

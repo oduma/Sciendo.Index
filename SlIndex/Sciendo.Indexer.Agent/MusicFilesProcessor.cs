@@ -1,15 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using Id3;
 using Id3.Id3;
+using Sciendo.Common.Logging;
 using Sciendo.Index.Solr;
 
 namespace Sciendo.Indexer.Agent
 {
     public class MusicFilesProcessor:FilesProcessor
     {
-        protected override IEnumerable<Document> PrepareDocuments(IEnumerable<string> files, string rootFolder)
+        public MusicFilesProcessor()
+        {
+            LoggingManager.Debug("Constructing MusicFilesProcessor...");
+            var configSection = (IndexerConfigurationSection) ConfigurationManager.GetSection("indexer");
+            Sender=new SolrSender(configSection.SolrConnectionString);
+            CurrentConfiguration = configSection.Music;
+            LoggingManager.Debug("MusicFilesProcessor constructed.");
+        }
+
+        protected override IEnumerable<Document> PrepareDocuments(IEnumerable<string> files)
         {
             string[] artists = null;
             string title=string.Empty;
@@ -38,7 +49,7 @@ namespace Sciendo.Indexer.Agent
                     }
                 }
         
-                yield return new FullDocument(file, rootFolder,artists,title,album);
+                yield return new FullDocument(file, CatalogLetter(file,CurrentConfiguration.SourceDirectory),artists,title,album);
             }
         }
 
