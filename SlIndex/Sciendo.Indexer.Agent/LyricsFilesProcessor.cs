@@ -32,6 +32,7 @@ namespace Sciendo.Indexer.Agent
 
         protected override IEnumerable<Document> PrepareDocuments(IEnumerable<string> files)
         {
+            LoggingManager.Debug("LyricsFileProcessor preparing documents...");
             foreach (string file in files)
             {
                 var lyricsResult = LyricsDeserializer.DeserializeOneFromFile<LyricsResult>(file);
@@ -52,10 +53,14 @@ namespace Sciendo.Indexer.Agent
 
         private string GetMusicFile(string file)
         {
+            LoggingManager.Debug("Get Music File from lyrics file: " +file);
+            LoggingManager.Debug("Get Music Using MusicRootFolder: " + _musicRootFolder);
             var musicFile = file.Replace(CurrentConfiguration.SourceDirectory, _musicRootFolder);
 
-            return Directory.GetFiles(Path.GetDirectoryName(musicFile),
+            musicFile = Directory.GetFiles(Path.GetDirectoryName(musicFile),
                                 Path.GetFileNameWithoutExtension(musicFile) + ".*")[0];
+            LoggingManager.Debug("Music file: "+musicFile);
+            return musicFile;
         }
     }
 }

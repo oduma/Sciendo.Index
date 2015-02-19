@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
+using Sciendo.Common.Logging;
 
 namespace Sciendo.Lyrics.Common
 {
@@ -25,6 +26,7 @@ namespace Sciendo.Lyrics.Common
 
         public virtual T DeserializeOneFromFile<T>(string fileName) where T : class
         {
+            LoggingManager.Debug("Deserializing lyrics from file: " +fileName);
             if (!File.Exists(fileName))
                 return null;
             using (TextReader fs = File.OpenText(fileName))

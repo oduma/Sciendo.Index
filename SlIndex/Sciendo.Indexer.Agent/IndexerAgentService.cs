@@ -34,13 +34,15 @@ namespace Sciendo.Indexer.Agent
 
         public int IndexLyricsOnDemand(string fromPath)
         {
+            LoggingManager.Debug("Starting IndexLyrics from path:" +fromPath);
             if (string.IsNullOrEmpty(fromPath))
                 throw new ArgumentNullException("fromPath");
-            if (!Directory.Exists(fromPath) || !File.Exists(fromPath))
-                throw new ArgumentException("Invalid path");
+            if (!Directory.Exists(fromPath) && !File.Exists(fromPath))
+                throw new ArgumentException("Invalid path " +fromPath);
 
             Reader reader = new Reader(ProgressEvent);
             _lyricsFilesProcessor.ResetCounter();
+            progressStatus = new Dictionary<string, Status>();
             reader.ProcessFiles = _lyricsFilesProcessor.ProcessFilesBatch;
             reader.ParsePath(fromPath, _lyricsFilesProcessor.CurrentConfiguration.SearchPattern);
             return _lyricsFilesProcessor.Counter;
