@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using Sciendo.Common.Logging;
 using Sciendo.Index.Solr;
@@ -11,12 +12,15 @@ namespace Sciendo.Indexer.Agent
         {
             LoggingManager.Debug("Constructing MockMusicFilesprocessor...");
             Sender = new MockSender();
+            CurrentConfiguration = ((IndexerConfigurationSection) ConfigurationManager.GetSection("indexer")).Music;
             LoggingManager.Debug("MockMusicFilesprocessor constructed.");
         }
 
         protected override IEnumerable<Document> PrepareDocuments(IEnumerable<string> files)
         {
+            LoggingManager.Debug("MockMusicFilesprocessor preparing documents...");
             yield return new FullDocument(files.First(), "t", new string[] { "test artist" }, "test song", "test alubm");
+            LoggingManager.Debug("MockMusicFilesprocessor documents prrepared.");
         }
     }
 }

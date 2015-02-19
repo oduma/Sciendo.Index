@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ServiceModel;
 using Sciendo.Common.Logging;
 using Sciendo.Lyrics.Common;
@@ -12,6 +13,8 @@ namespace Sciendo.Indexer.Agent
         private readonly FilesProcessor _musicFilesProcessor;
         private readonly LyricsFilesProcessor _lyricsFilesProcessor;
 
+        private Dictionary<string, Status> progressStatus;  
+
         public IndexerAgentService( 
             FilesProcessor musicFilesProcessor,
             LyricsFilesProcessor lyricsFilesProcessor)
@@ -23,20 +26,10 @@ namespace Sciendo.Indexer.Agent
             LoggingManager.Debug("IndexerAgentService constructed.");
         }
 
-        private static void ProgressEvent(Status arg1, string arg2)
+        private void ProgressEvent(Status arg1, string arg2)
         {
-            if (arg1 != Status.Done)
-            {
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.Write("error indexing: ");
-            }
-            else
-            {
-                Console.ForegroundColor = ConsoleColor.Green;
-                Console.Write("Indexed Ok: ");
-            }
-            Console.ResetColor();
-            Console.WriteLine(arg2);
+            LoggingManager.Debug("File: " +arg2+" status: " +arg1);
+            progressStatus.Add(arg2,arg1);
         }
 
         public int IndexLyricsOnDemand(string fromPath)
@@ -53,13 +46,16 @@ namespace Sciendo.Indexer.Agent
             return _lyricsFilesProcessor.Counter;
         }
 
+        
         public int IndexMusicOnDemand(string fromPath)
         {
+            LoggingManager.Debug("Starting IndexMusic from path: " +fromPath);
             _musicFilesProcessor.ResetCounter();
+            progressStatus=new Dictionary<string, Status>();
             Reader reader = new Reader(ProgressEvent);
-
             reader.ProcessFiles = _musicFilesProcessor.ProcessFilesBatch;
             reader.ParsePath(fromPath,_musicFilesProcessor.CurrentConfiguration.SearchPattern);
+            LoggingManager.Debug("IndexMusic on path: " + fromPath + " Counter: " + _musicFilesProcessor.Counter);
             return _musicFilesProcessor.Counter;
 
         }

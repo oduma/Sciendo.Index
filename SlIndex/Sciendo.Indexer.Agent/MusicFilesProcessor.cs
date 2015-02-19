@@ -22,6 +22,7 @@ namespace Sciendo.Indexer.Agent
 
         protected override IEnumerable<Document> PrepareDocuments(IEnumerable<string> files)
         {
+            LoggingManager.Debug("MusicFileProcessor preparing documents...");
             string[] artists = null;
             string title=string.Empty;
             string album=string.Empty;
@@ -51,6 +52,7 @@ namespace Sciendo.Indexer.Agent
         
                 yield return new FullDocument(file, CatalogLetter(file,CurrentConfiguration.SourceDirectory),artists,title,album);
             }
+            LoggingManager.Debug("MusicFileProcessor documents prepared.");
         }
 
     }

@@ -1,4 +1,5 @@
-﻿using Sciendo.Lyrics.Common;
+﻿using Sciendo.Common.Logging;
+using Sciendo.Lyrics.Common;
 
 namespace Sciendo.Index.Solr
 {
@@ -8,6 +9,7 @@ namespace Sciendo.Index.Solr
 
         public  TrySendResponse TrySend<T>(T package)
         {
+            LoggingManager.Debug("Mock Try Send.");
             return new TrySendResponse {Status = Status.Done, Time=.0};
         }
     }

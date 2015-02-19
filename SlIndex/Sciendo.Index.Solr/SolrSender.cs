@@ -35,20 +35,32 @@ namespace Sciendo.Index.Solr
 
         public virtual TrySendResponse TrySend<T>(T package)
         {
+            LoggingManager.Debug("Send to solr...");
             HttpClient httpClient = new HttpClient();
             using (var postTask = httpClient.PostAsJsonAsync<T>(new Uri(Url), package)
                 .ContinueWith((p)=>p).Result)
             {
-                if (postTask.Status != TaskStatus.RanToCompletion || !postTask.Result.IsSuccessStatusCode || postTask.Result.Content==null)
+                if (postTask.Status != TaskStatus.RanToCompletion || !postTask.Result.IsSuccessStatusCode ||
+                    postTask.Result.Content == null)
+                {
+                    LoggingManager.Debug("Not send");
                     return new TrySendResponse { Status = Status.NotIndexed };
+                }
 
                 using(var readTask = postTask.Result.Content.ReadAsStringAsync().ContinueWith((r)=>r).Result)
                 {
-                    if(readTask.Status!=TaskStatus.RanToCompletion || string.IsNullOrEmpty(readTask.Result))
+                    if (readTask.Status != TaskStatus.RanToCompletion || string.IsNullOrEmpty(readTask.Result))
+                    {
+                        LoggingManager.Debug("Not send.");
                         return new TrySendResponse { Status = Status.NotIndexed};
+                    }
                     var solrUpdateResponse = JsonConvert.DeserializeObject<SolrUpdateResponse>(readTask.Result);
-                    if(solrUpdateResponse.responseHeader.status!=0)
+                    if (solrUpdateResponse.responseHeader.status != 0)
+                    {
+                        LoggingManager.Debug("Not send.");
                         return new TrySendResponse { Status = Status.NotIndexed, Time = solrUpdateResponse.responseHeader.QTime };
+                    }
+                    LoggingManager.Debug("Send");
                     return new TrySendResponse { Status = Status.Done, Time = solrUpdateResponse.responseHeader.QTime };
                     
                 }
