@@ -4,7 +4,7 @@ using System.Linq;
 using Sciendo.Common.Logging;
 using Sciendo.Index.Solr;
 
-namespace Sciendo.Indexer.Agent
+namespace Sciendo.Indexer.Agent.Processing.Mocks
 {
     public class MockMusicFilesProcessor:FilesProcessor
     {

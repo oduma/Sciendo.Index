@@ -1,4 +1,7 @@
 ﻿using Sciendo.Common.Logging;
+using Sciendo.Indexer.Agent.Processing;
+using Sciendo.Indexer.Agent.Processing.Mocks;
+using Sciendo.Indexer.Agent.Service;
 using Sciendo.IOC;
 using System.Configuration;
 using System.ServiceModel;

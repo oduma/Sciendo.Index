@@ -1,5 +1,6 @@
 ﻿using System.ServiceModel;
-namespace Sciendo.Indexer.Agent
+
+namespace Sciendo.Indexer.Agent.Service
 {
     [ServiceContract(Namespace="http://Sciendo.Indexer.Agent")]
     public interface IIndexerAgent

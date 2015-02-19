@@ -7,7 +7,7 @@ using Sciendo.Common.Logging;
 using Sciendo.Index.Solr;
 using Sciendo.Lyrics.Common;
 
-namespace Sciendo.Indexer.Agent
+namespace Sciendo.Indexer.Agent.Processing
 {
     public abstract class FilesProcessor
     {

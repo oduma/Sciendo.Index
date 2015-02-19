@@ -62,8 +62,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FilesProcessor.cs" />
-    <Compile Include="IIndexerAgent.cs" />
     <Compile Include="IndexerAgent.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -76,16 +74,18 @@
     <Compile Include="IndexerAgentInstaller.Designer.cs">
       <DependentUpon>IndexerAgentInstaller.cs</DependentUpon>
     </Compile>
-    <Compile Include="IndexerAgentService.cs" />
     <Compile Include="IndexerConfigurationSection.cs" />
     <Compile Include="IndexerConfigurationSource.cs" />
-    <Compile Include="LyricsFilesProcessor.cs" />
-    <Compile Include="MockLyricsFilesProcessor.cs" />
-    <Compile Include="MockMusicFilesProcessor.cs" />
-    <Compile Include="MusicFilesProcessor.cs" />
+    <Compile Include="Processing\FilesProcessor.cs" />
+    <Compile Include="Processing\LyricsFilesProcessor.cs" />
+    <Compile Include="Processing\Mocks\MockLyricsFilesProcessor.cs" />
+    <Compile Include="Processing\Mocks\MockMusicFilesProcessor.cs" />
+    <Compile Include="Processing\MusicFilesProcessor.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Reader.cs" />
+    <Compile Include="Service\IIndexerAgent.cs" />
+    <Compile Include="Service\IndexerAgentService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.ServiceModel;
 using Sciendo.Common.Logging;
+using Sciendo.Indexer.Agent.Processing;
 using Sciendo.Lyrics.Common;
-using System.IO;
 
-namespace Sciendo.Indexer.Agent
+namespace Sciendo.Indexer.Agent.Service
 {
     [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single)]
     public class IndexerAgentService:IIndexerAgent

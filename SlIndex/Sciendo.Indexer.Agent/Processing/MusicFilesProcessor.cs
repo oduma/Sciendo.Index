@@ -7,7 +7,7 @@ using Id3.Id3;
 using Sciendo.Common.Logging;
 using Sciendo.Index.Solr;
 
-namespace Sciendo.Indexer.Agent
+namespace Sciendo.Indexer.Agent.Processing
 {
     public class MusicFilesProcessor:FilesProcessor
     {

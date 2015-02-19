@@ -1,12 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Configuration;
 using System.IO;
 using Sciendo.Common.Logging;
 using Sciendo.Index.Solr;
 using Sciendo.Lyrics.Common;
-using System;
 
-namespace Sciendo.Indexer.Agent
+namespace Sciendo.Indexer.Agent.Processing
 {
     public class LyricsFilesProcessor:FilesProcessor
     {

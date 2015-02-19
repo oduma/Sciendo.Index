@@ -2,7 +2,7 @@
 using Sciendo.Index.Solr;
 using Sciendo.Lyrics.Common;
 
-namespace Sciendo.Indexer.Agent
+namespace Sciendo.Indexer.Agent.Processing.Mocks
 {
     public class MockLyricsFilesProcessor : LyricsFilesProcessor
     {
