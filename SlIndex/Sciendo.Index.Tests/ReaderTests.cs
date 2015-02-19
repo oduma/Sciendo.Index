@@ -1,6 +1,7 @@
 ﻿using NUnit.Framework;
 using System;
 using Sciendo.Indexer.Agent;
+using Sciendo.Indexer.Agent.Processing;
 using Sciendo.Indexer.Agent.Processing.Mocks;
 
 namespace Sciendo.Index.Tests

@@ -30,23 +30,36 @@ namespace Sciendo.Indexer.Agent
             }
         }
 
-        [ConfigurationProperty("currentImplementation", DefaultValue = "", IsRequired = false)]
-        public string CurrentImplementation
+        [ConfigurationProperty("currentProcessingImplementation", DefaultValue = "", IsRequired = true)]
+        public string CurrentProcessingImplementation
         {
             get
             {
-                return (string)this["currentImplementation"];
+                return (string)this["currentProcessingImplementation"];
             }
             set
             {
-                this["currentImplementation"] = value;
+                this["currentProcessingImplementation"] = value;
+            }
+        }
+
+        [ConfigurationProperty("currentMonitoringImplementation", DefaultValue = "", IsRequired = true)]
+        public string CurrentMonitoringImplementation
+        {
+            get
+            {
+                return (string)this["currentMonitoringImplementation"];
+            }
+            set
+            {
+                this["currentProcessingImplementation"] = value;
             }
         }
 
         public override string ToString()
         {
-            return string.Format("\tSource Directory: {0}\r\n\tSearch pattern:{1}\r\n\tCurrent Implementation:{2}",
-                SourceDirectory, SearchPattern, CurrentImplementation);
+            return string.Format("\tSource Directory: {0}\r\n\tSearch pattern:{1}\r\n\tCurrent Processing Implementation:{2}\r\n\tCurrent monitoring implementation:{3}",
+                SourceDirectory, SearchPattern, CurrentProcessingImplementation, CurrentMonitoringImplementation);
         }
     }
 }
