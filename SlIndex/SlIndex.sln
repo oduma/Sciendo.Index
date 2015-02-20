@@ -14,17 +14,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3rdParty", "3rdParty", "{13
 		3rdParty\log4net.dll = 3rdParty\log4net.dll
 		3rdParty\log4net.xml = 3rdParty\log4net.xml
 		3rdParty\Sciendo.Common.dll = 3rdParty\Sciendo.Common.dll
+		3rdParty\Sciendo.IOC.dll = 3rdParty\Sciendo.IOC.dll
+		3rdParty\Sciendo.IOC.pdb = 3rdParty\Sciendo.IOC.pdb
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sciendo.Indexer.Agent", "Sciendo.Indexer.Agent\Sciendo.Indexer.Agent.csproj", "{866D1694-DD87-4F37-B542-FF50863317DF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sciendo.Indexer", "Sciendo.Indexer\Sciendo.Indexer.csproj", "{21292BD9-8060-466E-B2D3-FAF9DF88F2F4}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sciendo.IOC", "Sciendo.IOC\Sciendo.IOC.csproj", "{A88B9C50-7737-4C4C-ABE0-9AA2F4C35F2C}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sciendo.IOC.Tests", "Sciendo.IOC.Tests\Sciendo.IOC.Tests.csproj", "{E61A03DB-4CA1-4C81-8713-02943B382ECD}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sciendo.IOC.Tests.SampleLib", "Sciendo.IOC.Tests.SampleLib\Sciendo.IOC.Tests.SampleLib.csproj", "{9870E4C4-C2A2-43A6-BC56-70B928F9F5BB}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sciendo.Indexer.Monitor", "Sciendo.Indexer.Monitor\Sciendo.Indexer.Monitor.csproj", "{EFB0E886-99C6-4CC7-8A5B-45C1410E3ECE}"
 EndProject
@@ -50,18 +46,6 @@ Global
 		{21292BD9-8060-466E-B2D3-FAF9DF88F2F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{21292BD9-8060-466E-B2D3-FAF9DF88F2F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{21292BD9-8060-466E-B2D3-FAF9DF88F2F4}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A88B9C50-7737-4C4C-ABE0-9AA2F4C35F2C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A88B9C50-7737-4C4C-ABE0-9AA2F4C35F2C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A88B9C50-7737-4C4C-ABE0-9AA2F4C35F2C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A88B9C50-7737-4C4C-ABE0-9AA2F4C35F2C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E61A03DB-4CA1-4C81-8713-02943B382ECD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E61A03DB-4CA1-4C81-8713-02943B382ECD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E61A03DB-4CA1-4C81-8713-02943B382ECD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E61A03DB-4CA1-4C81-8713-02943B382ECD}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9870E4C4-C2A2-43A6-BC56-70B928F9F5BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9870E4C4-C2A2-43A6-BC56-70B928F9F5BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9870E4C4-C2A2-43A6-BC56-70B928F9F5BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9870E4C4-C2A2-43A6-BC56-70B928F9F5BB}.Release|Any CPU.Build.0 = Release|Any CPU
 		{EFB0E886-99C6-4CC7-8A5B-45C1410E3ECE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{EFB0E886-99C6-4CC7-8A5B-45C1410E3ECE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EFB0E886-99C6-4CC7-8A5B-45C1410E3ECE}.Release|Any CPU.ActiveCfg = Release|Any CPU

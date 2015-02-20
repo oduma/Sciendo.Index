@@ -71,10 +71,6 @@
       <Project>{866d1694-dd87-4f37-b542-ff50863317df}</Project>
       <Name>Sciendo.Indexer.Agent</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Sciendo.IOC\Sciendo.IOC.csproj">
-      <Project>{a88b9c50-7737-4c4c-abe0-9aa2f4c35f2c}</Project>
-      <Name>Sciendo.IOC</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Sciendo.Lyrics.Common\Sciendo.Lyrics.Common.csproj">
       <Project>{7a14b0f9-5358-4dd0-b38c-daafc9ec50d4}</Project>
       <Name>Sciendo.Lyrics.Common</Name>
