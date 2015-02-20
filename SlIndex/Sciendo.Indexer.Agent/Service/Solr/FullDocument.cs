@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Sciendo.Index.Solr
+﻿namespace Sciendo.Indexer.Agent.Service.Solr
 {
     public class FullDocument:Document
     {

@@ -5,7 +5,7 @@ using System.Linq;
 using Id3;
 using Id3.Id3;
 using Sciendo.Common.Logging;
-using Sciendo.Index.Solr;
+using Sciendo.Indexer.Agent.Service.Solr;
 
 namespace Sciendo.Indexer.Agent.Processing
 {

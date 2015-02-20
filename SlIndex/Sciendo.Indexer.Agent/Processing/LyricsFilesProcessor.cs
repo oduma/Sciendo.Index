@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.IO;
 using Sciendo.Common.Logging;
-using Sciendo.Index.Solr;
+using Sciendo.Indexer.Agent.Service.Solr;
 using Sciendo.Lyrics.Common;
 
 namespace Sciendo.Indexer.Agent.Processing

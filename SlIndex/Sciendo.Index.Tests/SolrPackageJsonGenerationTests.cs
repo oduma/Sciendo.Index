@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using NUnit.Framework;
-using Sciendo.Index.Solr;
+using Sciendo.Indexer.Agent.Service.Solr;
 using Sciendo.Lyrics.Common;
 
 namespace Sciendo.Index.Tests

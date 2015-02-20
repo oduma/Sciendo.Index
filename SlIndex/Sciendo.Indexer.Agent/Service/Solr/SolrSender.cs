@@ -1,11 +1,10 @@
-﻿using Newtonsoft.Json;
+﻿using System.Net.Http;
+using System.Threading.Tasks;
+using Newtonsoft.Json;
 using Sciendo.Common.Logging;
 using Sciendo.Lyrics.Common;
-using System;
-using System.Net.Http;
-using System.Threading.Tasks;
 
-namespace Sciendo.Index.Solr
+namespace Sciendo.Indexer.Agent.Service.Solr
 {
     public interface ISolrSender
     {
@@ -37,7 +36,7 @@ namespace Sciendo.Index.Solr
         {
             LoggingManager.Debug("Send to solr...");
             HttpClient httpClient = new HttpClient();
-            using (var postTask = httpClient.PostAsJsonAsync<T>(new Uri(Url), package)
+            using (var postTask = httpClient.PostAsJsonAsync<T>(Url, package)
                 .ContinueWith((p)=>p).Result)
             {
                 if (postTask.Status != TaskStatus.RanToCompletion || !postTask.Result.IsSuccessStatusCode ||

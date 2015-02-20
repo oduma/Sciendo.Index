@@ -1,7 +1,7 @@
 ﻿using Sciendo.Common.Logging;
 using Sciendo.Lyrics.Common;
 
-namespace Sciendo.Index.Solr
+namespace Sciendo.Indexer.Agent.Service.Solr.Mocks
 {
     public class MockSender:ISolrSender
     {

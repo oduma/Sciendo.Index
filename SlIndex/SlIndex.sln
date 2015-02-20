@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.30501.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sciendo.Index.Solr", "Sciendo.Index.Solr\Sciendo.Index.Solr.csproj", "{83149074-F073-4DEC-917D-0BBECE6E81CA}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sciendo.Index.Tests", "Sciendo.Index.Tests\Sciendo.Index.Tests.csproj", "{5E5FAE5D-0401-4BF0-ACA0-88E1AE109F8F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sciendo.Lyrics.Common", "Sciendo.Lyrics.Common\Sciendo.Lyrics.Common.csproj", "{7A14B0F9-5358-4DD0-B38C-DAAFC9EC50D4}"
@@ -36,10 +34,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{83149074-F073-4DEC-917D-0BBECE6E81CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{83149074-F073-4DEC-917D-0BBECE6E81CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{83149074-F073-4DEC-917D-0BBECE6E81CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{83149074-F073-4DEC-917D-0BBECE6E81CA}.Release|Any CPU.Build.0 = Release|Any CPU
 		{5E5FAE5D-0401-4BF0-ACA0-88E1AE109F8F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{5E5FAE5D-0401-4BF0-ACA0-88E1AE109F8F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5E5FAE5D-0401-4BF0-ACA0-88E1AE109F8F}.Release|Any CPU.ActiveCfg = Release|Any CPU

@@ -9,8 +9,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Sciendo.Index.Tests</RootNamespace>
     <AssemblyName>Sciendo.Index.Tests</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -66,10 +67,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Sciendo.Index.Solr\Sciendo.Index.Solr.csproj">
-      <Project>{83149074-f073-4dec-917d-0bbece6e81ca}</Project>
-      <Name>Sciendo.Index.Solr</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Sciendo.Indexer.Agent\Sciendo.Indexer.Agent.csproj">
       <Project>{866d1694-dd87-4f37-b542-ff50863317df}</Project>
       <Name>Sciendo.Indexer.Agent</Name>

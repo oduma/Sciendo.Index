@@ -4,7 +4,7 @@ using System.IO;
 using System.Linq;
 using Newtonsoft.Json;
 using Sciendo.Common.Logging;
-using Sciendo.Index.Solr;
+using Sciendo.Indexer.Agent.Service.Solr;
 using Sciendo.Lyrics.Common;
 
 namespace Sciendo.Indexer.Agent.Processing

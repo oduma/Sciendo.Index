@@ -1,8 +1,7 @@
 ﻿using System;
-
 using System.IO;
 
-namespace Sciendo.Index.Solr
+namespace Sciendo.Indexer.Agent.Service.Solr
 {
     public class Document
     {

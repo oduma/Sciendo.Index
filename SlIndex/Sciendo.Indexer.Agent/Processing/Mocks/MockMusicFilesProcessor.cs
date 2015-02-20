@@ -2,7 +2,8 @@
 using System.Configuration;
 using System.Linq;
 using Sciendo.Common.Logging;
-using Sciendo.Index.Solr;
+using Sciendo.Indexer.Agent.Service.Solr;
+using Sciendo.Indexer.Agent.Service.Solr.Mocks;
 
 namespace Sciendo.Indexer.Agent.Processing.Mocks
 {

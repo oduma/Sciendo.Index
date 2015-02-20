@@ -80,15 +80,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Document.cs" />
-    <Compile Include="Field.cs" />
-    <Compile Include="FullDocument.cs" />
-    <Compile Include="MockSender.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SolrResponseHeader.cs" />
-    <Compile Include="SolrSender.cs" />
-    <Compile Include="SolrUpdateResponse.cs" />
-    <Compile Include="TrySendResponse.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

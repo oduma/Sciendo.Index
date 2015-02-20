@@ -1,5 +1,6 @@
 ﻿using Sciendo.Lyrics.Common;
-namespace Sciendo.Index.Solr
+
+namespace Sciendo.Indexer.Agent.Service.Solr
 {
     public class TrySendResponse
     {
