@@ -14,7 +14,7 @@ namespace Sciendo.Indexer
             ParserResult<Options> result;
             try
             {
-                result = CommandLine.Parser.Default.ParseArguments<Options>(args);
+                result = Parser.Default.ParseArguments<Options>(args);
                 if (result.Errors.Any() || (!Directory.Exists(result.Value.Path) &&!File.Exists(result.Value.Path)))
                 {
                     PrintHelp();
@@ -26,7 +26,7 @@ namespace Sciendo.Indexer
                 PrintHelp();
                 return -1;
             }
-            Indexer.Client.IndexerAgentClient client= new IndexerAgentClient();
+            var client= new IndexerAgentClient();
             if (result.Value.IndexType == IndexingType.Music)
             {
                 var response = client.IndexMusicOnDemand(new IndexMusicOnDemandRequest {fromPath = result.Value.Path});
