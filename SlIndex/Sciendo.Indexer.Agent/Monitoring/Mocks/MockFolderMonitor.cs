@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading;
 using Sciendo.Common.Logging;
 
-namespace Sciendo.Indexer.Agent
+namespace Sciendo.Indexer.Agent.Monitoring.Mocks
 {
     public class MockFolderMonitor:IFolderMonitor
     {

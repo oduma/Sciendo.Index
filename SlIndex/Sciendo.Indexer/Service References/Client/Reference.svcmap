@@ -22,9 +22,11 @@
   </MetadataSources>
   <Metadata>
     <MetadataFile FileName="IndexerAgentService.wsdl" MetadataType="Wsdl" ID="1301c6dd-a30e-4950-bbc2-1b1aea66c212" SourceId="1" SourceUrl="http://localhost:7000/IndexerAgentService?wsdl" />
+    <MetadataFile FileName="IndexerAgentService2.xsd" MetadataType="Schema" ID="40966de6-1857-412b-8124-8cdc2054da88" SourceId="1" SourceUrl="http://localhost:7000/IndexerAgentService?xsd=xsd3" />
+    <MetadataFile FileName="IndexerAgentService21.xsd" MetadataType="Schema" ID="2117cf40-6aeb-4dc8-8fcd-3036933d4190" SourceId="1" SourceUrl="http://localhost:7000/IndexerAgentService?xsd=xsd2" />
     <MetadataFile FileName="IndexerAgentService.xsd" MetadataType="Schema" ID="d0817a6b-a881-4fdc-b2e8-3692b2b726e6" SourceId="1" SourceUrl="http://localhost:7000/IndexerAgentService?xsd=xsd1" />
-    <MetadataFile FileName="IndexerAgentService1.wsdl" MetadataType="Wsdl" ID="ccd63d4a-245c-4fc3-b244-6c2330151937" SourceId="1" SourceUrl="http://localhost:7000/IndexerAgentService?wsdl=wsdl0" />
     <MetadataFile FileName="IndexerAgentService1.xsd" MetadataType="Schema" ID="0be2e789-fddf-4088-8dcf-9c6684d2a069" SourceId="1" SourceUrl="http://localhost:7000/IndexerAgentService?xsd=xsd0" />
+    <MetadataFile FileName="IndexerAgentService1.wsdl" MetadataType="Wsdl" ID="ccd63d4a-245c-4fc3-b244-6c2330151937" SourceId="1" SourceUrl="http://localhost:7000/IndexerAgentService?wsdl=wsdl0" />
     <MetadataFile FileName="IndexerAgentService.disco" MetadataType="Disco" ID="943a93a9-4686-408a-920e-e251421d62c4" SourceId="1" SourceUrl="http://localhost:7000/IndexerAgentService?disco" />
   </Metadata>
   <Extensions>

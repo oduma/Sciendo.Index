@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{21292BD9-8060-466E-B2D3-FAF9DF88F2F4}</ProjectGuid>
+    <ProjectGuid>{EFB0E886-99C6-4CC7-8A5B-45C1410E3ECE}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Sciendo.Indexer</RootNamespace>
-    <AssemblyName>Sciendo.Indexer</AssemblyName>
+    <RootNamespace>Sciendo.Indexer.Monitor</RootNamespace>
+    <AssemblyName>Sciendo.Indexer.Monitor</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -32,15 +32,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CommandLine">
-      <HintPath>..\packages\CommandLineParser20.2.0.0.0\lib\net40\CommandLine.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.QualityTools.Testing.Fakes, Version=11.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
-    <Reference Include="Sciendo.Common">
-      <HintPath>..\3rdParty\Sciendo.Common.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
-    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
@@ -51,8 +43,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IndexingType.cs" />
-    <Compile Include="Options.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service References\Client\Reference.cs">
@@ -63,7 +53,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="packages.config" />
     <None Include="Service References\Client\IndexerAgentService.wsdl" />
     <None Include="Service References\Client\IndexerAgentService.xsd">
       <SubType>Designer</SubType>
@@ -75,16 +64,10 @@
     <None Include="Service References\Client\IndexerAgentService2.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\Client\IndexerAgentService21.xsd">
+    <None Include="Service References\Client\IndexerAgentService3.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\Client\Sciendo.Indexer.Client.GetLastProcessedPackagesResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\Client\Sciendo.Indexer.Client.IndexLyricsOnDemandResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\Client\Sciendo.Indexer.Client.IndexMusicOnDemandResponse.datasource">
+    <None Include="Service References\Client\Sciendo.Indexer.Monitor.Client.ProgressStatus.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
   </ItemGroup>

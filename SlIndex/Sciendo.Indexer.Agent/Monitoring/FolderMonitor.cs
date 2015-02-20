@@ -3,7 +3,7 @@ using System.IO;
 using System.Threading;
 using Sciendo.Common.Logging;
 
-namespace Sciendo.Indexer.Agent
+namespace Sciendo.Indexer.Agent.Monitoring
 {
     public interface IFolderMonitor
     {

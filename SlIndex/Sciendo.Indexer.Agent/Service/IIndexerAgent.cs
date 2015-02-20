@@ -1,4 +1,6 @@
-﻿using System.ServiceModel;
+﻿using System.Collections;
+using System.Collections.Generic;
+using System.ServiceModel;
 
 namespace Sciendo.Indexer.Agent.Service
 {
@@ -9,6 +11,9 @@ namespace Sciendo.Indexer.Agent.Service
         int IndexLyricsOnDemand(string fromPath);
         [OperationContract]
         int IndexMusicOnDemand(string fromPath);
+
+        [OperationContract]
+        ProgressStatus[] GetLastProcessedPackages();
 
     }
 }

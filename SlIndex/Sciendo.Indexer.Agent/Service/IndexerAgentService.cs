@@ -14,23 +14,22 @@ namespace Sciendo.Indexer.Agent.Service
         private readonly FilesProcessor _musicFilesProcessor;
         private readonly LyricsFilesProcessor _lyricsFilesProcessor;
 
-        private Dictionary<string, Status> progressStatus;  
+        private FixedSizedQueue<ProgressStatus> _progressStatuses;  
 
-        public IndexerAgentService( 
-            FilesProcessor musicFilesProcessor,
-            LyricsFilesProcessor lyricsFilesProcessor)
+        public IndexerAgentService(FilesProcessor musicFilesProcessor, LyricsFilesProcessor lyricsFilesProcessor, int packagesRetainerLimit)
         {
             LoggingManager.Debug("Constructing IndexerAgentService...");
 
             _musicFilesProcessor = musicFilesProcessor;
             _lyricsFilesProcessor = lyricsFilesProcessor;
+            _progressStatuses= new FixedSizedQueue<ProgressStatus>(packagesRetainerLimit);
             LoggingManager.Debug("IndexerAgentService constructed.");
         }
 
         private void ProgressEvent(Status arg1, string arg2)
         {
-            LoggingManager.Debug("File: " +arg2+" status: " +arg1);
-            progressStatus.Add(arg2,arg1);
+            LoggingManager.Debug("Package: " +arg2+" status: " +arg1);
+            _progressStatuses.Enqueue(new ProgressStatus{Package=arg2,Status =arg1,Id=Guid.NewGuid()});
         }
 
         public int IndexLyricsOnDemand(string fromPath)
@@ -43,7 +42,6 @@ namespace Sciendo.Indexer.Agent.Service
 
             Reader reader = new Reader(ProgressEvent);
             _lyricsFilesProcessor.ResetCounter();
-            progressStatus = new Dictionary<string, Status>();
             reader.ProcessFiles = _lyricsFilesProcessor.ProcessFilesBatch;
             reader.ParsePath(fromPath, _lyricsFilesProcessor.CurrentConfiguration.SearchPattern);
             return _lyricsFilesProcessor.Counter;
@@ -54,13 +52,19 @@ namespace Sciendo.Indexer.Agent.Service
         {
             LoggingManager.Debug("Starting IndexMusic from path: " +fromPath);
             _musicFilesProcessor.ResetCounter();
-            progressStatus=new Dictionary<string, Status>();
             Reader reader = new Reader(ProgressEvent);
             reader.ProcessFiles = _musicFilesProcessor.ProcessFilesBatch;
             reader.ParsePath(fromPath,_musicFilesProcessor.CurrentConfiguration.SearchPattern);
             LoggingManager.Debug("IndexMusic on path: " + fromPath + " Counter: " + _musicFilesProcessor.Counter);
             return _musicFilesProcessor.Counter;
 
+        }
+
+        public ProgressStatus[] GetLastProcessedPackages()
+        {
+            LoggingManager.Debug("Starting Get last packages");
+            return _progressStatuses.GetAllInQueue();
+            LoggingManager.Debug("Got last packages");
         }
     }
 }

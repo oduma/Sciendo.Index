@@ -42,9 +42,22 @@ namespace Sciendo.Indexer.Agent
             }
         }
 
+        [ConfigurationProperty("packagesRetainerLimt", DefaultValue = 100, IsRequired = false)]
+        public int PackagesRetainerLimit
+        {
+            get
+            {
+                return (int)this["packagesRetainerLimt"];
+            }
+            set
+            {
+                this["packagesRetainerLimt"] = value;
+            }
+        }
+
         public override string ToString()
         {
-            return string.Format("SolrConnectionString: {0}\r\nMusic:\r\n{1}\r\nLyrics:\r\n{2}.", SolrConnectionString, Music.ToString(),
+            return string.Format("SolrConnectionString: {0} Packages Retainer Limit: {1}\r\nMusic:\r\n{2}\r\nLyrics:\r\n{3}.", SolrConnectionString, PackagesRetainerLimit,Music.ToString(),
                 Lyrics.ToString());
         }
     }

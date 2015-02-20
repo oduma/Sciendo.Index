@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Sciendo.Indexer.Client {
+namespace Sciendo.Indexer.Monitor.Client {
     using System.Runtime.Serialization;
     using System;
     
@@ -29,7 +29,7 @@ namespace Sciendo.Indexer.Client {
         private string PackageField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private Sciendo.Indexer.Client.Status StatusField;
+        private Sciendo.Indexer.Monitor.Client.Status StatusField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -68,7 +68,7 @@ namespace Sciendo.Indexer.Client {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public Sciendo.Indexer.Client.Status Status {
+        public Sciendo.Indexer.Monitor.Client.Status Status {
             get {
                 return this.StatusField;
             }
@@ -127,111 +127,31 @@ namespace Sciendo.Indexer.Client {
     public interface IIndexerAgent {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://Sciendo.Indexer.Agent/IIndexerAgent/IndexLyricsOnDemand", ReplyAction="http://Sciendo.Indexer.Agent/IIndexerAgent/IndexLyricsOnDemandResponse")]
-        Sciendo.Indexer.Client.IndexLyricsOnDemandResponse IndexLyricsOnDemand(Sciendo.Indexer.Client.IndexLyricsOnDemandRequest request);
+        int IndexLyricsOnDemand(string fromPath);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://Sciendo.Indexer.Agent/IIndexerAgent/IndexLyricsOnDemand", ReplyAction="http://Sciendo.Indexer.Agent/IIndexerAgent/IndexLyricsOnDemandResponse")]
+        System.Threading.Tasks.Task<int> IndexLyricsOnDemandAsync(string fromPath);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://Sciendo.Indexer.Agent/IIndexerAgent/IndexMusicOnDemand", ReplyAction="http://Sciendo.Indexer.Agent/IIndexerAgent/IndexMusicOnDemandResponse")]
-        Sciendo.Indexer.Client.IndexMusicOnDemandResponse IndexMusicOnDemand(Sciendo.Indexer.Client.IndexMusicOnDemandRequest request);
+        int IndexMusicOnDemand(string fromPath);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://Sciendo.Indexer.Agent/IIndexerAgent/IndexMusicOnDemand", ReplyAction="http://Sciendo.Indexer.Agent/IIndexerAgent/IndexMusicOnDemandResponse")]
+        System.Threading.Tasks.Task<int> IndexMusicOnDemandAsync(string fromPath);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://Sciendo.Indexer.Agent/IIndexerAgent/GetLastProcessedPackages", ReplyAction="http://Sciendo.Indexer.Agent/IIndexerAgent/GetLastProcessedPackagesResponse")]
-        Sciendo.Indexer.Client.GetLastProcessedPackagesResponse GetLastProcessedPackages(Sciendo.Indexer.Client.GetLastProcessedPackagesRequest request);
+        Sciendo.Indexer.Monitor.Client.ProgressStatus[] GetLastProcessedPackages();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://Sciendo.Indexer.Agent/IIndexerAgent/GetLastProcessedPackages", ReplyAction="http://Sciendo.Indexer.Agent/IIndexerAgent/GetLastProcessedPackagesResponse")]
+        System.Threading.Tasks.Task<Sciendo.Indexer.Monitor.Client.ProgressStatus[]> GetLastProcessedPackagesAsync();
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public interface IIndexerAgentChannel : Sciendo.Indexer.Monitor.Client.IIndexerAgent, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="IndexLyricsOnDemand", WrapperNamespace="http://Sciendo.Indexer.Agent", IsWrapped=true)]
-    public partial class IndexLyricsOnDemandRequest {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://Sciendo.Indexer.Agent", Order=0)]
-        public string fromPath;
-        
-        public IndexLyricsOnDemandRequest() {
-        }
-        
-        public IndexLyricsOnDemandRequest(string fromPath) {
-            this.fromPath = fromPath;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="IndexLyricsOnDemandResponse", WrapperNamespace="http://Sciendo.Indexer.Agent", IsWrapped=true)]
-    public partial class IndexLyricsOnDemandResponse {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://Sciendo.Indexer.Agent", Order=0)]
-        public int IndexLyricsOnDemandResult;
-        
-        public IndexLyricsOnDemandResponse() {
-        }
-        
-        public IndexLyricsOnDemandResponse(int IndexLyricsOnDemandResult) {
-            this.IndexLyricsOnDemandResult = IndexLyricsOnDemandResult;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="IndexMusicOnDemand", WrapperNamespace="http://Sciendo.Indexer.Agent", IsWrapped=true)]
-    public partial class IndexMusicOnDemandRequest {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://Sciendo.Indexer.Agent", Order=0)]
-        public string fromPath;
-        
-        public IndexMusicOnDemandRequest() {
-        }
-        
-        public IndexMusicOnDemandRequest(string fromPath) {
-            this.fromPath = fromPath;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="IndexMusicOnDemandResponse", WrapperNamespace="http://Sciendo.Indexer.Agent", IsWrapped=true)]
-    public partial class IndexMusicOnDemandResponse {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://Sciendo.Indexer.Agent", Order=0)]
-        public int IndexMusicOnDemandResult;
-        
-        public IndexMusicOnDemandResponse() {
-        }
-        
-        public IndexMusicOnDemandResponse(int IndexMusicOnDemandResult) {
-            this.IndexMusicOnDemandResult = IndexMusicOnDemandResult;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="GetLastProcessedPackages", WrapperNamespace="http://Sciendo.Indexer.Agent", IsWrapped=true)]
-    public partial class GetLastProcessedPackagesRequest {
-        
-        public GetLastProcessedPackagesRequest() {
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="GetLastProcessedPackagesResponse", WrapperNamespace="http://Sciendo.Indexer.Agent", IsWrapped=true)]
-    public partial class GetLastProcessedPackagesResponse {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://Sciendo.Indexer.Agent", Order=0)]
-        public Sciendo.Indexer.Client.ProgressStatus[] GetLastProcessedPackagesResult;
-        
-        public GetLastProcessedPackagesResponse() {
-        }
-        
-        public GetLastProcessedPackagesResponse(Sciendo.Indexer.Client.ProgressStatus[] GetLastProcessedPackagesResult) {
-            this.GetLastProcessedPackagesResult = GetLastProcessedPackagesResult;
-        }
-    }
-    
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface IIndexerAgentChannel : Sciendo.Indexer.Client.IIndexerAgent, System.ServiceModel.IClientChannel {
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class IndexerAgentClient : System.ServiceModel.ClientBase<Sciendo.Indexer.Client.IIndexerAgent>, Sciendo.Indexer.Client.IIndexerAgent {
+    public partial class IndexerAgentClient : System.ServiceModel.ClientBase<Sciendo.Indexer.Monitor.Client.IIndexerAgent>, Sciendo.Indexer.Monitor.Client.IIndexerAgent {
         
         public IndexerAgentClient() {
         }
@@ -252,16 +172,28 @@ namespace Sciendo.Indexer.Client {
                 base(binding, remoteAddress) {
         }
         
-        public Sciendo.Indexer.Client.IndexLyricsOnDemandResponse IndexLyricsOnDemand(Sciendo.Indexer.Client.IndexLyricsOnDemandRequest request) {
-            return base.Channel.IndexLyricsOnDemand(request);
+        public int IndexLyricsOnDemand(string fromPath) {
+            return base.Channel.IndexLyricsOnDemand(fromPath);
         }
         
-        public Sciendo.Indexer.Client.IndexMusicOnDemandResponse IndexMusicOnDemand(Sciendo.Indexer.Client.IndexMusicOnDemandRequest request) {
-            return base.Channel.IndexMusicOnDemand(request);
+        public System.Threading.Tasks.Task<int> IndexLyricsOnDemandAsync(string fromPath) {
+            return base.Channel.IndexLyricsOnDemandAsync(fromPath);
         }
         
-        public Sciendo.Indexer.Client.GetLastProcessedPackagesResponse GetLastProcessedPackages(Sciendo.Indexer.Client.GetLastProcessedPackagesRequest request) {
-            return base.Channel.GetLastProcessedPackages(request);
+        public int IndexMusicOnDemand(string fromPath) {
+            return base.Channel.IndexMusicOnDemand(fromPath);
+        }
+        
+        public System.Threading.Tasks.Task<int> IndexMusicOnDemandAsync(string fromPath) {
+            return base.Channel.IndexMusicOnDemandAsync(fromPath);
+        }
+        
+        public Sciendo.Indexer.Monitor.Client.ProgressStatus[] GetLastProcessedPackages() {
+            return base.Channel.GetLastProcessedPackages();
+        }
+        
+        public System.Threading.Tasks.Task<Sciendo.Indexer.Monitor.Client.ProgressStatus[]> GetLastProcessedPackagesAsync() {
+            return base.Channel.GetLastProcessedPackagesAsync();
         }
     }
 }
