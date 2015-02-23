@@ -11,9 +11,9 @@ namespace Sciendo.Lyrics.Common
         NotStarted,
         FileNotFound,
         FileNotTagged,
-        UnknownTagVersion,
         ArtistSongRetrievedFromFile,
         LyricsUrlUnreachable,
+        LyricsNotFound,
         LyricsDownloadedOk,
         NotIndexed,
         Done

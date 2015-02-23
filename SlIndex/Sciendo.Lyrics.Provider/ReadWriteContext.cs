@@ -29,7 +29,7 @@ namespace Sciendo.Lyrics.Provider
 
         public virtual ReadWriteContext ProcessFile(Func<string,IMp3Stream> Mp3FileLoader)
         {
-            if (Status == Status.ArtistSongRetrievedFromFile)
+            if (Convert.ToInt32(Status) >= Convert.ToInt32(Status.ArtistSongRetrievedFromFile))
             {
                 if(Progress!=null)
                     Progress(Status, ReadLocation, "");
@@ -53,7 +53,7 @@ namespace Sciendo.Lyrics.Provider
             var version = mp3File.AvailableTagVersions.FirstOrDefault();
             if (version == null)
             {
-                Status = Status.UnknownTagVersion;
+                Status = Status.FileNotTagged;
                 if (Progress != null)
                     Progress(Status, ReadLocation, "");
                 return this;
@@ -74,9 +74,9 @@ namespace Sciendo.Lyrics.Provider
 
         public ReadWriteContext TakeFromWeb(WebClient webClient, string sourceRootDirectory, string targetRootDirectory)
         {
-            if (Status == Status.FileNotFound || Status == Status.FileNotTagged || Status == Status.UnknownTagVersion)
+            if (Convert.ToInt32(Status) < Convert.ToInt32(Status.ArtistSongRetrievedFromFile))
                 return this;
-            if (Status != Status.ArtistSongRetrievedFromFile && Status != Status.LyricsUrlUnreachable)
+            if (Convert.ToInt32(Status) >= Convert.ToInt32(Status.LyricsDownloadedOk))
             {
                 if (Progress != null)
                     Progress(Status, ReadLocation, "");
@@ -87,7 +87,7 @@ namespace Sciendo.Lyrics.Provider
                 var downloadedFromApi = webClient.DownloadString(Url);
                 if(downloadedFromApi.IndexOf(@"<lyrics>Not found</lyrics>")>0)
                 {
-                    Status = Status.LyricsDownloadedOk;
+                    Status = Status.LyricsNotFound;
                     return this;
                 }
                 downloadedFromApi.Replace("\0","");
