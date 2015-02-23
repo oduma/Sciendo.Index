@@ -3,6 +3,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using Sciendo.Lyrics.Common;
+using Sciendo.Common.Serialization;
 
 namespace Sciendo.Lyrics.Provider
 {
@@ -12,15 +13,13 @@ namespace Sciendo.Lyrics.Provider
 
         private string _executionContextFilePath;
 
-        public Pipeline(string sourceRootDirectory, string targetRootDirectory, string executionContextFilePath)
+        public Pipeline(string sourceRootDirectory, string targetRootDirectory, string executionContextFilePath=null)
         {
-            if(string.IsNullOrEmpty(executionContextFilePath))
-                throw new ArgumentNullException("executionContextFilePath","missing parameter");
-            _executionContextFilePath = executionContextFilePath;
+            _executionContextFilePath = (string.IsNullOrEmpty(executionContextFilePath)) ? "executionContext.xml" : executionContextFilePath;
             if (File.Exists(_executionContextFilePath))
             {
                 ExecutionContext =
-                    Sciendo.Common.Serialization.Serializer.DeserializeOneFromFile<ExecutionContext>(
+                    Serializer.DeserializeOneFromFile<ExecutionContext>(
                         _executionContextFilePath);
             }
             else if(!string.IsNullOrEmpty(sourceRootDirectory) 
@@ -32,7 +31,7 @@ namespace Sciendo.Lyrics.Provider
             }
             else
             {
-                throw new Exception("Execution Context cannot be established.");
+                throw new NoExecutionContextException("Execution Context cannot be established.");
             }
         }
 

@@ -1,13 +1,55 @@
 ﻿using System;
 using Sciendo.Lyrics.Common;
+using CommandLine;
+using System.Linq;
+using System.IO;
 
 namespace Sciendo.Lyrics.Provider
 {
     class Program
     {
-        static void Main(string[] args)
+        static Pipeline _pipeline;
+        static int Main(string[] args)
         {
-            Console.WriteLine("Trace saved at: {0}", new Pipeline(args[0], args[1], args[2]).ContinueProcessing(true,Pipeline.ReadWriteContextProvider,ConsoleRecordProgress).SaveTrace());
+            AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
+            ParserResult<Options> result;
+            try
+            {
+                result = Parser.Default.ParseArguments<Options>(args);
+                if (result.Errors.Any() || (!Directory.Exists(result.Value.SourceDirectory) && !Directory.Exists(result.Value.TargetDirectory)))
+                {
+                    PrintHelp();
+                    return -1;
+                }
+            }
+            catch
+            {
+                PrintHelp();
+                return -1;
+            }
+            try
+            {
+                _pipeline = new Pipeline(result.Value.SourceDirectory, result.Value.TargetDirectory, result.Value.TraceFile);
+                Console.WriteLine("Trace saved at: {0}", _pipeline
+                    .ContinueProcessing(true, Pipeline.ReadWriteContextProvider, ConsoleRecordProgress)
+                    .SaveTrace());
+            }
+            catch (NoExecutionContextException neex)
+            {
+                Console.WriteLine(neex.Message);
+                return -1;
+            }
+            return 0;
+        }
+
+        static void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
+        {
+            _pipeline.SaveTrace();
+        }
+
+        private static void PrintHelp()
+        {
+            Console.WriteLine("Sciendo.Lyrics.Provider.exe sourcedirectory targetdirectory [tracefile]");
         }
 
         private static void ConsoleRecordProgress(Status status, string arg2, string arg3)

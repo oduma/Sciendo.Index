@@ -32,6 +32,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CommandLine">
+      <HintPath>..\packages\CommandLineParser20.2.0.0.0\lib\net40\CommandLine.dll</HintPath>
+    </Reference>
     <Reference Include="Id3">
       <HintPath>..\3rdParty\Id3.dll</HintPath>
     </Reference>
@@ -51,6 +54,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ExecutionContext.cs" />
+    <Compile Include="NoExecutionContextException.cs" />
+    <Compile Include="Options.cs" />
     <Compile Include="Pipeline.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -58,6 +63,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Example.xml">
