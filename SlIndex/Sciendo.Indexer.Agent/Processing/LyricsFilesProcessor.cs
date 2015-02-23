@@ -35,7 +35,7 @@ namespace Sciendo.Indexer.Agent.Processing
             LoggingManager.Debug("LyricsFileProcessor preparing documents...");
             foreach (string file in files)
             {
-                var lyricsResult = LyricsDeserializer.DeserializeOneFromFile<LyricsResult>(file);
+                var lyricsResult = LyricsDeserializer.Deserialize<LyricsResult>(file);
                 if (lyricsResult != null)
                 {
                     var musicFile = GetMusicFile(file);

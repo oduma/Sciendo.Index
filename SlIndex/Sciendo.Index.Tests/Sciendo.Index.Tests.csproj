@@ -56,6 +56,12 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
+    <None Include="runoctests.bat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="runtests.bat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="TestData\Lyrics\MockMp3.lrc">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

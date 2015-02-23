@@ -2,16 +2,16 @@
 using System.IO;
 using System.Linq;
 using System.Net;
-using Sciendo.Lyrics.Common;
 using Sciendo.Common.Serialization;
+using Sciendo.Lyrics.Common;
 
-namespace Sciendo.Lyrics.Provider
+namespace Sciendo.Lyrics.Provider.Service
 {
     public class Pipeline
     {
         internal ExecutionContext ExecutionContext { get; set; }
 
-        private string _executionContextFilePath;
+        private readonly string _executionContextFilePath;
 
         public Pipeline(string sourceRootDirectory, string targetRootDirectory, string executionContextFilePath=null)
         {
@@ -22,10 +22,10 @@ namespace Sciendo.Lyrics.Provider
                     Serializer.DeserializeOneFromFile<ExecutionContext>(
                         _executionContextFilePath);
             }
-            else if(!string.IsNullOrEmpty(sourceRootDirectory) 
-                && !string.IsNullOrEmpty(targetRootDirectory) 
-                && Directory.Exists(sourceRootDirectory) 
-                && Directory.Exists(targetRootDirectory))
+            else if (!string.IsNullOrEmpty(sourceRootDirectory)
+                     && !string.IsNullOrEmpty(targetRootDirectory)
+                     && Directory.Exists(sourceRootDirectory)
+                     && Directory.Exists(targetRootDirectory))
             {
                 ExecutionContext = new ExecutionContext(sourceRootDirectory, targetRootDirectory);
             }

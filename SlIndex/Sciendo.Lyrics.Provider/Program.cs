@@ -3,6 +3,7 @@ using Sciendo.Lyrics.Common;
 using CommandLine;
 using System.Linq;
 using System.IO;
+using Sciendo.Lyrics.Provider.Service;
 
 namespace Sciendo.Lyrics.Provider
 {

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using NUnit.Framework;
 using Sciendo.Lyrics.Common;
+using Sciendo.Lyrics.Provider.Service;
 
 namespace Sciendo.Lyrics.Provider.Tests
 {
@@ -9,10 +10,17 @@ namespace Sciendo.Lyrics.Provider.Tests
     public class PipelineTests
     {
         [Test]
-        [ExpectedException(typeof(ArgumentNullException))]
         public void ConfigurePipeline_NoExecutionContextFile()
         {
-            new Pipeline("source", "target","");
+            var pipeline= new Pipeline("source", "target","");
+            Assert.IsNotNull(pipeline.ExecutionContext);
+        }
+
+        [Test]
+        [ExpectedException(typeof(NoExecutionContextException))]
+        public void ConfigurePipelineExecutionContextNotCreated()
+        {
+            var pipeline = new Pipeline("source", "", "abc.xml");
         }
 
         [Test]

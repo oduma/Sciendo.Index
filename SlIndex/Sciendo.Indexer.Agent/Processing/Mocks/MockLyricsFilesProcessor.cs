@@ -1,6 +1,7 @@
 ﻿using Sciendo.Common.Logging;
 using Sciendo.Indexer.Agent.Service.Solr.Mocks;
 using Sciendo.Lyrics.Common;
+using Sciendo.Lyrics.Common.Mocks;
 
 namespace Sciendo.Indexer.Agent.Processing.Mocks
 {

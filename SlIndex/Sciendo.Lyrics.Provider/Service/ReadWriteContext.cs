@@ -6,7 +6,7 @@ using System.Xml.Serialization;
 using Id3;
 using Sciendo.Lyrics.Common;
 
-namespace Sciendo.Lyrics.Provider
+namespace Sciendo.Lyrics.Provider.Service
 {
     public class ReadWriteContext:ArtistSong
     {

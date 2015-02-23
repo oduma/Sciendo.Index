@@ -1,0 +1,2 @@
+..\..\..\packages\OpenCover.4.5.3723\OpenCover.Console.exe -target:runtests.bat -register:user -filter:"+[Sciendo.Lyrics.Provider]*.Service.* +[Sciendo.Lyrics.Common]* -[*]*.Mocks.* -[*]*Test*"
+..\..\..\packages\ReportGenerator.2.1.1.0\reportgenerator.exe -reports:results.xml -targetdir:coverage

@@ -7,6 +7,7 @@ using Id3.Id3;
 using NUnit.Framework;
 using Rhino.Mocks;
 using Sciendo.Lyrics.Common;
+using Sciendo.Lyrics.Provider.Service;
 
 namespace Sciendo.Lyrics.Provider.Tests
 {
@@ -84,7 +85,7 @@ namespace Sciendo.Lyrics.Provider.Tests
         [Test]
         public void ProcessFile_FileTaggedWithUnknownVersion()
         {
-            Assert.AreEqual(Status.UnknownTagVersion, new ReadWriteContext { ReadLocation = "existingfile.txt", Status = Status.NotStarted }.ProcessFile(MockedMp3FileLoader_UnknownTag).Status);
+            Assert.AreEqual(Status.FileNotTagged, new ReadWriteContext { ReadLocation = "existingfile.txt", Status = Status.NotStarted }.ProcessFile(MockedMp3FileLoader_UnknownTag).Status);
         }
         [Test]
         public void ProcessFile_Ok()
@@ -101,8 +102,9 @@ namespace Sciendo.Lyrics.Provider.Tests
         [TestCase(0)]
         [TestCase(1)]
         [TestCase(2)]
-        [TestCase(3)]
         [TestCase(6)]
+        [TestCase(7)]
+        [TestCase(8)]
         public void TakeFromWeb_ArtistSongNotReadyOrAlreadyDownloaded(int expected)
         {
             var expectedStatus = (Status) expected;
