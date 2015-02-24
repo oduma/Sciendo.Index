@@ -1,7 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Net;
 using Sciendo.Common.Serialization;
 using Sciendo.Lyrics.Common;
 
@@ -12,9 +12,16 @@ namespace Sciendo.Lyrics.Provider.Service
         internal ExecutionContext ExecutionContext { get; set; }
 
         private readonly string _executionContextFilePath;
+        private readonly WebDownloaderBase _webClient;
 
-        public Pipeline(string sourceRootDirectory, string targetRootDirectory, string executionContextFilePath=null)
+        public Pipeline(string sourceRootDirectory, 
+            string targetRootDirectory, 
+            WebDownloaderBase webClient, 
+            string executionContextFilePath=null)
         {
+            if(webClient==null)
+                throw new ArgumentNullException("webClient");
+            _webClient = webClient;
             _executionContextFilePath = (string.IsNullOrEmpty(executionContextFilePath)) ? "executionContext.xml" : executionContextFilePath;
             if (File.Exists(_executionContextFilePath))
             {
@@ -27,7 +34,7 @@ namespace Sciendo.Lyrics.Provider.Service
                      && Directory.Exists(sourceRootDirectory)
                      && Directory.Exists(targetRootDirectory))
             {
-                ExecutionContext = new ExecutionContext(sourceRootDirectory, targetRootDirectory);
+                ExecutionContext = new ExecutionContext(sourceRootDirectory, targetRootDirectory,"*.mp3|*.ogg");
             }
             else
             {
@@ -40,34 +47,39 @@ namespace Sciendo.Lyrics.Provider.Service
             return new ReadWriteContext {ReadLocation = filePath, Status = Status.NotStarted};
         }
 
-        public Pipeline ContinueProcessing(bool retryFailed, Func<string, ReadWriteContext> readWriteContextProvider,Action<Status,string,string> progressEvent)
+        public Pipeline ContinueProcessing(bool retryFailed, Func<string, ReadWriteContext> readWriteContextProvider, Action<Status, string, string> progressEvent, ILyricsDeserializer lyricsDeserializer)
         {
             if (ExecutionContext == null)
             {
-                throw new Exception("Execution Context not established.");
+                throw new NoExecutionContextException("Execution Context cannot be established.");
             }
-            var webClient = new WebClient();
             if (retryFailed)
             {
                 foreach (var readWriteContext in ExecutionContext.ReadWrites.Where(rw => rw.Status != Status.LyricsDownloadedOk))
                 {
                     readWriteContext.Progress = progressEvent;
                     readWriteContext.ProcessFile(ReadWriteContext.DefaultMp3FileLoader)
-                        .TakeFromWeb(webClient,ExecutionContext.SourceRootDirectory,ExecutionContext.TargetRootDirectory);
+                        .TakeFromWeb(_webClient,ExecutionContext.SourceRootDirectory,ExecutionContext.TargetRootDirectory, lyricsDeserializer);
                     SaveTrace();
                 }
             }
             foreach (
                 var filePath in
-                    Directory.GetFiles(ExecutionContext.SourceRootDirectory, "*.mp3", SearchOption.AllDirectories)
+                    GetFiles(ExecutionContext.SourceRootDirectory, ExecutionContext.SearchPattern, SearchOption.AllDirectories)
                         .Where(f => ExecutionContext.ReadWrites.All(rw => rw.ReadLocation != f)))
             {
                 var newReadWriteContext=readWriteContextProvider(filePath);
                 newReadWriteContext.Progress=progressEvent;
-                ExecutionContext.ReadWrites.Add(newReadWriteContext.ProcessFile(ReadWriteContext.DefaultMp3FileLoader).TakeFromWeb(webClient,ExecutionContext.SourceRootDirectory,ExecutionContext.TargetRootDirectory));
+                ExecutionContext.ReadWrites.Add(newReadWriteContext.ProcessFile(ReadWriteContext.DefaultMp3FileLoader)
+                    .TakeFromWeb(_webClient,ExecutionContext.SourceRootDirectory,ExecutionContext.TargetRootDirectory, lyricsDeserializer));
                 SaveTrace();
             }
             return this;
+        }
+
+        private static IEnumerable<string> GetFiles(string sourceFolder, string filters, SearchOption searchOption)
+        {
+            return filters.Split('|').SelectMany(filter => System.IO.Directory.GetFiles(sourceFolder, filter, searchOption));
         }
 
         public string SaveTrace()

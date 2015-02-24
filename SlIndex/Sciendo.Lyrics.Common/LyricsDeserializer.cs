@@ -5,16 +5,24 @@ namespace Sciendo.Lyrics.Common
 {
     public interface ILyricsDeserializer
     {
-        T Deserialize<T>(string fileName) where T : class;
+        T DeserializeFromFile<T>(string fileName) where T : class;
+        T Deserialize<T>(string xmlString) where T : class;
     }
 
     public class LyricsDeserializer : ILyricsDeserializer
     {
 
-        public virtual T Deserialize<T>(string fileName) where T : class
+        public virtual T DeserializeFromFile<T>(string fileName) where T : class
         {
             LoggingManager.Debug("Deserializing lyrics from file: " +fileName);
             return Serializer.DeserializeOneFromFile<T>(fileName, LyricsNotEmpty, LyricsFix);
+        }
+
+        public T Deserialize<T>(string xmlString) where T : class
+        {
+            LoggingManager.Debug("Deserializing lyrics from string.");
+            return Serializer.Deserialize<T>(xmlString, LyricsNotEmpty, LyricsFix);
+
         }
 
         private string LyricsFix(string arg)

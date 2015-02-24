@@ -18,27 +18,27 @@ namespace Sciendo.Lyrics.Provider.Tests
         public void LyricsDeserializerNoFile()
         {
             LyricsDeserializer lyrics= new LyricsDeserializer();
-            Assert.IsNull(lyrics.Deserialize<LyricsResult>("nosuchfile.xml"));
+            Assert.IsNull(lyrics.DeserializeFromFile<LyricsResult>("nosuchfile.xml"));
         }
         [Test]
         [ExpectedException(typeof(PreSerializationCheckException))]
         public void LyricsDeserializerFileNoLyrics()
         {
             LyricsDeserializer lyrics = new LyricsDeserializer();
-            Assert.IsNull(lyrics.Deserialize<LyricsResult>(@"TestData\ExampleNoLyrics.xml"));
+            Assert.IsNull(lyrics.DeserializeFromFile<LyricsResult>(@"TestData\ExampleNoLyrics.xml"));
         }
         [Test]
         [ExpectedException(typeof(PreSerializationCheckException))]
         public void LyricsDeserializerFileWrongFromat()
         {
             LyricsDeserializer lyrics = new LyricsDeserializer();
-            Assert.IsNull(lyrics.Deserialize<LyricsResult>(@"TestData\ExampleWrongFormat.xml"));
+            Assert.IsNull(lyrics.DeserializeFromFile<LyricsResult>(@"TestData\ExampleWrongFormat.xml"));
         }
         [Test]
         public void LyricsDeserializerFileLyricsWithProcessing()
         {
             LyricsDeserializer lyrics = new LyricsDeserializer();
-            var results = lyrics.Deserialize<LyricsResult>(@"TestData\ExampleNeedsPostProcessing.xml");
+            var results = lyrics.DeserializeFromFile<LyricsResult>(@"TestData\ExampleNeedsPostProcessing.xml");
             Assert.IsNotNull(results);
             Assert.AreEqual("\n    I know the pieces fit 'cause I watched them fall away Mildewed and smoldering, fundamental differing Pure intention juxtaposed will set two lover's souls in motion Disintegrating [...]\n  ", results.lyrics);
         }
@@ -46,7 +46,7 @@ namespace Sciendo.Lyrics.Provider.Tests
         public void LyricsDeserializerFileWithLyricsNoProcessing()
         {
             LyricsDeserializer lyrics = new LyricsDeserializer();
-            var results = lyrics.Deserialize<LyricsResult>(@"TestData\Example.xml");
+            var results = lyrics.DeserializeFromFile<LyricsResult>(@"TestData\Example.xml");
             Assert.IsNotNull(results);
             Assert.AreEqual("\n    I know the pieces fit 'cause I watched them fall away Mildewed and smoldering, fundamental differing Pure intention juxtaposed will set two lover's souls in motion Disintegrating [...]\n  ", results.lyrics);
         }

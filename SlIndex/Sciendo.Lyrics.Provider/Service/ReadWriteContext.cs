@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Xml.Serialization;
 using Id3;
+using Sciendo.Common.Serialization;
 using Sciendo.Lyrics.Common;
 
 namespace Sciendo.Lyrics.Provider.Service
@@ -72,7 +73,7 @@ namespace Sciendo.Lyrics.Provider.Service
             return this;
         }
 
-        public ReadWriteContext TakeFromWeb(WebClient webClient, string sourceRootDirectory, string targetRootDirectory)
+        public ReadWriteContext TakeFromWeb(WebDownloaderBase webClient, string sourceRootDirectory, string targetRootDirectory, ILyricsDeserializer lyricsDeserializer)
         {
             if (Convert.ToInt32(Status) < Convert.ToInt32(Status.ArtistSongRetrievedFromFile))
                 return this;
@@ -84,14 +85,10 @@ namespace Sciendo.Lyrics.Provider.Service
             }
             try
             {
-                var downloadedFromApi = webClient.DownloadString(Url);
-                if(downloadedFromApi.IndexOf(@"<lyrics>Not found</lyrics>")>0)
-                {
-                    Status = Status.LyricsNotFound;
-                    return this;
-                }
-                downloadedFromApi.Replace("\0","");
-                var fullTargetPath = Path.ChangeExtension(ReadLocation.Replace(sourceRootDirectory, targetRootDirectory), "lrc");
+                var downloadedFromApi = webClient.TryQuery<string>(Url.ToString());
+                var result = lyricsDeserializer.Deserialize<LyricsResult>(downloadedFromApi);
+                var fullTargetPath = Path.ChangeExtension(
+                    ReadLocation.Replace(sourceRootDirectory, targetRootDirectory), "lrc");
                 var directoryPath = fullTargetPath.Replace(Path.GetFileName(fullTargetPath), "");
                 if (!Directory.Exists(directoryPath))
                     Directory.CreateDirectory(directoryPath);
@@ -101,9 +98,14 @@ namespace Sciendo.Lyrics.Provider.Service
                     Status = Status.LyricsDownloadedOk;
                 }
             }
-            catch
+            catch (PreSerializationCheckException pex)
+            {
+                Status = Status.LyricsNotFound;
+            }
+            catch (Exception ex)
             {
                 Status = Status.LyricsUrlUnreachable;
+
             }
             if (Progress != null)
                 Progress(Status, ReadLocation, string.Format("artist: {0}; song: {1}", artist, song));

@@ -30,9 +30,9 @@ namespace Sciendo.Lyrics.Provider
             }
             try
             {
-                _pipeline = new Pipeline(result.Value.SourceDirectory, result.Value.TargetDirectory, result.Value.TraceFile);
+                _pipeline = new Pipeline(result.Value.SourceDirectory, result.Value.TargetDirectory, new WebDownloader(),result.Value.TraceFile);
                 Console.WriteLine("Trace saved at: {0}", _pipeline
-                    .ContinueProcessing(true, Pipeline.ReadWriteContextProvider, ConsoleRecordProgress)
+                    .ContinueProcessing(true, Pipeline.ReadWriteContextProvider, ConsoleRecordProgress, new LyricsDeserializer())
                     .SaveTrace());
             }
             catch (NoExecutionContextException neex)

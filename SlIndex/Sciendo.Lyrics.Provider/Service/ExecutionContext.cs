@@ -18,6 +18,13 @@ namespace Sciendo.Lyrics.Provider.Service
         {
             ReadWrites = new List<ReadWriteContext>();
         }
+
+        public ExecutionContext(string sourceRootDirectory, string targetRootDirectory, string searchPattern):this(sourceRootDirectory, targetRootDirectory)
+        {
+            SearchPattern = searchPattern;
+        }
+
         public List<ReadWriteContext> ReadWrites { get; set; }
+        public string SearchPattern { get; set; }
     }
 }
