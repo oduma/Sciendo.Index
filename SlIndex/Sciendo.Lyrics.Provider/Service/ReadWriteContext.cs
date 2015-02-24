@@ -98,11 +98,11 @@ namespace Sciendo.Lyrics.Provider.Service
                     Status = Status.LyricsDownloadedOk;
                 }
             }
-            catch (PreSerializationCheckException pex)
+            catch (PreSerializationCheckException)
             {
                 Status = Status.LyricsNotFound;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 Status = Status.LyricsUrlUnreachable;
 

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.ServiceModel;
 using Sciendo.Common.Logging;
@@ -64,7 +63,6 @@ namespace Sciendo.Indexer.Agent.Service
         {
             LoggingManager.Debug("Starting Get last packages");
             return _progressStatuses.GetAllInQueue();
-            LoggingManager.Debug("Got last packages");
         }
     }
 }

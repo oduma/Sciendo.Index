@@ -13,7 +13,7 @@ namespace Sciendo.Indexer.Agent.Monitoring
         void Start();
     }
 
-    public class FolderMonitor : IFolderMonitor
+    public sealed class FolderMonitor : IFolderMonitor,IDisposable
     {
         private readonly string _currentRootFolder;
 
@@ -114,5 +114,11 @@ namespace Sciendo.Indexer.Agent.Monitoring
         }
 
         public bool More { get; private set; }
+
+        public void Dispose()
+        {
+            Stop();
+            _fsWatcher.Dispose();
+        }
     }
 }

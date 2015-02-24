@@ -2,6 +2,7 @@
 
 namespace Sciendo.Lyrics.Provider.Service
 {
+    [Serializable]
     class NoExecutionContextException : Exception
     {
 
