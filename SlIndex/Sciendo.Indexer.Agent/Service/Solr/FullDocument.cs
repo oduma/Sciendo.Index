@@ -19,6 +19,9 @@
             lyrics = new Field<string> { set = songLyrics };
         }
 
-
+        public FullDocument():base()
+        {
+            
+        }
     }
 }

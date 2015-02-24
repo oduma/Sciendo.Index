@@ -1,4 +1,7 @@
 ﻿using NUnit.Framework;
+using Sciendo.Indexer.Agent.Processing;
+using Sciendo.Indexer.Agent.Processing.Mocks;
+using Sciendo.Indexer.Agent.Service;
 
 namespace Sciendo.Index.Tests
 {
@@ -8,25 +11,41 @@ namespace Sciendo.Index.Tests
         [Test]
         public void IndexAMusicFolderOk()
         {
-            Assert.Fail();
+            FilesProcessor musicFilesProcessor= new MockMusicFilesProcessor();
+            LyricsFilesProcessor lyricsFilesProcessor = new MockLyricsFilesProcessor(@"TestData\Lyrics",
+                @"TestData\Music");
+            IndexerAgentService svc = new IndexerAgentService(musicFilesProcessor,lyricsFilesProcessor,2);
+            Assert.AreEqual(2,svc.IndexMusicOnDemand(@"TestData\Music"));
         }
 
         [Test]
         public void IndexALyricsFolderOk()
         {
-            Assert.Fail();
+            FilesProcessor musicFilesProcessor = new MockMusicFilesProcessor();
+            LyricsFilesProcessor lyricsFilesProcessor = new MockLyricsFilesProcessor(@"TestData\Lyrics",
+                @"TestData\Music");
+            IndexerAgentService svc = new IndexerAgentService(musicFilesProcessor, lyricsFilesProcessor, 2);
+            Assert.AreEqual(2, svc.IndexLyricsOnDemand(@"TestData\Lyrics"));
         }
 
         [Test]
         public void IndexAMusicFileOk()
         {
-            Assert.Fail();
+            FilesProcessor musicFilesProcessor = new MockMusicFilesProcessor();
+            LyricsFilesProcessor lyricsFilesProcessor = new MockLyricsFilesProcessor(@"TestData\Lyrics",
+                @"TestData\Music");
+            IndexerAgentService svc = new IndexerAgentService(musicFilesProcessor, lyricsFilesProcessor, 2);
+            Assert.AreEqual(1, svc.IndexMusicOnDemand(@"TestData\Music\MockMp3.mp3"));
         }
 
         [Test]
         public void IndexALyricsFileOk()
         {
-            Assert.Fail();
+            FilesProcessor musicFilesProcessor = new MockMusicFilesProcessor();
+            LyricsFilesProcessor lyricsFilesProcessor = new MockLyricsFilesProcessor(@"TestData\Lyrics",
+                @"TestData\Music");
+            IndexerAgentService svc = new IndexerAgentService(musicFilesProcessor, lyricsFilesProcessor, 2);
+            Assert.AreEqual(1, svc.IndexLyricsOnDemand(@"TestData\Lyrics\MockMp3.lrc"));
         }
 
     }

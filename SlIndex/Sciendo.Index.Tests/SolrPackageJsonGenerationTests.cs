@@ -34,6 +34,7 @@ namespace Sciendo.Index.Tests
 
         }
         [Test]
+        [Ignore("Integration test needs solr in order to run.")]
         public void SendAPackageToSolrOk()
         {
             FullDocument doc1 = new FullDocument("C:\\Users\\octo\\Music\\a\\Accept\\The Hungry Years\\Fast As a Shark.wav",
