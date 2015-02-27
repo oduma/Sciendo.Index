@@ -25,12 +25,12 @@ namespace Sciendo.Lyrics.Common
 
         }
 
-        private string LyricsFix(string arg)
+        private static string LyricsFix(string arg)
         {
             return arg.Replace("\0", "");
         }
 
-        private bool LyricsNotEmpty(string arg)
+        private static bool LyricsNotEmpty(string arg)
         {
             return !(arg.IndexOf(@"<lyrics>Not found</lyrics>") > 0 ||
              arg.IndexOf("<html xmlns=\"http://www.w3.org/1999/xhtml") >= 0);
