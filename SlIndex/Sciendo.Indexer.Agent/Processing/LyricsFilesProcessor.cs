@@ -45,7 +45,7 @@ namespace Sciendo.Indexer.Agent.Processing
                     }
                     else
                     {
-                        throw new Exception("Cannot determine the music file for the lyrics file: " + file);
+                        throw new Exception("Cannot determine the music file for the Lyrics file: " + file);
                     }
                 }
             }
@@ -53,7 +53,7 @@ namespace Sciendo.Indexer.Agent.Processing
 
         private string GetMusicFile(string file)
         {
-            LoggingManager.Debug("Get Music File from lyrics file: " +file);
+            LoggingManager.Debug("Get Music File from Lyrics file: " +file);
             LoggingManager.Debug("Get Music Using MusicRootFolder: " + _musicRootFolder);
             var musicFile = file.Replace(CurrentConfiguration.SourceDirectory, _musicRootFolder);
 

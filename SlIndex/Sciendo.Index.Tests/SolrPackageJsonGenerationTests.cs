@@ -23,14 +23,14 @@ namespace Sciendo.Index.Tests
 
             FullDocument actualDoc = JsonConvert.DeserializeObject<FullDocument>(actual);
 
-            Assert.AreEqual(doc.album.set, actualDoc.album.set);
-            Assert.AreEqual(doc.artist.set, actualDoc.artist.set);
-            Assert.AreEqual(doc.file_path_id, actualDoc.file_path_id);
-            Assert.AreEqual(doc.extension_f.set, actualDoc.extension_f.set);
-            Assert.AreEqual(doc.file_path.set, actualDoc.file_path.set);
-            Assert.AreEqual(doc.letter_catalog_f.set, actualDoc.letter_catalog_f.set);
-            Assert.AreEqual(doc.lyrics.set, actualDoc.lyrics.set);
-            Assert.AreEqual(doc.title.set, actualDoc.title.set);
+            Assert.AreEqual(doc.Album.Set, actualDoc.Album.Set);
+            Assert.AreEqual(doc.Artist.Set, actualDoc.Artist.Set);
+            Assert.AreEqual(doc.FilePathId, actualDoc.FilePathId);
+            Assert.AreEqual(doc.ExtensionF.Set, actualDoc.ExtensionF.Set);
+            Assert.AreEqual(doc.file_path.Set, actualDoc.file_path.Set);
+            Assert.AreEqual(doc.LetterCatalogF.Set, actualDoc.LetterCatalogF.Set);
+            Assert.AreEqual(doc.Lyrics.Set, actualDoc.Lyrics.Set);
+            Assert.AreEqual(doc.Title.Set, actualDoc.Title.Set);
 
         }
         [Test]

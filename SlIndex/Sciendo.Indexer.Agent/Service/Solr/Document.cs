@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using Newtonsoft.Json;
 
 namespace Sciendo.Indexer.Agent.Service.Solr
 {
@@ -13,11 +14,11 @@ namespace Sciendo.Indexer.Agent.Service.Solr
         {
             if (string.IsNullOrEmpty(filePath))
                 throw new ArgumentNullException("filePath");
-            file_path_id = filePath.ToLower();
-            file_path = new Field<string> { set = Prefix + filePath };
+            FilePathId = filePath.ToLower();
+            file_path = new Field<string> { Set = Prefix + filePath };
 
-            extension_f = new Field<string> { set = Path.GetExtension(file_path_id).Replace(".", "") };
-            letter_catalog_f = new Field<string> { set = catalogLetter };
+            ExtensionF = new Field<string> { Set = Path.GetExtension(FilePathId).Replace(".", "") };
+            LetterCatalogF = new Field<string> { Set = catalogLetter };
 
         }
 
@@ -25,12 +26,17 @@ namespace Sciendo.Indexer.Agent.Service.Solr
             :this(filePath,catalogLetter)
         {
             
-            lyrics = new Field<string> {set = songLyrics};
+            Lyrics = new Field<string> {Set = songLyrics};
         }
-        public string file_path_id { get; set; }
+        [JsonProperty("file_path_id")]
+        public string FilePathId { get; set; }
+        [JsonProperty("file_path")]
         public Field<string> file_path { get; set; }
-        public Field<string> extension_f { get; set; }
-        public Field<string> letter_catalog_f { get; set; }
-        public Field<string> lyrics { get; set; }
+        [JsonProperty("extension_f")]
+        public Field<string> ExtensionF { get; set; }
+        [JsonProperty("letter_catalog_f")]
+        public Field<string> LetterCatalogF { get; set; }
+        [JsonProperty("Lyrics")]
+        public Field<string> Lyrics { get; set; }
     }
 }

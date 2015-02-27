@@ -1,8 +1,12 @@
-﻿namespace Sciendo.Indexer.Agent.Service.Solr
+﻿using Newtonsoft.Json;
+
+namespace Sciendo.Indexer.Agent.Service.Solr
 {
     public class SolrResponseHeader
     {
-        public int status {get;set;}
-        public int QTime { get; set; }
+        [JsonProperty("status")]
+        public int Status { get; set; }
+        [JsonProperty("QTime")]
+        public int Time { get; set; }
     }
 }

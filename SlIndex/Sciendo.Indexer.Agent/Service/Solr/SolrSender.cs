@@ -54,13 +54,13 @@ namespace Sciendo.Indexer.Agent.Service.Solr
                         return new TrySendResponse { Status = Status.NotIndexed};
                     }
                     var solrUpdateResponse = JsonConvert.DeserializeObject<SolrUpdateResponse>(readTask.Result);
-                    if (solrUpdateResponse.responseHeader.status != 0)
+                    if (solrUpdateResponse.responseHeader.Status != 0)
                     {
                         LoggingManager.Debug("Not send.");
-                        return new TrySendResponse { Status = Status.NotIndexed, Time = solrUpdateResponse.responseHeader.QTime };
+                        return new TrySendResponse { Status = Status.NotIndexed, Time = solrUpdateResponse.responseHeader.Time };
                     }
                     LoggingManager.Debug("Send");
-                    return new TrySendResponse { Status = Status.Done, Time = solrUpdateResponse.responseHeader.QTime };
+                    return new TrySendResponse { Status = Status.Done, Time = solrUpdateResponse.responseHeader.Time };
                     
                 }
             }

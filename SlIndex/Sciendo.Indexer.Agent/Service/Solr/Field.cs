@@ -1,13 +1,18 @@
-﻿namespace Sciendo.Indexer.Agent.Service.Solr
+﻿using Newtonsoft.Json;
+
+namespace Sciendo.Indexer.Agent.Service.Solr
 {
     public class Field<T>
     {
         public Field()
         {
-            boost = 1d;
+            Boost = 1d;
         }
-        public T set { get; set; }
 
-        public double boost { get; set; }
+        [JsonProperty("set")]
+        public T Set { get; set; }
+
+        [JsonProperty("boost")]
+        public double Boost { get; set; }
     }
 }
