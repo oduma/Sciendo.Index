@@ -11,11 +11,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3rdParty", "3rdParty", "{13
 	ProjectSection(SolutionItems) = preProject
 		3rdParty\Id3.dll = 3rdParty\Id3.dll
 		3rdParty\Id3.Files.dll = 3rdParty\Id3.Files.dll
-		3rdParty\log4net.dll = 3rdParty\log4net.dll
-		3rdParty\log4net.xml = 3rdParty\log4net.xml
-		3rdParty\Sciendo.Common.dll = 3rdParty\Sciendo.Common.dll
-		3rdParty\Sciendo.IOC.dll = 3rdParty\Sciendo.IOC.dll
-		3rdParty\Sciendo.IOC.pdb = 3rdParty\Sciendo.IOC.pdb
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sciendo.Indexer.Agent", "Sciendo.Indexer.Agent\Sciendo.Indexer.Agent.csproj", "{866D1694-DD87-4F37-B542-FF50863317DF}"
