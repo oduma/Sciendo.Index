@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Sciendo.Lyrics.Common" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Sciendo.Lyrics.Common" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:simpleType name="Status">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="NotStarted" />
+      <xs:enumeration value="FileNotFound" />
+      <xs:enumeration value="FileNotTagged" />
+      <xs:enumeration value="ArtistSongRetrievedFromFile" />
+      <xs:enumeration value="LyricsUrlUnreachable" />
+      <xs:enumeration value="LyricsNotFound" />
+      <xs:enumeration value="LyricsDownloadedOk" />
+      <xs:enumeration value="NotIndexed" />
+      <xs:enumeration value="Done" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="Status" nillable="true" type="tns:Status" />
+</xs:schema>

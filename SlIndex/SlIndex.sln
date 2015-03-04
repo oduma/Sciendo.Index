@@ -28,6 +28,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{2EF93D
 		.nuget\packages.config = .nuget\packages.config
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sciendo.Index.Web", "Sciendo.Index.Web\Sciendo.Index.Web.csproj", "{DFB10CC4-E5B4-4727-8229-0E316A294891}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -62,6 +64,10 @@ Global
 		{BE40B73C-5DEA-4313-8A9F-1214726FAD70}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BE40B73C-5DEA-4313-8A9F-1214726FAD70}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BE40B73C-5DEA-4313-8A9F-1214726FAD70}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DFB10CC4-E5B4-4727-8229-0E316A294891}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DFB10CC4-E5B4-4727-8229-0E316A294891}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DFB10CC4-E5B4-4727-8229-0E316A294891}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DFB10CC4-E5B4-4727-8229-0E316A294891}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -14,7 +14,6 @@ namespace Sciendo.Indexer.Agent.Service.Solr
 
     public class SolrSender : ISolrSender
     {
-        private string _url;
         public SolrSender(string solrConnectionString)
         {
             LoggingManager.Debug("Constructing SolrSender with: " +solrConnectionString);
@@ -26,18 +25,15 @@ namespace Sciendo.Indexer.Agent.Service.Solr
         {
             
         }
-        public string Url
-        {
-            get { return _url; }
-            set { _url = value; }
-        }
+
+        public string Url { get; set; }
 
         public virtual TrySendResponse TrySend<T>(T package)
         {
             LoggingManager.Debug("Send to solr...");
-            HttpClient httpClient = new HttpClient();
-            using (var postTask = httpClient.PostAsJsonAsync<T>(Url, package)
-                .ContinueWith((p)=>p).Result)
+            var httpClient = new HttpClient();
+            using (var postTask = httpClient.PostAsJsonAsync(Url, package)
+                .ContinueWith(p=>p).Result)
             {
                 if (postTask.Status != TaskStatus.RanToCompletion || !postTask.Result.IsSuccessStatusCode ||
                     postTask.Result.Content == null)
@@ -46,7 +42,7 @@ namespace Sciendo.Indexer.Agent.Service.Solr
                     return new TrySendResponse { Status = Status.NotIndexed };
                 }
 
-                using(var readTask = postTask.Result.Content.ReadAsStringAsync().ContinueWith((r)=>r).Result)
+                using(var readTask = postTask.Result.Content.ReadAsStringAsync().ContinueWith(r=>r).Result)
                 {
                     if (readTask.Status != TaskStatus.RanToCompletion || string.IsNullOrEmpty(readTask.Result))
                     {
