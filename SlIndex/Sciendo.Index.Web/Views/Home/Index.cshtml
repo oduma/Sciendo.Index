@@ -5,23 +5,14 @@
 {
     @Styles.Render("~/Content/autocomplete")
 }
-<input type="search" name="musicIndexFromPath" data-autocomplete="@Url.Action("GetMusicAutocomplete", "Home")" />
+<div class="ui-widget">
+    <label for="musicIndexFromPath">Music Index From Path:</label>
+    <input type="search" name="musicIndexFromPath" data-autocomplete="@Url.Action("GetMusicAutocomplete", "Home")" />
+</div>
 <input type="search" name="lyricsIndexFromPath" data-autocomplete="@Url.Action("GetLyricsAutocomplete", "Home")" />
 
 @section scripts
 {
     @Scripts.Render("~/bundles/jqueryui")
-    <script>
-        var createAutocomplete = function () {
-            var self = $(this);
-            var options = {
-                source: self.attr("data-autocomplete")
-            };
-            self.autocomplete(options);
-        }
-
-        $(document).ready(function () {
-            $("input[data-autocomplete]").each(createAutocomplete);
-        });
-    </script>
+    @Scripts.Render("~/bundles/index")
 }

@@ -30,6 +30,7 @@ namespace Sciendo.Index.Web
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
             bundles.Add(new StyleBundle("~/Content/autocomplete").Include(
+                "~/Content/themes/base/all.css",
                       "~/Content/themes/base/autocomplete.css"));
 
             bundles.Add(new ScriptBundle("~/bundles/knockout").Include(
