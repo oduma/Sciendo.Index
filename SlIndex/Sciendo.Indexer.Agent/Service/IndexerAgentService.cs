@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
 using System.ServiceModel;
 using Sciendo.Common.Logging;
 using Sciendo.Indexer.Agent.Processing;
@@ -63,6 +64,22 @@ namespace Sciendo.Indexer.Agent.Service
         {
             LoggingManager.Debug("Starting Get last packages");
             return _progressStatuses.GetAllInQueue();
+        }
+
+        public string[] ListAvailableMusicPathsForIndexing(string fromPath)
+        {
+            if (string.IsNullOrEmpty(fromPath))
+                fromPath = _musicFilesProcessor.CurrentConfiguration.SourceDirectory;
+            return Reader.GetFiles(fromPath,
+                _musicFilesProcessor.CurrentConfiguration.SearchPattern, SearchOption.TopDirectoryOnly, true).ToArray();
+        }
+
+        public string[] ListAvailableLyricsPathsForIndexing(string fromPath)
+        {
+            if (string.IsNullOrEmpty(fromPath))
+                fromPath = _lyricsFilesProcessor.CurrentConfiguration.SourceDirectory;
+            return Reader.GetFiles(fromPath,
+                _lyricsFilesProcessor.CurrentConfiguration.SearchPattern, SearchOption.TopDirectoryOnly, true).ToArray();
         }
     }
 }

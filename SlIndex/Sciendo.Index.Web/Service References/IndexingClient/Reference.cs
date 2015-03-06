@@ -143,6 +143,22 @@ namespace Sciendo.Index.Web.IndexingClient {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://Sciendo.Indexer.Agent/IIndexerAgent/GetLastProcessedPackages", ReplyAction="http://Sciendo.Indexer.Agent/IIndexerAgent/GetLastProcessedPackagesResponse")]
         System.Threading.Tasks.Task<Sciendo.Index.Web.IndexingClient.ProgressStatus[]> GetLastProcessedPackagesAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://Sciendo.Indexer.Agent/IIndexerAgent/ListAvailableMusicPathsForIndexing", ReplyAction="http://Sciendo.Indexer.Agent/IIndexerAgent/ListAvailableMusicPathsForIndexingResp" +
+            "onse")]
+        string[] ListAvailableMusicPathsForIndexing(string fromPath);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://Sciendo.Indexer.Agent/IIndexerAgent/ListAvailableMusicPathsForIndexing", ReplyAction="http://Sciendo.Indexer.Agent/IIndexerAgent/ListAvailableMusicPathsForIndexingResp" +
+            "onse")]
+        System.Threading.Tasks.Task<string[]> ListAvailableMusicPathsForIndexingAsync(string fromPath);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://Sciendo.Indexer.Agent/IIndexerAgent/ListAvailableLyricsPathsForIndexing", ReplyAction="http://Sciendo.Indexer.Agent/IIndexerAgent/ListAvailableLyricsPathsForIndexingRes" +
+            "ponse")]
+        string[] ListAvailableLyricsPathsForIndexing(string fromPath);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://Sciendo.Indexer.Agent/IIndexerAgent/ListAvailableLyricsPathsForIndexing", ReplyAction="http://Sciendo.Indexer.Agent/IIndexerAgent/ListAvailableLyricsPathsForIndexingRes" +
+            "ponse")]
+        System.Threading.Tasks.Task<string[]> ListAvailableLyricsPathsForIndexingAsync(string fromPath);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -194,6 +210,22 @@ namespace Sciendo.Index.Web.IndexingClient {
         
         public System.Threading.Tasks.Task<Sciendo.Index.Web.IndexingClient.ProgressStatus[]> GetLastProcessedPackagesAsync() {
             return base.Channel.GetLastProcessedPackagesAsync();
+        }
+        
+        public string[] ListAvailableMusicPathsForIndexing(string fromPath) {
+            return base.Channel.ListAvailableMusicPathsForIndexing(fromPath);
+        }
+        
+        public System.Threading.Tasks.Task<string[]> ListAvailableMusicPathsForIndexingAsync(string fromPath) {
+            return base.Channel.ListAvailableMusicPathsForIndexingAsync(fromPath);
+        }
+        
+        public string[] ListAvailableLyricsPathsForIndexing(string fromPath) {
+            return base.Channel.ListAvailableLyricsPathsForIndexing(fromPath);
+        }
+        
+        public System.Threading.Tasks.Task<string[]> ListAvailableLyricsPathsForIndexingAsync(string fromPath) {
+            return base.Channel.ListAvailableLyricsPathsForIndexingAsync(fromPath);
         }
     }
 }

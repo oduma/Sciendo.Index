@@ -56,9 +56,14 @@ namespace Sciendo.Indexer.Agent.Processing
             LoggingManager.Debug("Directory parsed.");
         }
 
-        private static IEnumerable<string> GetFiles(string sourceFolder, string filters, SearchOption searchOption)
+        internal static IEnumerable<string> GetFiles(string sourceFolder, string filters, SearchOption searchOption,bool includeDirectories=false)
         {
-            return filters.Split('|').SelectMany(filter => System.IO.Directory.GetFiles(sourceFolder, filter, searchOption));
+            return (includeDirectories)
+                ? (filters.Split('|')
+                    .SelectMany(filter => System.IO.Directory.GetFiles(sourceFolder, filter, searchOption))).Union(
+                        Directory.GetDirectories(sourceFolder, "*", searchOption))
+                : (filters.Split('|')
+                    .SelectMany(filter => System.IO.Directory.GetFiles(sourceFolder, filter, searchOption)));
         }
 
         public Action<IEnumerable<string>, Action<Status,string>> ProcessFiles { private get; set; }

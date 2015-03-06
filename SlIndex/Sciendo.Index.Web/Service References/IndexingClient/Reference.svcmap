@@ -23,6 +23,7 @@
   </MetadataSources>
   <Metadata>
     <MetadataFile FileName="IndexerAgentService.wsdl" MetadataType="Wsdl" ID="16cd250f-873a-4e30-95ba-3b3fec4929a0" SourceId="1" SourceUrl="http://localhost:7000/IndexerAgentService?wsdl" />
+    <MetadataFile FileName="IndexerAgentService4.xsd" MetadataType="Schema" ID="7dbb3335-6962-420d-a265-bddc0a48daaa" SourceId="1" SourceUrl="http://localhost:7000/IndexerAgentService?xsd=xsd4" />
     <MetadataFile FileName="IndexerAgentService.xsd" MetadataType="Schema" ID="ea3a8caf-80a5-480a-9332-329f5ba8e47a" SourceId="1" SourceUrl="http://localhost:7000/IndexerAgentService?xsd=xsd3" />
     <MetadataFile FileName="IndexerAgentService1.xsd" MetadataType="Schema" ID="52b2e00f-3ec0-4aef-8f9a-d0f7ba3ed40f" SourceId="1" SourceUrl="http://localhost:7000/IndexerAgentService?xsd=xsd2" />
     <MetadataFile FileName="IndexerAgentService2.xsd" MetadataType="Schema" ID="3bc79203-4fa7-424c-9d28-bd09e9fe7450" SourceId="1" SourceUrl="http://localhost:7000/IndexerAgentService?xsd=xsd1" />

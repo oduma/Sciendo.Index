@@ -11,6 +11,9 @@ namespace Sciendo.Index.Web
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/Scripts/jquery-{version}.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/jqueryui").Include(
+                        "~/Scripts/jquery-ui-{version}.js"));
+
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
 
@@ -26,6 +29,8 @@ namespace Sciendo.Index.Web
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
+            bundles.Add(new StyleBundle("~/Content/autocomplete").Include(
+                      "~/Content/themes/base/autocomplete.css"));
 
             bundles.Add(new ScriptBundle("~/bundles/knockout").Include(
 "~/Scripts/knockout-{version}.js"));
@@ -35,6 +40,9 @@ namespace Sciendo.Index.Web
 
             bundles.Add(new ScriptBundle("~/bundles/monitor").Include(
 "~/Scripts/sciendo.index.web/monitor*"));
+
+            bundles.Add(new ScriptBundle("~/bundles/index").Include(
+"~/Scripts/sciendo.index.web/index*"));
 
             // Set EnableOptimizations to false for debugging. For more information,
             // visit http://go.microsoft.com/fwlink/?LinkId=301862

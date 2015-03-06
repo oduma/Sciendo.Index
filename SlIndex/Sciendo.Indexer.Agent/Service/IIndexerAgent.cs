@@ -13,5 +13,10 @@ namespace Sciendo.Indexer.Agent.Service
         [OperationContract]
         ProgressStatus[] GetLastProcessedPackages();
 
+        [OperationContract]
+        string[] ListAvailableMusicPathsForIndexing(string fromPath);
+
+        [OperationContract]
+        string[] ListAvailableLyricsPathsForIndexing(string fromPath);
     }
 }

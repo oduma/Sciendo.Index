@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://Sciendo.Indexer.Agent" elementFormDefault="qualified" targetNamespace="http://Sciendo.Indexer.Agent" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:import schemaLocation="http://localhost:7000/IndexerAgentService?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Sciendo.Indexer.Agent.Service" />
+  <xs:import schemaLocation="http://localhost:7000/IndexerAgentService?xsd=xsd4" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
   <xs:element name="IndexLyricsOnDemand">
     <xs:complexType>
       <xs:sequence>
@@ -38,6 +39,34 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/Sciendo.Indexer.Agent.Service" minOccurs="0" name="GetLastProcessedPackagesResult" nillable="true" type="q1:ArrayOfProgressStatus" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ListAvailableMusicPathsForIndexing">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="fromPath" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ListAvailableMusicPathsForIndexingResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q2="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="ListAvailableMusicPathsForIndexingResult" nillable="true" type="q2:ArrayOfstring" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ListAvailableLyricsPathsForIndexing">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="fromPath" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ListAvailableLyricsPathsForIndexingResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q3="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="ListAvailableLyricsPathsForIndexingResult" nillable="true" type="q3:ArrayOfstring" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

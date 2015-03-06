@@ -6,6 +6,7 @@
       <xsd:import schemaLocation="http://localhost:7000/IndexerAgentService?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
       <xsd:import schemaLocation="http://localhost:7000/IndexerAgentService?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Sciendo.Indexer.Agent.Service" />
       <xsd:import schemaLocation="http://localhost:7000/IndexerAgentService?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/Sciendo.Lyrics.Common" />
+      <xsd:import schemaLocation="http://localhost:7000/IndexerAgentService?xsd=xsd4" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
     </xsd:schema>
   </wsdl:types>
   <wsdl:message name="IIndexerAgent_IndexLyricsOnDemand_InputMessage">
@@ -26,6 +27,18 @@
   <wsdl:message name="IIndexerAgent_GetLastProcessedPackages_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetLastProcessedPackagesResponse" />
   </wsdl:message>
+  <wsdl:message name="IIndexerAgent_ListAvailableMusicPathsForIndexing_InputMessage">
+    <wsdl:part name="parameters" element="tns:ListAvailableMusicPathsForIndexing" />
+  </wsdl:message>
+  <wsdl:message name="IIndexerAgent_ListAvailableMusicPathsForIndexing_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ListAvailableMusicPathsForIndexingResponse" />
+  </wsdl:message>
+  <wsdl:message name="IIndexerAgent_ListAvailableLyricsPathsForIndexing_InputMessage">
+    <wsdl:part name="parameters" element="tns:ListAvailableLyricsPathsForIndexing" />
+  </wsdl:message>
+  <wsdl:message name="IIndexerAgent_ListAvailableLyricsPathsForIndexing_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ListAvailableLyricsPathsForIndexingResponse" />
+  </wsdl:message>
   <wsdl:portType name="IIndexerAgent">
     <wsdl:operation name="IndexLyricsOnDemand">
       <wsdl:input wsaw:Action="http://Sciendo.Indexer.Agent/IIndexerAgent/IndexLyricsOnDemand" message="tns:IIndexerAgent_IndexLyricsOnDemand_InputMessage" />
@@ -38,6 +51,14 @@
     <wsdl:operation name="GetLastProcessedPackages">
       <wsdl:input wsaw:Action="http://Sciendo.Indexer.Agent/IIndexerAgent/GetLastProcessedPackages" message="tns:IIndexerAgent_GetLastProcessedPackages_InputMessage" />
       <wsdl:output wsaw:Action="http://Sciendo.Indexer.Agent/IIndexerAgent/GetLastProcessedPackagesResponse" message="tns:IIndexerAgent_GetLastProcessedPackages_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ListAvailableMusicPathsForIndexing">
+      <wsdl:input wsaw:Action="http://Sciendo.Indexer.Agent/IIndexerAgent/ListAvailableMusicPathsForIndexing" message="tns:IIndexerAgent_ListAvailableMusicPathsForIndexing_InputMessage" />
+      <wsdl:output wsaw:Action="http://Sciendo.Indexer.Agent/IIndexerAgent/ListAvailableMusicPathsForIndexingResponse" message="tns:IIndexerAgent_ListAvailableMusicPathsForIndexing_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ListAvailableLyricsPathsForIndexing">
+      <wsdl:input wsaw:Action="http://Sciendo.Indexer.Agent/IIndexerAgent/ListAvailableLyricsPathsForIndexing" message="tns:IIndexerAgent_ListAvailableLyricsPathsForIndexing_InputMessage" />
+      <wsdl:output wsaw:Action="http://Sciendo.Indexer.Agent/IIndexerAgent/ListAvailableLyricsPathsForIndexingResponse" message="tns:IIndexerAgent_ListAvailableLyricsPathsForIndexing_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
 </wsdl:definitions>
