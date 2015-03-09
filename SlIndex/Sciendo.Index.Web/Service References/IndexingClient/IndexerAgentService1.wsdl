@@ -39,6 +39,12 @@
   <wsdl:message name="IIndexerAgent_ListAvailableLyricsPathsForIndexing_OutputMessage">
     <wsdl:part name="parameters" element="tns:ListAvailableLyricsPathsForIndexingResponse" />
   </wsdl:message>
+  <wsdl:message name="IIndexerAgent_GetSourceFolders_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetSourceFolders" />
+  </wsdl:message>
+  <wsdl:message name="IIndexerAgent_GetSourceFolders_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetSourceFoldersResponse" />
+  </wsdl:message>
   <wsdl:portType name="IIndexerAgent">
     <wsdl:operation name="IndexLyricsOnDemand">
       <wsdl:input wsaw:Action="http://Sciendo.Indexer.Agent/IIndexerAgent/IndexLyricsOnDemand" message="tns:IIndexerAgent_IndexLyricsOnDemand_InputMessage" />
@@ -59,6 +65,10 @@
     <wsdl:operation name="ListAvailableLyricsPathsForIndexing">
       <wsdl:input wsaw:Action="http://Sciendo.Indexer.Agent/IIndexerAgent/ListAvailableLyricsPathsForIndexing" message="tns:IIndexerAgent_ListAvailableLyricsPathsForIndexing_InputMessage" />
       <wsdl:output wsaw:Action="http://Sciendo.Indexer.Agent/IIndexerAgent/ListAvailableLyricsPathsForIndexingResponse" message="tns:IIndexerAgent_ListAvailableLyricsPathsForIndexing_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSourceFolders">
+      <wsdl:input wsaw:Action="http://Sciendo.Indexer.Agent/IIndexerAgent/GetSourceFolders" message="tns:IIndexerAgent_GetSourceFolders_InputMessage" />
+      <wsdl:output wsaw:Action="http://Sciendo.Indexer.Agent/IIndexerAgent/GetSourceFoldersResponse" message="tns:IIndexerAgent_GetSourceFolders_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
 </wsdl:definitions>

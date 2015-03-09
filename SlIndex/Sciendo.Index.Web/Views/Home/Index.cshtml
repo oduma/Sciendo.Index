@@ -1,4 +1,5 @@
-﻿@{
+﻿@model Sciendo.Index.Web.Models.IndexModel
+@{
     ViewBag.Title = "Home Page";
 }
 @section styles
@@ -7,12 +8,20 @@
 }
 <div class="ui-widget">
     <label for="musicIndexFromPath">Music Index From Path:</label>
-    <input type="search" name="musicIndexFromPath" data-autocomplete="@Url.Action("GetMusicAutocomplete", "Home")" />
+    <input data-bind="value:musicFromPath" type="search" name="musicIndexFromPath" data-autocomplete="@Url.Action("GetMusicAutocomplete", "Home")" />
 </div>
-<input type="search" name="lyricsIndexFromPath" data-autocomplete="@Url.Action("GetLyricsAutocomplete", "Home")" />
-
-@section scripts
+<div class="ui-widget">
+    <label for="lyricsIndexFromPath">Lyrics Index From Path:</label>
+    <input data-bind="value:lyricsFromPath" type="search" name="lyricsIndexFromPath" data-autocomplete="@Url.Action("GetLyricsAutocomplete", "Home")" />
+</div>
+    @section scripts
 {
-    @Scripts.Render("~/bundles/jqueryui")
-    @Scripts.Render("~/bundles/index")
-}
+        @Scripts.Render("~/bundles/jqueryui")
+        @Scripts.Render("~/bundles/index")
+        <script>
+            // Initiate the Knockout bindings
+            var vm = new indexViewModel("@Server.HtmlEncode(@Model.SourceFolders.Music)","@Server.HtmlEncode(@Model.SourceFolders.Lyrics)");
+            ko.applyBindings(vm);
+
+        </script>
+    }

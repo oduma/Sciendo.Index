@@ -81,5 +81,14 @@ namespace Sciendo.Indexer.Agent.Service
             return Reader.GetFiles(fromPath,
                 _lyricsFilesProcessor.CurrentConfiguration.SearchPattern, SearchOption.TopDirectoryOnly, true).ToArray();
         }
+
+        public SourceFolders GetSourceFolders()
+        {
+            return new SourceFolders
+            {
+                Lyrics = _lyricsFilesProcessor.CurrentConfiguration.SourceDirectory,
+                Music = _musicFilesProcessor.CurrentConfiguration.SourceDirectory
+            };
+        }
     }
 }

@@ -122,6 +122,67 @@ namespace Sciendo.Index.Web.IndexingClient {
         Done = 8,
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="SourceFolders", Namespace="http://schemas.datacontract.org/2004/07/Sciendo.Indexer.Agent.Service")]
+    [System.SerializableAttribute()]
+    public partial class SourceFolders : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string LyricsField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string MusicField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Lyrics {
+            get {
+                return this.LyricsField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.LyricsField, value) != true)) {
+                    this.LyricsField = value;
+                    this.RaisePropertyChanged("Lyrics");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Music {
+            get {
+                return this.MusicField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.MusicField, value) != true)) {
+                    this.MusicField = value;
+                    this.RaisePropertyChanged("Music");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(Namespace="http://Sciendo.Indexer.Agent", ConfigurationName="IndexingClient.IIndexerAgent")]
     public interface IIndexerAgent {
@@ -159,6 +220,12 @@ namespace Sciendo.Index.Web.IndexingClient {
         [System.ServiceModel.OperationContractAttribute(Action="http://Sciendo.Indexer.Agent/IIndexerAgent/ListAvailableLyricsPathsForIndexing", ReplyAction="http://Sciendo.Indexer.Agent/IIndexerAgent/ListAvailableLyricsPathsForIndexingRes" +
             "ponse")]
         System.Threading.Tasks.Task<string[]> ListAvailableLyricsPathsForIndexingAsync(string fromPath);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://Sciendo.Indexer.Agent/IIndexerAgent/GetSourceFolders", ReplyAction="http://Sciendo.Indexer.Agent/IIndexerAgent/GetSourceFoldersResponse")]
+        Sciendo.Index.Web.IndexingClient.SourceFolders GetSourceFolders();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://Sciendo.Indexer.Agent/IIndexerAgent/GetSourceFolders", ReplyAction="http://Sciendo.Indexer.Agent/IIndexerAgent/GetSourceFoldersResponse")]
+        System.Threading.Tasks.Task<Sciendo.Index.Web.IndexingClient.SourceFolders> GetSourceFoldersAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -226,6 +293,14 @@ namespace Sciendo.Index.Web.IndexingClient {
         
         public System.Threading.Tasks.Task<string[]> ListAvailableLyricsPathsForIndexingAsync(string fromPath) {
             return base.Channel.ListAvailableLyricsPathsForIndexingAsync(fromPath);
+        }
+        
+        public Sciendo.Index.Web.IndexingClient.SourceFolders GetSourceFolders() {
+            return base.Channel.GetSourceFolders();
+        }
+        
+        public System.Threading.Tasks.Task<Sciendo.Index.Web.IndexingClient.SourceFolders> GetSourceFoldersAsync() {
+            return base.Channel.GetSourceFoldersAsync();
         }
     }
 }

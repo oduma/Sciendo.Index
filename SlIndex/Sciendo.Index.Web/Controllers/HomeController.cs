@@ -1,4 +1,5 @@
 ﻿using System.Web.Mvc;
+using Sciendo.Index.Web.Models;
 
 namespace Sciendo.Index.Web.Controllers
 {
@@ -6,22 +7,30 @@ namespace Sciendo.Index.Web.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+
+            IndexModel indexModel= new IndexModel(SciendoConfiguration.Container.Resolve<IDataProvider>(
+                SciendoConfiguration.IndexingConfiguration.CurrentDataProvider)
+                .GetSourceFolders());
+
+
+            return View("Index", indexModel);
         }
 
         [HttpGet]
         public JsonResult GetMusicAutoComplete(string term)
         {
             return
-                Json(
-                    new string[3] {"abc","adc","afc"}, JsonRequestBehavior.AllowGet);
+                Json(SciendoConfiguration.Container.Resolve<IDataProvider>(
+                        SciendoConfiguration.IndexingConfiguration.CurrentDataProvider)
+                        .GetMuiscAutocomplete(term), JsonRequestBehavior.AllowGet);
         }
         [HttpGet]
         public JsonResult GetLyricsAutoComplete(string term)
         {
             return
-                Json(
-                    new string[3] { "abc", "adc", "afc" }, JsonRequestBehavior.AllowGet);
+                Json(SciendoConfiguration.Container.Resolve<IDataProvider>(
+                        SciendoConfiguration.IndexingConfiguration.CurrentDataProvider)
+                        .GetLyricsAutocomplete(term), JsonRequestBehavior.AllowGet);
         }
         public ActionResult Monitor()
         {

@@ -18,5 +18,8 @@ namespace Sciendo.Indexer.Agent.Service
 
         [OperationContract]
         string[] ListAvailableLyricsPathsForIndexing(string fromPath);
+
+        [OperationContract]
+        SourceFolders GetSourceFolders();
     }
 }

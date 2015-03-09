@@ -107,6 +107,7 @@
     <Compile Include="Service\Solr\SolrSender.cs" />
     <Compile Include="Service\Solr\SolrUpdateResponse.cs" />
     <Compile Include="Service\Solr\TrySendResponse.cs" />
+    <Compile Include="Service\SourceFolders.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

@@ -16,4 +16,11 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="ProgressStatus" nillable="true" type="tns:ProgressStatus" />
+  <xs:complexType name="SourceFolders">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Lyrics" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Music" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SourceFolders" nillable="true" type="tns:SourceFolders" />
 </xs:schema>
