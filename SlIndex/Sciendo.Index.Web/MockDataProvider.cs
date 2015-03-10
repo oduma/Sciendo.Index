@@ -56,5 +56,14 @@ namespace Sciendo.Index.Web
             }
             return new IndexingResult { IndexType = indexType.ToString(), Error = "Lyrics indexing not available." };
         }
+
+        public ProgressStatusModel[] GetMonitoring()
+        {
+            return new[]
+            {
+                new ProgressStatusModel {Id = "Id1", Package = "Package1", Status = "Done"},
+                new ProgressStatusModel {Id = "Id2", Package = "Package2", Status = "Error"}
+            };
+        }
     }
 }

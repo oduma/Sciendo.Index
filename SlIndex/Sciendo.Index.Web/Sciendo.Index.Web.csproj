@@ -153,6 +153,7 @@
     <Compile Include="Models\IndexingResult.cs" />
     <Compile Include="Models\IndexModel.cs" />
     <Compile Include="Models\IndexType.cs" />
+    <Compile Include="Models\ProgressStatusModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service References\IndexingClient\Reference.cs">
       <AutoGen>True</AutoGen>

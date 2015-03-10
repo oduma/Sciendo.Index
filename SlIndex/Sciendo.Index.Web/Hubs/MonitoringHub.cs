@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
-using System.Web;
+﻿using System.Threading;
 using Microsoft.AspNet.SignalR;
-using Sciendo.Index.Web.IndexingClient;
 
 namespace Sciendo.Index.Web.Hubs
 {
@@ -14,15 +9,29 @@ namespace Sciendo.Index.Web.Hubs
         {
             do
             {
-                IIndexerAgent svc = new IndexerAgentClient();
-                var response = svc.GetLastProcessedPackages();
-                foreach (var progressStatus in response)
+
+                foreach (var progressStatus in SciendoConfiguration.Container.Resolve<IDataProvider>(
+                        SciendoConfiguration.IndexingConfiguration.CurrentDataProvider)
+                        .GetMonitoring())
                 {
-                    Clients.All.addNewMessageToPage("Id:" + progressStatus.Id + " Status: " + progressStatus.Status+" Details: " + progressStatus.Package);
+                    Clients.All.addNewMessageToPage(progressStatus);
                 }
                 Thread.Sleep(2000);
 
             } while (true);
+
+            //do
+            //{
+
+            //    IIndexerAgent svc = new IndexerAgentClient();
+            //    var response = svc.GetLastProcessedPackages();
+            //    foreach (var progressStatus in response)
+            //    {
+            //        Clients.All.addNewMessageToPage("Id:" + progressStatus.Id + " Status: " + progressStatus.Status+" Details: " + progressStatus.Package);
+            //    }
+            //    Thread.Sleep(2000);
+
+            //} while (true);
         }
     }
 }

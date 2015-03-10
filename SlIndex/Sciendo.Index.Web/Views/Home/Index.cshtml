@@ -25,7 +25,7 @@
 <h3>Monitoring</h3>
 <div class="container">
     <ul id="messages" data-bind="foreach: monitoringMessages">
-        <li data-bind="text: $data"></li>
+        <li><span data-bind="text: $data.Id"></span>&nbsp;<span data-bind="text: $data.Status"></span>&nbsp;<span data-bind="text: $data.Package"></span></li>
     </ul>
 </div>
     @section scripts

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Sciendo.Index.Web.IndexingClient;
 using Sciendo.Index.Web.Models;
 
@@ -64,6 +65,12 @@ namespace Sciendo.Index.Web
                     Error = ex.Message
                 };
             }
+        }
+
+        public ProgressStatusModel[] GetMonitoring()
+        {
+            return _svc.GetLastProcessedPackages().Select(p=>new ProgressStatusModel{Id=p.Id.ToString(),Package=p.Package.ToString(),Status=p.Status.ToString()}).ToArray();
+
         }
     }
 }
