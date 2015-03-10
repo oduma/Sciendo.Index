@@ -21,7 +21,10 @@ namespace Sciendo.Index.Web
 
         public SourceFolders GetSourceFolders()
         {
-            return _svc.GetSourceFolders();
+            var formattedSourceFolders = _svc.GetSourceFolders();
+            formattedSourceFolders.Music=formattedSourceFolders.Music.Replace("\\", "/");
+            formattedSourceFolders.Lyrics = formattedSourceFolders.Lyrics.Replace("\\", "/");
+            return formattedSourceFolders;
         }
 
         public IndexingResult StartIndexing(string fromPath, IndexType indexType)
