@@ -212,7 +212,6 @@
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\sciendo.index.web\index.autocomplete.js" />
     <Content Include="Scripts\sciendo.index.web\index.viewmodel.js" />
-    <Content Include="Scripts\sciendo.index.web\monitor.viewmodel.js" />
     <Content Include="Scripts\_references.js" />
     <None Include="Service References\IndexingClient\IndexerAgentService.disco" />
     <None Include="Service References\IndexingClient\configuration91.svcinfo" />
@@ -239,7 +238,6 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
-    <Content Include="Views\Home\Monitor.cshtml" />
     <None Include="Service References\IndexingClient\IndexerAgentService.wsdl" />
     <None Include="Service References\IndexingClient\IndexerAgentService.xsd">
       <SubType>Designer</SubType>

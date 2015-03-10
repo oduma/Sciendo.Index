@@ -39,9 +39,6 @@ namespace Sciendo.Index.Web
             bundles.Add(new ScriptBundle("~/bundles/signalR").Include(
 "~/Scripts/jquery.signalR-{version}.js"));
 
-            bundles.Add(new ScriptBundle("~/bundles/monitor").Include(
-"~/Scripts/sciendo.index.web/monitor*"));
-
             bundles.Add(new ScriptBundle("~/bundles/index").Include(
 "~/Scripts/sciendo.index.web/index.viewmodel.js",
 "~/Scripts/sciendo.index.web/index.autocomplete.js"));

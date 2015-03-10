@@ -41,10 +41,6 @@ namespace Sciendo.Index.Web.Controllers
                         SciendoConfiguration.IndexingConfiguration.CurrentDataProvider)
                         .StartIndexing(fromPath,indexType), JsonRequestBehavior.AllowGet);
         }
-        public ActionResult Monitor()
-        {
-            return View();
-        }
 
         public ActionResult About()
         {

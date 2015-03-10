@@ -15,6 +15,21 @@
         }
         return "Tryed to index " + self.lastIndexingType() + " unsuccesfull:";
     });
+
+    self.hub = $.connection.monitoringHub;
+    self.monitoringMessages = ko.observableArray([]);
+    self.maximumMonitoringMessagesDisplay = ko.observable(10);
+    //Initializes the view model
+    self.init = function () {
+        this.hub.server.send();
+    }
+
+    self.hub.client.addNewMessageToPage = function (message) {
+        if (self.monitoringMessages().length > self.maximumMonitoringMessagesDisplay())
+            self.monitoringMessages.removeAll();
+        self.monitoringMessages.push(message);
+    }
+
     self.selectValue = function (property, value) {
         if (property == "musicIndexFromPath")
             self.musicFromPath(value);
