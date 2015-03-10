@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
+using System.Runtime.Remoting.Messaging;
 using Sciendo.Index.Web.IndexingClient;
+using Sciendo.Index.Web.Models;
 
 namespace Sciendo.Index.Web
 {
@@ -38,12 +40,21 @@ namespace Sciendo.Index.Web
 
         public string[] GetLyricsAutocomplete(string term)
         {
-            throw new System.NotImplementedException();
+            return GetMuiscAutocomplete(term);
         }
 
         public SourceFolders GetSourceFolders()
         {
             return new SourceFolders {Music = "c:\\preroot\\root".Replace(@"\","/"), Lyrics = "not avaialble".Replace(@"\","/")};
+        }
+
+        public IndexingResult StartIndexing(string fromPath, IndexType indexType)
+        {
+            if (indexType == IndexType.Music)
+            {
+                return new IndexingResult { IndexType = indexType.ToString(), NumberOfDocuments = 20.ToString() };
+            }
+            return new IndexingResult { IndexType = indexType.ToString(), Error = "Lyrics indexing not available." };
         }
     }
 }

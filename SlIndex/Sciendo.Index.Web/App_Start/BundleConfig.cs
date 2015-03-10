@@ -43,7 +43,8 @@ namespace Sciendo.Index.Web
 "~/Scripts/sciendo.index.web/monitor*"));
 
             bundles.Add(new ScriptBundle("~/bundles/index").Include(
-"~/Scripts/sciendo.index.web/index*"));
+"~/Scripts/sciendo.index.web/index.viewmodel.js",
+"~/Scripts/sciendo.index.web/index.autocomplete.js"));
 
             // Set EnableOptimizations to false for debugging. For more information,
             // visit http://go.microsoft.com/fwlink/?LinkId=301862

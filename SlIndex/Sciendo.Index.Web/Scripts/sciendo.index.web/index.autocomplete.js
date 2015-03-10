@@ -22,7 +22,10 @@ var createAutocomplete = function () {
                 response(cache[lastTerm]);
             }
         },
-        minLength: 2
+        minLength: 2,
+        select: function(event, ui) {
+            vm.selectValue(event.target.name, ui.item.value);
+        }
     };
     self.autocomplete(options);
 }

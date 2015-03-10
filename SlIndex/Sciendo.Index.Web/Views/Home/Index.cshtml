@@ -9,10 +9,17 @@
 <div class="ui-widget">
     <label for="musicIndexFromPath">Music Index From Path:</label>
     <input data-bind="value:musicFromPath" type="search" name="musicIndexFromPath" data-autocomplete="@Url.Action("GetMusicAutocomplete", "Home")" />
+    <button data-bind="click:indexMusic">Go</button>
 </div>
 <div class="ui-widget">
     <label for="lyricsIndexFromPath">Lyrics Index From Path:</label>
     <input data-bind="value:lyricsFromPath" type="search" name="lyricsIndexFromPath" data-autocomplete="@Url.Action("GetLyricsAutocomplete", "Home")" />
+    <button data-bind="click:indexLyrics">Go</button>
+</div>
+<div data-bind="if:indexedOccured">
+    <label id="resultsIndexed" data-bind="text:indexingResultMessage"></label>
+    <div class="validation-summary-errors" data-bind="if:indexedWithError"></div>
+    <label id="errorIndexed" data-bind="text:indexingError"></label>
 </div>
     @section scripts
 {

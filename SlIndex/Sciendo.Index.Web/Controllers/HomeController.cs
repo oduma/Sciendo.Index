@@ -32,6 +32,15 @@ namespace Sciendo.Index.Web.Controllers
                         SciendoConfiguration.IndexingConfiguration.CurrentDataProvider)
                         .GetLyricsAutocomplete(term), JsonRequestBehavior.AllowGet);
         }
+
+        [HttpGet]
+        public JsonResult StartIndexing(string fromPath,IndexType indexType)
+        {
+            return
+                Json(SciendoConfiguration.Container.Resolve<IDataProvider>(
+                        SciendoConfiguration.IndexingConfiguration.CurrentDataProvider)
+                        .StartIndexing(fromPath,indexType), JsonRequestBehavior.AllowGet);
+        }
         public ActionResult Monitor()
         {
             return View();
