@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Sciendo.Index.Web.IndexingClient {
+namespace Sciendo.Indexing.DataProviders.IndexerClient {
     using System.Runtime.Serialization;
     using System;
     
@@ -29,7 +29,7 @@ namespace Sciendo.Index.Web.IndexingClient {
         private string PackageField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private Sciendo.Index.Web.IndexingClient.Status StatusField;
+        private Sciendo.Indexing.DataProviders.IndexerClient.Status StatusField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -68,7 +68,7 @@ namespace Sciendo.Index.Web.IndexingClient {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public Sciendo.Index.Web.IndexingClient.Status Status {
+        public Sciendo.Indexing.DataProviders.IndexerClient.Status Status {
             get {
                 return this.StatusField;
             }
@@ -184,7 +184,7 @@ namespace Sciendo.Index.Web.IndexingClient {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(Namespace="http://Sciendo.Indexer.Agent", ConfigurationName="IndexingClient.IIndexerAgent")]
+    [System.ServiceModel.ServiceContractAttribute(Namespace="http://Sciendo.Indexer.Agent", ConfigurationName="IndexerClient.IIndexerAgent")]
     public interface IIndexerAgent {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://Sciendo.Indexer.Agent/IIndexerAgent/IndexLyricsOnDemand", ReplyAction="http://Sciendo.Indexer.Agent/IIndexerAgent/IndexLyricsOnDemandResponse")]
@@ -200,10 +200,10 @@ namespace Sciendo.Index.Web.IndexingClient {
         System.Threading.Tasks.Task<int> IndexMusicOnDemandAsync(string fromPath);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://Sciendo.Indexer.Agent/IIndexerAgent/GetLastProcessedPackages", ReplyAction="http://Sciendo.Indexer.Agent/IIndexerAgent/GetLastProcessedPackagesResponse")]
-        Sciendo.Index.Web.IndexingClient.ProgressStatus[] GetLastProcessedPackages();
+        Sciendo.Indexing.DataProviders.IndexerClient.ProgressStatus[] GetLastProcessedPackages();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://Sciendo.Indexer.Agent/IIndexerAgent/GetLastProcessedPackages", ReplyAction="http://Sciendo.Indexer.Agent/IIndexerAgent/GetLastProcessedPackagesResponse")]
-        System.Threading.Tasks.Task<Sciendo.Index.Web.IndexingClient.ProgressStatus[]> GetLastProcessedPackagesAsync();
+        System.Threading.Tasks.Task<Sciendo.Indexing.DataProviders.IndexerClient.ProgressStatus[]> GetLastProcessedPackagesAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://Sciendo.Indexer.Agent/IIndexerAgent/ListAvailableMusicPathsForIndexing", ReplyAction="http://Sciendo.Indexer.Agent/IIndexerAgent/ListAvailableMusicPathsForIndexingResp" +
             "onse")]
@@ -222,19 +222,19 @@ namespace Sciendo.Index.Web.IndexingClient {
         System.Threading.Tasks.Task<string[]> ListAvailableLyricsPathsForIndexingAsync(string fromPath);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://Sciendo.Indexer.Agent/IIndexerAgent/GetSourceFolders", ReplyAction="http://Sciendo.Indexer.Agent/IIndexerAgent/GetSourceFoldersResponse")]
-        Sciendo.Index.Web.IndexingClient.SourceFolders GetSourceFolders();
+        Sciendo.Indexing.DataProviders.IndexerClient.SourceFolders GetSourceFolders();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://Sciendo.Indexer.Agent/IIndexerAgent/GetSourceFolders", ReplyAction="http://Sciendo.Indexer.Agent/IIndexerAgent/GetSourceFoldersResponse")]
-        System.Threading.Tasks.Task<Sciendo.Index.Web.IndexingClient.SourceFolders> GetSourceFoldersAsync();
+        System.Threading.Tasks.Task<Sciendo.Indexing.DataProviders.IndexerClient.SourceFolders> GetSourceFoldersAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface IIndexerAgentChannel : Sciendo.Index.Web.IndexingClient.IIndexerAgent, System.ServiceModel.IClientChannel {
+    public interface IIndexerAgentChannel : Sciendo.Indexing.DataProviders.IndexerClient.IIndexerAgent, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class IndexerAgentClient : System.ServiceModel.ClientBase<Sciendo.Index.Web.IndexingClient.IIndexerAgent>, Sciendo.Index.Web.IndexingClient.IIndexerAgent {
+    public partial class IndexerAgentClient : System.ServiceModel.ClientBase<Sciendo.Indexing.DataProviders.IndexerClient.IIndexerAgent>, Sciendo.Indexing.DataProviders.IndexerClient.IIndexerAgent {
         
         public IndexerAgentClient() {
         }
@@ -271,11 +271,11 @@ namespace Sciendo.Index.Web.IndexingClient {
             return base.Channel.IndexMusicOnDemandAsync(fromPath);
         }
         
-        public Sciendo.Index.Web.IndexingClient.ProgressStatus[] GetLastProcessedPackages() {
+        public Sciendo.Indexing.DataProviders.IndexerClient.ProgressStatus[] GetLastProcessedPackages() {
             return base.Channel.GetLastProcessedPackages();
         }
         
-        public System.Threading.Tasks.Task<Sciendo.Index.Web.IndexingClient.ProgressStatus[]> GetLastProcessedPackagesAsync() {
+        public System.Threading.Tasks.Task<Sciendo.Indexing.DataProviders.IndexerClient.ProgressStatus[]> GetLastProcessedPackagesAsync() {
             return base.Channel.GetLastProcessedPackagesAsync();
         }
         
@@ -295,11 +295,11 @@ namespace Sciendo.Index.Web.IndexingClient {
             return base.Channel.ListAvailableLyricsPathsForIndexingAsync(fromPath);
         }
         
-        public Sciendo.Index.Web.IndexingClient.SourceFolders GetSourceFolders() {
+        public Sciendo.Indexing.DataProviders.IndexerClient.SourceFolders GetSourceFolders() {
             return base.Channel.GetSourceFolders();
         }
         
-        public System.Threading.Tasks.Task<Sciendo.Index.Web.IndexingClient.SourceFolders> GetSourceFoldersAsync() {
+        public System.Threading.Tasks.Task<Sciendo.Indexing.DataProviders.IndexerClient.SourceFolders> GetSourceFoldersAsync() {
             return base.Channel.GetSourceFoldersAsync();
         }
     }

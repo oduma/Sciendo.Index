@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Linq;
-using Sciendo.Index.Web.IndexingClient;
-using Sciendo.Index.Web.Models;
+using Sciendo.Indexing.DataProviders.IndexerClient;
+using Sciendo.Indexing.DataProviders.Models;
 
-namespace Sciendo.Index.Web
+namespace Sciendo.Indexing.DataProviders
 {
     public class DataProvider:IDataProvider
     {

@@ -1,5 +1,6 @@
 ﻿using System.Threading;
 using Microsoft.AspNet.SignalR;
+using Sciendo.Indexing.DataProviders;
 
 namespace Sciendo.Index.Web.Hubs
 {

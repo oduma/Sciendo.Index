@@ -1,5 +1,6 @@
 ﻿using System.Web.Mvc;
-using Sciendo.Index.Web.Models;
+using Sciendo.Indexing.DataProviders;
+using Sciendo.Indexing.DataProviders.Models;
 
 namespace Sciendo.Index.Web.Controllers
 {

@@ -1,9 +1,8 @@
 ﻿using System.Collections.Generic;
-using System.Runtime.Remoting.Messaging;
-using Sciendo.Index.Web.IndexingClient;
-using Sciendo.Index.Web.Models;
+using Sciendo.Indexing.DataProviders.IndexerClient;
+using Sciendo.Indexing.DataProviders.Models;
 
-namespace Sciendo.Index.Web
+namespace Sciendo.Indexing.DataProviders.Mock
 {
     public class MockDataProvider:IDataProvider
     {

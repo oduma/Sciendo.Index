@@ -1,4 +1,4 @@
-﻿namespace Sciendo.Index.Web.Models
+﻿namespace Sciendo.Indexing.DataProviders.Models
 {
     public class IndexingResult
     {

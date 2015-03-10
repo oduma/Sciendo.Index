@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using Sciendo.Indexing.DataProviders;
+using Sciendo.Indexing.DataProviders.Mock;
 using Sciendo.IOC;
 
 namespace Sciendo.Index.Web.App_Start

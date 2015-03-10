@@ -15,10 +15,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3rdParty", "3rdParty", "{13
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sciendo.Indexer.Agent", "Sciendo.Indexer.Agent\Sciendo.Indexer.Agent.csproj", "{866D1694-DD87-4F37-B542-FF50863317DF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sciendo.Indexer", "Sciendo.Indexer\Sciendo.Indexer.csproj", "{21292BD9-8060-466E-B2D3-FAF9DF88F2F4}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sciendo.Indexer.Monitor", "Sciendo.Indexer.Monitor\Sciendo.Indexer.Monitor.csproj", "{EFB0E886-99C6-4CC7-8A5B-45C1410E3ECE}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sciendo.Lyrics.Provider", "Sciendo.Lyrics.Provider\Sciendo.Lyrics.Provider.csproj", "{EE7F0510-962B-4846-A1E1-3B51990546BF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sciendo.Lyrics.Provider.Tests", "Sciendo.Lyrics.Provider.Tests\Sciendo.Lyrics.Provider.Tests.csproj", "{BE40B73C-5DEA-4313-8A9F-1214726FAD70}"
@@ -29,6 +25,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{2EF93D
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sciendo.Index.Web", "Sciendo.Index.Web\Sciendo.Index.Web.csproj", "{DFB10CC4-E5B4-4727-8229-0E316A294891}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sciendo.Indexing.DataProviders", "Sciendo.Indexing.DataProviders\Sciendo.Indexing.DataProviders.csproj", "{E0E60437-5683-4AE7-A448-4848B4BDDD2A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -48,14 +46,6 @@ Global
 		{866D1694-DD87-4F37-B542-FF50863317DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{866D1694-DD87-4F37-B542-FF50863317DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{866D1694-DD87-4F37-B542-FF50863317DF}.Release|Any CPU.Build.0 = Release|Any CPU
-		{21292BD9-8060-466E-B2D3-FAF9DF88F2F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{21292BD9-8060-466E-B2D3-FAF9DF88F2F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{21292BD9-8060-466E-B2D3-FAF9DF88F2F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{21292BD9-8060-466E-B2D3-FAF9DF88F2F4}.Release|Any CPU.Build.0 = Release|Any CPU
-		{EFB0E886-99C6-4CC7-8A5B-45C1410E3ECE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EFB0E886-99C6-4CC7-8A5B-45C1410E3ECE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EFB0E886-99C6-4CC7-8A5B-45C1410E3ECE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EFB0E886-99C6-4CC7-8A5B-45C1410E3ECE}.Release|Any CPU.Build.0 = Release|Any CPU
 		{EE7F0510-962B-4846-A1E1-3B51990546BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{EE7F0510-962B-4846-A1E1-3B51990546BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EE7F0510-962B-4846-A1E1-3B51990546BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -68,6 +58,10 @@ Global
 		{DFB10CC4-E5B4-4727-8229-0E316A294891}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DFB10CC4-E5B4-4727-8229-0E316A294891}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DFB10CC4-E5B4-4727-8229-0E316A294891}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E0E60437-5683-4AE7-A448-4848B4BDDD2A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E0E60437-5683-4AE7-A448-4848B4BDDD2A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E0E60437-5683-4AE7-A448-4848B4BDDD2A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E0E60437-5683-4AE7-A448-4848B4BDDD2A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

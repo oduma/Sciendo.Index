@@ -1,6 +1,6 @@
-﻿using Sciendo.Index.Web.IndexingClient;
+﻿using Sciendo.Indexing.DataProviders.IndexerClient;
 
-namespace Sciendo.Index.Web.Models
+namespace Sciendo.Indexing.DataProviders.Models
 {
     public class IndexModel
     {

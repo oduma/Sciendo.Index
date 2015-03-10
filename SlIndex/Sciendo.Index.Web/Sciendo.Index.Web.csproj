@@ -142,24 +142,11 @@
     <Compile Include="App_Start\IocConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="DataProvider.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Hubs\MonitoringHub.cs" />
-    <Compile Include="IDataProvider.cs" />
-    <Compile Include="IndexingConfigurationSection.cs" />
-    <Compile Include="MockDataProvider.cs" />
-    <Compile Include="Models\IndexingResult.cs" />
-    <Compile Include="Models\IndexModel.cs" />
-    <Compile Include="Models\IndexType.cs" />
-    <Compile Include="Models\ProgressStatusModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Service References\IndexingClient\Reference.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Compile>
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -191,7 +178,6 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="README-KNOCKOUT-AUTOCOMPLETE.txt" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
@@ -215,16 +201,6 @@
     <Content Include="Scripts\sciendo.index.web\index.autocomplete.js" />
     <Content Include="Scripts\sciendo.index.web\index.viewmodel.js" />
     <Content Include="Scripts\_references.js" />
-    <None Include="Service References\IndexingClient\IndexerAgentService.disco" />
-    <None Include="Service References\IndexingClient\configuration91.svcinfo" />
-    <None Include="Service References\IndexingClient\configuration.svcinfo" />
-    <None Include="Service References\IndexingClient\IndexerAgentService4.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\IndexingClient\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -240,26 +216,6 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
-    <None Include="Service References\IndexingClient\IndexerAgentService.wsdl" />
-    <None Include="Service References\IndexingClient\IndexerAgentService.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\IndexingClient\IndexerAgentService1.wsdl" />
-    <None Include="Service References\IndexingClient\IndexerAgentService1.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\IndexingClient\IndexerAgentService2.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\IndexingClient\IndexerAgentService3.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <Content Include="Service References\IndexingClient\Sciendo.Index.Web.IndexingClient.ProgressStatus.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <Content Include="Service References\IndexingClient\Sciendo.Index.Web.IndexingClient.SourceFolders.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -270,13 +226,15 @@
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
-    <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadataStorage Include="Service References\IndexingClient\" />
+    <ProjectReference Include="..\Sciendo.Indexing.DataProviders\Sciendo.Indexing.DataProviders.csproj">
+      <Project>{e0e60437-5683-4ae7-a448-4848b4bddd2a}</Project>
+      <Name>Sciendo.Indexing.DataProviders</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
