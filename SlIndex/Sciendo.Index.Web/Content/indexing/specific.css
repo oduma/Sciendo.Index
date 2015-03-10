@@ -1,0 +1,10 @@
+﻿.longfield {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -o-text-overflow: ellipsis;
+}
+
+input {
+    width: 800px;
+}

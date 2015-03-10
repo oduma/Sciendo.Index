@@ -5,11 +5,17 @@
 @section styles
 {
     @Styles.Render("~/Content/autocomplete")
+    @Styles.Render("~/Content/indexing")
 }
 <h3>Actions</h3>
 <div class="ui-widget">
     <label for="musicIndexFromPath">Music Index From Path:</label>
-    <input data-bind="value:musicFromPath" type="search" name="musicIndexFromPath" data-autocomplete="@Url.Action("GetMusicAutocomplete", "Home")" />
+    <input 
+        data-bind="value:musicFromPath" 
+        type="search" 
+        name="musicIndexFromPath"
+        class="longfield"
+        data-autocomplete="@Url.Action("GetMusicAutocomplete", "Home")" />
     <button data-bind="click:indexMusic">Go</button>
 </div>
 <div class="ui-widget">
