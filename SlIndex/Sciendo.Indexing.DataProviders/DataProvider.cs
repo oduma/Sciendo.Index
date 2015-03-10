@@ -1,11 +1,12 @@
 ﻿using System;
+using System.Globalization;
 using System.Linq;
 using Sciendo.Indexing.DataProviders.IndexerClient;
 using Sciendo.Indexing.DataProviders.Models;
 
 namespace Sciendo.Indexing.DataProviders
 {
-    public class DataProvider:IDataProvider
+    public sealed class DataProvider:IDataProvider
     {
         IIndexerAgent _svc = new IndexerAgentClient();
 
@@ -38,19 +39,19 @@ namespace Sciendo.Indexing.DataProviders
                         return new IndexingResult
                         {
                             IndexType = indexType.ToString(),
-                            NumberOfDocuments = _svc.IndexMusicOnDemand(fromPath).ToString()
+                            NumberOfDocuments = _svc.IndexMusicOnDemand(fromPath).ToString(CultureInfo.InvariantCulture)
                         };
                     case IndexType.Lyrics:
                         return new IndexingResult
                         {
                             IndexType = indexType.ToString(),
-                            NumberOfDocuments = _svc.IndexLyricsOnDemand(fromPath).ToString()
+                            NumberOfDocuments = _svc.IndexLyricsOnDemand(fromPath).ToString(CultureInfo.InvariantCulture)
                         };
                     default:
                         return new IndexingResult
                         {
                             IndexType = IndexType.None.ToString(),
-                            NumberOfDocuments = 0.ToString(),
+                            NumberOfDocuments = 0.ToString(CultureInfo.InvariantCulture),
                             Error = "Index Type unknown."
                         };
                 }
@@ -61,7 +62,7 @@ namespace Sciendo.Indexing.DataProviders
                 return new IndexingResult
                 {
                     IndexType = indexType.ToString(),
-                    NumberOfDocuments = 0.ToString(),
+                    NumberOfDocuments = 0.ToString(CultureInfo.InvariantCulture),
                     Error = ex.Message
                 };
             }
@@ -69,8 +70,13 @@ namespace Sciendo.Indexing.DataProviders
 
         public ProgressStatusModel[] GetMonitoring()
         {
-            return _svc.GetLastProcessedPackages().Select(p=>new ProgressStatusModel{Id=p.Id.ToString(),Package=p.Package.ToString(),Status=p.Status.ToString()}).ToArray();
+            return _svc.GetLastProcessedPackages().Select(p=>new ProgressStatusModel{Id=p.Id.ToString(),Package=p.Package.ToString(CultureInfo.InvariantCulture),Status=p.Status.ToString()}).ToArray();
 
+        }
+
+        public void Dispose()
+        {
+            _svc = null;
         }
     }
 }

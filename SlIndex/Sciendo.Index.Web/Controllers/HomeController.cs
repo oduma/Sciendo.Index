@@ -57,10 +57,4 @@ namespace Sciendo.Index.Web.Controllers
             return View();
         }
     }
-
-    public class SearchResult
-    {
-        public string label { get; set; }
-        public string value { get; set; }
-    }
 }

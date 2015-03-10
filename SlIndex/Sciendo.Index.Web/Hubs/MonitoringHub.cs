@@ -20,19 +20,7 @@ namespace Sciendo.Index.Web.Hubs
                 Thread.Sleep(2000);
 
             } while (true);
-
-            //do
-            //{
-
-            //    IIndexerAgent svc = new IndexerAgentClient();
-            //    var response = svc.GetLastProcessedPackages();
-            //    foreach (var progressStatus in response)
-            //    {
-            //        Clients.All.addNewMessageToPage("Id:" + progressStatus.Id + " Status: " + progressStatus.Status+" Details: " + progressStatus.Package);
-            //    }
-            //    Thread.Sleep(2000);
-
-            //} while (true);
+// ReSharper disable once FunctionNeverReturns
         }
     }
 }

@@ -1,9 +1,10 @@
-﻿using Sciendo.Indexing.DataProviders.IndexerClient;
+﻿using System;
+using Sciendo.Indexing.DataProviders.IndexerClient;
 using Sciendo.Indexing.DataProviders.Models;
 
 namespace Sciendo.Indexing.DataProviders
 {
-    public interface IDataProvider
+    public interface IDataProvider:IDisposable
     {
         string[] GetMuiscAutocomplete(string term);
         string[] GetLyricsAutocomplete(string term);

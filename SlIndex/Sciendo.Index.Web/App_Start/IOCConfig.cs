@@ -2,7 +2,7 @@
 using Sciendo.Indexing.DataProviders.Mock;
 using Sciendo.IOC;
 
-namespace Sciendo.Index.Web.App_Start
+namespace Sciendo.Index.Web
 {
     public class IocConfig
     {

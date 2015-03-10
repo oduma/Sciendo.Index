@@ -1,10 +1,11 @@
 ﻿using System.Collections.Generic;
+using System.Globalization;
 using Sciendo.Indexing.DataProviders.IndexerClient;
 using Sciendo.Indexing.DataProviders.Models;
 
 namespace Sciendo.Indexing.DataProviders.Mock
 {
-    public class MockDataProvider:IDataProvider
+    public sealed class MockDataProvider:IDataProvider
     {
         
         public string[] GetMuiscAutocomplete(string term)
@@ -20,9 +21,9 @@ namespace Sciendo.Indexing.DataProviders.Mock
                 "c:\\preroot\\root\\abbcaccc.mp3",
                 "c:\\preroot\\root\\soooa.ogg",
                 "c:\\preroot\\root\\def1",
-                "c:\\preroot\\root\\def2",
+                "c:\\preroot\\root\\def2"
             };
-            else if (term == "c:\\preroot\\root\\abc\\")
+            if (term == "c:\\preroot\\root\\abc\\")
             {
                 var listofThings = new List<string>();
                 listofThings.Add("c:\\preroot\\root\\abc\\");
@@ -51,7 +52,7 @@ namespace Sciendo.Indexing.DataProviders.Mock
         {
             if (indexType == IndexType.Music)
             {
-                return new IndexingResult { IndexType = indexType.ToString(), NumberOfDocuments = 20.ToString() };
+                return new IndexingResult { IndexType = indexType.ToString(), NumberOfDocuments = 20.ToString(CultureInfo.InvariantCulture) };
             }
             return new IndexingResult { IndexType = indexType.ToString(), Error = "Lyrics indexing not available." };
         }
@@ -63,6 +64,10 @@ namespace Sciendo.Indexing.DataProviders.Mock
                 new ProgressStatusModel {Id = "Id1", Package = "Package1", Status = "Done"},
                 new ProgressStatusModel {Id = "Id2", Package = "Package2", Status = "Error"}
             };
+        }
+
+        public void Dispose()
+        {
         }
     }
 }
