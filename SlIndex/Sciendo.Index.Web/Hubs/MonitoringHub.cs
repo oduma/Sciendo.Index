@@ -6,6 +6,12 @@ namespace Sciendo.Index.Web.Hubs
 {
     public class MonitoringHub : Hub
     {
+
+        public void ToggleSending(bool on)
+        {
+            IndexingCacheData.ContinueMonitoring = on;
+        }
+
         public void Send()
         {
             do
@@ -19,7 +25,7 @@ namespace Sciendo.Index.Web.Hubs
                 }
                 Thread.Sleep(2000);
 
-            } while (true);
+            } while (IndexingCacheData.ContinueMonitoring);
 // ReSharper disable once FunctionNeverReturns
         }
     }

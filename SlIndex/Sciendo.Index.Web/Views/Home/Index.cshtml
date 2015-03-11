@@ -29,6 +29,8 @@
     <label id="errorIndexed" data-bind="text:indexingError"></label>
 </div>
 <h3>Monitoring</h3>
+<a href="#" data-bind="click:toggle, text:monitoringActionName"></a>
+<!--ko if: hasSubscription-->
 <div class="container" data-bind="foreach: monitoringMessages">
     <span class="messages identifier">
         <span data-bind="if:$data.StatusOk"><img src="~/Content/indexing/images/Done.png" alt="Done" width="16" height="16" /></span>
@@ -38,9 +40,10 @@
         <a href="#" data-bind="click:$data.revealDetails,text:$data.DetailsActionName"></a>
     </span>
     <span class="messages details">
-            <label data-bind="text: $data.Package, visible:$data.DetailsVisible"></label>
+        <label data-bind="text: $data.Package, visible:$data.DetailsVisible"></label>
     </span>
 </div>
+<!-- /ko-->
     @section scripts
     {
         @Scripts.Render("~/bundles/signalR")
@@ -54,7 +57,7 @@
             var vm = new indexViewModel("@Server.HtmlEncode(@Model.SourceFolders.Music)","@Server.HtmlEncode(@Model.SourceFolders.Lyrics)");
             ko.applyBindings(vm);
 
-            $.connection.hub.start().done(function () { vm.init(); });
+            $.connection.hub.start().done(function () { vm.toggle(true); });
 
         </script>
     }

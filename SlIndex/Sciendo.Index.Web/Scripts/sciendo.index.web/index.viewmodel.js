@@ -19,10 +19,20 @@
     self.hub = $.connection.monitoringHub;
     self.monitoringMessages = ko.observableArray([]);
     self.maximumMonitoringMessagesDisplay = ko.observable(10);
+    self.monitoringActionName = ko.observable("Subscribe");
     //Initializes the view model
-    self.init = function () {
-        this.hub.server.send();
+    self.toggle = function () {
+        var on = (self.monitoringActionName() == "Subscribe");
+        self.hub.server.toggleSending(on);
+        if (on) {
+            self.monitoringActionName("Unsubscribe");
+            self.hub.server.send();
+        } else {
+            self.monitoringActionName("Subscribe");
+        }
+        
     }
+    self.hasSubscription = ko.computed(function () { return self.monitoringActionName() =="Unsubscribe"; });
 
     self.hub.client.addNewMessageToPage = function (message) {
         if (self.monitoringMessages().length > self.maximumMonitoringMessagesDisplay())
