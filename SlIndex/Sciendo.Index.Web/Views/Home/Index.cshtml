@@ -29,10 +29,17 @@
     <label id="errorIndexed" data-bind="text:indexingError"></label>
 </div>
 <h3>Monitoring</h3>
-<div class="container">
-    <ul id="messages" data-bind="foreach: monitoringMessages">
-        <li><span data-bind="text: $data.Id"></span>&nbsp;<span data-bind="text: $data.Status"></span>&nbsp;<span data-bind="text: $data.Package"></span></li>
-    </ul>
+<div class="container" data-bind="foreach: monitoringMessages">
+    <span class="messages identifier">
+        <span data-bind="if:$data.StatusOk"><img data-bind="if:$data.StatusOk" src="~/Content/indexing/images/Done.png" alt="Done" width="16" height="16" /></span>
+        <span data-bind="if:$data.StatusOk==false"><img data-bind="if:$data.StatusError" src="~/Content/indexing/images/Error.png" alt="Error" width="16" height="16" /></span>
+        <label>Message Id:</label>
+        <label data-bind="text: $data.Id"></label>
+        <a href="#" data-bind="click:$data.revealDetails,text:$data.DetailsActionName"></a>
+    </span>
+    <span class="messages details">
+            <label data-bind="text: $data.Package, visible:$data.DetailsVisible"></label>
+    </span>
 </div>
     @section scripts
     {

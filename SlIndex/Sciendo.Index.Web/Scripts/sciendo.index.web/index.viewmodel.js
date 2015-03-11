@@ -27,6 +27,18 @@
     self.hub.client.addNewMessageToPage = function (message) {
         if (self.monitoringMessages().length > self.maximumMonitoringMessagesDisplay())
             self.monitoringMessages.removeAll();
+        message.StatusOk = (message.Status == 'Done') ? true : false;
+        message.DetailsVisible = ko.observable(false);
+        message.DetailsActionName = ko.observable("Details");
+        message.revealDetails = function () {
+            if (message.DetailsVisible()) {
+                message.DetailsVisible(false);
+                message.DetailsActionName("Details");
+            } else {
+                message.DetailsVisible(true);
+                message.DetailsActionName("Hide Details");
+            }
+        };
         self.monitoringMessages.push(message);
     }
 

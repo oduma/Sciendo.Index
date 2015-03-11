@@ -152,6 +152,8 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\indexing\images\Done.png" />
+    <Content Include="Content\indexing\images\Error.png" />
     <Content Include="Content\indexing\specific.css" />
     <Content Include="Content\ko.binding.style.css" />
     <Content Include="Content\themes\base\accordion.css" />

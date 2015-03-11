@@ -8,3 +8,22 @@
 input {
     width: 800px;
 }
+.messages {
+    font-size: small;
+    margin-top: 20px;
+    float: left;
+    clear: left;
+    display: inline;
+}
+
+.identifier {
+    font-weight: bolder;
+}
+
+.details label{
+    font-size: smaller;
+    font-style: italic;
+    width: inherit;
+    font-weight: normal;
+}
+
