@@ -1,4 +1,4 @@
-﻿namespace Sciendo.Indexer.Agent.Service
+﻿namespace Sciendo.Music.Agent.Service
 {
     public class SourceFolders
     {

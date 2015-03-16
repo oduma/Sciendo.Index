@@ -5,17 +5,17 @@ using System.ServiceProcess;
 namespace Sciendo.Indexer.Agent
 {
     [RunInstaller(true)]
-    public partial class IndexerAgentInstaller : Installer
+    public partial class MusicAgentInstaller : Installer
     {
         ServiceProcessInstaller process;
         private ServiceInstaller service;
 
-        public IndexerAgentInstaller()
+        public MusicAgentInstaller()
         {
             process=new ServiceProcessInstaller();
             process.Account = ServiceAccount.LocalSystem;
             service= new ServiceInstaller();
-            service.ServiceName = "Indexer Agent";
+            service.ServiceName = "Sciendo Music Agent";
             Installers.Add(process);
             Installers.Add(service);
         }

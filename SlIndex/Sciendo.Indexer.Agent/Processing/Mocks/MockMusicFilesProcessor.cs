@@ -1,27 +1,33 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
 using Sciendo.Common.Logging;
-using Sciendo.Indexer.Agent.Service.Solr;
-using Sciendo.Indexer.Agent.Service.Solr.Mocks;
+using Sciendo.Music.Agent.Common;
+using Sciendo.Music.Agent.Service.Solr;
+using Sciendo.Music.Agent.Service.Solr.Mocks;
 
-namespace Sciendo.Indexer.Agent.Processing.Mocks
+namespace Sciendo.Music.Agent.Processing.Mocks
 {
-    public class MockMusicFilesProcessor:FilesProcessor
+    public class MockMusicFilesProcessor:MusicFilesProcessor
     {
         public MockMusicFilesProcessor()
         {
             LoggingManager.Debug("Constructing MockMusicFilesprocessor...");
             Sender = new MockSender();
-            CurrentConfiguration = ((IndexerConfigurationSection) ConfigurationManager.GetSection("indexer")).Music;
+            CurrentConfiguration = ((AgentConfigurationSection) ConfigurationManager.GetSection("indexer")).Music;
             LoggingManager.Debug("MockMusicFilesprocessor constructed.");
         }
 
-        protected override IEnumerable<Document> PrepareDocuments(IEnumerable<string> files)
+        protected override IEnumerable<T> TransformFiles<T>(IEnumerable<string> files, Func<SongInfo, string, T> specificTransfromFunction)
         {
             LoggingManager.Debug("MockMusicFilesprocessor preparing documents...");
-            yield return new FullDocument(files.First(), "t", new string[] { "test artist" }, "test song", "test alubm");
+            yield return
+                specificTransfromFunction(
+                    new SongInfo {Album = "test album1", Artists = new[] {"test artist 1"}, Title = "new song 1"},
+                    @"c:\\abc\abc\abc.mp3");
             LoggingManager.Debug("MockMusicFilesprocessor documents prrepared.");
         }
+
     }
 }

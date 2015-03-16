@@ -1,6 +1,6 @@
 ﻿using System.Collections.Concurrent;
 
-namespace Sciendo.Indexer.Agent.Service
+namespace Sciendo.Music.Agent.Service.Monitoring
 {
     public class FixedSizedQueue<T>
     {

@@ -83,9 +83,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Sciendo.Indexer.Agent\Sciendo.Indexer.Agent.csproj">
+    <ProjectReference Include="..\Sciendo.Indexer.Agent\Sciendo.Music.Agent.csproj">
       <Project>{866d1694-dd87-4f37-b542-ff50863317df}</Project>
-      <Name>Sciendo.Indexer.Agent</Name>
+      <Name>Sciendo.Music.Agent</Name>
     </ProjectReference>
     <ProjectReference Include="..\Sciendo.Lyrics.Common\Sciendo.Lyrics.Common.csproj">
       <Project>{7a14b0f9-5358-4dd0-b38c-daafc9ec50d4}</Project>

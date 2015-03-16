@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.IO;
 using Sciendo.Common.Logging;
-using Sciendo.Indexer.Agent.Service.Solr;
 using Sciendo.Lyrics.Common;
+using Sciendo.Music.Agent.Service.Solr;
 
-namespace Sciendo.Indexer.Agent.Processing
+namespace Sciendo.Music.Agent.Processing
 {
-    public class LyricsFilesProcessor:FilesProcessor
+    public class LyricsFilesProcessor:FilesProcessor<string>
     {
         protected ILyricsDeserializer LyricsDeserializer { private get; set; }
         private readonly string _musicRootFolder;
@@ -16,7 +16,7 @@ namespace Sciendo.Indexer.Agent.Processing
         public LyricsFilesProcessor()
         {
             LoggingManager.Debug("Constructing LyricsFilesprocessor...");
-            var configSection = (IndexerConfigurationSection) ConfigurationManager.GetSection("indexer");
+            var configSection = (AgentConfigurationSection) ConfigurationManager.GetSection("agent");
             Sender=new SolrSender(configSection.SolrConnectionString);
             CurrentConfiguration = configSection.Lyrics;
             _musicRootFolder = configSection.Music.SourceDirectory;
@@ -24,13 +24,13 @@ namespace Sciendo.Indexer.Agent.Processing
             LoggingManager.Debug("LyricsFilesprocessor constructed.");
         }
 
-        public LyricsFilesProcessor(IndexerConfigurationSource givenConfig, string musicRootFolder)
+        public LyricsFilesProcessor(AgentConfigurationSource givenConfig, string musicRootFolder)
         {
             _musicRootFolder = musicRootFolder;
             CurrentConfiguration = givenConfig;
         }
 
-        protected override IEnumerable<Document> PrepareDocuments(IEnumerable<string> files)
+        protected override IEnumerable<T> TransformFiles<T>(IEnumerable<string> files, Func<string, string, T> specificTransfromFunction)
         {
             LoggingManager.Debug("LyricsFileProcessor preparing documents...");
             foreach (string file in files)
@@ -41,7 +41,7 @@ namespace Sciendo.Indexer.Agent.Processing
                     var musicFile = GetMusicFile(file);
                     if(!string.IsNullOrEmpty(musicFile))
                     {
-                        yield return new Document(musicFile,CatalogLetter(musicFile,_musicRootFolder), lyricsResult.lyrics);
+                        yield return specificTransfromFunction(lyricsResult.lyrics, musicFile);
                     }
                     else
                     {
@@ -61,6 +61,21 @@ namespace Sciendo.Indexer.Agent.Processing
                                 Path.GetFileNameWithoutExtension(musicFile) + ".*")[0];
             LoggingManager.Debug("Music file: "+musicFile);
             return musicFile;
+        }
+
+        public string CreateLyricsFolder(string musicFolder)
+        {
+            LoggingManager.Debug("Create or Lirycs path from music path:" + musicFolder);
+            var lyricsFolder = musicFolder.Replace(_musicRootFolder, CurrentConfiguration.SourceDirectory);
+            if (!Directory.Exists(lyricsFolder))
+                Directory.CreateDirectory(lyricsFolder);
+            return lyricsFolder;
+
+        }
+
+        protected override Document TransformToDocument(string transfromFrom, string file)
+        {
+            return new Document(file, CatalogLetter(file, _musicRootFolder), transfromFrom);
         }
     }
 }

@@ -3,25 +3,31 @@ using System.IO;
 using System.Linq;
 using System.ServiceModel;
 using Sciendo.Common.Logging;
-using Sciendo.Indexer.Agent.Processing;
 using Sciendo.Lyrics.Common;
+using Sciendo.Music.Agent.LyricsProvider;
+using Sciendo.Music.Agent.Processing;
+using Sciendo.Music.Agent.Service.Monitoring;
 
-namespace Sciendo.Indexer.Agent.Service
+namespace Sciendo.Music.Agent.Service
 {
     [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single)]
-    public class IndexerAgentService:IIndexerAgent
+    public class MusicService:IMusic
     {
-        private readonly FilesProcessor _musicFilesProcessor;
+        private readonly MusicFilesProcessor _musicFilesProcessor;
         private readonly LyricsFilesProcessor _lyricsFilesProcessor;
+        private readonly MusicToLyricsFilesProcessor _musicToLyricsFilesProcessor;
 
         private FixedSizedQueue<ProgressStatus> _progressStatuses;  
 
-        public IndexerAgentService(FilesProcessor musicFilesProcessor, LyricsFilesProcessor lyricsFilesProcessor, int packagesRetainerLimit)
+        public MusicService(MusicFilesProcessor musicFilesProcessor, LyricsFilesProcessor lyricsFilesProcessor, MusicToLyricsFilesProcessor musicToLyricsFilesProcessor, 
+            int packagesRetainerLimit)
         {
             LoggingManager.Debug("Constructing IndexerAgentService...");
 
             _musicFilesProcessor = musicFilesProcessor;
             _lyricsFilesProcessor = lyricsFilesProcessor;
+            _musicToLyricsFilesProcessor = musicToLyricsFilesProcessor;
+
             _progressStatuses= new FixedSizedQueue<ProgressStatus>(packagesRetainerLimit);
             LoggingManager.Debug("IndexerAgentService constructed.");
         }
@@ -58,6 +64,22 @@ namespace Sciendo.Indexer.Agent.Service
             LoggingManager.Debug("IndexMusic on path: " + fromPath + " Counter: " + _musicFilesProcessor.Counter);
             return _musicFilesProcessor.Counter;
 
+        }
+
+        public int AcquireLyricsFor(string musicPath, bool retryFailed)
+        {
+            LoggingManager.Debug("Starting AcquireLyrics from path:" + musicPath);
+            if (string.IsNullOrEmpty(musicPath))
+                throw new ArgumentNullException("musicPath");
+            if (!Directory.Exists(musicPath) && !File.Exists(musicPath))
+                throw new ArgumentException("Invalid path " + musicPath);
+
+            Reader reader = new Reader(ProgressEvent);
+            _musicToLyricsFilesProcessor.ResetCounter();
+            _musicToLyricsFilesProcessor.RetryExisting = retryFailed;
+            reader.ProcessFiles = _musicToLyricsFilesProcessor.ProcessFilesBatch;
+            reader.ParsePath(musicPath, _musicToLyricsFilesProcessor.CurrentMusicConfiguration.SearchPattern);
+            return _musicToLyricsFilesProcessor.Counter;
         }
 
         public ProgressStatus[] GetLastProcessedPackages()

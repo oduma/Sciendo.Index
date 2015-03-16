@@ -1,59 +1,41 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
-using System.Linq;
-using Id3;
-using Id3.Id3;
 using Sciendo.Common.Logging;
-using Sciendo.Indexer.Agent.Service.Solr;
+using Sciendo.Music.Agent.Common;
+using Sciendo.Music.Agent.Service.Solr;
 
-namespace Sciendo.Indexer.Agent.Processing
+namespace Sciendo.Music.Agent.Processing
 {
-    public class MusicFilesProcessor:FilesProcessor
+    public class MusicFilesProcessor:FilesProcessor<SongInfo>
     {
         public MusicFilesProcessor()
         {
             LoggingManager.Debug("Constructing MusicFilesProcessor...");
-            var configSection = (IndexerConfigurationSection) ConfigurationManager.GetSection("indexer");
+            var configSection = (AgentConfigurationSection) ConfigurationManager.GetSection("indexer");
             Sender=new SolrSender(configSection.SolrConnectionString);
             CurrentConfiguration = configSection.Music;
             LoggingManager.Debug("MusicFilesProcessor constructed.");
         }
 
-        protected override IEnumerable<Document> PrepareDocuments(IEnumerable<string> files)
+        protected override IEnumerable<T> TransformFiles<T>(IEnumerable<string> files,Func<SongInfo,string, T> specificTransfromFunction )
         {
             LoggingManager.Debug("MusicFileProcessor preparing documents...");
-            string[] artists = null;
-            string title=string.Empty;
-            string album=string.Empty;
-
+            if(typeof(T)!=typeof(Document))
+                LoggingManager.LogSciendoSystemError("Wrong type for this processor",new Exception());
             foreach (var file in files)
             {
-                IMp3Stream mp3File = new Mp3File(file);
-                if (mp3File.HasTags && mp3File.AvailableTagVersions != null)
-                {
-                    var version = Enumerable.FirstOrDefault<Version>(mp3File.AvailableTagVersions);
-                    if (version != null)
-                    {
-                        IId3Tag id3Tag=null;
-                        try
-                        {
-                            id3Tag= mp3File.GetTag(version.Major, version.Minor);
-                        }
-                        catch { }
-                        if (id3Tag != null)
-                        {
-                            artists = Enumerable.Select<string, string>(id3Tag.Artists.Value, a=>string.Join("",Enumerable.Where<char>(a.ToCharArray(), c=>((int)c)>=32))).ToArray();
-                            title = id3Tag.Title.TextValue;
-                            album = id3Tag.Album.TextValue;
-                        }
-                    }
-                }
-        
-                yield return new FullDocument(file, CatalogLetter(file,CurrentConfiguration.SourceDirectory),artists,title,album);
+                var songInfo = new SongInfo(file);
+
+                yield return specificTransfromFunction(songInfo,file);
             }
             LoggingManager.Debug("MusicFileProcessor documents prepared.");
         }
 
+        protected override Document TransformToDocument(SongInfo songInfo, string file)
+        {
+            return new FullDocument(file, CatalogLetter(file, CurrentConfiguration.SourceDirectory), songInfo.Artists,
+                songInfo.Title, songInfo.Album);
+        }
     }
 }

@@ -44,7 +44,7 @@ namespace Sciendo.Lyrics.Provider.Service
 
         public static ReadWriteContext ReadWriteContextProvider(string filePath)
         {
-            return new ReadWriteContext {ReadLocation = filePath, Status = Status.NotStarted};
+            return new ReadWriteContext {ReadLocation = filePath, Status = Status.None};
         }
 
         public Pipeline ContinueProcessing(bool retryFailed, Func<string, ReadWriteContext> readWriteContextProvider, Action<Status, string, string> progressEvent, ILyricsDeserializer lyricsDeserializer)

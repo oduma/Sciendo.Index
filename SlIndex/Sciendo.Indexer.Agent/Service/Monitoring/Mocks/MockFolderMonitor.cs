@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading;
 using Sciendo.Common.Logging;
 
-namespace Sciendo.Indexer.Agent.Monitoring.Mocks
+namespace Sciendo.Music.Agent.Service.Monitoring.Mocks
 {
     public class MockFolderMonitor:IFolderMonitor
     {

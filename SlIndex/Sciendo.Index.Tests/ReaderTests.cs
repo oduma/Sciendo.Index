@@ -2,6 +2,8 @@
 using System;
 using Sciendo.Indexer.Agent.Processing;
 using Sciendo.Indexer.Agent.Processing.Mocks;
+using Sciendo.Music.Agent.Processing;
+using Sciendo.Music.Agent.Processing.Mocks;
 
 namespace Sciendo.Index.Tests
 {

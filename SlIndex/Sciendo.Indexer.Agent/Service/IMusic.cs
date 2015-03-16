@@ -1,14 +1,17 @@
 ﻿using System.ServiceModel;
 
-namespace Sciendo.Indexer.Agent.Service
+namespace Sciendo.Music.Agent.Service
 {
     [ServiceContract(Namespace="http://Sciendo.Indexer.Agent")]
-    public interface IIndexerAgent
+    public interface IMusic
     {
         [OperationContract]
         int IndexLyricsOnDemand(string fromPath);
         [OperationContract]
         int IndexMusicOnDemand(string fromPath);
+
+        [OperationContract]
+        int AcquireLyricsFor(string musicPath, bool retryFailed);
 
         [OperationContract]
         ProgressStatus[] GetLastProcessedPackages();

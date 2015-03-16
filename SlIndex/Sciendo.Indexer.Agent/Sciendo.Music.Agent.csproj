@@ -7,8 +7,8 @@
     <ProjectGuid>{866D1694-DD87-4F37-B542-FF50863317DF}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Sciendo.Indexer.Agent</RootNamespace>
-    <AssemblyName>Sciendo.Indexer.Agent</AssemblyName>
+    <RootNamespace>Sciendo.Music.Agent</RootNamespace>
+    <AssemblyName>Sciendo.Music.Agent</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -70,23 +70,27 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IndexerAgent.cs">
+    <Compile Include="Common\FilesProcessorBase.cs" />
+    <Compile Include="Common\SongInfo.cs" />
+    <Compile Include="LyricsProvider\Mocks\MockDownloader.cs" />
+    <Compile Include="LyricsProvider\Mocks\MockMusicToLyricsFilesProcessor.cs" />
+    <Compile Include="LyricsProvider\MusicToLyricsFilesProcessor.cs" />
+    <Compile Include="LyricsProvider\WebDownloader.cs" />
+    <Compile Include="LyricsProvider\WebDownloaderBase.cs" />
+    <Compile Include="MusicAgent.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="IndexerAgent.Designer.cs">
-      <DependentUpon>IndexerAgent.cs</DependentUpon>
+    <Compile Include="MusicAgent.Designer.cs">
+      <DependentUpon>MusicAgent.cs</DependentUpon>
     </Compile>
-    <Compile Include="IndexerAgentInstaller.cs">
+    <Compile Include="MusicAgentInstaller.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="IndexerAgentInstaller.Designer.cs">
-      <DependentUpon>IndexerAgentInstaller.cs</DependentUpon>
+    <Compile Include="MusicAgentInstaller.Designer.cs">
+      <DependentUpon>MusicAgentInstaller.cs</DependentUpon>
     </Compile>
-    <Compile Include="IndexerConfigurationSection.cs" />
-    <Compile Include="IndexerConfigurationSource.cs" />
-    <Compile Include="Monitoring\FolderMonitor.cs" />
-    <Compile Include="Monitoring\Mocks\MockFolderMonitor.cs" />
-    <Compile Include="Monitoring\MonitoringInstance.cs" />
+    <Compile Include="AgentConfigurationSection.cs" />
+    <Compile Include="AgentConfigurationSource.cs" />
     <Compile Include="Processing\FilesProcessor.cs" />
     <Compile Include="Processing\LyricsFilesProcessor.cs" />
     <Compile Include="Processing\Mocks\MockLyricsFilesProcessor.cs" />
@@ -95,9 +99,12 @@
     <Compile Include="Processing\Reader.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Service\FixedSizeQueue.cs" />
-    <Compile Include="Service\IIndexerAgent.cs" />
-    <Compile Include="Service\IndexerAgentService.cs" />
+    <Compile Include="Service\IMusic.cs" />
+    <Compile Include="Service\MusicService.cs" />
+    <Compile Include="Service\Monitoring\FixedSizeQueue.cs" />
+    <Compile Include="Service\Monitoring\FolderMonitor.cs" />
+    <Compile Include="Service\Monitoring\Mocks\MockFolderMonitor.cs" />
+    <Compile Include="Service\Monitoring\MonitoringInstance.cs" />
     <Compile Include="Service\ProgressStatus.cs" />
     <Compile Include="Service\Solr\Document.cs" />
     <Compile Include="Service\Solr\Field.cs" />
@@ -122,6 +129,7 @@
       <Name>Sciendo.Lyrics.Common</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -13,7 +13,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3rdParty", "3rdParty", "{13
 		3rdParty\Id3.Files.dll = 3rdParty\Id3.Files.dll
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sciendo.Indexer.Agent", "Sciendo.Indexer.Agent\Sciendo.Indexer.Agent.csproj", "{866D1694-DD87-4F37-B542-FF50863317DF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sciendo.Music.Agent", "Sciendo.Indexer.Agent\Sciendo.Music.Agent.csproj", "{866D1694-DD87-4F37-B542-FF50863317DF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sciendo.Lyrics.Provider", "Sciendo.Lyrics.Provider\Sciendo.Lyrics.Provider.csproj", "{EE7F0510-962B-4846-A1E1-3B51990546BF}"
 EndProject
@@ -47,11 +47,9 @@ Global
 		{866D1694-DD87-4F37-B542-FF50863317DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{866D1694-DD87-4F37-B542-FF50863317DF}.Release|Any CPU.Build.0 = Release|Any CPU
 		{EE7F0510-962B-4846-A1E1-3B51990546BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EE7F0510-962B-4846-A1E1-3B51990546BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EE7F0510-962B-4846-A1E1-3B51990546BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EE7F0510-962B-4846-A1E1-3B51990546BF}.Release|Any CPU.Build.0 = Release|Any CPU
 		{BE40B73C-5DEA-4313-8A9F-1214726FAD70}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BE40B73C-5DEA-4313-8A9F-1214726FAD70}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BE40B73C-5DEA-4313-8A9F-1214726FAD70}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BE40B73C-5DEA-4313-8A9F-1214726FAD70}.Release|Any CPU.Build.0 = Release|Any CPU
 		{DFB10CC4-E5B4-4727-8229-0E316A294891}.Debug|Any CPU.ActiveCfg = Debug|Any CPU

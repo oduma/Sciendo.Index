@@ -1,4 +1,4 @@
-﻿namespace Sciendo.Indexer.Agent.Service.Solr
+﻿namespace Sciendo.Music.Agent.Service.Solr
 {
     public class SolrUpdateResponse
     {

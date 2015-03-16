@@ -57,7 +57,7 @@ namespace Sciendo.Lyrics.Provider.Tests
                         new ReadWriteContext
                         {
                             ReadLocation = "source\\dir1\\dir2\\nofile.txt",
-                            Status = Status.FileNotFound
+                            Status = Status.Error
                         },
                         new ReadWriteContext
                         {

@@ -38,7 +38,7 @@ namespace Sciendo.Lyrics.Provider.Service
             }
             if (!File.Exists(ReadLocation))
             {
-                Status = Status.FileNotFound;
+                Status = Status.Error;
                 if (Progress != null)
                     Progress(Status, ReadLocation, "");
                 return this;

@@ -5,8 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using NUnit.Framework;
-using Sciendo.Indexer.Agent.Service.Solr;
 using Sciendo.Lyrics.Common;
+using Sciendo.Music.Agent.Service.Solr;
 
 namespace Sciendo.Index.Tests
 {
@@ -67,7 +67,7 @@ namespace Sciendo.Index.Tests
             FullDocument[] package = new FullDocument[] { doc1, doc2 };
             SolrSender solrSender = new SolrSender("http://localhost:8080/solr/medialib/update/json?commitWithin=1000");
             var response = solrSender.TrySend(package);
-            Assert.True(response.Status == Status.NotIndexed);
+            Assert.True(response.Status == Status.Error);
             Assert.AreEqual(response.Time, 0);
         }
     }

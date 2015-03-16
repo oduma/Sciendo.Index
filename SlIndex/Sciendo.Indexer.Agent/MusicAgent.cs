@@ -1,34 +1,38 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Threading;
-using System.Threading.Tasks;
-using Sciendo.Common.Logging;
-using Sciendo.Indexer.Agent.Monitoring;
-using Sciendo.Indexer.Agent.Monitoring.Mocks;
-using Sciendo.Indexer.Agent.Processing;
-using Sciendo.Indexer.Agent.Processing.Mocks;
-using Sciendo.Indexer.Agent.Service;
-using Sciendo.IOC;
 using System.Configuration;
 using System.ServiceModel;
 using System.ServiceProcess;
+using System.Threading;
+using System.Threading.Tasks;
+using Sciendo.Common.Logging;
+using Sciendo.Indexer.Agent.Processing;
+using Sciendo.Indexer.Agent.Processing.Mocks;
+using Sciendo.IOC;
+using Sciendo.Music.Agent.LyricsProvider;
+using Sciendo.Music.Agent.LyricsProvider.Mocks;
+using Sciendo.Music.Agent.Processing;
+using Sciendo.Music.Agent.Processing.Mocks;
+using Sciendo.Music.Agent.Service;
+using Sciendo.Music.Agent.Service.Monitoring;
+using Sciendo.Music.Agent.Service.Monitoring.Mocks;
 
-namespace Sciendo.Indexer.Agent
+namespace Sciendo.Music.Agent
 {
-    public partial class IndexerAgent : ServiceBase
+    public partial class MusicAgent : ServiceBase
     {
-        private IndexerAgentService _agentService;
+        private MusicService _agentService;
         private ServiceHost _agentServiceHost;
-        private IndexerConfigurationSection _indexerConfigurationSection;
+        private AgentConfigurationSection _agentConfigurationSection;
         private Dictionary<MonitoringType,MonitoringInstance> _monitoringInstances=new Dictionary<MonitoringType, MonitoringInstance>();
 
-        public IndexerAgent()
+        public MusicAgent()
         {
             AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
             LoggingManager.Debug("Constructing the Agent...");
             InitializeComponent();
-            _indexerConfigurationSection = (IndexerConfigurationSection)ConfigurationManager.GetSection("indexer");
-            LoggingManager.Debug(_indexerConfigurationSection.ToString());
+            _agentConfigurationSection = (AgentConfigurationSection)ConfigurationManager.GetSection("indexer");
+            LoggingManager.Debug(_agentConfigurationSection.ToString());
             RegisterIOCComponents();
             CreateMonitoringInstances();
             LoggingManager.Debug("Agent constructed.");
@@ -40,10 +44,10 @@ namespace Sciendo.Indexer.Agent
 
             _monitoringInstances.Add(MonitoringType.Music, new MonitoringInstance(
                 IOC.Container.GetInstance()
-                    .Resolve<IFolderMonitor>(_indexerConfigurationSection.Music.CurrentMonitoringImplementation)));
+                    .Resolve<IFolderMonitor>(_agentConfigurationSection.Music.CurrentMonitoringImplementation)));
             _monitoringInstances.Add(MonitoringType.Lyrics, new MonitoringInstance(
                 IOC.Container.GetInstance()
-                    .Resolve<IFolderMonitor>(_indexerConfigurationSection.Lyrics.CurrentMonitoringImplementation)));
+                    .Resolve<IFolderMonitor>(_agentConfigurationSection.Lyrics.CurrentMonitoringImplementation)));
             LoggingManager.Debug("Monitoring instances created.");
         }
 
@@ -53,13 +57,13 @@ namespace Sciendo.Indexer.Agent
             IOC.Container.GetInstance()
                 .Add(
                     new RegisteredType().For<MockMusicFilesProcessor>()
-                        .BasedOn<FilesProcessor>()
+                        .BasedOn<MusicFilesProcessor>()
                         .IdentifiedBy("mock")
                         .With(LifeStyle.Transient));
             IOC.Container.GetInstance()
                 .Add(
                     new RegisteredType().For<MusicFilesProcessor>()
-                        .BasedOn<FilesProcessor>()
+                        .BasedOn<MusicFilesProcessor>()
                         .IdentifiedBy("real")
                         .With(LifeStyle.Transient));
             IOC.Container.GetInstance()
@@ -68,7 +72,7 @@ namespace Sciendo.Indexer.Agent
                     .IdentifiedBy("mock")
                     .With(LifeStyle.Transient)
                     .WithConstructorParameters(
-                        _indexerConfigurationSection.Lyrics.SourceDirectory, _indexerConfigurationSection.Music.SourceDirectory));
+                        _agentConfigurationSection.Lyrics.SourceDirectory, _agentConfigurationSection.Music.SourceDirectory));
             IOC.Container.GetInstance()
                 .Add(
                     new RegisteredType().For<LyricsFilesProcessor>()
@@ -81,28 +85,40 @@ namespace Sciendo.Indexer.Agent
                         .BasedOn<IFolderMonitor>()
                         .IdentifiedBy("mockmusic")
                         .With(LifeStyle.Transient)
-                        .WithConstructorParameters(_indexerConfigurationSection.Music.SourceDirectory));
+                        .WithConstructorParameters(_agentConfigurationSection.Music.SourceDirectory));
             IOC.Container.GetInstance()
                 .Add(
                     new RegisteredType().For<FolderMonitor>()
                         .BasedOn<IFolderMonitor>()
                         .IdentifiedBy("realmusic")
                         .With(LifeStyle.Transient)
-                        .WithConstructorParameters(_indexerConfigurationSection.Music.SourceDirectory));
+                        .WithConstructorParameters(_agentConfigurationSection.Music.SourceDirectory));
             IOC.Container.GetInstance()
                 .Add(
                     new RegisteredType().For<MockFolderMonitor>()
                         .BasedOn<IFolderMonitor>()
                         .IdentifiedBy("mocklyrics")
                         .With(LifeStyle.Transient)
-                        .WithConstructorParameters(_indexerConfigurationSection.Lyrics.SourceDirectory));
+                        .WithConstructorParameters(_agentConfigurationSection.Lyrics.SourceDirectory));
             IOC.Container.GetInstance()
                 .Add(
                     new RegisteredType().For<FolderMonitor>()
                         .BasedOn<IFolderMonitor>()
                         .IdentifiedBy("reallyrics")
                         .With(LifeStyle.Transient)
-                        .WithConstructorParameters(_indexerConfigurationSection.Lyrics.SourceDirectory));
+                        .WithConstructorParameters(_agentConfigurationSection.Lyrics.SourceDirectory));
+            IOC.Container.GetInstance()
+                .Add(
+                    new RegisteredType().For<MockDownloader>()
+                        .BasedOn<WebDownloaderBase>()
+                        .IdentifiedBy("mock")
+                        .With(LifeStyle.Transient));
+            IOC.Container.GetInstance()
+                .Add(
+                    new RegisteredType().For<WebDownloader>()
+                        .BasedOn<WebDownloaderBase>()
+                        .IdentifiedBy("real")
+                        .With(LifeStyle.Transient));
             LoggingManager.Debug("Registered IOC Components.");
 
         }
@@ -117,9 +133,11 @@ namespace Sciendo.Indexer.Agent
         {
             LoggingManager.Debug("Starting the Agent...");
 
-            _agentService = new IndexerAgentService(IOC.Container.GetInstance().Resolve<FilesProcessor>(_indexerConfigurationSection.Music.CurrentProcessingImplementation),
+            _agentService = new MusicService(IOC.Container.GetInstance().Resolve<MusicFilesProcessor>(_agentConfigurationSection.Music.CurrentProcessingImplementation),
                 IOC.Container.GetInstance()
-                    .Resolve<LyricsFilesProcessor>(_indexerConfigurationSection.Lyrics.CurrentProcessingImplementation), _indexerConfigurationSection.PackagesRetainerLimit);
+                    .Resolve<LyricsFilesProcessor>(_agentConfigurationSection.Lyrics.CurrentProcessingImplementation), 
+                    IOC.Container.GetInstance()
+                    .Resolve<MusicToLyricsFilesProcessor>(_agentConfigurationSection.Lyrics.CurrentProcessingImplementation),_agentConfigurationSection.PackagesRetainerLimit);
             OpenServiceHost();
             StartMonitoringInstances();
             LoggingManager.Debug("Agent started.");

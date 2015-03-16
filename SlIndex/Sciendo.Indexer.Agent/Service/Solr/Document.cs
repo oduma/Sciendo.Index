@@ -2,7 +2,7 @@
 using System.IO;
 using Newtonsoft.Json;
 
-namespace Sciendo.Indexer.Agent.Service.Solr
+namespace Sciendo.Music.Agent.Service.Solr
 {
     public class Document
     {

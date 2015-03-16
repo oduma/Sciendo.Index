@@ -1,7 +1,7 @@
 ﻿using System;
 using Sciendo.Lyrics.Common;
 
-namespace Sciendo.Indexer.Agent.Service
+namespace Sciendo.Music.Agent.Service
 {
     public class ProgressStatus
     {

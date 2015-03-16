@@ -1,14 +1,16 @@
 ﻿using Sciendo.Common.Logging;
-using Sciendo.Indexer.Agent.Service.Solr.Mocks;
 using Sciendo.Lyrics.Common;
 using Sciendo.Lyrics.Common.Mocks;
+using Sciendo.Music.Agent;
+using Sciendo.Music.Agent.Processing;
+using Sciendo.Music.Agent.Service.Solr.Mocks;
 
 namespace Sciendo.Indexer.Agent.Processing.Mocks
 {
     public class MockLyricsFilesProcessor : LyricsFilesProcessor
     {
         public MockLyricsFilesProcessor(string lyricsRootPath, string musicRootPath)
-            : base(new IndexerConfigurationSource {SourceDirectory = lyricsRootPath,SearchPattern="*.lrc"}, musicRootPath)
+            : base(new AgentConfigurationSource {SourceDirectory = lyricsRootPath,SearchPattern="*.lrc"}, musicRootPath)
         {
             LoggingManager.Debug("Constructing MockLyricsFilesprocessor...");
             Sender = new MockSender();

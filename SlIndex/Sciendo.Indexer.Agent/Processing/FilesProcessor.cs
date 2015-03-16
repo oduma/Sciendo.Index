@@ -4,30 +4,15 @@ using System.IO;
 using System.Linq;
 using Newtonsoft.Json;
 using Sciendo.Common.Logging;
-using Sciendo.Indexer.Agent.Service.Solr;
 using Sciendo.Lyrics.Common;
+using Sciendo.Music.Agent.Common;
+using Sciendo.Music.Agent.Service.Solr;
 
-namespace Sciendo.Indexer.Agent.Processing
+namespace Sciendo.Music.Agent.Processing
 {
-    public abstract class FilesProcessor
+    public abstract class FilesProcessor<TIn>:FilesProcessorBase<TIn>
     {
         protected ISolrSender Sender { private get; set; }
-
-        public IndexerConfigurationSource CurrentConfiguration { get; protected set; }
-
-        public int Counter { get; protected set; }
-
-        protected FilesProcessor()
-        {
-            Counter = 0;
-        }
-
-        public void ResetCounter()
-        {
-            LoggingManager.Debug("Reseting Counter...");
-            Counter = 0;
-            LoggingManager.Debug("Counter reseted.");
-        }
 
         protected string CatalogLetter(string musicFile, string rootFolder)
         {
@@ -35,10 +20,10 @@ namespace Sciendo.Indexer.Agent.Processing
         }
 
 
-        public virtual void ProcessFilesBatch(IEnumerable<string> files, Action<Status,string> progressEvent)
+        public override void ProcessFilesBatch(IEnumerable<string> files, Action<Status,string> progressEvent)
         {
             LoggingManager.Debug("Starting process batch of files " +files.Count());
-            var package = PrepareDocuments(files).ToArray();
+            var package = TransformFiles(files,TransformToDocument).ToArray();
             if (Sender != null)
             {
                 var response = Sender.TrySend(package);
@@ -49,7 +34,6 @@ namespace Sciendo.Indexer.Agent.Processing
             LoggingManager.Debug("Processed batch of "+ package.Length +" files.");
         }
 
-        protected abstract IEnumerable<Document> PrepareDocuments(IEnumerable<string> files);
-
+        protected abstract Document TransformToDocument(TIn transfromFrom, string file);
     }
 }

@@ -1,8 +1,8 @@
 ﻿using System.Configuration;
 
-namespace Sciendo.Indexer.Agent
+namespace Sciendo.Music.Agent
 {
-    public class IndexerConfigurationSection:ConfigurationSection
+    public class AgentConfigurationSection:ConfigurationSection
     {
         [ConfigurationProperty("solrConnectionString", DefaultValue = "", IsRequired = true)]
         public string SolrConnectionString
@@ -18,11 +18,11 @@ namespace Sciendo.Indexer.Agent
         }
 
         [ConfigurationProperty("music")]
-        public IndexerConfigurationSource Music
+        public AgentConfigurationSource Music
         {
             get
             {
-                return (IndexerConfigurationSource)this["music"];
+                return (AgentConfigurationSource)this["music"];
             }
             set
             {
@@ -30,11 +30,11 @@ namespace Sciendo.Indexer.Agent
             }
         }
         [ConfigurationProperty("lyrics")]
-        public IndexerConfigurationSource Lyrics
+        public AgentConfigurationSource Lyrics
         {
             get
             {
-                return (IndexerConfigurationSource)this["lyrics"];
+                return (AgentConfigurationSource)this["lyrics"];
             }
             set
             {
@@ -52,6 +52,19 @@ namespace Sciendo.Indexer.Agent
             set
             {
                 this["packagesRetainerLimt"] = value;
+            }
+        }
+
+        [ConfigurationProperty("currentDownloaderImplementation", DefaultValue = "mock", IsRequired = false)]
+        public string CurrentDownloaderImplementation
+        {
+            get
+            {
+                return (string)this["currentDownloaderImplementation"];
+            }
+            set
+            {
+                this["currentDownloaderImplementation"] = value;
             }
         }
 

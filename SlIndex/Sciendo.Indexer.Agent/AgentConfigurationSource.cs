@@ -1,8 +1,8 @@
 ﻿using System.Configuration;
 
-namespace Sciendo.Indexer.Agent
+namespace Sciendo.Music.Agent
 {
-    public class IndexerConfigurationSource:ConfigurationElement
+    public class AgentConfigurationSource:ConfigurationElement
     {
         [ConfigurationProperty("sourceDirectory")]
         public string SourceDirectory 

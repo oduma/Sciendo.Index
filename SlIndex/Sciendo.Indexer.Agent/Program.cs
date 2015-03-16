@@ -1,4 +1,5 @@
 ﻿using System.ServiceProcess;
+using Sciendo.Music.Agent;
 
 namespace Sciendo.Indexer.Agent
 {
@@ -12,7 +13,7 @@ namespace Sciendo.Indexer.Agent
             ServiceBase[] ServicesToRun;
             ServicesToRun = new ServiceBase[] 
             { 
-                new IndexerAgent() 
+                new MusicAgent() 
             };
             ServiceBase.Run(ServicesToRun);
         }

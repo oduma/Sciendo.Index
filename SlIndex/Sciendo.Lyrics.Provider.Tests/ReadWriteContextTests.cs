@@ -28,7 +28,7 @@ namespace Sciendo.Lyrics.Provider.Tests
         [Test]
         public void ProcessFile_FileNotExists()
         {
-            Assert.AreEqual(Status.FileNotFound, new ReadWriteContext { ReadLocation = "non existent file", Status = Status.NotStarted }.ProcessFile(null).Status);
+            Assert.AreEqual(Status.Error, new ReadWriteContext { ReadLocation = "non existent file", Status = Status.None }.ProcessFile(null).Status);
         }
 
         public IMp3Stream MockedMp3FileLoader_NoTag(string filePath)
@@ -88,28 +88,28 @@ namespace Sciendo.Lyrics.Provider.Tests
         public void ProcessFile_FileNotTagged()
         {
             
-            Assert.AreEqual(Status.FileNotTagged, new ReadWriteContext { ReadLocation = "existingfile.txt", Status = Status.NotStarted }.ProcessFile(MockedMp3FileLoader_NoTag).Status);
+            Assert.AreEqual(Status.FileNotTagged, new ReadWriteContext { ReadLocation = "existingfile.txt", Status = Status.None }.ProcessFile(MockedMp3FileLoader_NoTag).Status);
         }
         [Test]
         public void ProcessFile_FileNotTagged_1()
         {
 
-            Assert.AreEqual(Status.FileNotTagged, new ReadWriteContext { ReadLocation = "existingfile.txt", Status = Status.NotStarted }.ProcessFile(MockedMp3FileLoader_NoTag1).Status);
+            Assert.AreEqual(Status.FileNotTagged, new ReadWriteContext { ReadLocation = "existingfile.txt", Status = Status.None }.ProcessFile(MockedMp3FileLoader_NoTag1).Status);
         }
         [Test]
         public void ProcessFile_FileNotTagged_2()
         {
-            Assert.AreEqual(Status.FileNotTagged, new ReadWriteContext { ReadLocation = "existingfile.txt", Status = Status.NotStarted }.ProcessFile(MockedMp3FileLoader_UnknownTag).Status);
+            Assert.AreEqual(Status.FileNotTagged, new ReadWriteContext { ReadLocation = "existingfile.txt", Status = Status.None }.ProcessFile(MockedMp3FileLoader_UnknownTag).Status);
         }
         [Test]
         public void ProcessFile_FileNotTagged_3()
         {
-            Assert.AreEqual(Status.FileNotTagged, new ReadWriteContext { ReadLocation = "existingfile.txt", Status = Status.NotStarted }.ProcessFile(MockedMp3FileLoader_NoTitle).Status);
+            Assert.AreEqual(Status.FileNotTagged, new ReadWriteContext { ReadLocation = "existingfile.txt", Status = Status.None }.ProcessFile(MockedMp3FileLoader_NoTitle).Status);
         }
         [Test]
         public void ProcessFile_Ok()
         {
-            var reqdWriteContext=new ReadWriteContext { ReadLocation = "existingfile.txt", Status = Status.NotStarted }.ProcessFile(MockedMp3FileLoader_TagOk);
+            var reqdWriteContext=new ReadWriteContext { ReadLocation = "existingfile.txt", Status = Status.None }.ProcessFile(MockedMp3FileLoader_TagOk);
             Assert.AreEqual(Status.ArtistSongRetrievedFromFile, reqdWriteContext.Status);
             Assert.AreEqual("my_artist", reqdWriteContext.artist);
             Assert.AreEqual("my_song", reqdWriteContext.song);

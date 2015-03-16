@@ -5,7 +5,7 @@ using System.Linq;
 using Sciendo.Common.Logging;
 using Sciendo.Lyrics.Common;
 
-namespace Sciendo.Indexer.Agent.Processing
+namespace Sciendo.Music.Agent.Processing
 {
     public class Reader
     {

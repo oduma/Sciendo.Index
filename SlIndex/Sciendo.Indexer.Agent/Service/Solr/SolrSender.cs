@@ -4,7 +4,7 @@ using Newtonsoft.Json;
 using Sciendo.Common.Logging;
 using Sciendo.Lyrics.Common;
 
-namespace Sciendo.Indexer.Agent.Service.Solr
+namespace Sciendo.Music.Agent.Service.Solr
 {
     public interface ISolrSender
     {
@@ -39,7 +39,7 @@ namespace Sciendo.Indexer.Agent.Service.Solr
                     postTask.Result.Content == null)
                 {
                     LoggingManager.Debug("Not send");
-                    return new TrySendResponse { Status = Status.NotIndexed };
+                    return new TrySendResponse { Status = Status.Error };
                 }
 
                 using(var readTask = postTask.Result.Content.ReadAsStringAsync().ContinueWith(r=>r).Result)
@@ -47,13 +47,13 @@ namespace Sciendo.Indexer.Agent.Service.Solr
                     if (readTask.Status != TaskStatus.RanToCompletion || string.IsNullOrEmpty(readTask.Result))
                     {
                         LoggingManager.Debug("Not send.");
-                        return new TrySendResponse { Status = Status.NotIndexed};
+                        return new TrySendResponse { Status = Status.Error};
                     }
                     var solrUpdateResponse = JsonConvert.DeserializeObject<SolrUpdateResponse>(readTask.Result);
                     if (solrUpdateResponse.responseHeader.Status != 0)
                     {
                         LoggingManager.Debug("Not send.");
-                        return new TrySendResponse { Status = Status.NotIndexed, Time = solrUpdateResponse.responseHeader.Time };
+                        return new TrySendResponse { Status = Status.Error, Time = solrUpdateResponse.responseHeader.Time };
                     }
                     LoggingManager.Debug("Send");
                     return new TrySendResponse { Status = Status.Done, Time = solrUpdateResponse.responseHeader.Time };

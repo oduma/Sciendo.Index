@@ -1,6 +1,6 @@
 ﻿using System.Threading;
 
-namespace Sciendo.Indexer.Agent.Monitoring
+namespace Sciendo.Music.Agent.Service.Monitoring
 {
     public class MonitoringInstance
     {
