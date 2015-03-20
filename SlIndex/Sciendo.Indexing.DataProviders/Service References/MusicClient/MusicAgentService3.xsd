@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://Sciendo.Indexer.Agent" elementFormDefault="qualified" targetNamespace="http://Sciendo.Indexer.Agent" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:import schemaLocation="http://localhost:7000/IndexerAgentService?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Sciendo.Indexer.Agent.Service" />
-  <xs:import schemaLocation="http://localhost:7000/IndexerAgentService?xsd=xsd4" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:import schemaLocation="http://localhost:7000/MusicAgentService?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Sciendo.Music.Contracts.MusicService" />
+  <xs:import schemaLocation="http://localhost:7000/MusicAgentService?xsd=xsd4" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
   <xs:element name="IndexLyricsOnDemand">
     <xs:complexType>
       <xs:sequence>
@@ -30,6 +30,21 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="AcquireLyricsFor">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="musicPath" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="retryFailed" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AcquireLyricsForResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="AcquireLyricsForResult" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="GetLastProcessedPackages">
     <xs:complexType>
       <xs:sequence />
@@ -38,7 +53,7 @@
   <xs:element name="GetLastProcessedPackagesResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/Sciendo.Indexer.Agent.Service" minOccurs="0" name="GetLastProcessedPackagesResult" nillable="true" type="q1:ArrayOfProgressStatus" />
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/Sciendo.Music.Contracts.MusicService" minOccurs="0" name="GetLastProcessedPackagesResult" nillable="true" type="q1:ArrayOfProgressStatus" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -78,7 +93,7 @@
   <xs:element name="GetSourceFoldersResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/Sciendo.Indexer.Agent.Service" minOccurs="0" name="GetSourceFoldersResult" nillable="true" type="q4:SourceFolders" />
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/Sciendo.Music.Contracts.MusicService" minOccurs="0" name="GetSourceFoldersResult" nillable="true" type="q4:SourceFolders" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

@@ -1,14 +1,18 @@
-﻿using System;
-using System.Globalization;
+﻿
+
+using System;
 using System.Linq;
-using Sciendo.Indexing.DataProviders.IndexerClient;
 using Sciendo.Indexing.DataProviders.Models;
+using System.Globalization;
+using Sciendo.Music.Contracts.MusicService;
+using IMusic = Sciendo.Indexing.DataProviders.MusicClient.IMusic;
+
 
 namespace Sciendo.Indexing.DataProviders
 {
     public sealed class DataProvider:IDataProvider
     {
-        IIndexerAgent _svc = new IndexerAgentClient();
+        private IMusic _svc = new MusicClient.MusicClient();
 
         public string[] GetMuiscAutocomplete(string term)
         {

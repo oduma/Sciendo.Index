@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Globalization;
-using Sciendo.Indexing.DataProviders.IndexerClient;
-using Sciendo.Indexing.DataProviders.Models;
+using Sciendo.Music.Contracts.MusicService;
+using Sciendo.Music.DataProviders.Models;
 
-namespace Sciendo.Indexing.DataProviders.Mock
+namespace Sciendo.Music.DataProviders.Mock
 {
     public sealed class MockDataProvider:IDataProvider
     {

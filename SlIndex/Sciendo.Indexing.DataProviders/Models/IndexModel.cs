@@ -1,4 +1,4 @@
-﻿using Sciendo.Indexing.DataProviders.IndexerClient;
+﻿using Sciendo.Music.Contracts.MusicService;
 
 namespace Sciendo.Indexing.DataProviders.Models
 {
