@@ -2,7 +2,7 @@
 using System.Configuration.Install;
 using System.ServiceProcess;
 
-namespace Sciendo.Indexer.Agent
+namespace Sciendo.Music.Agent
 {
     [RunInstaller(true)]
     public partial class MusicAgentInstaller : Installer

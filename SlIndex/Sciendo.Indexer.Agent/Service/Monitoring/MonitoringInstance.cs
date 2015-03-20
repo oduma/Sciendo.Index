@@ -1,4 +1,5 @@
 ﻿using System.Threading;
+using Sciendo.Music.Contracts.Monitoring;
 
 namespace Sciendo.Music.Agent.Service.Monitoring
 {

@@ -1,7 +1,6 @@
 ﻿using System.ServiceProcess;
-using Sciendo.Music.Agent;
 
-namespace Sciendo.Indexer.Agent
+namespace Sciendo.Music.Agent
 {
     static class Program
     {

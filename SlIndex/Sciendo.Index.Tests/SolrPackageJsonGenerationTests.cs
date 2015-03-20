@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using NUnit.Framework;
-using Sciendo.Lyrics.Common;
-using Sciendo.Music.Agent.Service.Solr;
+using Sciendo.Music.Contracts.Common;
+using Sciendo.Music.Contracts.Solr;
+using Sciendo.Music.Real.Solr;
 
-namespace Sciendo.Index.Tests
+namespace Sciendo.Music.Tests
 {
     [TestFixture]
     public class SolrPackageJsonGenerationTests

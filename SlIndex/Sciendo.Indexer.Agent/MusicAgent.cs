@@ -1,21 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.IO;
+using System.Linq;
+using System.Reflection;
 using System.ServiceModel;
 using System.ServiceProcess;
 using System.Threading;
 using System.Threading.Tasks;
 using Sciendo.Common.Logging;
-using Sciendo.Indexer.Agent.Processing;
-using Sciendo.Indexer.Agent.Processing.Mocks;
 using Sciendo.IOC;
-using Sciendo.Music.Agent.LyricsProvider;
-using Sciendo.Music.Agent.LyricsProvider.Mocks;
 using Sciendo.Music.Agent.Processing;
-using Sciendo.Music.Agent.Processing.Mocks;
 using Sciendo.Music.Agent.Service;
 using Sciendo.Music.Agent.Service.Monitoring;
-using Sciendo.Music.Agent.Service.Monitoring.Mocks;
+using Sciendo.Music.Contracts.Monitoring;
+using Sciendo.Music.Real.Procesors.Configuration;
+using Sciendo.Music.Real.Procesors.LyricsSourced;
+using Sciendo.Music.Real.Procesors.MusicSourced;
 
 namespace Sciendo.Music.Agent
 {
@@ -23,17 +24,17 @@ namespace Sciendo.Music.Agent
     {
         private MusicService _agentService;
         private ServiceHost _agentServiceHost;
-        private AgentConfigurationSection _agentConfigurationSection;
-        private Dictionary<MonitoringType,MonitoringInstance> _monitoringInstances=new Dictionary<MonitoringType, MonitoringInstance>();
+        private readonly AgentConfigurationSection _agentConfigurationSection;
+        private readonly Dictionary<MonitoringType,MonitoringInstance> _monitoringInstances=new Dictionary<MonitoringType, MonitoringInstance>();
 
         public MusicAgent()
         {
             AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
             LoggingManager.Debug("Constructing the Agent...");
             InitializeComponent();
-            _agentConfigurationSection = (AgentConfigurationSection)ConfigurationManager.GetSection("indexer");
+            _agentConfigurationSection = (AgentConfigurationSection)ConfigurationManager.GetSection("agent");
             LoggingManager.Debug(_agentConfigurationSection.ToString());
-            RegisterIOCComponents();
+            RegisterIocComponents(_agentConfigurationSection.Components);
             CreateMonitoringInstances();
             LoggingManager.Debug("Agent constructed.");
         }
@@ -44,81 +45,66 @@ namespace Sciendo.Music.Agent
 
             _monitoringInstances.Add(MonitoringType.Music, new MonitoringInstance(
                 IOC.Container.GetInstance()
-                    .Resolve<IFolderMonitor>(_agentConfigurationSection.Music.CurrentMonitoringImplementation)));
+                    .Resolve<IFolderMonitor>(_agentConfigurationSection.Music.CurrentMonitoringComponentKey)));
             _monitoringInstances.Add(MonitoringType.Lyrics, new MonitoringInstance(
                 IOC.Container.GetInstance()
-                    .Resolve<IFolderMonitor>(_agentConfigurationSection.Lyrics.CurrentMonitoringImplementation)));
+                    .Resolve<IFolderMonitor>(_agentConfigurationSection.Lyrics.CurrentMonitoringComponentKey)));
             LoggingManager.Debug("Monitoring instances created.");
         }
 
-        private void RegisterIOCComponents()
+        
+        private void RegisterIocComponents(AgentConfigurationComponentCollection agentConfigurationComponents)
         {
             LoggingManager.Debug("Starting Registration of IOC Components...");
-            IOC.Container.GetInstance()
-                .Add(
-                    new RegisteredType().For<MockMusicFilesProcessor>()
-                        .BasedOn<MusicFilesProcessor>()
-                        .IdentifiedBy("mock")
-                        .With(LifeStyle.Transient));
-            IOC.Container.GetInstance()
-                .Add(
-                    new RegisteredType().For<MusicFilesProcessor>()
-                        .BasedOn<MusicFilesProcessor>()
-                        .IdentifiedBy("real")
-                        .With(LifeStyle.Transient));
-            IOC.Container.GetInstance()
-                .Add(new RegisteredType().For<MockLyricsFilesProcessor>()
-                    .BasedOn<LyricsFilesProcessor>()
-                    .IdentifiedBy("mock")
+            AssemblyScanner scanner = new AssemblyScanner();
+
+            for (int index=0; index<agentConfigurationComponents.Count;index++)
+            {
+                List<Assembly> assemblies = new List<Assembly>();
+                foreach (var fileName in Directory.GetFiles(AppDomain.CurrentDomain.BaseDirectory, agentConfigurationComponents[index].AssemblyFilter))
+                {
+                    assemblies.Add(Assembly.LoadFrom(fileName));
+                }
+                IOC.Container.GetInstance().Add(scanner.From(assemblies.ToArray()).BasedOn<MusicFilesProcessor>().IdentifiedBy(agentConfigurationComponents[index].Key).With(LifeStyle.Transient).ToArray());
+                IOC.Container.GetInstance().Add(scanner.From(assemblies.ToArray()).BasedOn<LyricsFilesProcessor>().IdentifiedBy(agentConfigurationComponents[index].Key).With(LifeStyle.Transient).ToArray());
+                LoggingManager.Debug("Trying to locate Music Folder Monitors...");
+                var musicFolderMonitorRegType = scanner.From(assemblies.ToArray())
+                    .BasedOn<IFolderMonitor>()
+                    .IdentifiedBy(agentConfigurationComponents[index].Key + "music")
                     .With(LifeStyle.Transient)
-                    .WithConstructorParameters(
-                        _agentConfigurationSection.Lyrics.SourceDirectory, _agentConfigurationSection.Music.SourceDirectory));
-            IOC.Container.GetInstance()
-                .Add(
-                    new RegisteredType().For<LyricsFilesProcessor>()
-                        .BasedOn<LyricsFilesProcessor>()
-                        .IdentifiedBy("real")
-                        .With(LifeStyle.Transient));
-            IOC.Container.GetInstance()
-                .Add(
-                    new RegisteredType().For<MockFolderMonitor>()
-                        .BasedOn<IFolderMonitor>()
-                        .IdentifiedBy("mockmusic")
-                        .With(LifeStyle.Transient)
-                        .WithConstructorParameters(_agentConfigurationSection.Music.SourceDirectory));
-            IOC.Container.GetInstance()
-                .Add(
-                    new RegisteredType().For<FolderMonitor>()
-                        .BasedOn<IFolderMonitor>()
-                        .IdentifiedBy("realmusic")
-                        .With(LifeStyle.Transient)
-                        .WithConstructorParameters(_agentConfigurationSection.Music.SourceDirectory));
-            IOC.Container.GetInstance()
-                .Add(
-                    new RegisteredType().For<MockFolderMonitor>()
-                        .BasedOn<IFolderMonitor>()
-                        .IdentifiedBy("mocklyrics")
-                        .With(LifeStyle.Transient)
-                        .WithConstructorParameters(_agentConfigurationSection.Lyrics.SourceDirectory));
-            IOC.Container.GetInstance()
-                .Add(
-                    new RegisteredType().For<FolderMonitor>()
-                        .BasedOn<IFolderMonitor>()
-                        .IdentifiedBy("reallyrics")
-                        .With(LifeStyle.Transient)
-                        .WithConstructorParameters(_agentConfigurationSection.Lyrics.SourceDirectory));
-            IOC.Container.GetInstance()
-                .Add(
-                    new RegisteredType().For<MockDownloader>()
-                        .BasedOn<WebDownloaderBase>()
-                        .IdentifiedBy("mock")
-                        .With(LifeStyle.Transient));
-            IOC.Container.GetInstance()
-                .Add(
-                    new RegisteredType().For<WebDownloader>()
-                        .BasedOn<WebDownloaderBase>()
-                        .IdentifiedBy("real")
-                        .With(LifeStyle.Transient));
+                    .FirstOrDefault();
+                if (musicFolderMonitorRegType == null)
+                {
+                    LoggingManager.Debug("No IFolderMonitor implementation found in any of the assemblies " + string.Join(", ",assemblies.Select(a=>a.FullName)));
+                }
+                else
+                {
+                    IOC.Container.GetInstance()
+                        .Add(musicFolderMonitorRegType
+                                .WithConstructorParameters(_agentConfigurationSection.Music.SourceDirectory));
+                    LoggingManager.Debug("Music Folder Monitors located Ok.");
+                }
+
+                LoggingManager.Debug("Trying to locate Lyrics Folder Monitors...");
+
+                var lyricsFolderMonitorRegType = scanner.From(assemblies.ToArray())
+                    .BasedOn<IFolderMonitor>()
+                    .IdentifiedBy(agentConfigurationComponents[index].Key + "lyrics")
+                    .With(LifeStyle.Transient)
+                    .FirstOrDefault();
+                if (lyricsFolderMonitorRegType == null)
+                {
+                    LoggingManager.Debug("No IFolderMonitor implementation found in any of the assemblies " + string.Join(", ", assemblies.Select(a => a.FullName)));
+                }
+                else
+                {
+                    IOC.Container.GetInstance()
+                        .Add(lyricsFolderMonitorRegType.WithConstructorParameters(_agentConfigurationSection.Lyrics.SourceDirectory));
+                    LoggingManager.Debug("Lyrics Folder Monitors located Ok.");
+                }
+
+                IOC.Container.GetInstance().Add(scanner.From(assemblies.ToArray()).BasedOn<MusicToLyricsFilesProcessor>().IdentifiedBy(agentConfigurationComponents[index].Key).With(LifeStyle.Transient).ToArray());
+            }
             LoggingManager.Debug("Registered IOC Components.");
 
         }
@@ -133,11 +119,35 @@ namespace Sciendo.Music.Agent
         {
             LoggingManager.Debug("Starting the Agent...");
 
-            _agentService = new MusicService(IOC.Container.GetInstance().Resolve<MusicFilesProcessor>(_agentConfigurationSection.Music.CurrentProcessingImplementation),
-                IOC.Container.GetInstance()
-                    .Resolve<LyricsFilesProcessor>(_agentConfigurationSection.Lyrics.CurrentProcessingImplementation), 
+            try
+            {
+                LoggingManager.Debug("Resolving current Music Procesor...");
+                var mProc =
                     IOC.Container.GetInstance()
-                    .Resolve<MusicToLyricsFilesProcessor>(_agentConfigurationSection.Lyrics.CurrentProcessingImplementation),_agentConfigurationSection.PackagesRetainerLimit);
+                        .Resolve<MusicFilesProcessor>(_agentConfigurationSection.Music.CurrentProcessingComponentKey);
+                LoggingManager.Debug("Current Music Procesor resolved.");
+                LoggingManager.Debug("Resolving current Lyrics Procesor...");
+                var lProc =
+                    IOC.Container.GetInstance()
+                        .Resolve<LyricsFilesProcessor>(_agentConfigurationSection.Lyrics.CurrentProcessingComponentKey);
+                LoggingManager.Debug("Current Lyrics Procesor resolved.");
+                LoggingManager.Debug("Resolving current Music to Lyrics Procesor...");
+                var m2lProc =
+                    IOC.Container.GetInstance()
+                        .Resolve<MusicToLyricsFilesProcessor>(_agentConfigurationSection.Lyrics.CurrentProcessingComponentKey);
+                LoggingManager.Debug("Current Music To Lyrics Procesor resolved.");
+
+                _agentService = new MusicService(mProc,
+                    lProc,
+                        m2lProc,
+                        _agentConfigurationSection.PackagesRetainerLimit);
+            }
+            catch (Exception ex)
+            {
+                LoggingManager.LogSciendoSystemError("Agent not started.",ex);
+                throw;
+            }
+
             OpenServiceHost();
             StartMonitoringInstances();
             LoggingManager.Debug("Agent started.");
@@ -179,12 +189,20 @@ namespace Sciendo.Music.Agent
 
         private void OpenServiceHost()
         {
-            LoggingManager.Debug("Opening service host...");
-            if (_agentServiceHost != null)
-                _agentServiceHost.Close();
-            _agentServiceHost = new ServiceHost(_agentService);
-            _agentServiceHost.Open();
-            LoggingManager.Debug("Service host opened.");
+            try
+            {
+                LoggingManager.Debug("Opening service host...");
+                if (_agentServiceHost != null)
+                    _agentServiceHost.Close();
+                _agentServiceHost = new ServiceHost(_agentService);
+                _agentServiceHost.Open();
+                LoggingManager.Debug("Service host opened.");
+            }
+            catch (Exception ex)
+            {
+                LoggingManager.LogSciendoSystemError("Hosts not opened.",ex);
+                throw;
+            }
         }
 
         protected override void OnStop()

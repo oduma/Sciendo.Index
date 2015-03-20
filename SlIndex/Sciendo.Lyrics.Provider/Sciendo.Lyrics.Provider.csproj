@@ -82,12 +82,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Sciendo.Lyrics.Common\Sciendo.Lyrics.Common.csproj">
-      <Project>{7A14B0F9-5358-4DD0-B38C-DAAFC9EC50D4}</Project>
-      <Name>Sciendo.Lyrics.Common</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

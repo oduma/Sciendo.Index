@@ -3,10 +3,12 @@ using System.IO;
 using System.Linq;
 using System.ServiceModel;
 using Sciendo.Common.Logging;
-using Sciendo.Lyrics.Common;
-using Sciendo.Music.Agent.LyricsProvider;
 using Sciendo.Music.Agent.Processing;
 using Sciendo.Music.Agent.Service.Monitoring;
+using Sciendo.Music.Contracts.Common;
+using Sciendo.Music.Contracts.MusicService;
+using Sciendo.Music.Real.Procesors.LyricsSourced;
+using Sciendo.Music.Real.Procesors.MusicSourced;
 
 namespace Sciendo.Music.Agent.Service
 {

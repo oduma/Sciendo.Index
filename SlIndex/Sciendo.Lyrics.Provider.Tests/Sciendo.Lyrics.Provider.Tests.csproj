@@ -78,16 +78,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Sciendo.Lyrics.Common\Sciendo.Lyrics.Common.csproj">
-      <Project>{7A14B0F9-5358-4DD0-B38C-DAAFC9EC50D4}</Project>
-      <Name>Sciendo.Lyrics.Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Sciendo.Lyrics.Provider\Sciendo.Lyrics.Provider.csproj">
-      <Project>{ee7f0510-962b-4846-a1e1-3b51990546bf}</Project>
-      <Name>Sciendo.Lyrics.Provider</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="ExampleNeedsPostProcessing.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

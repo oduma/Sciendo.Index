@@ -1,11 +1,10 @@
 ﻿using NUnit.Framework;
-using Sciendo.Indexer.Agent.Processing;
-using Sciendo.Indexer.Agent.Processing.Mocks;
-using Sciendo.Music.Agent.Processing;
-using Sciendo.Music.Agent.Processing.Mocks;
 using Sciendo.Music.Agent.Service;
+using Sciendo.Music.Mocks.Processing;
+using Sciendo.Music.Real.Procesors.LyricsSourced;
+using Sciendo.Music.Real.Procesors.MusicSourced;
 
-namespace Sciendo.Index.Tests
+namespace Sciendo.Music.Tests
 {
     [TestFixture]
     public class ServiceTester

@@ -1,1 +1,1 @@
-..\..\..\packages\NUnit.Runners.2.6.4\tools\nunit-console.exe Sciendo.Index.Tests.dll /noshadow
+..\..\..\packages\NUnit.Runners.2.6.4\tools\nunit-console.exe Sciendo.Music.Tests.dll /noshadow

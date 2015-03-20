@@ -1,4 +1,4 @@
-﻿namespace Sciendo.Indexer.Agent
+﻿namespace Sciendo.Music.Agent
 {
     partial class MusicAgentInstaller
     {

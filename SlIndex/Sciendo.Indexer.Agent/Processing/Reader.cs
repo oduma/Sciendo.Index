@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Sciendo.Common.Logging;
-using Sciendo.Lyrics.Common;
+using Sciendo.Music.Contracts.Common;
 
 namespace Sciendo.Music.Agent.Processing
 {
