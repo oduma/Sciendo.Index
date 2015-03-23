@@ -43,6 +43,14 @@ namespace Sciendo.Index.Web.Controllers
                         .StartIndexing(fromPath,indexType), JsonRequestBehavior.AllowGet);
         }
 
+        [HttpGet]
+        public JsonResult StartAcquiringLyrics(string fromPath, bool retryExisting)
+        {
+            return
+                Json(SciendoConfiguration.Container.Resolve<IDataProvider>(
+                        SciendoConfiguration.IndexingConfiguration.CurrentDataProvider)
+                        .StartAcquyringLyrics(fromPath, retryExisting), JsonRequestBehavior.AllowGet);
+        }
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";

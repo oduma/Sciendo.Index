@@ -9,7 +9,164 @@
 //------------------------------------------------------------------------------
 
 namespace Sciendo.Music.DataProviders.MusicClient {
+    using System.Runtime.Serialization;
+    using System;
     
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ProgressStatus", Namespace="http://schemas.datacontract.org/2004/07/Sciendo.Music.Contracts.MusicService")]
+    [System.SerializableAttribute()]
+    public partial class ProgressStatus : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Guid IdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string PackageField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private Sciendo.Music.DataProviders.MusicClient.Status StatusField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Guid Id {
+            get {
+                return this.IdField;
+            }
+            set {
+                if ((this.IdField.Equals(value) != true)) {
+                    this.IdField = value;
+                    this.RaisePropertyChanged("Id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Package {
+            get {
+                return this.PackageField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PackageField, value) != true)) {
+                    this.PackageField = value;
+                    this.RaisePropertyChanged("Package");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public Sciendo.Music.DataProviders.MusicClient.Status Status {
+            get {
+                return this.StatusField;
+            }
+            set {
+                if ((this.StatusField.Equals(value) != true)) {
+                    this.StatusField = value;
+                    this.RaisePropertyChanged("Status");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Status", Namespace="http://schemas.datacontract.org/2004/07/Sciendo.Music.Contracts.Common")]
+    public enum Status : int {
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        None = 0,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Error = 1,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        LyricsDownloadedOk = 2,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Done = 3,
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="SourceFolders", Namespace="http://schemas.datacontract.org/2004/07/Sciendo.Music.Contracts.MusicService")]
+    [System.SerializableAttribute()]
+    public partial class SourceFolders : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string LyricsField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string MusicField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Lyrics {
+            get {
+                return this.LyricsField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.LyricsField, value) != true)) {
+                    this.LyricsField = value;
+                    this.RaisePropertyChanged("Lyrics");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Music {
+            get {
+                return this.MusicField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.MusicField, value) != true)) {
+                    this.MusicField = value;
+                    this.RaisePropertyChanged("Music");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(Namespace="http://Sciendo.Music.Agent", ConfigurationName="MusicClient.IMusic")]
@@ -34,10 +191,10 @@ namespace Sciendo.Music.DataProviders.MusicClient {
         System.Threading.Tasks.Task<int> AcquireLyricsOnDemandForAsync(string musicPath, bool retryFailed);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://Sciendo.Music.Agent/IMusic/GetLastProcessedPackages", ReplyAction="http://Sciendo.Music.Agent/IMusic/GetLastProcessedPackagesResponse")]
-        Sciendo.Music.Contracts.MusicService.ProgressStatus[] GetLastProcessedPackages();
+        Sciendo.Music.DataProviders.MusicClient.ProgressStatus[] GetLastProcessedPackages();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://Sciendo.Music.Agent/IMusic/GetLastProcessedPackages", ReplyAction="http://Sciendo.Music.Agent/IMusic/GetLastProcessedPackagesResponse")]
-        System.Threading.Tasks.Task<Sciendo.Music.Contracts.MusicService.ProgressStatus[]> GetLastProcessedPackagesAsync();
+        System.Threading.Tasks.Task<Sciendo.Music.DataProviders.MusicClient.ProgressStatus[]> GetLastProcessedPackagesAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://Sciendo.Music.Agent/IMusic/ListAvailableMusicPathsForIndexing", ReplyAction="http://Sciendo.Music.Agent/IMusic/ListAvailableMusicPathsForIndexingResponse")]
         string[] ListAvailableMusicPathsForIndexing(string fromPath);
@@ -52,10 +209,10 @@ namespace Sciendo.Music.DataProviders.MusicClient {
         System.Threading.Tasks.Task<string[]> ListAvailableLyricsPathsForIndexingAsync(string fromPath);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://Sciendo.Music.Agent/IMusic/GetSourceFolders", ReplyAction="http://Sciendo.Music.Agent/IMusic/GetSourceFoldersResponse")]
-        Sciendo.Music.Contracts.MusicService.SourceFolders GetSourceFolders();
+        Sciendo.Music.DataProviders.MusicClient.SourceFolders GetSourceFolders();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://Sciendo.Music.Agent/IMusic/GetSourceFolders", ReplyAction="http://Sciendo.Music.Agent/IMusic/GetSourceFoldersResponse")]
-        System.Threading.Tasks.Task<Sciendo.Music.Contracts.MusicService.SourceFolders> GetSourceFoldersAsync();
+        System.Threading.Tasks.Task<Sciendo.Music.DataProviders.MusicClient.SourceFolders> GetSourceFoldersAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -109,11 +266,11 @@ namespace Sciendo.Music.DataProviders.MusicClient {
             return base.Channel.AcquireLyricsOnDemandForAsync(musicPath, retryFailed);
         }
         
-        public Sciendo.Music.Contracts.MusicService.ProgressStatus[] GetLastProcessedPackages() {
+        public Sciendo.Music.DataProviders.MusicClient.ProgressStatus[] GetLastProcessedPackages() {
             return base.Channel.GetLastProcessedPackages();
         }
         
-        public System.Threading.Tasks.Task<Sciendo.Music.Contracts.MusicService.ProgressStatus[]> GetLastProcessedPackagesAsync() {
+        public System.Threading.Tasks.Task<Sciendo.Music.DataProviders.MusicClient.ProgressStatus[]> GetLastProcessedPackagesAsync() {
             return base.Channel.GetLastProcessedPackagesAsync();
         }
         
@@ -133,11 +290,11 @@ namespace Sciendo.Music.DataProviders.MusicClient {
             return base.Channel.ListAvailableLyricsPathsForIndexingAsync(fromPath);
         }
         
-        public Sciendo.Music.Contracts.MusicService.SourceFolders GetSourceFolders() {
+        public Sciendo.Music.DataProviders.MusicClient.SourceFolders GetSourceFolders() {
             return base.Channel.GetSourceFolders();
         }
         
-        public System.Threading.Tasks.Task<Sciendo.Music.Contracts.MusicService.SourceFolders> GetSourceFoldersAsync() {
+        public System.Threading.Tasks.Task<Sciendo.Music.DataProviders.MusicClient.SourceFolders> GetSourceFoldersAsync() {
             return base.Channel.GetSourceFoldersAsync();
         }
     }

@@ -2,7 +2,7 @@
 
 namespace Sciendo.Music.DataProviders
 {
-    public class IndexingConfigurationSection : ConfigurationSection
+    public class DataProvidersConfigurationSection : ConfigurationSection
     {
         [ConfigurationProperty("currentDataProvider", DefaultValue = "mock", IsRequired = true)]
         public string CurrentDataProvider

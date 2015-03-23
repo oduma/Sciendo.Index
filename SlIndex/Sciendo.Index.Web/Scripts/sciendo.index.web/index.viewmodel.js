@@ -2,6 +2,7 @@
     var self = this;
     self.musicFromPath = ko.observable(replaceAll(musicSource,"/","\\"));
     self.lyricsFromPath = ko.observable(replaceAll(lyricsSource, "/", "\\"));
+    self.retryExisting = ko.observable(false);
     self.indexingResult = ko.observable();
     self.indexingError = ko.observable();
     self.lastIndexingType = ko.observable();
@@ -74,6 +75,20 @@
     
     }
 
+    self.acquireLyrics=function() {
+        return ajaxRequest("get", acquireLyricsUrl(self.musicFromPath(), self.retryExisting()))
+            .done(getSucceeded)
+            .fail(getFailed);
+
+        function getSucceeded(data) {
+            displayAcquireLyricsResults(data, self.indexingResult, self.indexingError,self.lastIndexingType);
+        }
+        function getFailed() {
+            indexingError("Error indexing.");
+            indexingResult();
+        }
+
+    }
     self.indexLyrics= function() {
         return ajaxRequest("get", indexUrl(self.lyricsFromPath(), 2))
             .done(getSucceeded)
@@ -102,8 +117,22 @@ function displayResults(data, resultObservable, errorObservable, lastIndexingTyp
 
 }
 
-function indexUrl(id,indexType) {
+function displayAcquireLyricsResults(data, resultObservable, errorObservable, lastIndexingTypeObservable) {
+
+    resultObservable(data.NumberOfDocuments);
+
+    errorObservable(data.Error);
+
+    lastIndexingTypeObservable("Acquyring Lyrics");
+
+}
+
+function indexUrl(id, indexType) {
     return "/home/startIndexing?fromPath=" + (id || "") + "&indexType=" + (indexType || 0);
+}
+
+function acquireLyricsUrl(id, retryExisting) {
+    return "/home/startAcquiringLyrics?fromPath=" + (id || "") + "&retryExisting=" + (retryExisting || false);
 }
 
 function ajaxRequest(type, url, data, dataType) { // Ajax helper

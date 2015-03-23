@@ -9,6 +9,9 @@ input {
     width: 600px;
     max-width: 800px;
 }
+input[type='checkbox'] {
+    width: auto !important;
+}
 .messages {
     font-size: small;
     margin-top: 20px;

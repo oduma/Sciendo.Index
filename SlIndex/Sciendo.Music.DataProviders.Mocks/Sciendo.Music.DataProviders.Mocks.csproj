@@ -32,6 +32,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -46,10 +47,6 @@
     <ProjectReference Include="..\Sciendo.Indexing.DataProviders\Sciendo.Music.DataProviders.csproj">
       <Project>{e0e60437-5683-4ae7-a448-4848b4bddd2a}</Project>
       <Name>Sciendo.Music.DataProviders</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Sciendo.Music.Contracts\Sciendo.Music.Contracts.csproj">
-      <Project>{D132D9C7-2FB8-4C89-84AB-54A1A65532F1}</Project>
-      <Name>Sciendo.Music.Contracts</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Globalization;
-using Sciendo.Music.Contracts.MusicService;
 using Sciendo.Music.DataProviders.Models;
+using Sciendo.Music.DataProviders.MusicClient;
 
 namespace Sciendo.Music.DataProviders.Mocks
 {
@@ -66,9 +66,9 @@ namespace Sciendo.Music.DataProviders.Mocks
             };
         }
 
-        public int AquireLyrics(string fromPath, bool retryExisting)
+        public IndexingResult StartAcquyringLyrics(string fromPath, bool retryExisting)
         {
-            return 1;
+            return new IndexingResult {NumberOfDocuments = "1"};
         }
 
         public void Dispose()

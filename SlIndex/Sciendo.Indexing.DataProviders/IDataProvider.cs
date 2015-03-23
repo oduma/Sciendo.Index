@@ -1,6 +1,6 @@
 ﻿using System;
-using Sciendo.Music.Contracts.MusicService;
 using Sciendo.Music.DataProviders.Models;
+using Sciendo.Music.DataProviders.MusicClient;
 
 namespace Sciendo.Music.DataProviders
 {
@@ -11,6 +11,6 @@ namespace Sciendo.Music.DataProviders
         SourceFolders GetSourceFolders();
         IndexingResult StartIndexing(string fromPath, IndexType indexType);
         ProgressStatusModel[] GetMonitoring();
-        int AquireLyrics(string fromPath, bool retryExisting);
+        IndexingResult StartAcquyringLyrics(string fromPath, bool retryExisting);
     }
 }

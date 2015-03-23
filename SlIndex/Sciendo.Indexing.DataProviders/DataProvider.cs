@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Globalization;
 using System.Linq;
-using Sciendo.Music.Contracts.MusicService;
 using Sciendo.Music.DataProviders.Models;
+using Sciendo.Music.DataProviders.MusicClient;
 using IMusic = Sciendo.Music.DataProviders.MusicClient.IMusic;
 
 namespace Sciendo.Music.DataProviders
@@ -75,9 +75,24 @@ namespace Sciendo.Music.DataProviders
 
         }
 
-        public int AquireLyrics(string fromPath, bool retryExisting)
+        public IndexingResult StartAcquyringLyrics(string fromPath, bool retryExisting)
         {
-            return _svc.AcquireLyricsOnDemandFor(fromPath, retryExisting);
+            try
+            {
+                 return new IndexingResult
+                {
+                    NumberOfDocuments = _svc.AcquireLyricsOnDemandFor(fromPath, retryExisting).ToString(CultureInfo.InvariantCulture)
+                };
+
+            }
+            catch (Exception ex)
+            {
+                return new IndexingResult
+                {
+                    NumberOfDocuments = 0.ToString(CultureInfo.InvariantCulture),
+                    Error = ex.Message
+                };
+            }
         }
 
         public void Dispose()

@@ -35,13 +35,13 @@ namespace Sciendo.Index.Web
             }
         }
 
-        public static IndexingConfigurationSection IndexingConfiguration
+        public static DataProvidersConfigurationSection IndexingConfiguration
         {
             get
             {
-                if (!HttpContext.Current.Application.AllKeys.Contains("indexing"))
-                    HttpContext.Current.Application.Add("indexing", ConfigurationManager.GetSection("indexing"));
-                return HttpContext.Current.Application["indexing"] as IndexingConfigurationSection;
+                if (!HttpContext.Current.Application.AllKeys.Contains("dataProviders"))
+                    HttpContext.Current.Application.Add("dataProviders", ConfigurationManager.GetSection("dataProviders"));
+                return HttpContext.Current.Application["dataProviders"] as DataProvidersConfigurationSection;
             }
         }
     }

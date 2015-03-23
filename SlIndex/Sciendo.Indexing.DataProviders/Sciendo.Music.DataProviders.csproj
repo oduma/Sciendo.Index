@@ -44,7 +44,7 @@
   <ItemGroup>
     <Compile Include="DataProvider.cs" />
     <Compile Include="IDataProvider.cs" />
-    <Compile Include="IndexingConfigurationSection.cs" />
+    <Compile Include="DataProvidersConfigurationSection.cs" />
     <Compile Include="Models\IndexingResult.cs" />
     <Compile Include="Models\IndexModel.cs" />
     <Compile Include="Models\IndexType.cs" />
@@ -60,7 +60,6 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
     <None Include="Properties\DataSources\Sciendo.Music.Contracts.MusicService.ProgressStatus.datasource" />
     <None Include="Properties\DataSources\Sciendo.Music.Contracts.MusicService.SourceFolders.datasource" />
     <None Include="Service References\MusicClient\MusicAgentService.wsdl" />
@@ -80,6 +79,12 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\MusicClient\MusicService.wsdl" />
+    <None Include="Service References\MusicClient\Sciendo.Music.DataProviders.MusicClient.ProgressStatus.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\MusicClient\Sciendo.Music.DataProviders.MusicClient.SourceFolders.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadataStorage Include="Service References\MusicClient\" />
@@ -98,12 +103,6 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Sciendo.Music.Contracts\Sciendo.Music.Contracts.csproj">
-      <Project>{D132D9C7-2FB8-4C89-84AB-54A1A65532F1}</Project>
-      <Name>Sciendo.Music.Contracts</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

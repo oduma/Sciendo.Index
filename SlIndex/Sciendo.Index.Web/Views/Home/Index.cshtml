@@ -9,14 +9,15 @@
 }
 <h3>Actions</h3>
 <div>
-    <label for="musicIndexFromPath">Index music from path:</label>
+    <label for="musicIndexFromPath">From music path:</label>
     <input 
         data-bind="value:musicFromPath" 
         type="search" 
         name="musicIndexFromPath"
         class="longfield"
         data-autocomplete="@Url.Action("GetMusicAutocomplete", "Home")" />
-    <button data-bind="click:indexMusic">Go</button>
+    <button data-bind="click:indexMusic">Index</button>
+    <input type="checkbox" data-bind="checked:retryExisting"/>Retry existing <button data-bind="click:acquireLyrics">Acquire Lyrics</button>
 </div>
 <div>
     <label for="lyricsIndexFromPath">Index lyrics from path:</label>
