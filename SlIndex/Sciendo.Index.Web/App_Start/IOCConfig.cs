@@ -1,6 +1,6 @@
-﻿using Sciendo.Indexing.DataProviders;
-using Sciendo.Indexing.DataProviders.Mock;
-using Sciendo.IOC;
+﻿using Sciendo.IOC;
+using Sciendo.IOC.Configuration;
+using Sciendo.Music.DataProviders;
 
 namespace Sciendo.Index.Web
 {
@@ -8,8 +8,7 @@ namespace Sciendo.Index.Web
     {
         public static void RegisterComponents(Container container)
         {
-            container.Add(new RegisteredType().For<MockDataProvider>().BasedOn<IDataProvider>().IdentifiedBy("mock").With(LifeStyle.Transient));
-            container.Add(new RegisteredType().For<DataProvider>().BasedOn<IDataProvider>().IdentifiedBy("real").With(LifeStyle.Transient));
+            container.UsingConfiguration().AddAllFromFilteredAssemblies<IDataProvider>(LifeStyle.Transient);
         }
     }
 }

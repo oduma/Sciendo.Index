@@ -1,19 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
-using System.IO;
 using System.Linq;
-using System.Reflection;
 using System.ServiceModel;
 using System.ServiceProcess;
 using System.Threading;
 using System.Threading.Tasks;
 using Sciendo.Common.Logging;
 using Sciendo.IOC;
-using Sciendo.Music.Agent.Processing;
+using Sciendo.IOC.Configuration;
 using Sciendo.Music.Agent.Service;
 using Sciendo.Music.Agent.Service.Monitoring;
 using Sciendo.Music.Contracts.Monitoring;
+using Sciendo.Music.Contracts.MusicService;
 using Sciendo.Music.Real.Procesors.Configuration;
 using Sciendo.Music.Real.Procesors.LyricsSourced;
 using Sciendo.Music.Real.Procesors.MusicSourced;
@@ -22,7 +21,7 @@ namespace Sciendo.Music.Agent
 {
     public partial class MusicAgent : ServiceBase
     {
-        private MusicService _agentService;
+        private IMusic _agentService;
         private ServiceHost _agentServiceHost;
         private readonly AgentConfigurationSection _agentConfigurationSection;
         private readonly Dictionary<MonitoringType,MonitoringInstance> _monitoringInstances=new Dictionary<MonitoringType, MonitoringInstance>();
@@ -34,7 +33,7 @@ namespace Sciendo.Music.Agent
             InitializeComponent();
             _agentConfigurationSection = (AgentConfigurationSection)ConfigurationManager.GetSection("agent");
             LoggingManager.Debug(_agentConfigurationSection.ToString());
-            RegisterIocComponents(_agentConfigurationSection.Components);
+            RegisterIocComponents();
             CreateMonitoringInstances();
             LoggingManager.Debug("Agent constructed.");
         }
@@ -43,6 +42,11 @@ namespace Sciendo.Music.Agent
         {
             LoggingManager.Debug("Creating monitoring instances...");
 
+            var allFolderMonitors = IOC.Container.GetInstance().ResolveAll<IFolderMonitor>();
+            foreach (var type in allFolderMonitors.Select(f => f.GetType().FullName))
+            {
+                LoggingManager.Debug(type);
+            }
             _monitoringInstances.Add(MonitoringType.Music, new MonitoringInstance(
                 IOC.Container.GetInstance()
                     .Resolve<IFolderMonitor>(_agentConfigurationSection.Music.CurrentMonitoringComponentKey)));
@@ -53,60 +57,19 @@ namespace Sciendo.Music.Agent
         }
 
         
-        private void RegisterIocComponents(AgentConfigurationComponentCollection agentConfigurationComponents)
+        private void RegisterIocComponents()
         {
             LoggingManager.Debug("Starting Registration of IOC Components...");
-            AssemblyScanner scanner = new AssemblyScanner();
+            var configuredContainer = IOC.Container.GetInstance().UsingConfiguration();
 
-            for (int index=0; index<agentConfigurationComponents.Count;index++)
-            {
-                List<Assembly> assemblies = new List<Assembly>();
-                foreach (var fileName in Directory.GetFiles(AppDomain.CurrentDomain.BaseDirectory, agentConfigurationComponents[index].AssemblyFilter))
-                {
-                    assemblies.Add(Assembly.LoadFrom(fileName));
-                }
-                IOC.Container.GetInstance().Add(scanner.From(assemblies.ToArray()).BasedOn<MusicFilesProcessor>().IdentifiedBy(agentConfigurationComponents[index].Key).With(LifeStyle.Transient).ToArray());
-                IOC.Container.GetInstance().Add(scanner.From(assemblies.ToArray()).BasedOn<LyricsFilesProcessor>().IdentifiedBy(agentConfigurationComponents[index].Key).With(LifeStyle.Transient).ToArray());
-                LoggingManager.Debug("Trying to locate Music Folder Monitors...");
-                var musicFolderMonitorRegType = scanner.From(assemblies.ToArray())
-                    .BasedOn<IFolderMonitor>()
-                    .IdentifiedBy(agentConfigurationComponents[index].Key + "music")
-                    .With(LifeStyle.Transient)
-                    .FirstOrDefault();
-                if (musicFolderMonitorRegType == null)
-                {
-                    LoggingManager.Debug("No IFolderMonitor implementation found in any of the assemblies " + string.Join(", ",assemblies.Select(a=>a.FullName)));
-                }
-                else
-                {
-                    IOC.Container.GetInstance()
-                        .Add(musicFolderMonitorRegType
-                                .WithConstructorParameters(_agentConfigurationSection.Music.SourceDirectory));
-                    LoggingManager.Debug("Music Folder Monitors located Ok.");
-                }
-
-                LoggingManager.Debug("Trying to locate Lyrics Folder Monitors...");
-
-                var lyricsFolderMonitorRegType = scanner.From(assemblies.ToArray())
-                    .BasedOn<IFolderMonitor>()
-                    .IdentifiedBy(agentConfigurationComponents[index].Key + "lyrics")
-                    .With(LifeStyle.Transient)
-                    .FirstOrDefault();
-                if (lyricsFolderMonitorRegType == null)
-                {
-                    LoggingManager.Debug("No IFolderMonitor implementation found in any of the assemblies " + string.Join(", ", assemblies.Select(a => a.FullName)));
-                }
-                else
-                {
-                    IOC.Container.GetInstance()
-                        .Add(lyricsFolderMonitorRegType.WithConstructorParameters(_agentConfigurationSection.Lyrics.SourceDirectory));
-                    LoggingManager.Debug("Lyrics Folder Monitors located Ok.");
-                }
-
-                IOC.Container.GetInstance().Add(scanner.From(assemblies.ToArray()).BasedOn<MusicToLyricsFilesProcessor>().IdentifiedBy(agentConfigurationComponents[index].Key).With(LifeStyle.Transient).ToArray());
-            }
+            configuredContainer.AddAllFromFilteredAssemblies<MusicFilesProcessor>(LifeStyle.Transient);
+            configuredContainer.AddAllFromFilteredAssemblies<LyricsFilesProcessor>(LifeStyle.Transient);
+            configuredContainer.AddFirstFromFilteredAssemblies<IFolderMonitor>(LifeStyle.Transient, "music",
+                _agentConfigurationSection.Music.SourceDirectory);
+            configuredContainer.AddFirstFromFilteredAssemblies<IFolderMonitor>(LifeStyle.Transient, "lyrics",
+                _agentConfigurationSection.Lyrics.SourceDirectory);
+            configuredContainer.AddAllFromFilteredAssemblies<MusicToLyricsFilesProcessor>(LifeStyle.Transient);
             LoggingManager.Debug("Registered IOC Components.");
-
         }
 
         void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
@@ -182,8 +145,8 @@ namespace Sciendo.Music.Agent
                 monitroingInstance.CancellationToken = monitroingInstance.CancellationTokenSource.Token;
                 monitroingInstance.CancellationToken.Register(monitroingInstance.FolderMonitor.Stop);
             }
-            _monitoringInstances[MonitoringType.Music].FolderMonitor.ProcessFile = _agentService.IndexMusicOnDemand;
-            _monitoringInstances[MonitoringType.Lyrics].FolderMonitor.ProcessFile = _agentService.IndexLyricsOnDemand;
+            _monitoringInstances[MonitoringType.Music].FolderMonitor.ProcessFile = new Func<string, int>[]{_agentService.IndexMusicOnDemand,_agentService.AcquireLyricsFor};
+            _monitoringInstances[MonitoringType.Lyrics].FolderMonitor.ProcessFile = new Func<string, int>[]{_agentService.IndexLyricsOnDemand};
             LoggingManager.Debug("Monitoring instances prepared.");
         }
 

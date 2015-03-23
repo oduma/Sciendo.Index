@@ -39,6 +39,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="log4net">
+      <HintPath>..\packages\log4net.2.0.3\lib\net40-full\log4net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.AspNet.SignalR.Core">
       <HintPath>..\packages\Microsoft.AspNet.SignalR.Core.2.2.0\lib\net45\Microsoft.AspNet.SignalR.Core.dll</HintPath>
       <Private>True</Private>
@@ -68,9 +72,14 @@
       <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Sciendo.Common">
+      <HintPath>..\packages\Sciendo.Common.1.0.0-Build00011\lib\net40\Sciendo.Common.dll</HintPath>
+    </Reference>
     <Reference Include="Sciendo.IOC">
-      <HintPath>..\packages\Sciendo.IOC.1.0.0-Build00009\lib\portable-net40+sl50+win+wp80\Sciendo.IOC.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\packages\Sciendo.IOC.1.0.0-Build00011\lib\portable-net40+sl50+win+wp80\Sciendo.IOC.dll</HintPath>
+    </Reference>
+    <Reference Include="Sciendo.IOC.Configuration">
+      <HintPath>..\packages\Sciendo.IOC.Configuration.1.0.0-Build00012\lib\net45\Sciendo.IOC.Configuration.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -186,6 +195,9 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="log4net.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -244,6 +256,10 @@
     <ProjectReference Include="..\Sciendo.Music.Contracts\Sciendo.Music.Contracts.csproj">
       <Project>{D132D9C7-2FB8-4C89-84AB-54A1A65532F1}</Project>
       <Name>Sciendo.Music.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Sciendo.Music.DataProviders.Mocks\Sciendo.Music.DataProviders.Mocks.csproj">
+      <Project>{bdc85158-71a5-40ec-8ec5-008aab403e1a}</Project>
+      <Name>Sciendo.Music.DataProviders.Mocks</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

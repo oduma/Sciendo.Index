@@ -1,6 +1,6 @@
 ﻿using System.Web.Mvc;
-using Sciendo.Indexing.DataProviders;
-using Sciendo.Indexing.DataProviders.Models;
+using Sciendo.Music.DataProviders;
+using Sciendo.Music.DataProviders.Models;
 
 namespace Sciendo.Index.Web.Controllers
 {

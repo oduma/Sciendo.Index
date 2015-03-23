@@ -17,13 +17,6 @@ namespace Sciendo.Music.Real.Procesors.Configuration
             }
         }
 
-        [ConfigurationProperty("components")]
-        public AgentConfigurationComponentCollection Components
-        {
-            get { return (AgentConfigurationComponentCollection) this["components"]; }
-            set { this["components"] = value; }
-        }
-
         [ConfigurationProperty("music")]
         public AgentConfigurationSource Music
         {

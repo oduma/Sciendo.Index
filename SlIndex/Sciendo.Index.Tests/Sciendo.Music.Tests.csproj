@@ -50,11 +50,13 @@
     </Reference>
     <Reference Include="Sciendo.Common, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Sciendo.Common.1.0.0-Build00009\lib\net40\Sciendo.Common.dll</HintPath>
+      <HintPath>..\packages\Sciendo.Common.1.0.0-Build00011\lib\net40\Sciendo.Common.dll</HintPath>
     </Reference>
-    <Reference Include="Sciendo.IOC, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Sciendo.IOC.1.0.0-Build00009\lib\portable-net40+sl50+win+wp80\Sciendo.IOC.dll</HintPath>
+    <Reference Include="Sciendo.IOC">
+      <HintPath>..\packages\Sciendo.IOC.1.0.0-Build00011\lib\portable-net40+sl50+win+wp80\Sciendo.IOC.dll</HintPath>
+    </Reference>
+    <Reference Include="Sciendo.IOC.Configuration">
+      <HintPath>..\packages\Sciendo.IOC.Configuration.1.0.0-Build00012\lib\net45\Sciendo.IOC.Configuration.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />

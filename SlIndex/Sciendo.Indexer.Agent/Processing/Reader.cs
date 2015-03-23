@@ -30,9 +30,9 @@ namespace Sciendo.Music.Agent.Processing
                 LoggingManager.Debug("Path is a directory...");
                 Directory.GetDirectories(path, "*", SearchOption.AllDirectories)
                     .ToList()
-                    .ForEach(s => ContinueWithDirectory(s, searchPattern));
+                    .ForEach(s => ProcessFiles(GetFiles(s, searchPattern, SearchOption.TopDirectoryOnly), _progressEvent));
                 //Search the current directory also
-                ContinueWithDirectory(path, searchPattern);
+                ProcessFiles(GetFiles(path, searchPattern, SearchOption.TopDirectoryOnly), _progressEvent);
             }
             else if (File.Exists(path))
             {
@@ -42,18 +42,6 @@ namespace Sciendo.Music.Agent.Processing
             else 
                 throw new ArgumentException("Invalid path");
             LoggingManager.Debug("Path parsed.");
-        }
-
-        private void ContinueWithDirectory(string directory, string searchPattern)
-        {
-            LoggingManager.Debug("Parsing Directory: "+directory +" for: " +searchPattern);
-            var files = GetFiles(directory, searchPattern, SearchOption.TopDirectoryOnly);
-
-            if (files.Any())
-            {
-                ProcessFiles(files, _progressEvent);
-            }
-            LoggingManager.Debug("Directory parsed.");
         }
 
         internal static IEnumerable<string> GetFiles(string sourceFolder, string filters, SearchOption searchOption,bool includeDirectories=false)

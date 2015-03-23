@@ -1,4 +1,4 @@
-﻿namespace Sciendo.Indexing.DataProviders.Models
+﻿namespace Sciendo.Music.DataProviders.Models
 {
     public class ProgressStatusModel
     {

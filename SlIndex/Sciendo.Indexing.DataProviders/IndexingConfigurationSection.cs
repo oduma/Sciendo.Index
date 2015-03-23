@@ -1,6 +1,6 @@
 ﻿using System.Configuration;
 
-namespace Sciendo.Indexing.DataProviders
+namespace Sciendo.Music.DataProviders
 {
     public class IndexingConfigurationSection : ConfigurationSection
     {

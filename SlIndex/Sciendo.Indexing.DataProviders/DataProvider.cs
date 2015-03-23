@@ -1,14 +1,11 @@
-﻿
-
-using System;
-using System.Linq;
-using Sciendo.Indexing.DataProviders.Models;
+﻿using System;
 using System.Globalization;
+using System.Linq;
 using Sciendo.Music.Contracts.MusicService;
-using IMusic = Sciendo.Indexing.DataProviders.MusicClient.IMusic;
+using Sciendo.Music.DataProviders.Models;
+using IMusic = Sciendo.Music.DataProviders.MusicClient.IMusic;
 
-
-namespace Sciendo.Indexing.DataProviders
+namespace Sciendo.Music.DataProviders
 {
     public sealed class DataProvider:IDataProvider
     {
@@ -76,6 +73,11 @@ namespace Sciendo.Indexing.DataProviders
         {
             return _svc.GetLastProcessedPackages().Select(p=>new ProgressStatusModel{Id=p.Id.ToString(),Package=p.Package.ToString(CultureInfo.InvariantCulture),Status=p.Status.ToString()}).ToArray();
 
+        }
+
+        public int AquireLyrics(string fromPath, bool retryExisting)
+        {
+            return _svc.AcquireLyricsOnDemandFor(fromPath, retryExisting);
         }
 
         public void Dispose()

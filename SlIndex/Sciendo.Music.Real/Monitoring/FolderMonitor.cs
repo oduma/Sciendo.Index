@@ -68,7 +68,7 @@ namespace Sciendo.Music.Real.Monitoring
 
         private FileSystemWatcher _fsWatcher;
 
-        public Func<string,int> ProcessFile { private get; set; }
+        public Func<string,int>[] ProcessFile { private get; set; }
 
         public void Start()
         {
@@ -103,8 +103,11 @@ namespace Sciendo.Music.Real.Monitoring
             {
                 Thread.Sleep(500);
             }
-            if(ProcessFile!=null)
-                ProcessFile(e.FullPath);
+            if (ProcessFile != null)
+            {
+                foreach(var processFile in ProcessFile)
+                    processFile(e.FullPath);
+            }
         }
 
         public bool More { get; private set; }

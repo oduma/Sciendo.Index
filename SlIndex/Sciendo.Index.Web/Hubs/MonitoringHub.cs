@@ -1,6 +1,6 @@
 ﻿using System.Threading;
 using Microsoft.AspNet.SignalR;
-using Sciendo.Indexing.DataProviders;
+using Sciendo.Music.DataProviders;
 
 namespace Sciendo.Index.Web.Hubs
 {

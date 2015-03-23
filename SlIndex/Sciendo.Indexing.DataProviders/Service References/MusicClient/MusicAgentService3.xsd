@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xs:schema xmlns:tns="http://Sciendo.Indexer.Agent" elementFormDefault="qualified" targetNamespace="http://Sciendo.Indexer.Agent" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:schema xmlns:tns="http://Sciendo.Music.Agent" elementFormDefault="qualified" targetNamespace="http://Sciendo.Music.Agent" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:import schemaLocation="http://localhost:7000/MusicAgentService?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Sciendo.Music.Contracts.MusicService" />
   <xs:import schemaLocation="http://localhost:7000/MusicAgentService?xsd=xsd4" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
   <xs:element name="IndexLyricsOnDemand">
@@ -30,7 +30,7 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="AcquireLyricsFor">
+  <xs:element name="AcquireLyricsOnDemandFor">
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="musicPath" nillable="true" type="xs:string" />
@@ -38,10 +38,10 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="AcquireLyricsForResponse">
+  <xs:element name="AcquireLyricsOnDemandForResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="AcquireLyricsForResult" type="xs:int" />
+        <xs:element minOccurs="0" name="AcquireLyricsOnDemandForResult" type="xs:int" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

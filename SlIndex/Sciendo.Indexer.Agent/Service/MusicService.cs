@@ -68,7 +68,7 @@ namespace Sciendo.Music.Agent.Service
 
         }
 
-        public int AcquireLyricsFor(string musicPath, bool retryFailed)
+        public int AcquireLyricsOnDemandFor(string musicPath, bool retryFailed)
         {
             LoggingManager.Debug("Starting AcquireLyrics from path:" + musicPath);
             if (string.IsNullOrEmpty(musicPath))
@@ -82,6 +82,11 @@ namespace Sciendo.Music.Agent.Service
             reader.ProcessFiles = _musicToLyricsFilesProcessor.ProcessFilesBatch;
             reader.ParsePath(musicPath, _musicToLyricsFilesProcessor.CurrentMusicConfiguration.SearchPattern);
             return _musicToLyricsFilesProcessor.Counter;
+        }
+
+        public int AcquireLyricsFor(string fromPath)
+        {
+            return AcquireLyricsOnDemandFor(fromPath, true);
         }
 
         public ProgressStatus[] GetLastProcessedPackages()

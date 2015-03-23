@@ -12,49 +12,49 @@ namespace Sciendo.Music.DataProviders.MusicClient {
     
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(Namespace="http://Sciendo.Indexer.Agent", ConfigurationName="MusicClient.IMusic")]
+    [System.ServiceModel.ServiceContractAttribute(Namespace="http://Sciendo.Music.Agent", ConfigurationName="MusicClient.IMusic")]
     public interface IMusic {
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://Sciendo.Indexer.Agent/IMusic/IndexLyricsOnDemand", ReplyAction="http://Sciendo.Indexer.Agent/IMusic/IndexLyricsOnDemandResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://Sciendo.Music.Agent/IMusic/IndexLyricsOnDemand", ReplyAction="http://Sciendo.Music.Agent/IMusic/IndexLyricsOnDemandResponse")]
         int IndexLyricsOnDemand(string fromPath);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://Sciendo.Indexer.Agent/IMusic/IndexLyricsOnDemand", ReplyAction="http://Sciendo.Indexer.Agent/IMusic/IndexLyricsOnDemandResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://Sciendo.Music.Agent/IMusic/IndexLyricsOnDemand", ReplyAction="http://Sciendo.Music.Agent/IMusic/IndexLyricsOnDemandResponse")]
         System.Threading.Tasks.Task<int> IndexLyricsOnDemandAsync(string fromPath);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://Sciendo.Indexer.Agent/IMusic/IndexMusicOnDemand", ReplyAction="http://Sciendo.Indexer.Agent/IMusic/IndexMusicOnDemandResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://Sciendo.Music.Agent/IMusic/IndexMusicOnDemand", ReplyAction="http://Sciendo.Music.Agent/IMusic/IndexMusicOnDemandResponse")]
         int IndexMusicOnDemand(string fromPath);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://Sciendo.Indexer.Agent/IMusic/IndexMusicOnDemand", ReplyAction="http://Sciendo.Indexer.Agent/IMusic/IndexMusicOnDemandResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://Sciendo.Music.Agent/IMusic/IndexMusicOnDemand", ReplyAction="http://Sciendo.Music.Agent/IMusic/IndexMusicOnDemandResponse")]
         System.Threading.Tasks.Task<int> IndexMusicOnDemandAsync(string fromPath);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://Sciendo.Indexer.Agent/IMusic/AcquireLyricsFor", ReplyAction="http://Sciendo.Indexer.Agent/IMusic/AcquireLyricsForResponse")]
-        int AcquireLyricsFor(string musicPath, bool retryFailed);
+        [System.ServiceModel.OperationContractAttribute(Action="http://Sciendo.Music.Agent/IMusic/AcquireLyricsOnDemandFor", ReplyAction="http://Sciendo.Music.Agent/IMusic/AcquireLyricsOnDemandForResponse")]
+        int AcquireLyricsOnDemandFor(string musicPath, bool retryFailed);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://Sciendo.Indexer.Agent/IMusic/AcquireLyricsFor", ReplyAction="http://Sciendo.Indexer.Agent/IMusic/AcquireLyricsForResponse")]
-        System.Threading.Tasks.Task<int> AcquireLyricsForAsync(string musicPath, bool retryFailed);
+        [System.ServiceModel.OperationContractAttribute(Action="http://Sciendo.Music.Agent/IMusic/AcquireLyricsOnDemandFor", ReplyAction="http://Sciendo.Music.Agent/IMusic/AcquireLyricsOnDemandForResponse")]
+        System.Threading.Tasks.Task<int> AcquireLyricsOnDemandForAsync(string musicPath, bool retryFailed);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://Sciendo.Indexer.Agent/IMusic/GetLastProcessedPackages", ReplyAction="http://Sciendo.Indexer.Agent/IMusic/GetLastProcessedPackagesResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://Sciendo.Music.Agent/IMusic/GetLastProcessedPackages", ReplyAction="http://Sciendo.Music.Agent/IMusic/GetLastProcessedPackagesResponse")]
         Sciendo.Music.Contracts.MusicService.ProgressStatus[] GetLastProcessedPackages();
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://Sciendo.Indexer.Agent/IMusic/GetLastProcessedPackages", ReplyAction="http://Sciendo.Indexer.Agent/IMusic/GetLastProcessedPackagesResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://Sciendo.Music.Agent/IMusic/GetLastProcessedPackages", ReplyAction="http://Sciendo.Music.Agent/IMusic/GetLastProcessedPackagesResponse")]
         System.Threading.Tasks.Task<Sciendo.Music.Contracts.MusicService.ProgressStatus[]> GetLastProcessedPackagesAsync();
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://Sciendo.Indexer.Agent/IMusic/ListAvailableMusicPathsForIndexing", ReplyAction="http://Sciendo.Indexer.Agent/IMusic/ListAvailableMusicPathsForIndexingResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://Sciendo.Music.Agent/IMusic/ListAvailableMusicPathsForIndexing", ReplyAction="http://Sciendo.Music.Agent/IMusic/ListAvailableMusicPathsForIndexingResponse")]
         string[] ListAvailableMusicPathsForIndexing(string fromPath);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://Sciendo.Indexer.Agent/IMusic/ListAvailableMusicPathsForIndexing", ReplyAction="http://Sciendo.Indexer.Agent/IMusic/ListAvailableMusicPathsForIndexingResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://Sciendo.Music.Agent/IMusic/ListAvailableMusicPathsForIndexing", ReplyAction="http://Sciendo.Music.Agent/IMusic/ListAvailableMusicPathsForIndexingResponse")]
         System.Threading.Tasks.Task<string[]> ListAvailableMusicPathsForIndexingAsync(string fromPath);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://Sciendo.Indexer.Agent/IMusic/ListAvailableLyricsPathsForIndexing", ReplyAction="http://Sciendo.Indexer.Agent/IMusic/ListAvailableLyricsPathsForIndexingResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://Sciendo.Music.Agent/IMusic/ListAvailableLyricsPathsForIndexing", ReplyAction="http://Sciendo.Music.Agent/IMusic/ListAvailableLyricsPathsForIndexingResponse")]
         string[] ListAvailableLyricsPathsForIndexing(string fromPath);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://Sciendo.Indexer.Agent/IMusic/ListAvailableLyricsPathsForIndexing", ReplyAction="http://Sciendo.Indexer.Agent/IMusic/ListAvailableLyricsPathsForIndexingResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://Sciendo.Music.Agent/IMusic/ListAvailableLyricsPathsForIndexing", ReplyAction="http://Sciendo.Music.Agent/IMusic/ListAvailableLyricsPathsForIndexingResponse")]
         System.Threading.Tasks.Task<string[]> ListAvailableLyricsPathsForIndexingAsync(string fromPath);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://Sciendo.Indexer.Agent/IMusic/GetSourceFolders", ReplyAction="http://Sciendo.Indexer.Agent/IMusic/GetSourceFoldersResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://Sciendo.Music.Agent/IMusic/GetSourceFolders", ReplyAction="http://Sciendo.Music.Agent/IMusic/GetSourceFoldersResponse")]
         Sciendo.Music.Contracts.MusicService.SourceFolders GetSourceFolders();
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://Sciendo.Indexer.Agent/IMusic/GetSourceFolders", ReplyAction="http://Sciendo.Indexer.Agent/IMusic/GetSourceFoldersResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://Sciendo.Music.Agent/IMusic/GetSourceFolders", ReplyAction="http://Sciendo.Music.Agent/IMusic/GetSourceFoldersResponse")]
         System.Threading.Tasks.Task<Sciendo.Music.Contracts.MusicService.SourceFolders> GetSourceFoldersAsync();
     }
     
@@ -101,12 +101,12 @@ namespace Sciendo.Music.DataProviders.MusicClient {
             return base.Channel.IndexMusicOnDemandAsync(fromPath);
         }
         
-        public int AcquireLyricsFor(string musicPath, bool retryFailed) {
-            return base.Channel.AcquireLyricsFor(musicPath, retryFailed);
+        public int AcquireLyricsOnDemandFor(string musicPath, bool retryFailed) {
+            return base.Channel.AcquireLyricsOnDemandFor(musicPath, retryFailed);
         }
         
-        public System.Threading.Tasks.Task<int> AcquireLyricsForAsync(string musicPath, bool retryFailed) {
-            return base.Channel.AcquireLyricsForAsync(musicPath, retryFailed);
+        public System.Threading.Tasks.Task<int> AcquireLyricsOnDemandForAsync(string musicPath, bool retryFailed) {
+            return base.Channel.AcquireLyricsOnDemandForAsync(musicPath, retryFailed);
         }
         
         public Sciendo.Music.Contracts.MusicService.ProgressStatus[] GetLastProcessedPackages() {

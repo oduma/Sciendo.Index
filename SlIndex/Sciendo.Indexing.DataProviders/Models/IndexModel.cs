@@ -1,6 +1,6 @@
 ﻿using Sciendo.Music.Contracts.MusicService;
 
-namespace Sciendo.Indexing.DataProviders.Models
+namespace Sciendo.Music.DataProviders.Models
 {
     public class IndexModel
     {

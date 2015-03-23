@@ -45,7 +45,6 @@
     <Compile Include="DataProvider.cs" />
     <Compile Include="IDataProvider.cs" />
     <Compile Include="IndexingConfigurationSection.cs" />
-    <Compile Include="Mock\MockDataProvider.cs" />
     <Compile Include="Models\IndexingResult.cs" />
     <Compile Include="Models\IndexModel.cs" />
     <Compile Include="Models\IndexType.cs" />

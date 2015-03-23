@@ -2,7 +2,7 @@
 
 namespace Sciendo.Music.Contracts.MusicService
 {
-    [ServiceContract(Namespace="http://Sciendo.Indexer.Agent")]
+    [ServiceContract(Namespace="http://Sciendo.Music.Agent")]
     public interface IMusic
     {
         [OperationContract]
@@ -11,7 +11,9 @@ namespace Sciendo.Music.Contracts.MusicService
         int IndexMusicOnDemand(string fromPath);
 
         [OperationContract]
-        int AcquireLyricsFor(string musicPath, bool retryFailed);
+        int AcquireLyricsOnDemandFor(string musicPath, bool retryFailed);
+
+        int AcquireLyricsFor(string fromPath);
 
         [OperationContract]
         ProgressStatus[] GetLastProcessedPackages();

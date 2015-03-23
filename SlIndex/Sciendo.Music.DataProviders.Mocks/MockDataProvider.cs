@@ -3,7 +3,7 @@ using System.Globalization;
 using Sciendo.Music.Contracts.MusicService;
 using Sciendo.Music.DataProviders.Models;
 
-namespace Sciendo.Music.DataProviders.Mock
+namespace Sciendo.Music.DataProviders.Mocks
 {
     public sealed class MockDataProvider:IDataProvider
     {
@@ -64,6 +64,11 @@ namespace Sciendo.Music.DataProviders.Mock
                 new ProgressStatusModel {Id = "Id1", Package = "Package1", Status = "Done"},
                 new ProgressStatusModel {Id = "Id2", Package = "Package2", Status = "Error"}
             };
+        }
+
+        public int AquireLyrics(string fromPath, bool retryExisting)
+        {
+            return 1;
         }
 
         public void Dispose()
