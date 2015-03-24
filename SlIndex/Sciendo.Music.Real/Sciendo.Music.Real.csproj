@@ -43,9 +43,8 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Newtonsoft.Json.6.0.7\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="Sciendo.Common, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Sciendo.Common.1.0.0-Build00015\lib\net40\Sciendo.Common.dll</HintPath>
+    <Reference Include="Sciendo.Common">
+      <HintPath>..\packages\Sciendo.Common.1.0.0-Build00016\lib\net40\Sciendo.Common.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />

@@ -6,6 +6,7 @@ using Sciendo.Common.Logging;
 using Sciendo.Music.Agent.Processing;
 using Sciendo.Music.Agent.Service.Monitoring;
 using Sciendo.Music.Contracts.Common;
+using Sciendo.Music.Contracts.Monitoring;
 using Sciendo.Music.Contracts.MusicService;
 using Sciendo.Music.Real.Procesors.LyricsSourced;
 using Sciendo.Music.Real.Procesors.MusicSourced;
@@ -42,51 +43,78 @@ namespace Sciendo.Music.Agent.Service
 
         public int IndexLyricsOnDemand(string fromPath)
         {
-            LoggingManager.Debug("Starting IndexLyrics from path:" +fromPath);
-            if (string.IsNullOrEmpty(fromPath))
-                throw new ArgumentNullException("fromPath");
-            if (!Directory.Exists(fromPath) && !File.Exists(fromPath))
-                throw new ArgumentException("Invalid path " +fromPath);
+            LoggingManager.Debug("Starting IndexLyricsOnDemand from path:" +fromPath);
+            IndexLyrics(fromPath, ProcessType.None);
+            LoggingManager.Debug("IndexLyricsOnDemand on path: " + fromPath + " Counter: " + _lyricsFilesProcessor.Counter);
 
-            Reader reader = new Reader(ProgressEvent);
-            _lyricsFilesProcessor.ResetCounter();
-            reader.ProcessFiles = _lyricsFilesProcessor.ProcessFilesBatch;
-            reader.ParsePath(fromPath, _lyricsFilesProcessor.CurrentConfiguration.SearchPattern);
             return _lyricsFilesProcessor.Counter;
         }
 
         
         public int IndexMusicOnDemand(string fromPath)
         {
-            LoggingManager.Debug("Starting IndexMusic from path: " +fromPath);
-            _musicFilesProcessor.ResetCounter();
-            Reader reader = new Reader(ProgressEvent);
-            reader.ProcessFiles = _musicFilesProcessor.ProcessFilesBatch;
-            reader.ParsePath(fromPath,_musicFilesProcessor.CurrentConfiguration.SearchPattern);
-            LoggingManager.Debug("IndexMusic on path: " + fromPath + " Counter: " + _musicFilesProcessor.Counter);
+            LoggingManager.Debug("Starting IndexMusicOnDemand from path: " +fromPath);
+            IndexMusic(fromPath, ProcessType.None);
+            LoggingManager.Debug("IndexMusicOnDemand on path: " + fromPath + " Counter: " + _musicFilesProcessor.Counter);
             return _musicFilesProcessor.Counter;
 
         }
 
+        public int IndexLyrics(string fromPath, ProcessType processType)
+        {
+            LoggingManager.Debug("Starting IndexLyrics from path:" + fromPath);
+            if (string.IsNullOrEmpty(fromPath))
+                throw new ArgumentNullException("fromPath");
+            if (!Directory.Exists(fromPath) && !File.Exists(fromPath))
+                throw new ArgumentException("Invalid path " + fromPath);
+
+            Reader reader = new Reader(ProgressEvent);
+            _lyricsFilesProcessor.ResetCounter();
+            reader.ProcessFiles = _lyricsFilesProcessor.ProcessFilesBatch;
+            reader.ParsePath(fromPath, _lyricsFilesProcessor.CurrentConfiguration.SearchPattern,processType);
+            return _lyricsFilesProcessor.Counter;
+        }
+
+        public int IndexMusic(string fromPath, ProcessType processType)
+        {
+            LoggingManager.Debug("Starting IndexMusic from path: " + fromPath);
+            _musicFilesProcessor.ResetCounter();
+            Reader reader = new Reader(ProgressEvent);
+            reader.ProcessFiles = _musicFilesProcessor.ProcessFilesBatch;
+            reader.ParsePath(fromPath, _musicFilesProcessor.CurrentConfiguration.SearchPattern,processType);
+            LoggingManager.Debug("IndexMusic on path: " + fromPath + " Counter: " + _musicFilesProcessor.Counter);
+            return _musicFilesProcessor.Counter;
+        }
+
         public int AcquireLyricsOnDemandFor(string musicPath, bool retryFailed)
         {
-            LoggingManager.Debug("Starting AcquireLyrics from path:" + musicPath);
-            if (string.IsNullOrEmpty(musicPath))
-                throw new ArgumentNullException("musicPath");
-            if (!Directory.Exists(musicPath) && !File.Exists(musicPath))
-                throw new ArgumentException("Invalid path " + musicPath);
+            LoggingManager.Debug("Starting AcquireLyricsOnDemand from path:" + musicPath);
+            AcquireLyrics(musicPath,retryFailed,ProcessType.None);
+            LoggingManager.Debug("AcquiredLyricsOnDemand on path: " + musicPath + " Counter: " + _musicToLyricsFilesProcessor.Counter);
+            return _musicToLyricsFilesProcessor.Counter;
+        }
+
+        private void AcquireLyrics(string fromPath, bool retryFailed, ProcessType processType)
+        {
+            LoggingManager.Debug("Starting AcquireLyrics from path:" + fromPath);
+            if (string.IsNullOrEmpty(fromPath))
+                throw new ArgumentNullException("fromPath");
+            if (!Directory.Exists(fromPath) && !File.Exists(fromPath))
+                throw new ArgumentException("Invalid path " + fromPath);
 
             Reader reader = new Reader(ProgressEvent);
             _musicToLyricsFilesProcessor.ResetCounter();
             _musicToLyricsFilesProcessor.RetryExisting = retryFailed;
             reader.ProcessFiles = _musicToLyricsFilesProcessor.ProcessFilesBatch;
-            reader.ParsePath(musicPath, _musicToLyricsFilesProcessor.CurrentMusicConfiguration.SearchPattern);
-            return _musicToLyricsFilesProcessor.Counter;
-        }
+            reader.ParsePath(fromPath, _musicToLyricsFilesProcessor.CurrentMusicConfiguration.SearchPattern,processType);
 
-        public int AcquireLyricsFor(string fromPath)
+        }
+        public int AcquireLyricsFor(string fromPath, ProcessType processType)
         {
-            return AcquireLyricsOnDemandFor(fromPath, true);
+            LoggingManager.Debug("Starting AcquireLyricsFor from path:" + fromPath);
+            AcquireLyrics(fromPath, true, processType);
+            LoggingManager.Debug("AcquiredLyricsFor on path: " + fromPath + " Counter: " + _musicToLyricsFilesProcessor.Counter);
+            return _musicToLyricsFilesProcessor.Counter;
         }
 
         public ProgressStatus[] GetLastProcessedPackages()

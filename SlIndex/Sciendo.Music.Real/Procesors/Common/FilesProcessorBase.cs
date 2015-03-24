@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Sciendo.Common.Logging;
 using Sciendo.Music.Contracts.Common;
+using Sciendo.Music.Contracts.Monitoring;
 using Sciendo.Music.Real.Procesors.Configuration;
 
 namespace Sciendo.Music.Real.Procesors.Common
@@ -25,9 +26,9 @@ namespace Sciendo.Music.Real.Procesors.Common
             LoggingManager.Debug("Counter reseted.");
         }
 
-        public abstract void ProcessFilesBatch(IEnumerable<string> files, Action<Status, string> progressEvent);
+        public abstract void ProcessFilesBatch(IEnumerable<string> files, Action<Status, string> progressEvent,ProcessType processType);
 
-        protected abstract IEnumerable<T> TransformFiles<T>(IEnumerable<string> files,Func<TIn, string, T> specfifcTranformMethod);
+        protected abstract IEnumerable<T> TransformFiles<T>(IEnumerable<string> files, Func<TIn, string, ProcessType, T> specfifcTranformMethod, ProcessType processType);
 
     }
 }

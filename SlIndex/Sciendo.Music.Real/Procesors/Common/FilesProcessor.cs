@@ -5,6 +5,7 @@ using System.Linq;
 using Newtonsoft.Json;
 using Sciendo.Common.Logging;
 using Sciendo.Music.Contracts.Common;
+using Sciendo.Music.Contracts.Monitoring;
 using Sciendo.Music.Contracts.Solr;
 
 namespace Sciendo.Music.Real.Procesors.Common
@@ -19,10 +20,10 @@ namespace Sciendo.Music.Real.Procesors.Common
         }
 
 
-        public override void ProcessFilesBatch(IEnumerable<string> files, Action<Status,string> progressEvent)
+        public override void ProcessFilesBatch(IEnumerable<string> files, Action<Status,string> progressEvent,ProcessType processType)
         {
             LoggingManager.Debug("Starting process batch of files " +files.Count());
-            var package = TransformFiles(files,TransformToDocument).ToArray();
+            var package = TransformFiles(files,TransformToDocument, processType).ToArray();
             if (Sender != null)
             {
                 var response = Sender.TrySend(package);
@@ -33,6 +34,6 @@ namespace Sciendo.Music.Real.Procesors.Common
             LoggingManager.Debug("Processed batch of "+ package.Length +" files.");
         }
 
-        protected abstract Document TransformToDocument(TIn transfromFrom, string file);
+        protected abstract Document TransformToDocument(TIn transfromFrom, string file, ProcessType processType);
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System.ServiceModel;
+using Sciendo.Music.Contracts.Monitoring;
 
 namespace Sciendo.Music.Contracts.MusicService
 {
@@ -10,10 +11,14 @@ namespace Sciendo.Music.Contracts.MusicService
         [OperationContract]
         int IndexMusicOnDemand(string fromPath);
 
+        int IndexLyrics(string fromPath, ProcessType processType);
+
+        int IndexMusic(string fromPath, ProcessType processType);
+
         [OperationContract]
         int AcquireLyricsOnDemandFor(string musicPath, bool retryFailed);
 
-        int AcquireLyricsFor(string fromPath);
+        int AcquireLyricsFor(string fromPath, ProcessType processType);
 
         [OperationContract]
         ProgressStatus[] GetLastProcessedPackages();

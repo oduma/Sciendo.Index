@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using Id3;
 using Sciendo.Common.Logging;
+using Sciendo.Music.Contracts.Monitoring;
 using Sciendo.Music.Contracts.Processing;
 using Sciendo.Music.Contracts.Solr;
 using Sciendo.Music.Real.Procesors.Common;
@@ -22,7 +23,7 @@ namespace Sciendo.Music.Real.Procesors.MusicSourced
             LoggingManager.Debug("MusicFilesProcessor constructed.");
         }
 
-        protected override IEnumerable<T> TransformFiles<T>(IEnumerable<string> files,Func<SongInfo,string, T> specificTransfromFunction )
+        protected override IEnumerable<T> TransformFiles<T>(IEnumerable<string> files, Func<SongInfo, string, ProcessType, T> specificTransfromFunction, ProcessType processType)
         {
             LoggingManager.Debug("MusicFileProcessor preparing documents...");
             if(typeof(T)!=typeof(Document))
@@ -31,15 +32,15 @@ namespace Sciendo.Music.Real.Procesors.MusicSourced
             {
                 var songInfo = new SongInfo(new Mp3File(file));
 
-                yield return specificTransfromFunction(songInfo,file);
+                yield return specificTransfromFunction(songInfo,file,processType);
             }
             LoggingManager.Debug("MusicFileProcessor documents prepared.");
         }
 
-        protected override Document TransformToDocument(SongInfo songInfo, string file)
+        protected override Document TransformToDocument(SongInfo songInfo, string file,ProcessType processType)
         {
             return new FullDocument(file, CatalogLetter(file, CurrentConfiguration.SourceDirectory), songInfo.Artists,
-                songInfo.Title, songInfo.Album);
+                songInfo.Title, songInfo.Album,processType);
         }
     }
 }

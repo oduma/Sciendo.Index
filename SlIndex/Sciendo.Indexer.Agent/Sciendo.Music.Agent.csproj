@@ -48,17 +48,15 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Newtonsoft.Json.6.0.7\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="Sciendo.Common">
-      <HintPath>..\packages\Sciendo.Common.1.0.0-Build00015\lib\net40\Sciendo.Common.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Sciendo.Common, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Sciendo.Common.1.0.0-Build00016\lib\net40\Sciendo.Common.dll</HintPath>
     </Reference>
     <Reference Include="Sciendo.IOC">
-      <HintPath>..\packages\Sciendo.IOC.1.0.0-Build00015\lib\portable-net40+sl50+win+wp80\Sciendo.IOC.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\packages\Sciendo.IOC.1.0.0-Build00016\lib\portable-net40+sl50+win+wp80\Sciendo.IOC.dll</HintPath>
     </Reference>
     <Reference Include="Sciendo.IOC.Configuration">
-      <HintPath>..\packages\Sciendo.IOC.Configuration.1.0.0-Build00015\lib\net45\Sciendo.IOC.Configuration.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\packages\Sciendo.IOC.Configuration.1.0.0-Build00016\lib\net45\Sciendo.IOC.Configuration.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />

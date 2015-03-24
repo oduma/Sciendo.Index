@@ -48,6 +48,7 @@
     <Compile Include="Common\LyricsResult.cs" />
     <Compile Include="Common\Status.cs" />
     <Compile Include="Monitoring\IFolderMonitor.cs" />
+    <Compile Include="Monitoring\ProcessType.cs" />
     <Compile Include="MusicService\IMusic.cs" />
     <Compile Include="MusicService\ProgressStatus.cs" />
     <Compile Include="MusicService\SourceFolders.cs" />

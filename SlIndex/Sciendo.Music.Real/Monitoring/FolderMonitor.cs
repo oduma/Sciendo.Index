@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Threading;
+using Sciendo.Common.IO;
 using Sciendo.Common.Logging;
 using Sciendo.Music.Contracts.Monitoring;
 
@@ -28,7 +29,7 @@ namespace Sciendo.Music.Real.Monitoring
             LoggingManager.Debug("Stoping FolderMonitor...");
             if (_fsWatcher != null)
             {
-                _fsWatcher.EnableRaisingEvents = false;
+                _fsWatcher.Stop();
             }
             More = false;
             LoggingManager.Debug("FolderMonitor stopped.");
@@ -66,9 +67,9 @@ namespace Sciendo.Music.Real.Monitoring
             return false;
         }
 
-        private FileSystemWatcher _fsWatcher;
+        private DirectoryMonitor _fsWatcher;
 
-        public Func<string,int>[] ProcessFile { private get; set; }
+        public Func<string,ProcessType,int>[] ProcessFile { private get; set; }
 
         public void Start()
         {
@@ -76,37 +77,87 @@ namespace Sciendo.Music.Real.Monitoring
             if (!More)
             {
                 Stop();
-                _fsWatcher = new FileSystemWatcher(_currentRootFolder);
-                _fsWatcher.Created += _fsWatcher_Created;
-                _fsWatcher.EnableRaisingEvents = true;
+                _fsWatcher = new DirectoryMonitor(_currentRootFolder);
+                _fsWatcher.Change += fsWatcher_Changed;
+                _fsWatcher.Delete += fsWatcher_Deleted;
+                _fsWatcher.Rename += fsWatcher_Renamed;
+                _fsWatcher.Start();
             }
             More = true;
 
             LoggingManager.Debug("FolderMonitor Initialized FolderWatcher...");
         }
 
-        private void _fsWatcher_Created(object sender, FileSystemEventArgs e)
+        private void fsWatcher_Renamed(string frompath, string topath)
         {
             if (!More)
             {
                 Stop();
                 return;
             }
-            LoggingManager.Debug("A file created: " + e.FullPath);
+            LoggingManager.Debug("A File renamed from " + frompath + " to " + topath);
             //if it is a directory ignore it
-            if (!File.Exists(e.FullPath))
+            if (!File.Exists(topath))
                 return;
-            //queue an insert;
             // Wait if file is still open
-            FileInfo fileInfo = new FileInfo(e.FullPath);
+            FileInfo fileInfo = new FileInfo(topath);
             while (IsFileLocked(fileInfo))
             {
                 Thread.Sleep(500);
             }
+
             if (ProcessFile != null)
             {
-                foreach(var processFile in ProcessFile)
-                    processFile(e.FullPath);
+                foreach (var processFile in ProcessFile)
+                {
+                    processFile(frompath,ProcessType.Delete);
+                    processFile(topath, ProcessType.Update);
+                }
+            }
+        }
+
+        private void fsWatcher_Deleted(string path)
+        {
+            if (!More)
+            {
+                Stop();
+                return;
+            }
+            LoggingManager.Debug("A file deleted: " + path);
+            if (Directory.Exists(path))
+                return;
+            if (ProcessFile != null)
+            {
+                foreach (var processFile in ProcessFile)
+                {
+                    processFile(path, ProcessType.Delete);
+                }
+            }
+        }
+
+        private void fsWatcher_Changed(string path)
+        {
+            if (!More)
+            {
+                Stop();
+                return;
+            }
+            LoggingManager.Debug("A file changed: " + path);
+            //if it is a directory ignore it
+            if (!File.Exists(path))
+                return;
+            //queue an insert;
+            // Wait if file is still open
+            FileInfo fileInfo = new FileInfo(path);
+            while (IsFileLocked(fileInfo))
+            {
+                Thread.Sleep(500);
+            }
+            //queue an update;
+            if (ProcessFile != null)
+            {
+                foreach (var processFile in ProcessFile)
+                    processFile(path,ProcessType.Update);
             }
         }
 
@@ -115,7 +166,7 @@ namespace Sciendo.Music.Real.Monitoring
         public void Dispose()
         {
             Stop();
-            _fsWatcher.Dispose();
+            _fsWatcher.Stop();
         }
     }
 }

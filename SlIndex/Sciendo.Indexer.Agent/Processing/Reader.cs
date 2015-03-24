@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using Sciendo.Common.Logging;
 using Sciendo.Music.Contracts.Common;
+using Sciendo.Music.Contracts.Monitoring;
 
 namespace Sciendo.Music.Agent.Processing
 {
@@ -18,7 +19,7 @@ namespace Sciendo.Music.Agent.Processing
             LoggingManager.Debug("Reader constructed");
         }
 
-        public void ParsePath(string path, string searchPattern)
+        public void ParsePath(string path, string searchPattern,ProcessType processType)
         {
             LoggingManager.Debug("Starting parsing path " + path +" for " + searchPattern);
             if (string.IsNullOrEmpty(path))
@@ -30,14 +31,14 @@ namespace Sciendo.Music.Agent.Processing
                 LoggingManager.Debug("Path is a directory...");
                 Directory.GetDirectories(path, "*", SearchOption.AllDirectories)
                     .ToList()
-                    .ForEach(s => ProcessFiles(GetFiles(s, searchPattern, SearchOption.TopDirectoryOnly), _progressEvent));
+                    .ForEach(s => ProcessFiles(GetFiles(s, searchPattern, SearchOption.TopDirectoryOnly), _progressEvent,processType));
                 //Search the current directory also
-                ProcessFiles(GetFiles(path, searchPattern, SearchOption.TopDirectoryOnly), _progressEvent);
+                ProcessFiles(GetFiles(path, searchPattern, SearchOption.TopDirectoryOnly), _progressEvent, processType);
             }
             else if (File.Exists(path))
             {
                 LoggingManager.Debug("Path is a file...");
-                ProcessFiles(new string[] { path }, _progressEvent);   
+                ProcessFiles(new string[] { path }, _progressEvent,processType);   
             }
             else 
                 throw new ArgumentException("Invalid path");
@@ -54,6 +55,6 @@ namespace Sciendo.Music.Agent.Processing
                     .SelectMany(filter => System.IO.Directory.GetFiles(sourceFolder, filter, searchOption)));
         }
 
-        public Action<IEnumerable<string>, Action<Status,string>> ProcessFiles { private get; set; }
+        public Action<IEnumerable<string>, Action<Status,string>,ProcessType> ProcessFiles { private get; set; }
     }
 }

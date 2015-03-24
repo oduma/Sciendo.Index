@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Sciendo.Common.Logging;
+using Sciendo.Music.Contracts.Monitoring;
 using Sciendo.Music.Real.Procesors.MusicSourced;
 
 namespace Sciendo.Music.Mocks.Processing
@@ -18,10 +19,10 @@ namespace Sciendo.Music.Mocks.Processing
 
         }
 
-        protected override IEnumerable<T> TransformFiles<T>(IEnumerable<string> files, Func<SongInfo, string, T> specfifcTranformMethod)
+        protected override IEnumerable<T> TransformFiles<T>(IEnumerable<string> files, Func<SongInfo, string,ProcessType, T> specfifcTranformMethod, ProcessType processType)
         {
             LoggingManager.Debug("Mock Music To Lyrics processor preparing documents...");
-            return files.Select(file => specfifcTranformMethod(GetASongInfo(file), file));
+            return files.Select(file => specfifcTranformMethod(GetASongInfo(file), file,processType));
         }
 
         private SongInfo GetASongInfo(string file)

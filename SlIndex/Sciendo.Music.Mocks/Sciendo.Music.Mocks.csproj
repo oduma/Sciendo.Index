@@ -36,8 +36,7 @@
     </Reference>
     <Reference Include="Sciendo.Common, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Sciendo.Common.1.0.0-Build00015\lib\net40\Sciendo.Common.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\packages\Sciendo.Common.1.0.0-Build00016\lib\net40\Sciendo.Common.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />

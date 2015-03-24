@@ -25,7 +25,7 @@ namespace Sciendo.Music.Mocks.Monitoring
             LoggingManager.Debug("MockFolderMonitor stopped.");
         }
 
-        public Func<string,int>[] ProcessFile { get; set; }
+        public Func<string,ProcessType,int>[] ProcessFile { get; set; }
         public bool More { get; set; }
         public void Start()
         {
@@ -36,7 +36,7 @@ namespace Sciendo.Music.Mocks.Monitoring
             {
                 Thread.Sleep(5000);
                 foreach(var processFile in ProcessFile)
-                    processFile(file);
+                    processFile(file,ProcessType.Update);
             }
             LoggingManager.Debug("MockFolderMonitor Music Monitoring stoped.");
         }

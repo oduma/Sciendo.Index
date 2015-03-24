@@ -145,8 +145,8 @@ namespace Sciendo.Music.Agent
                 monitroingInstance.CancellationToken = monitroingInstance.CancellationTokenSource.Token;
                 monitroingInstance.CancellationToken.Register(monitroingInstance.FolderMonitor.Stop);
             }
-            _monitoringInstances[MonitoringType.Music].FolderMonitor.ProcessFile = new Func<string, int>[]{_agentService.IndexMusicOnDemand,_agentService.AcquireLyricsFor};
-            _monitoringInstances[MonitoringType.Lyrics].FolderMonitor.ProcessFile = new Func<string, int>[]{_agentService.IndexLyricsOnDemand};
+            _monitoringInstances[MonitoringType.Music].FolderMonitor.ProcessFile = new Func<string, ProcessType,int>[]{_agentService.IndexMusic,_agentService.AcquireLyricsFor};
+            _monitoringInstances[MonitoringType.Lyrics].FolderMonitor.ProcessFile = new Func<string, ProcessType,int>[]{_agentService.IndexLyrics};
             LoggingManager.Debug("Monitoring instances prepared.");
         }
 
