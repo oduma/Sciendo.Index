@@ -54,6 +54,9 @@
     <Compile Include="MusicService\SourceFolders.cs" />
     <Compile Include="Processing\ILyricsDeserializer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Solr\Commit.cs" />
+    <Compile Include="Solr\DocumentId.cs" />
+    <Compile Include="Solr\DeleteDocument.cs" />
     <Compile Include="Solr\Document.cs" />
     <Compile Include="Solr\Field.cs" />
     <Compile Include="Solr\FullDocument.cs" />

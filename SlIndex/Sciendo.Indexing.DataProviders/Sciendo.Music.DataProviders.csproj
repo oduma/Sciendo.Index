@@ -60,6 +60,7 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="Properties\DataSources\Sciendo.Music.Contracts.MusicService.ProgressStatus.datasource" />
     <None Include="Properties\DataSources\Sciendo.Music.Contracts.MusicService.SourceFolders.datasource" />
     <None Include="Service References\MusicClient\MusicAgentService.wsdl" />

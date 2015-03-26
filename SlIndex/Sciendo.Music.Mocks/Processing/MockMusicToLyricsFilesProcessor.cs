@@ -19,10 +19,10 @@ namespace Sciendo.Music.Mocks.Processing
 
         }
 
-        protected override IEnumerable<T> TransformFiles<T>(IEnumerable<string> files, Func<SongInfo, string,ProcessType, T> specfifcTranformMethod, ProcessType processType)
+        protected override IEnumerable<T> TransformFiles<T>(IEnumerable<string> files, Func<SongInfo, string,T> specfifcTranformMethod)
         {
             LoggingManager.Debug("Mock Music To Lyrics processor preparing documents...");
-            return files.Select(file => specfifcTranformMethod(GetASongInfo(file), file,processType));
+            return files.Select(file => specfifcTranformMethod(GetASongInfo(file), file));
         }
 
         private SongInfo GetASongInfo(string file)

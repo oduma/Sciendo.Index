@@ -19,30 +19,39 @@ namespace Sciendo.Music.Agent.Processing
             LoggingManager.Debug("Reader constructed");
         }
 
-        public void ParsePath(string path, string searchPattern,ProcessType processType)
+        public void ParsePath(string path, string searchPattern,ProcessType processType=ProcessType.None)
         {
             LoggingManager.Debug("Starting parsing path " + path +" for " + searchPattern);
             if (string.IsNullOrEmpty(path))
                 throw new ArgumentNullException("path");
             if(string.IsNullOrEmpty(searchPattern))
                 throw new ArgumentNullException("searchPattern");
-            if(Directory.Exists(path))
+            if (processType == ProcessType.Delete)
             {
-                LoggingManager.Debug("Path is a directory...");
-                Directory.GetDirectories(path, "*", SearchOption.AllDirectories)
-                    .ToList()
-                    .ForEach(s => ProcessFiles(GetFiles(s, searchPattern, SearchOption.TopDirectoryOnly), _progressEvent,processType));
-                //Search the current directory also
-                ProcessFiles(GetFiles(path, searchPattern, SearchOption.TopDirectoryOnly), _progressEvent, processType);
+                LoggingManager.Debug("Attempting to delete " + path);
+                ProcessFiles(new String[] {path}, _progressEvent);
+                LoggingManager.Debug("Deleted " +path);
             }
-            else if (File.Exists(path))
+            else
             {
-                LoggingManager.Debug("Path is a file...");
-                ProcessFiles(new string[] { path }, _progressEvent,processType);   
+                if (Directory.Exists(path))
+                {
+                    LoggingManager.Debug("Path is a directory...");
+                    Directory.GetDirectories(path, "*", SearchOption.AllDirectories)
+                        .ToList()
+                        .ForEach(s => ProcessFiles(GetFiles(s, searchPattern, SearchOption.TopDirectoryOnly), _progressEvent));
+                    //Search the current directory also
+                    ProcessFiles(GetFiles(path, searchPattern, SearchOption.TopDirectoryOnly), _progressEvent);
+                }
+                else if (File.Exists(path))
+                {
+                    LoggingManager.Debug("Path is a file...");
+                    ProcessFiles(new string[] { path }, _progressEvent);
+                }
+                else
+                    throw new ArgumentException("Invalid path");
+                LoggingManager.Debug("Path parsed.");
             }
-            else 
-                throw new ArgumentException("Invalid path");
-            LoggingManager.Debug("Path parsed.");
         }
 
         internal static IEnumerable<string> GetFiles(string sourceFolder, string filters, SearchOption searchOption,bool includeDirectories=false)
@@ -55,6 +64,6 @@ namespace Sciendo.Music.Agent.Processing
                     .SelectMany(filter => System.IO.Directory.GetFiles(sourceFolder, filter, searchOption)));
         }
 
-        public Action<IEnumerable<string>, Action<Status,string>,ProcessType> ProcessFiles { private get; set; }
+        public Action<IEnumerable<string>, Action<Status,string>> ProcessFiles { private get; set; }
     }
 }

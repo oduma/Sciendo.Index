@@ -36,23 +36,34 @@ namespace Sciendo.Music.Real.Procesors.LyricsSourced
             CurrentConfiguration = givenConfig;
         }
 
-        protected override IEnumerable<T> TransformFiles<T>(IEnumerable<string> files, Func<string, string,ProcessType, T> specificTransfromFunction,ProcessType processType)
+        protected override IEnumerable<T> TransformFiles<T>(IEnumerable<string> files, Func<string, string, T> specificTransfromFunction)
         {
             LoggingManager.Debug("LyricsFileProcessor preparing documents...");
             foreach (string file in files)
             {
-                var lyricsResult = LyricsDeserializer.DeserializeFromFile<LyricsResult>(file);
-                if (lyricsResult != null)
+                var musicFile = GetMusicFile(file);
+                if (File.Exists(file))
                 {
-                    var musicFile = GetMusicFile(file);
-                    if(!string.IsNullOrEmpty(musicFile))
+                    var lyricsResult = LyricsDeserializer.DeserializeFromFile<LyricsResult>(file);
+                    if (lyricsResult != null)
                     {
-                        yield return specificTransfromFunction(lyricsResult.lyrics, musicFile, processType);
+                        if (!string.IsNullOrEmpty(musicFile))
+                        {
+                            yield return specificTransfromFunction(lyricsResult.lyrics, musicFile);
+                        }
+                        else
+                        {
+                            LoggingManager.LogSciendoSystemError(new Exception("Cannot determine the music file for the Lyrics file: " + file));
+                        }
                     }
-                    else
-                    {
-                        throw new Exception("Cannot determine the music file for the Lyrics file: " + file);
-                    }
+                }
+                else if (string.IsNullOrEmpty(musicFile))
+                {
+                    LoggingManager.LogSciendoSystemError(new Exception("Cannot determine the music file for the Lyrics file: " + file));
+                }
+                else if (File.Exists(musicFile)) // lyrics file for music file doesn't exist try to delete it from the index
+                {
+                    yield return specificTransfromFunction(null, musicFile);
                 }
             }
         }
@@ -62,10 +73,17 @@ namespace Sciendo.Music.Real.Procesors.LyricsSourced
             LoggingManager.Debug("Get Music File from Lyrics file: " +file);
             LoggingManager.Debug("Get Music Using MusicRootFolder: " + _musicRootFolder);
             var musicFile = file.Replace(CurrentConfiguration.SourceDirectory, _musicRootFolder);
-
-            musicFile = Directory.GetFiles(Path.GetDirectoryName(musicFile),
-                                Path.GetFileNameWithoutExtension(musicFile) + ".*")[0];
-            LoggingManager.Debug("Music file: "+musicFile);
+            try
+            {
+                musicFile = Directory.GetFiles(Path.GetDirectoryName(musicFile),
+                                    Path.GetFileNameWithoutExtension(musicFile) + ".*")[0];
+                LoggingManager.Debug("Music file: " + musicFile);
+            }
+            catch (Exception ex)
+            {
+                LoggingManager.Debug("Cannot determine the music file from the Lyrics file: " +file);
+                return null;
+            }
             return musicFile;
         }
 
@@ -79,9 +97,9 @@ namespace Sciendo.Music.Real.Procesors.LyricsSourced
 
         }
 
-        protected override Document TransformToDocument(string transfromFrom, string file,ProcessType processType)
+        protected override Document TransformToDocument(string songLyrics, string file)
         {
-            return new Document(file, CatalogLetter(file, _musicRootFolder), transfromFrom,processType);
+            return new Document(file, CatalogLetter(file, _musicRootFolder), songLyrics);
         }
     }
 }

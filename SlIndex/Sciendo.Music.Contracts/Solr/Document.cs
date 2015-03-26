@@ -1,7 +1,6 @@
 ﻿using System;
 using System.IO;
 using Newtonsoft.Json;
-using Sciendo.Music.Contracts.Monitoring;
 
 namespace Sciendo.Music.Contracts.Solr
 {
@@ -23,12 +22,12 @@ namespace Sciendo.Music.Contracts.Solr
 
         }
 
-        public Document(string filePath, string catalogLetter, string songLyrics,ProcessType processType)
+        public Document(string filePath, string catalogLetter, string songLyrics)
             :this(filePath,catalogLetter)
         {
-            
-            Lyrics = new Field<string> {Set = songLyrics};
+            Lyrics =  new Field<string> {Set = songLyrics};
         }
+
         [JsonProperty("file_path_id")]
         public string FilePathId { get; set; }
         [JsonProperty("file_path")]
@@ -37,7 +36,7 @@ namespace Sciendo.Music.Contracts.Solr
         public Field<string> ExtensionF { get; set; }
         [JsonProperty("letter_catalog_f")]
         public Field<string> LetterCatalogF { get; set; }
-        [JsonProperty("Lyrics")]
+        [JsonProperty("lyrics")]
         public Field<string> Lyrics { get; set; }
     }
 }
