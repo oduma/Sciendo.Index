@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="5176652d-7456-4fce-b6c2-fc6ad0931a02" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:7000/MusicAgentService" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="MusicAgentService.xsd" MetadataType="Schema" ID="9dd3c538-ecdf-48d6-a597-6db06ce2d951" SourceId="1" SourceUrl="http://localhost:7000/MusicAgentService?xsd=xsd3" />
+    <MetadataFile FileName="MusicAgentService1.xsd" MetadataType="Schema" ID="089d973c-62ae-4b1f-92b2-a0f4a0e65917" SourceId="1" SourceUrl="http://localhost:7000/MusicAgentService?xsd=xsd1" />
+    <MetadataFile FileName="MusicAgentService2.xsd" MetadataType="Schema" ID="758a3c80-b66a-45da-956a-b1d1a2095fbb" SourceId="1" SourceUrl="http://localhost:7000/MusicAgentService?xsd=xsd2" />
+    <MetadataFile FileName="MusicAgentService.wsdl" MetadataType="Wsdl" ID="634314ea-9160-4511-b353-cd11896bd8db" SourceId="1" SourceUrl="http://localhost:7000/MusicAgentService?wsdl=wsdl0" />
+    <MetadataFile FileName="MusicAgentService3.xsd" MetadataType="Schema" ID="6372df7b-f80b-4f27-9825-61d8193b75f3" SourceId="1" SourceUrl="http://localhost:7000/MusicAgentService?xsd=xsd0" />
+    <MetadataFile FileName="MusicService.wsdl" MetadataType="Wsdl" ID="93522243-82af-4070-b0a8-7c392b13ca00" SourceId="1" SourceUrl="http://localhost:7000/MusicAgentService?wsdl" />
+    <MetadataFile FileName="MusicAgentService4.xsd" MetadataType="Schema" ID="ea3e0d24-0912-4eb4-a254-d5c6940be8db" SourceId="1" SourceUrl="http://localhost:7000/MusicAgentService?xsd=xsd4" />
+    <MetadataFile FileName="MusicAgentService.disco" MetadataType="Disco" ID="d1f35c02-d666-4d8c-ba58-2931478f13b3" SourceId="1" SourceUrl="http://localhost:7000/MusicAgentService?disco" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

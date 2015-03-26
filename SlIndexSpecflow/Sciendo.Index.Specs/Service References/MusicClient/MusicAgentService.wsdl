@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://Sciendo.Music.Agent" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://Sciendo.Music.Agent" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://Sciendo.Music.Agent/Imports">
+      <xsd:import schemaLocation="http://localhost:7000/MusicAgentService?xsd=xsd0" namespace="http://Sciendo.Music.Agent" />
+      <xsd:import schemaLocation="http://localhost:7000/MusicAgentService?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:7000/MusicAgentService?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Sciendo.Music.Contracts.MusicService" />
+      <xsd:import schemaLocation="http://localhost:7000/MusicAgentService?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/Sciendo.Music.Contracts.Common" />
+      <xsd:import schemaLocation="http://localhost:7000/MusicAgentService?xsd=xsd4" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IMusic_IndexLyricsOnDemand_InputMessage">
+    <wsdl:part name="parameters" element="tns:IndexLyricsOnDemand" />
+  </wsdl:message>
+  <wsdl:message name="IMusic_IndexLyricsOnDemand_OutputMessage">
+    <wsdl:part name="parameters" element="tns:IndexLyricsOnDemandResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMusic_IndexMusicOnDemand_InputMessage">
+    <wsdl:part name="parameters" element="tns:IndexMusicOnDemand" />
+  </wsdl:message>
+  <wsdl:message name="IMusic_IndexMusicOnDemand_OutputMessage">
+    <wsdl:part name="parameters" element="tns:IndexMusicOnDemandResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMusic_AcquireLyricsOnDemandFor_InputMessage">
+    <wsdl:part name="parameters" element="tns:AcquireLyricsOnDemandFor" />
+  </wsdl:message>
+  <wsdl:message name="IMusic_AcquireLyricsOnDemandFor_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AcquireLyricsOnDemandForResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMusic_GetLastProcessedPackages_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetLastProcessedPackages" />
+  </wsdl:message>
+  <wsdl:message name="IMusic_GetLastProcessedPackages_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetLastProcessedPackagesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMusic_ListAvailableMusicPathsForIndexing_InputMessage">
+    <wsdl:part name="parameters" element="tns:ListAvailableMusicPathsForIndexing" />
+  </wsdl:message>
+  <wsdl:message name="IMusic_ListAvailableMusicPathsForIndexing_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ListAvailableMusicPathsForIndexingResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMusic_ListAvailableLyricsPathsForIndexing_InputMessage">
+    <wsdl:part name="parameters" element="tns:ListAvailableLyricsPathsForIndexing" />
+  </wsdl:message>
+  <wsdl:message name="IMusic_ListAvailableLyricsPathsForIndexing_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ListAvailableLyricsPathsForIndexingResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMusic_GetSourceFolders_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetSourceFolders" />
+  </wsdl:message>
+  <wsdl:message name="IMusic_GetSourceFolders_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetSourceFoldersResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IMusic">
+    <wsdl:operation name="IndexLyricsOnDemand">
+      <wsdl:input wsaw:Action="http://Sciendo.Music.Agent/IMusic/IndexLyricsOnDemand" message="tns:IMusic_IndexLyricsOnDemand_InputMessage" />
+      <wsdl:output wsaw:Action="http://Sciendo.Music.Agent/IMusic/IndexLyricsOnDemandResponse" message="tns:IMusic_IndexLyricsOnDemand_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="IndexMusicOnDemand">
+      <wsdl:input wsaw:Action="http://Sciendo.Music.Agent/IMusic/IndexMusicOnDemand" message="tns:IMusic_IndexMusicOnDemand_InputMessage" />
+      <wsdl:output wsaw:Action="http://Sciendo.Music.Agent/IMusic/IndexMusicOnDemandResponse" message="tns:IMusic_IndexMusicOnDemand_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AcquireLyricsOnDemandFor">
+      <wsdl:input wsaw:Action="http://Sciendo.Music.Agent/IMusic/AcquireLyricsOnDemandFor" message="tns:IMusic_AcquireLyricsOnDemandFor_InputMessage" />
+      <wsdl:output wsaw:Action="http://Sciendo.Music.Agent/IMusic/AcquireLyricsOnDemandForResponse" message="tns:IMusic_AcquireLyricsOnDemandFor_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLastProcessedPackages">
+      <wsdl:input wsaw:Action="http://Sciendo.Music.Agent/IMusic/GetLastProcessedPackages" message="tns:IMusic_GetLastProcessedPackages_InputMessage" />
+      <wsdl:output wsaw:Action="http://Sciendo.Music.Agent/IMusic/GetLastProcessedPackagesResponse" message="tns:IMusic_GetLastProcessedPackages_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ListAvailableMusicPathsForIndexing">
+      <wsdl:input wsaw:Action="http://Sciendo.Music.Agent/IMusic/ListAvailableMusicPathsForIndexing" message="tns:IMusic_ListAvailableMusicPathsForIndexing_InputMessage" />
+      <wsdl:output wsaw:Action="http://Sciendo.Music.Agent/IMusic/ListAvailableMusicPathsForIndexingResponse" message="tns:IMusic_ListAvailableMusicPathsForIndexing_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ListAvailableLyricsPathsForIndexing">
+      <wsdl:input wsaw:Action="http://Sciendo.Music.Agent/IMusic/ListAvailableLyricsPathsForIndexing" message="tns:IMusic_ListAvailableLyricsPathsForIndexing_InputMessage" />
+      <wsdl:output wsaw:Action="http://Sciendo.Music.Agent/IMusic/ListAvailableLyricsPathsForIndexingResponse" message="tns:IMusic_ListAvailableLyricsPathsForIndexing_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSourceFolders">
+      <wsdl:input wsaw:Action="http://Sciendo.Music.Agent/IMusic/GetSourceFolders" message="tns:IMusic_GetSourceFolders_InputMessage" />
+      <wsdl:output wsaw:Action="http://Sciendo.Music.Agent/IMusic/GetSourceFoldersResponse" message="tns:IMusic_GetSourceFolders_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+</wsdl:definitions>
