@@ -4,8 +4,6 @@ using System.Configuration;
 using System.IO;
 using Id3;
 using Sciendo.Common.Logging;
-using Sciendo.Music.Contracts.Monitoring;
-using Sciendo.Music.Contracts.Processing;
 using Sciendo.Music.Contracts.Solr;
 using Sciendo.Music.Real.Procesors.Common;
 using Sciendo.Music.Real.Procesors.Configuration;

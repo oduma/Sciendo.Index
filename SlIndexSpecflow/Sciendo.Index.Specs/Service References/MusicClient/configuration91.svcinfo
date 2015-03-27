@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="Mxmxjjtg/HhK/tGc5T7KqAoG9HY=">
+<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="22D6NmbLAg/dDZjOjLA2IljOAYg=">
   <bindingConfigurations>
     <bindingConfiguration bindingType="wsHttpBinding" name="WSHttpBinding_IMusic">
       <properties>
@@ -127,10 +127,10 @@
     </bindingConfiguration>
   </bindingConfigurations>
   <endpoints>
-    <endpoint name="WSHttpBinding_IMusic" contract="MusicClient.IMusic" bindingType="wsHttpBinding" address="http://localhost:7000/MusicAgentService" bindingConfiguration="WSHttpBinding_IMusic">
+    <endpoint name="WSHttpBinding_IMusic" contract="MusicClient.IMusic" bindingType="wsHttpBinding" address="http://localhost:7070/MusicAgentService" bindingConfiguration="WSHttpBinding_IMusic">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>http://localhost:7000/MusicAgentService</serializedValue>
+          <serializedValue>http://localhost:7070/MusicAgentService</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />

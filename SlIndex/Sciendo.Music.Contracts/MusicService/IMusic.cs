@@ -31,5 +31,11 @@ namespace Sciendo.Music.Contracts.MusicService
 
         [OperationContract]
         SourceFolders GetSourceFolders();
+
+        [OperationContract]
+        int UnIndexMusicOnDemand(string musicFile);
+
+        [OperationContract]
+        bool DeleteLyricsFile(string file);
     }
 }

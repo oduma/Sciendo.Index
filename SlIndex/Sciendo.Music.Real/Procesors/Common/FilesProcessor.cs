@@ -11,7 +11,7 @@ namespace Sciendo.Music.Real.Procesors.Common
 {
     public abstract class FilesProcessor<TIn>:FilesProcessorBase<TIn>
     {
-        protected ISolrSender Sender { private get; set; }
+        public ISolrSender Sender { get; set; }
 
         protected string CatalogLetter(string musicFile, string rootFolder)
         {

@@ -15,7 +15,13 @@ namespace Sciendo.Music.Agent
             process=new ServiceProcessInstaller();
             process.Account = ServiceAccount.LocalSystem;
             service= new ServiceInstaller();
+#if DEBUG
+            service.ServiceName = "Sciendo Music Agent (Debug)";
+            service.Description = "Post Processes Music Files (Debug)";
+#else
             service.ServiceName = "Sciendo Music Agent";
+            service.Description = "Post Processes Music Files";
+#endif
             Installers.Add(process);
             Installers.Add(service);
         }

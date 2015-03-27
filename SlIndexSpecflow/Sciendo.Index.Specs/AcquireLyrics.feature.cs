@@ -19,21 +19,21 @@ namespace Sciendo.Index.Specs
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "1.9.0.77")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("IndexingOfMusicFiles")]
-    public partial class IndexingOfMusicFilesFeature
+    [NUnit.Framework.DescriptionAttribute("AcquireLyrics")]
+    public partial class AcquireLyricsFeature
     {
         
         private static TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "IndexingOfMusicFiles.feature"
+#line 1 "AcquireLyrics.feature"
 #line hidden
         
         [NUnit.Framework.TestFixtureSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "IndexingOfMusicFiles", "In order to be able to search for my music\nI want to be able to speficy what musi" +
-                    "c \nfiles I should index", ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "AcquireLyrics", "In order to be able to Index a new lyrics file\nI want to get the lyrics and save " +
+                    "them locally", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -66,21 +66,23 @@ namespace Sciendo.Index.Specs
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Index a new music file on demand")]
-        [NUnit.Framework.CategoryAttribute("musicFileIndexation")]
-        public virtual void IndexANewMusicFileOnDemand()
+        [NUnit.Framework.DescriptionAttribute("Acquire Lyrics for a music file")]
+        [NUnit.Framework.CategoryAttribute("AcquireLyricsForMusic")]
+        public virtual void AcquireLyricsForAMusicFile()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Index a new music file on demand", new string[] {
-                        "musicFileIndexation"});
-#line 7
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Acquire Lyrics for a music file", new string[] {
+                        "AcquireLyricsForMusic"});
+#line 5
 this.ScenarioSetup(scenarioInfo);
+#line 6
+ testRunner.Given("I have no lyrics file \'C:\\Code\\m\\Lyrics\\S\\Mr. Scruff\\Ninja Tuna\\Kalimba.lrc\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 7
+ testRunner.When("I acquire the lyrics for \'C:\\Code\\m\\Music\\S\\Mr. Scruff\\Ninja Tuna\\Kalimba.mp3\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 8
- testRunner.Given("The file \'C:\\Code\\m\\Music\\S\\Mr. Scruff\\Ninja Tuna\\Kalimba.mp3\' is not indexed yet" +
-                    "", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Then("the result is the file \'C:\\Code\\m\\Lyrics\\S\\Mr. Scruff\\Ninja Tuna\\Kalimba.lrc\' exi" +
+                    "sts", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 9
- testRunner.When("I call the indexOnDemandService", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 10
- testRunner.Then("the result should be 1", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.And("the result should be 1", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }

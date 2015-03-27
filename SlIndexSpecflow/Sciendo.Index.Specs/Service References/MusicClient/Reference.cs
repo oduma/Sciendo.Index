@@ -213,6 +213,18 @@ namespace Sciendo.Index.Specs.MusicClient {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://Sciendo.Music.Agent/IMusic/GetSourceFolders", ReplyAction="http://Sciendo.Music.Agent/IMusic/GetSourceFoldersResponse")]
         System.Threading.Tasks.Task<Sciendo.Index.Specs.MusicClient.SourceFolders> GetSourceFoldersAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://Sciendo.Music.Agent/IMusic/UnIndexMusicOnDemand", ReplyAction="http://Sciendo.Music.Agent/IMusic/UnIndexMusicOnDemandResponse")]
+        int UnIndexMusicOnDemand(string musicFile);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://Sciendo.Music.Agent/IMusic/UnIndexMusicOnDemand", ReplyAction="http://Sciendo.Music.Agent/IMusic/UnIndexMusicOnDemandResponse")]
+        System.Threading.Tasks.Task<int> UnIndexMusicOnDemandAsync(string musicFile);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://Sciendo.Music.Agent/IMusic/DeleteLyricsFile", ReplyAction="http://Sciendo.Music.Agent/IMusic/DeleteLyricsFileResponse")]
+        bool DeleteLyricsFile(string file);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://Sciendo.Music.Agent/IMusic/DeleteLyricsFile", ReplyAction="http://Sciendo.Music.Agent/IMusic/DeleteLyricsFileResponse")]
+        System.Threading.Tasks.Task<bool> DeleteLyricsFileAsync(string file);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -296,6 +308,22 @@ namespace Sciendo.Index.Specs.MusicClient {
         
         public System.Threading.Tasks.Task<Sciendo.Index.Specs.MusicClient.SourceFolders> GetSourceFoldersAsync() {
             return base.Channel.GetSourceFoldersAsync();
+        }
+        
+        public int UnIndexMusicOnDemand(string musicFile) {
+            return base.Channel.UnIndexMusicOnDemand(musicFile);
+        }
+        
+        public System.Threading.Tasks.Task<int> UnIndexMusicOnDemandAsync(string musicFile) {
+            return base.Channel.UnIndexMusicOnDemandAsync(musicFile);
+        }
+        
+        public bool DeleteLyricsFile(string file) {
+            return base.Channel.DeleteLyricsFile(file);
+        }
+        
+        public System.Threading.Tasks.Task<bool> DeleteLyricsFileAsync(string file) {
+            return base.Channel.DeleteLyricsFileAsync(file);
         }
     }
 }

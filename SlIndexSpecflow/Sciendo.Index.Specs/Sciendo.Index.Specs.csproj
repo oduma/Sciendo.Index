@@ -47,7 +47,15 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="GenericSteps\FilesBasedScenarios.cs" />
+    <Compile Include="AcquireLyrics.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AcquireLyrics.feature</DependentUpon>
+    </Compile>
+    <Compile Include="AcquireLyricsSteps.cs" />
+    <Compile Include="GenericSteps\CallingIndexingService.cs" />
+    <Compile Include="GenericSteps\FilesSteps.cs" />
+    <Compile Include="GenericSteps\GivenIndexes.cs" />
     <Compile Include="IndexingOfMusicFiles.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -62,29 +70,33 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="AcquireLyrics.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>AcquireLyrics.feature.cs</LastGenOutput>
+    </None>
     <None Include="App.config" />
     <None Include="IndexingOfMusicFiles.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>IndexingOfMusicFiles.feature.cs</LastGenOutput>
     </None>
     <None Include="packages.config" />
-    <None Include="Service References\MusicClient\MusicAgentService.wsdl" />
-    <None Include="Service References\MusicClient\MusicAgentService.xsd">
+    <None Include="Service References\MusicClient\MusicAgentService1.wsdl" />
+    <None Include="Service References\MusicClient\MusicAgentService5.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\MusicClient\MusicAgentService1.xsd">
+    <None Include="Service References\MusicClient\MusicAgentService51.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\MusicClient\MusicAgentService2.xsd">
+    <None Include="Service References\MusicClient\MusicAgentService52.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\MusicClient\MusicAgentService3.xsd">
+    <None Include="Service References\MusicClient\MusicAgentService53.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\MusicClient\MusicAgentService4.xsd">
+    <None Include="Service References\MusicClient\MusicAgentService54.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\MusicClient\MusicService.wsdl" />
+    <None Include="Service References\MusicClient\MusicService1.wsdl" />
     <None Include="Service References\MusicClient\Sciendo.Index.Specs.MusicClient.ProgressStatus.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -99,9 +111,6 @@
     <WCFMetadataStorage Include="Service References\MusicClient\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\MusicClient\MusicAgentService.disco" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Service References\MusicClient\configuration91.svcinfo" />
   </ItemGroup>
   <ItemGroup>
@@ -112,6 +121,9 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\MusicClient\MusicAgentService1.disco" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

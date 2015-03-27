@@ -18,7 +18,7 @@ namespace Sciendo.Music.Real.Monitoring
             if (string.IsNullOrEmpty(currentRootFolder))
                 throw new ArgumentNullException("currentRootFolder");
             if (!Directory.Exists(currentRootFolder))
-                throw new ArgumentException("Invalid path");
+                throw new ArgumentException("Invalid path: " +currentRootFolder);
             _currentRootFolder = currentRootFolder;
             LoggingManager.Debug("FolderMonitor constructed for: " + currentRootFolder);
 

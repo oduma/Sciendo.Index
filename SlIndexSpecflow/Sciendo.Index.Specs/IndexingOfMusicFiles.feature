@@ -5,6 +5,6 @@ files I should index
 
 @musicFileIndexation
 Scenario: Index a new music file on demand
-	Given The file 'c:\m\m.mp3' exists
+	Given The file 'C:\Code\m\Music\S\Mr. Scruff\Ninja Tuna\Kalimba.mp3' is not indexed yet
 	When I call the indexOnDemandService
 	Then the result should be 1

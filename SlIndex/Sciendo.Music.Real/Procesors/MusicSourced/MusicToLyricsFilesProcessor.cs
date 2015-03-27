@@ -77,10 +77,10 @@ namespace Sciendo.Music.Real.Procesors.MusicSourced
                 
             var artist = string.Join("", songInfo.Artists[0].Replace(" ", "_").ToCharArray().Where(c => (int)c >= 32));
             var song = songInfo.Title.Replace(" ", "_");
-
+            string downloadedFromApi = string.Empty;
             try
             {
-                var downloadedFromApi = WebClient.TryQuery<string>(GetUrl(artist,song));
+                downloadedFromApi = WebClient.TryQuery<string>(GetUrl(artist,song));
                 var result = LyricsDeserializer.Deserialize<LyricsResult>(downloadedFromApi);
                 if (!Directory.Exists(directoryPath))
                     Directory.CreateDirectory(directoryPath);
@@ -94,6 +94,7 @@ namespace Sciendo.Music.Real.Procesors.MusicSourced
             }
             catch (PreSerializationCheckException pcex)
             {
+                LoggingManager.LogSciendoSystemError(downloadedFromApi, pcex);
                 if (_progressEvent != null)
                     _progressEvent(Status.Error, pcex.Message);
             }
