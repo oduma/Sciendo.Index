@@ -5,9 +5,9 @@ using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 using Sciendo.IOC;
-using Sciendo.Music.DataProviders;
+using Sciendo.Music.DataProviders.Configuration;
 
-namespace Sciendo.Index.Web
+namespace Sciendo.Music.Web
 {
     public class MvcApplication : HttpApplication
     {
@@ -35,13 +35,32 @@ namespace Sciendo.Index.Web
             }
         }
 
-        public static DataProvidersConfigurationSection IndexingConfiguration
+        public static QueryConfigurationSection QueryConfiguration
         {
             get
             {
-                if (!HttpContext.Current.Application.AllKeys.Contains("dataProviders"))
-                    HttpContext.Current.Application.Add("dataProviders", ConfigurationManager.GetSection("dataProviders"));
-                return HttpContext.Current.Application["dataProviders"] as DataProvidersConfigurationSection;
+                if (!HttpContext.Current.Application.AllKeys.Contains("query"))
+                    HttpContext.Current.Application.Add("query", ConfigurationManager.GetSection("queryDataProvider"));
+                return HttpContext.Current.Application["query"] as QueryConfigurationSection;
+            }
+        }
+
+        public static IndexDataProviderConfigurationSection IndexingConfiguration
+        {
+            get
+            {
+                if (!HttpContext.Current.Application.AllKeys.Contains("index"))
+                    HttpContext.Current.Application.Add("index", ConfigurationManager.GetSection("indexDataProvider"));
+                return HttpContext.Current.Application["index"] as IndexDataProviderConfigurationSection;
+            }
+        }
+        public static PlayerConfigurationSection PlayerConfiguration
+        {
+            get
+            {
+                if (!HttpContext.Current.Application.AllKeys.Contains("player"))
+                    HttpContext.Current.Application.Add("player", ConfigurationManager.GetSection("playerProcessProvider"));
+                return HttpContext.Current.Application["player"] as PlayerConfigurationSection;
             }
         }
     }

@@ -9,6 +9,7 @@ using Sciendo.Music.Contracts.Common;
 using Sciendo.Music.Contracts.Monitoring;
 using Sciendo.Music.Contracts.MusicService;
 using Sciendo.Music.Contracts.Solr;
+using Sciendo.Music.Real.Procesors.Common;
 using Sciendo.Music.Real.Procesors.LyricsSourced;
 using Sciendo.Music.Real.Procesors.MusicSourced;
 
@@ -173,6 +174,17 @@ namespace Sciendo.Music.Agent.Service
                 return true;
             }
             return false;
+        }
+
+        public int UnIndexLyricsOnDemand(string musicFile)
+        {
+            if (_lyricsFilesProcessor.Sender.TrySend(new Document(musicFile,musicFile.ToLower().Replace(_musicFilesProcessor.CurrentConfiguration.SourceDirectory.ToLower(), "").Split(new char[] { Path.DirectorySeparatorChar })[1],null)).Status!=Status.Done)
+            {
+                ProgressEvent(Status.Error, musicFile);
+                return 0;
+            }
+            ProgressEvent(Status.Done, musicFile);
+            return 1;
         }
     }
 }

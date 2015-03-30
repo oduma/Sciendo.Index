@@ -56,10 +56,10 @@
     <Compile Include="GenericSteps\CallingIndexingService.cs" />
     <Compile Include="GenericSteps\FilesSteps.cs" />
     <Compile Include="GenericSteps\GivenIndexes.cs" />
-    <Compile Include="IndexingOfMusicFiles.feature.cs">
+    <Compile Include="IndexingOfFiles.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>IndexingOfMusicFiles.feature</DependentUpon>
+      <DependentUpon>IndexingOfFiles.feature</DependentUpon>
     </Compile>
     <Compile Include="IndexingOfMusicFilesSteps.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -75,9 +75,9 @@
       <LastGenOutput>AcquireLyrics.feature.cs</LastGenOutput>
     </None>
     <None Include="App.config" />
-    <None Include="IndexingOfMusicFiles.feature">
+    <None Include="IndexingOfFiles.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>IndexingOfMusicFiles.feature.cs</LastGenOutput>
+      <LastGenOutput>IndexingOfFiles.feature.cs</LastGenOutput>
     </None>
     <None Include="packages.config" />
     <None Include="Service References\MusicClient\MusicAgentService1.wsdl" />

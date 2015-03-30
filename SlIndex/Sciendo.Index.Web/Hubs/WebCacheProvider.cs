@@ -1,6 +1,6 @@
 ﻿using System.Web;
 
-namespace Sciendo.Index.Web.Hubs
+namespace Sciendo.Music.Web.Hubs
 {
     public class WebCacheProvider : ICacheProvider
     {

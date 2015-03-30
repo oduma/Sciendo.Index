@@ -12,7 +12,7 @@ namespace Sciendo.Index.Specs
         public void WhenIAcquireTheLyricsFor(string p0)
         {
             IMusic svc= new MusicClient.MusicClient();
-            var response = svc.AcquireLyricsOnDemandFor(p0, true);
+            var response = svc.AcquireLyricsOnDemandFor(p0, false);
             ScenarioContext.Current.Add("result",response);
         }
 

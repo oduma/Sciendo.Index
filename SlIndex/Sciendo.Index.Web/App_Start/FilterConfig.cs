@@ -1,6 +1,6 @@
 ﻿using System.Web.Mvc;
 
-namespace Sciendo.Index.Web
+namespace Sciendo.Music.Web
 {
     public class FilterConfig
     {

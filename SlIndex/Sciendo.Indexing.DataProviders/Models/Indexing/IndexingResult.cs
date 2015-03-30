@@ -1,4 +1,4 @@
-﻿namespace Sciendo.Music.DataProviders.Models
+﻿namespace Sciendo.Music.DataProviders.Models.Indexing
 {
     public class IndexingResult
     {

@@ -80,6 +80,7 @@ namespace Sciendo.Music.Real.Procesors.MusicSourced
             string downloadedFromApi = string.Empty;
             try
             {
+                LoggingManager.Debug("Trying to get lyrics from the url: "+GetUrl(artist,song));
                 downloadedFromApi = WebClient.TryQuery<string>(GetUrl(artist,song));
                 var result = LyricsDeserializer.Deserialize<LyricsResult>(downloadedFromApi);
                 if (!Directory.Exists(directoryPath))
@@ -100,6 +101,7 @@ namespace Sciendo.Music.Real.Procesors.MusicSourced
             }
             catch (Exception ex)
             {
+                LoggingManager.LogSciendoSystemError(downloadedFromApi, ex);
                 if (_progressEvent != null)
                     _progressEvent(Status.Error, ex.Message);
 

@@ -1,8 +1,10 @@
-﻿using Owin;
-using Microsoft.Owin;
-[assembly: OwinStartup(typeof(Sciendo.Index.Web.Startup))]
+﻿using Microsoft.Owin;
+using Owin;
+using Sciendo.Music.Web;
 
-namespace Sciendo.Index.Web
+[assembly: OwinStartup(typeof(Startup))]
+
+namespace Sciendo.Music.Web
 {
     public class Startup
     {

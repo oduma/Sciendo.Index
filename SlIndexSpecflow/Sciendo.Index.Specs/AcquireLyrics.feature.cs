@@ -75,12 +75,14 @@ namespace Sciendo.Index.Specs
 #line 5
 this.ScenarioSetup(scenarioInfo);
 #line 6
- testRunner.Given("I have no lyrics file \'C:\\Code\\m\\Lyrics\\S\\Mr. Scruff\\Ninja Tuna\\Kalimba.lrc\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("I have no lyrics file \'C:\\Code\\m\\Lyrics\\B\\BoneyM\\BoneyM Greatest Hits\\Brown girl " +
+                    "in the ring.lrc\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 7
- testRunner.When("I acquire the lyrics for \'C:\\Code\\m\\Music\\S\\Mr. Scruff\\Ninja Tuna\\Kalimba.mp3\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("I acquire the lyrics for \'C:\\Code\\m\\Music\\B\\BoneyM\\BoneyM Greatest Hits\\Brown gir" +
+                    "l in the ring.mp3\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 8
- testRunner.Then("the result is the file \'C:\\Code\\m\\Lyrics\\S\\Mr. Scruff\\Ninja Tuna\\Kalimba.lrc\' exi" +
-                    "sts", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("the result is the file \'C:\\Code\\m\\Lyrics\\B\\BoneyM\\BoneyM Greatest Hits\\Brown girl" +
+                    " in the ring.lrc\' exists", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 9
  testRunner.And("the result should be 1", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden

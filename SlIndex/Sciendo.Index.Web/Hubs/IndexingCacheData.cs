@@ -1,4 +1,4 @@
-﻿namespace Sciendo.Index.Web.Hubs
+﻿namespace Sciendo.Music.Web.Hubs
 {
     public static class IndexingCacheData
     {

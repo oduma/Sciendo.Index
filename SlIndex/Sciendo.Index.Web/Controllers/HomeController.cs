@@ -1,8 +1,8 @@
 ﻿using System.Web.Mvc;
 using Sciendo.Music.DataProviders;
-using Sciendo.Music.DataProviders.Models;
+using Sciendo.Music.DataProviders.Models.Indexing;
 
-namespace Sciendo.Index.Web.Controllers
+namespace Sciendo.Music.Web.Controllers
 {
     public class HomeController : Controller
     {

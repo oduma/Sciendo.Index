@@ -2,7 +2,7 @@
 using Microsoft.AspNet.SignalR;
 using Sciendo.Music.DataProviders;
 
-namespace Sciendo.Index.Web.Hubs
+namespace Sciendo.Music.Web.Hubs
 {
     public class MonitoringHub : Hub
     {

@@ -1,8 +1,8 @@
 ﻿using System.Configuration;
 
-namespace Sciendo.Music.DataProviders
+namespace Sciendo.Music.DataProviders.Configuration
 {
-    public class DataProvidersConfigurationSection : ConfigurationSection
+    public class IndexDataProviderConfigurationSection : ConfigurationSection
     {
         [ConfigurationProperty("currentDataProvider", DefaultValue = "mock", IsRequired = true)]
         public string CurrentDataProvider

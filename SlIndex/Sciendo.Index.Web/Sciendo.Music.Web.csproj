@@ -11,8 +11,8 @@
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Sciendo.Index.Web</RootNamespace>
-    <AssemblyName>Sciendo.Index.Web</AssemblyName>
+    <RootNamespace>Sciendo.Music.Web</RootNamespace>
+    <AssemblyName>Sciendo.Music.Web</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
@@ -154,6 +154,7 @@
     <Compile Include="App_Start\IocConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\QueryController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -169,6 +170,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\indexing\images\Done.png" />
     <Content Include="Content\indexing\images\Error.png" />
+    <Content Include="Content\indexing\images\playlist_add.png" />
     <Content Include="Content\indexing\specific.css" />
     <Content Include="Content\ko.binding.style.css" />
     <Content Include="Content\themes\base\accordion.css" />
@@ -200,6 +202,12 @@
     <Content Include="log4net.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="App_Data\examplequeryresult.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Data\filteredjsonexample.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -218,8 +226,11 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
-    <Content Include="Scripts\sciendo.index.web\index.autocomplete.js" />
-    <Content Include="Scripts\sciendo.index.web\index.viewmodel.js" />
+    <Content Include="Scripts\sciendo.music\index.autocomplete.js" />
+    <Content Include="Scripts\sciendo.music\index.viewmodel.js" />
+    <Content Include="Scripts\sciendo.music\knockout.simpleGrid.1.3.js" />
+    <Content Include="Scripts\sciendo.music\query.datacontext.js" />
+    <Content Include="Scripts\sciendo.music\query.viewmodel.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -236,9 +247,9 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+    <Content Include="Views\Query\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
     <Folder Include="Content\themes\base\images\" />
   </ItemGroup>
   <ItemGroup>

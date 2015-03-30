@@ -1,6 +1,6 @@
 ﻿using System.Web.Optimization;
 
-namespace Sciendo.Index.Web
+namespace Sciendo.Music.Web
 {
     public class BundleConfig
     {
@@ -40,8 +40,11 @@ namespace Sciendo.Index.Web
 "~/Scripts/jquery.signalR-{version}.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/index").Include(
-"~/Scripts/sciendo.index.web/index.viewmodel.js",
-"~/Scripts/sciendo.index.web/index.autocomplete.js"));
+"~/Scripts/sciendo.music/index.viewmodel.js",
+"~/Scripts/sciendo.music/index.autocomplete.js"));
+            bundles.Add(new ScriptBundle("~/bundles/query").Include(
+    "~/Scripts/sciendo.music/knockout*",
+"~/Scripts/sciendo.music/query*"));
 
             // Set EnableOptimizations to false for debugging. For more information,
             // visit http://go.microsoft.com/fwlink/?LinkId=301862

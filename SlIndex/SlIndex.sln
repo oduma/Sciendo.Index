@@ -18,7 +18,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{2EF93D
 		.nuget\packages.config = .nuget\packages.config
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sciendo.Index.Web", "Sciendo.Index.Web\Sciendo.Index.Web.csproj", "{DFB10CC4-E5B4-4727-8229-0E316A294891}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sciendo.Music.Web", "Sciendo.Index.Web\Sciendo.Music.Web.csproj", "{DFB10CC4-E5B4-4727-8229-0E316A294891}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sciendo.Music.DataProviders", "Sciendo.Indexing.DataProviders\Sciendo.Music.DataProviders.csproj", "{E0E60437-5683-4AE7-A448-4848B4BDDD2A}"
 EndProject

@@ -1,7 +1,7 @@
 ﻿using System.Web.Mvc;
 using System.Web.Routing;
 
-namespace Sciendo.Index.Web
+namespace Sciendo.Music.Web
 {
     public class RouteConfig
     {

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Globalization;
 using System.Linq;
-using Sciendo.Music.DataProviders.Models;
+using Sciendo.Music.DataProviders.Models.Indexing;
 using Sciendo.Music.DataProviders.MusicClient;
 using IMusic = Sciendo.Music.DataProviders.MusicClient.IMusic;
 
