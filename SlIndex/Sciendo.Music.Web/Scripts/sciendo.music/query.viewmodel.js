@@ -1,4 +1,4 @@
-﻿function indexViewModel() {
+﻿function queryViewModel() {
     var self = this;
     self.criteria = ko.observable();
     self.resultData = ko.observable(),
@@ -54,4 +54,4 @@
 }
 
 // Initiate the Knockout bindings
-ko.applyBindings(new indexViewModel());
+ko.applyBindings(new queryViewModel());

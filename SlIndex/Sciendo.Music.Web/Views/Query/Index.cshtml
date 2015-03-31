@@ -1,6 +1,10 @@
 ﻿@{
     ViewBag.Title = "Search";
 }
+@section styles
+{
+    @Styles.Render("~/Content/themes/base/css")
+}
 @section active
 {
     <input data-bind="value: criteria, selected: true, blurOnEnter: true" />
@@ -40,6 +44,6 @@
 @section scripts
 {
 
-    @Scripts.Render("~/bundles/index")
+    @Scripts.Render("~/bundles/query")
 
 }
