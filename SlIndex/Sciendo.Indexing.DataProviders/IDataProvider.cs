@@ -1,5 +1,5 @@
 ﻿using System;
-using Sciendo.Music.DataProviders.Models;
+using Sciendo.Music.DataProviders.Models.Indexing;
 using Sciendo.Music.DataProviders.MusicClient;
 
 namespace Sciendo.Music.DataProviders

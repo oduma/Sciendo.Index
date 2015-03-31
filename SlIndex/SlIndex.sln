@@ -12,8 +12,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{2EF93D
 		.nuget\packages.config = .nuget\packages.config
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sciendo.Index.Web", "Sciendo.Index.Web\Sciendo.Index.Web.csproj", "{DFB10CC4-E5B4-4727-8229-0E316A294891}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sciendo.Music.DataProviders", "Sciendo.Indexing.DataProviders\Sciendo.Music.DataProviders.csproj", "{E0E60437-5683-4AE7-A448-4848B4BDDD2A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sciendo.Music.Mocks", "Sciendo.Music.Mocks\Sciendo.Music.Mocks.csproj", "{78A40273-5BAA-4FEF-82FB-390736D01503}"
@@ -23,6 +21,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sciendo.Music.Real", "Sciendo.Music.Real\Sciendo.Music.Real.csproj", "{3919D695-CBD3-48F8-B799-339F1F52525F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sciendo.Music.DataProviders.Mocks", "Sciendo.Music.DataProviders.Mocks\Sciendo.Music.DataProviders.Mocks.csproj", "{BDC85158-71A5-40EC-8EC5-008AAB403E1A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sciendo.Music.Web", "Sciendo.Music.Web\Sciendo.Music.Web.csproj", "{DFB10CC4-E5B4-4727-8229-0E316A294891}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -38,10 +38,6 @@ Global
 		{866D1694-DD87-4F37-B542-FF50863317DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{866D1694-DD87-4F37-B542-FF50863317DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{866D1694-DD87-4F37-B542-FF50863317DF}.Release|Any CPU.Build.0 = Release|Any CPU
-		{DFB10CC4-E5B4-4727-8229-0E316A294891}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DFB10CC4-E5B4-4727-8229-0E316A294891}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DFB10CC4-E5B4-4727-8229-0E316A294891}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DFB10CC4-E5B4-4727-8229-0E316A294891}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E0E60437-5683-4AE7-A448-4848B4BDDD2A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{E0E60437-5683-4AE7-A448-4848B4BDDD2A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E0E60437-5683-4AE7-A448-4848B4BDDD2A}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -62,6 +58,10 @@ Global
 		{BDC85158-71A5-40EC-8EC5-008AAB403E1A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BDC85158-71A5-40EC-8EC5-008AAB403E1A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BDC85158-71A5-40EC-8EC5-008AAB403E1A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DFB10CC4-E5B4-4727-8229-0E316A294891}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DFB10CC4-E5B4-4727-8229-0E316A294891}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DFB10CC4-E5B4-4727-8229-0E316A294891}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DFB10CC4-E5B4-4727-8229-0E316A294891}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

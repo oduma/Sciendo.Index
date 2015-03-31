@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Globalization;
-using Sciendo.Music.DataProviders.Models;
+using Sciendo.Music.DataProviders.Models.Indexing;
 using Sciendo.Music.DataProviders.MusicClient;
 
 namespace Sciendo.Music.DataProviders.Mocks
