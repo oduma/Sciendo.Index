@@ -10,36 +10,31 @@
     @Scripts.Render("~/bundles/modernizr")
 </head>
     <body>
-        <section id="active"></section>
-        <div class="navbar navbar-inverse navbar-fixed-top">
-            <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                </div>
-                <div class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav">
-                        <li>@Html.ActionLink("Index", "Index", "Home")</li>
-                        <li>@Html.ActionLink("Query", "Index", "Query")</li>
-                        <li>@Html.ActionLink("About", "About", "Home")</li>
-                        <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                    </ul>
+        <header>
+            <div class="content-wrapper">
+                <div class="float-right">
+                    <nav>
+                        <ul id="menu">
+                            <li>@Html.ActionLink("Index", "Index", "Home")</li>
+                            <li>@Html.ActionLink("Query", "Index", "Query")</li>
+                            <li>@Html.ActionLink("About", "About", "Home")</li>
+                            <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                        </ul>
+                    </nav>
                 </div>
             </div>
+        </header>
+        <div id="body">
+            <div class="float-left site-title">
+                @ViewBag.Title
+            </div>
+            <section class="content-wrapper main-content clear-fix">
+                @RenderBody()
+            </section>
         </div>
-        <div class="container body-content">
-            @RenderBody()
-            <div class="float-left">
-                <p class="site-title">@ViewBag.Title</p>&nbsp;@RenderSection("active", false)
-            </div>
-            <hr />
-            <footer>
+        <footer>
                 <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
             </footer>
-        </div>
 
         @Scripts.Render("~/bundles/jquery")
         @Scripts.Render("~/bundles/jqueryui")

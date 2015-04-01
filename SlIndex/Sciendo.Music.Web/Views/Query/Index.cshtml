@@ -1,15 +1,8 @@
 ﻿@{
     ViewBag.Title = "Search";
 }
-@section styles
-{
-    @Styles.Render("~/Content/themes/base/css")
-}
-@section active
-{
-    <input data-bind="value: criteria, selected: true, blurOnEnter: true" />
-    <button data-bind="click: getResults">Go</button>
-}
+<input data-bind="value: criteria, selected: true, blurOnEnter: true" />
+<button data-bind="click: getResults">Go</button>
 <p class="error" data-bind="text: error"></p>
 <div data-bind="with: resultData">
     <h3>Results</h3>

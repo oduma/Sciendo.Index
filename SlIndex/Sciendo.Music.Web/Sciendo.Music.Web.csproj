@@ -168,8 +168,21 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\indexing\images\accent.png" />
+    <Content Include="Content\indexing\images\bullet.png" />
     <Content Include="Content\indexing\images\Done.png" />
     <Content Include="Content\indexing\images\Error.png" />
+    <Content Include="Content\indexing\images\heroAccent.png" />
+    <Content Include="Content\indexing\images\orderedList0.png" />
+    <Content Include="Content\indexing\images\orderedList1.png" />
+    <Content Include="Content\indexing\images\orderedList2.png" />
+    <Content Include="Content\indexing\images\orderedList3.png" />
+    <Content Include="Content\indexing\images\orderedList4.png" />
+    <Content Include="Content\indexing\images\orderedList5.png" />
+    <Content Include="Content\indexing\images\orderedList6.png" />
+    <Content Include="Content\indexing\images\orderedList7.png" />
+    <Content Include="Content\indexing\images\orderedList8.png" />
+    <Content Include="Content\indexing\images\orderedList9.png" />
     <Content Include="Content\indexing\images\playlist_add.png" />
     <Content Include="Content\indexing\specific.css" />
     <Content Include="Content\ko.binding.style.css" />
