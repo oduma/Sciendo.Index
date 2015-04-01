@@ -1,15 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.30501.0
+VisualStudioVersion = 12.0.30723.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sciendo.Music.Tests", "Sciendo.Index.Tests\Sciendo.Music.Tests.csproj", "{5E5FAE5D-0401-4BF0-ACA0-88E1AE109F8F}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3rdParty", "3rdParty", "{13D1F930-E0B2-499F-B77F-47A05B22E7AB}"
-	ProjectSection(SolutionItems) = preProject
-		3rdParty\Id3.dll = 3rdParty\Id3.dll
-		3rdParty\Id3.Files.dll = 3rdParty\Id3.Files.dll
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sciendo.Music.Agent", "Sciendo.Indexer.Agent\Sciendo.Music.Agent.csproj", "{866D1694-DD87-4F37-B542-FF50863317DF}"
 EndProject
