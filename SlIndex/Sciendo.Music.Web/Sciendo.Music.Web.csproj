@@ -217,6 +217,7 @@
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="log4net.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="App_Data\examplequeryresult.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
