@@ -49,5 +49,17 @@ namespace Sciendo.Music.Tests
             Assert.AreEqual(1, svc.IndexLyricsOnDemand(@"TestData\Lyrics\MockMp3.lrc"));
         }
 
+        [Test]
+        public void GetSourceFoldersOk()
+        {
+            MusicFilesProcessor musicFilesProcessor = new MockMusicFilesProcessor();
+            LyricsFilesProcessor lyricsFilesProcessor = new MockLyricsFilesProcessor(@"TestData\Lyrics",
+                @"TestData\Music");
+            MusicService svc = new MusicService(musicFilesProcessor, lyricsFilesProcessor, null, 2);
+            var sourceFolders = svc.GetSourceFolders();
+            Assert.AreEqual(@"TestData\Music",sourceFolders.Music);
+            Assert.AreEqual(@"TestData\Lyrics",sourceFolders.Lyrics);
+        }
+
     }
 }

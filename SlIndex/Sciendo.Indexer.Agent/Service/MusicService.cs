@@ -186,5 +186,15 @@ namespace Sciendo.Music.Agent.Service
             ProgressEvent(Status.Done, musicFile);
             return 1;
         }
+
+        public WorkingSet GetCurrentWorkingSet()
+        {
+            return new WorkingSet
+            {
+                LyricsFilesProcessorType = _lyricsFilesProcessor.GetType(),
+                MusicFilesProcessorType = _musicFilesProcessor.GetType(),
+                MusicToLyricsFilesProcessorType = _musicToLyricsFilesProcessor.GetType()
+            };
+        }
     }
 }

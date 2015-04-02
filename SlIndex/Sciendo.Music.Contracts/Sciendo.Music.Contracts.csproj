@@ -52,6 +52,7 @@
     <Compile Include="MusicService\IMusic.cs" />
     <Compile Include="MusicService\ProgressStatus.cs" />
     <Compile Include="MusicService\SourceFolders.cs" />
+    <Compile Include="MusicService\WorkingSet.cs" />
     <Compile Include="Processing\ILyricsDeserializer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Solr\Commit.cs" />

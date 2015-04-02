@@ -25,7 +25,8 @@ namespace Sciendo.Music.Agent
         private ServiceHost _agentServiceHost;
         private readonly AgentConfigurationSection _agentConfigurationSection;
         private readonly Dictionary<MonitoringType,MonitoringInstance> _monitoringInstances=new Dictionary<MonitoringType, MonitoringInstance>();
-
+        public Dictionary<MonitoringType, MonitoringInstance> MonitoringInstances { get { return _monitoringInstances; } }
+        public IMusic AgentService { get { return _agentService; } }
         public MusicAgent()
         {
             AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
@@ -84,26 +85,7 @@ namespace Sciendo.Music.Agent
 
             try
             {
-                LoggingManager.Debug("Resolving current Music Procesor...");
-                var mProc =
-                    IOC.Container.GetInstance()
-                        .Resolve<MusicFilesProcessor>(_agentConfigurationSection.Music.CurrentProcessingComponentKey);
-                LoggingManager.Debug("Current Music Procesor resolved.");
-                LoggingManager.Debug("Resolving current Lyrics Procesor...");
-                var lProc =
-                    IOC.Container.GetInstance()
-                        .Resolve<LyricsFilesProcessor>(_agentConfigurationSection.Lyrics.CurrentProcessingComponentKey);
-                LoggingManager.Debug("Current Lyrics Procesor resolved.");
-                LoggingManager.Debug("Resolving current Music to Lyrics Procesor...");
-                var m2lProc =
-                    IOC.Container.GetInstance()
-                        .Resolve<MusicToLyricsFilesProcessor>(_agentConfigurationSection.Lyrics.CurrentProcessingComponentKey);
-                LoggingManager.Debug("Current Music To Lyrics Procesor resolved.");
-
-                _agentService = new MusicService(mProc,
-                    lProc,
-                        m2lProc,
-                        _agentConfigurationSection.PackagesRetainerLimit);
+                ResolveComponents(_agentConfigurationSection.Music.CurrentProcessingComponentKey, _agentConfigurationSection.Lyrics.CurrentProcessingComponentKey, _agentConfigurationSection.PackagesRetainerLimit);
             }
             catch (Exception ex)
             {
@@ -114,6 +96,30 @@ namespace Sciendo.Music.Agent
             OpenServiceHost();
             StartMonitoringInstances();
             LoggingManager.Debug("Agent started.");
+        }
+
+        internal void ResolveComponents(string currentMusicComponentKey,string currentLyricsComponentKey,int packageRetainerlimit)
+        {
+            LoggingManager.Debug("Resolving current Music Procesor...");
+            var mProc =
+                IOC.Container.GetInstance()
+                    .Resolve<MusicFilesProcessor>(currentMusicComponentKey);
+            LoggingManager.Debug("Current Music Procesor resolved.");
+            LoggingManager.Debug("Resolving current Lyrics Procesor...");
+            var lProc =
+                IOC.Container.GetInstance()
+                    .Resolve<LyricsFilesProcessor>(currentLyricsComponentKey);
+            LoggingManager.Debug("Current Lyrics Procesor resolved.");
+            LoggingManager.Debug("Resolving current Music to Lyrics Procesor...");
+            var m2lProc =
+                IOC.Container.GetInstance()
+                    .Resolve<MusicToLyricsFilesProcessor>(currentLyricsComponentKey);
+            LoggingManager.Debug("Current Music To Lyrics Procesor resolved.");
+
+            _agentService = new MusicService(mProc,
+                lProc,
+                m2lProc,
+                packageRetainerlimit);
         }
 
         private void StartMonitoringInstances()

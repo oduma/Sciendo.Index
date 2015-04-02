@@ -40,5 +40,7 @@ namespace Sciendo.Music.Contracts.MusicService
 
         [OperationContract]
         int UnIndexLyricsOnDemand(string musicFile);
+
+        WorkingSet GetCurrentWorkingSet();
     }
 }
