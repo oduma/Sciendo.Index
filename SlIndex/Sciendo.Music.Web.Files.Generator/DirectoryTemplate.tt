@@ -1,0 +1,38 @@
+﻿<#@ template language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="System.IO" #>
+
+			<#foreach(var dirNames in Directory.GetDirectories(CurrentDirectory).Select(d=>new {ShortName=d.Split(new char[] {Path.DirectorySeparatorChar}).Last(),FullName=d}).Where(d=>!OutsideParameters.AvoidDirectories.Contains(d.ShortName)))
+			{
+				var cmpId="dir"+System.Guid.NewGuid().ToString().Replace("-","");
+			#>
+			<Directory Id="<#=cmpId#>" Name="<#=dirNames.ShortName#>">
+			<#
+			var subDirTemplate=new DirectoryTemplate();
+			subDirTemplate.CurrentDirectory=dirNames.FullName;
+			if(dirNames.ShortName=="Views")
+			{
+			#>
+			<Component Id="cmpviewswebconfig" Guid="{47321547-AC70-4541-AD1F-AA8C6E7BBF8E}">
+				<File Id="fileviewswebconfig" KeyPath="yes" Source="<#=dirNames.FullName#>\web.config"/>
+			</Component>
+
+			<#
+			}
+			#>
+			<#= subDirTemplate.TransformText()#>
+			</Directory>
+			<#
+			}
+			foreach(var fileName in Directory.GetFiles(CurrentDirectory,"*.*").Where(f=>!OutsideParameters.AvoidExtensions.Contains(Path.GetExtension(f))))
+			{
+				var fileTemplate= new FileTemplate();
+				fileTemplate.CurrentFile=fileName;
+			#>
+			<#=fileTemplate.TransformText()#>	
+			<#
+			}
+			#>
