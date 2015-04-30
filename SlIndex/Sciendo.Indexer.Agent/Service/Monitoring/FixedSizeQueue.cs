@@ -4,7 +4,7 @@ namespace Sciendo.Music.Agent.Service.Monitoring
 {
     public class FixedSizedQueue<T>
     {
-        ConcurrentQueue<T> q = new ConcurrentQueue<T>();
+        readonly ConcurrentQueue<T> _q = new ConcurrentQueue<T>();
 
         public int Limit { get; private set; }
 
@@ -15,11 +15,13 @@ namespace Sciendo.Music.Agent.Service.Monitoring
 
         public void Enqueue(T obj)
         {
-            q.Enqueue(obj);
+            _q.Enqueue(obj);
             lock (this)
             {
                 T overflow;
-                while (q.Count > Limit && q.TryDequeue(out overflow));
+                while (_q.Count > Limit && _q.TryDequeue(out overflow))
+                {
+                }
             }
         }
 
@@ -27,7 +29,7 @@ namespace Sciendo.Music.Agent.Service.Monitoring
         {
             lock (this)
             {
-                return q.ToArray();
+                return _q.ToArray();
             }
         }
     }

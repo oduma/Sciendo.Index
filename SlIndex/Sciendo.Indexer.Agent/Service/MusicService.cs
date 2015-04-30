@@ -9,7 +9,6 @@ using Sciendo.Music.Contracts.Common;
 using Sciendo.Music.Contracts.Monitoring;
 using Sciendo.Music.Contracts.MusicService;
 using Sciendo.Music.Contracts.Solr;
-using Sciendo.Music.Real.Procesors.Common;
 using Sciendo.Music.Real.Procesors.LyricsSourced;
 using Sciendo.Music.Real.Procesors.MusicSourced;
 
@@ -22,7 +21,7 @@ namespace Sciendo.Music.Agent.Service
         private readonly LyricsFilesProcessor _lyricsFilesProcessor;
         private readonly MusicToLyricsFilesProcessor _musicToLyricsFilesProcessor;
 
-        private FixedSizedQueue<ProgressStatus> _progressStatuses;  
+        private readonly FixedSizedQueue<ProgressStatus> _progressStatuses;  
 
         public MusicService(MusicFilesProcessor musicFilesProcessor, LyricsFilesProcessor lyricsFilesProcessor, MusicToLyricsFilesProcessor musicToLyricsFilesProcessor, 
             int packagesRetainerLimit)
@@ -70,7 +69,7 @@ namespace Sciendo.Music.Agent.Service
             if (!Directory.Exists(fromPath) && !File.Exists(fromPath))
                 throw new ArgumentException("Invalid path " + fromPath);
 
-            Reader reader = new Reader(ProgressEvent);
+            var reader = new Reader(ProgressEvent);
             _lyricsFilesProcessor.ResetCounter();
             reader.ProcessFiles = _lyricsFilesProcessor.ProcessFilesBatch;
             reader.ParsePath(fromPath, _lyricsFilesProcessor.CurrentConfiguration.SearchPattern,processType);
@@ -81,8 +80,7 @@ namespace Sciendo.Music.Agent.Service
         {
             LoggingManager.Debug("Starting IndexMusic from path: " + fromPath);
             _musicFilesProcessor.ResetCounter();
-            Reader reader = new Reader(ProgressEvent);
-            reader.ProcessFiles = _musicFilesProcessor.ProcessFilesBatch;
+            var reader = new Reader(ProgressEvent) {ProcessFiles = _musicFilesProcessor.ProcessFilesBatch};
             reader.ParsePath(fromPath, _musicFilesProcessor.CurrentConfiguration.SearchPattern,processType);
             LoggingManager.Debug("IndexMusic on path: " + fromPath + " Counter: " + _musicFilesProcessor.Counter);
             return _musicFilesProcessor.Counter;
@@ -104,7 +102,7 @@ namespace Sciendo.Music.Agent.Service
             if (!Directory.Exists(fromPath) && !File.Exists(fromPath))
                 throw new ArgumentException("Invalid path " + fromPath);
 
-            Reader reader = new Reader(ProgressEvent);
+            var reader = new Reader(ProgressEvent);
             _musicToLyricsFilesProcessor.ResetCounter();
             _musicToLyricsFilesProcessor.RetryExisting = retryFailed;
             reader.ProcessFiles = _musicToLyricsFilesProcessor.ProcessFilesBatch;
@@ -157,7 +155,7 @@ namespace Sciendo.Music.Agent.Service
                 ProgressEvent(Status.Error,musicFile);
                 return 0;
             }
-            else if(_musicFilesProcessor.Sender.TrySend(new Commit()).Status==Status.Error)
+            if(_musicFilesProcessor.Sender.TrySend(new Commit()).Status==Status.Error)
             {
                 ProgressEvent(Status.Error,musicFile);
                 return 0;
@@ -178,7 +176,7 @@ namespace Sciendo.Music.Agent.Service
 
         public int UnIndexLyricsOnDemand(string musicFile)
         {
-            if (_lyricsFilesProcessor.Sender.TrySend(new Document(musicFile,musicFile.ToLower().Replace(_musicFilesProcessor.CurrentConfiguration.SourceDirectory.ToLower(), "").Split(new char[] { Path.DirectorySeparatorChar })[1],null)).Status!=Status.Done)
+            if (_lyricsFilesProcessor.Sender.TrySend(new Document(musicFile,musicFile.ToLower().Replace(_musicFilesProcessor.CurrentConfiguration.SourceDirectory.ToLower(), "").Split(new[] { Path.DirectorySeparatorChar })[1],null)).Status!=Status.Done)
             {
                 ProgressEvent(Status.Error, musicFile);
                 return 0;

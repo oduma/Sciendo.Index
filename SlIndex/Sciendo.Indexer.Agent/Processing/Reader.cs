@@ -29,7 +29,7 @@ namespace Sciendo.Music.Agent.Processing
             if (processType == ProcessType.Delete)
             {
                 LoggingManager.Debug("Attempting to delete " + path);
-                ProcessFiles(new String[] {path}, _progressEvent);
+                ProcessFiles(new[] {path}, _progressEvent);
                 LoggingManager.Debug("Deleted " +path);
             }
             else
@@ -46,7 +46,7 @@ namespace Sciendo.Music.Agent.Processing
                 else if (File.Exists(path))
                 {
                     LoggingManager.Debug("Path is a file...");
-                    ProcessFiles(new string[] { path }, _progressEvent);
+                    ProcessFiles(new[] { path }, _progressEvent);
                 }
                 else
                     throw new ArgumentException("Invalid path");
@@ -58,10 +58,10 @@ namespace Sciendo.Music.Agent.Processing
         {
             return (includeDirectories)
                 ? (filters.Split('|')
-                    .SelectMany(filter => System.IO.Directory.GetFiles(sourceFolder, filter, searchOption))).Union(
+                    .SelectMany(filter => Directory.GetFiles(sourceFolder, filter, searchOption))).Union(
                         Directory.GetDirectories(sourceFolder, "*", searchOption))
                 : (filters.Split('|')
-                    .SelectMany(filter => System.IO.Directory.GetFiles(sourceFolder, filter, searchOption)));
+                    .SelectMany(filter => Directory.GetFiles(sourceFolder, filter, searchOption)));
         }
 
         public Action<IEnumerable<string>, Action<Status,string>> ProcessFiles { private get; set; }

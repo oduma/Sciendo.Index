@@ -111,14 +111,14 @@ namespace Sciendo.Music.Agent
                     .Resolve<LyricsFilesProcessor>(currentLyricsComponentKey);
             LoggingManager.Debug("Current Lyrics Procesor resolved.");
             LoggingManager.Debug("Resolving current Music to Lyrics Procesor...");
-            var m2lProc =
+            var m2LProc =
                 IOC.Container.GetInstance()
                     .Resolve<MusicToLyricsFilesProcessor>(currentLyricsComponentKey);
             LoggingManager.Debug("Current Music To Lyrics Procesor resolved.");
 
             _agentService = new MusicService(mProc,
                 lProc,
-                m2lProc,
+                m2LProc,
                 packageRetainerlimit);
         }
 
