@@ -26,6 +26,9 @@ namespace Sciendo.Music.DataProviders.MusicClient {
         private System.Guid IdField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.DateTime MessageCreationDateTimeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string PackageField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -50,6 +53,19 @@ namespace Sciendo.Music.DataProviders.MusicClient {
                 if ((this.IdField.Equals(value) != true)) {
                     this.IdField = value;
                     this.RaisePropertyChanged("Id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime MessageCreationDateTime {
+            get {
+                return this.MessageCreationDateTimeField;
+            }
+            set {
+                if ((this.MessageCreationDateTimeField.Equals(value) != true)) {
+                    this.MessageCreationDateTimeField = value;
+                    this.RaisePropertyChanged("MessageCreationDateTime");
                 }
             }
         }
@@ -213,6 +229,24 @@ namespace Sciendo.Music.DataProviders.MusicClient {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://Sciendo.Music.Agent/IMusic/GetSourceFolders", ReplyAction="http://Sciendo.Music.Agent/IMusic/GetSourceFoldersResponse")]
         System.Threading.Tasks.Task<Sciendo.Music.DataProviders.MusicClient.SourceFolders> GetSourceFoldersAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://Sciendo.Music.Agent/IMusic/UnIndexMusicOnDemand", ReplyAction="http://Sciendo.Music.Agent/IMusic/UnIndexMusicOnDemandResponse")]
+        int UnIndexMusicOnDemand(string musicFile);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://Sciendo.Music.Agent/IMusic/UnIndexMusicOnDemand", ReplyAction="http://Sciendo.Music.Agent/IMusic/UnIndexMusicOnDemandResponse")]
+        System.Threading.Tasks.Task<int> UnIndexMusicOnDemandAsync(string musicFile);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://Sciendo.Music.Agent/IMusic/DeleteLyricsFile", ReplyAction="http://Sciendo.Music.Agent/IMusic/DeleteLyricsFileResponse")]
+        bool DeleteLyricsFile(string file);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://Sciendo.Music.Agent/IMusic/DeleteLyricsFile", ReplyAction="http://Sciendo.Music.Agent/IMusic/DeleteLyricsFileResponse")]
+        System.Threading.Tasks.Task<bool> DeleteLyricsFileAsync(string file);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://Sciendo.Music.Agent/IMusic/UnIndexLyricsOnDemand", ReplyAction="http://Sciendo.Music.Agent/IMusic/UnIndexLyricsOnDemandResponse")]
+        int UnIndexLyricsOnDemand(string musicFile);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://Sciendo.Music.Agent/IMusic/UnIndexLyricsOnDemand", ReplyAction="http://Sciendo.Music.Agent/IMusic/UnIndexLyricsOnDemandResponse")]
+        System.Threading.Tasks.Task<int> UnIndexLyricsOnDemandAsync(string musicFile);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -296,6 +330,30 @@ namespace Sciendo.Music.DataProviders.MusicClient {
         
         public System.Threading.Tasks.Task<Sciendo.Music.DataProviders.MusicClient.SourceFolders> GetSourceFoldersAsync() {
             return base.Channel.GetSourceFoldersAsync();
+        }
+        
+        public int UnIndexMusicOnDemand(string musicFile) {
+            return base.Channel.UnIndexMusicOnDemand(musicFile);
+        }
+        
+        public System.Threading.Tasks.Task<int> UnIndexMusicOnDemandAsync(string musicFile) {
+            return base.Channel.UnIndexMusicOnDemandAsync(musicFile);
+        }
+        
+        public bool DeleteLyricsFile(string file) {
+            return base.Channel.DeleteLyricsFile(file);
+        }
+        
+        public System.Threading.Tasks.Task<bool> DeleteLyricsFileAsync(string file) {
+            return base.Channel.DeleteLyricsFileAsync(file);
+        }
+        
+        public int UnIndexLyricsOnDemand(string musicFile) {
+            return base.Channel.UnIndexLyricsOnDemand(musicFile);
+        }
+        
+        public System.Threading.Tasks.Task<int> UnIndexLyricsOnDemandAsync(string musicFile) {
+            return base.Channel.UnIndexLyricsOnDemandAsync(musicFile);
         }
     }
 }

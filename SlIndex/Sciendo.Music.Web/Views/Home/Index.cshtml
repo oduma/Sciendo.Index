@@ -38,6 +38,8 @@
         <span data-bind="if:$data.StatusOk==false"><img src="~/Content/indexing/images/Error.png" alt="Error" width="16" height="16" /></span>
         <label>Message Id:</label>
         <label data-bind="text: $data.Id"></label>
+        <label>From:</label>
+        <label data-bind="text: $data.CreateDateTime"></label>
         <a href="#" data-bind="click:$data.revealDetails,text:$data.DetailsActionName"></a>
     </span>
     <span class="messages details">

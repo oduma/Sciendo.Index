@@ -11,6 +11,7 @@
   <xs:complexType name="ProgressStatus">
     <xs:sequence>
       <xs:element minOccurs="0" name="Id" type="ser:guid" />
+      <xs:element minOccurs="0" name="MessageCreationDateTime" type="xs:dateTime" />
       <xs:element minOccurs="0" name="Package" nillable="true" type="xs:string" />
       <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/Sciendo.Music.Contracts.Common" minOccurs="0" name="Status" type="q1:Status" />
     </xs:sequence>

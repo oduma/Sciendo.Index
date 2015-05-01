@@ -51,6 +51,24 @@
   <wsdl:message name="IMusic_GetSourceFolders_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetSourceFoldersResponse" />
   </wsdl:message>
+  <wsdl:message name="IMusic_UnIndexMusicOnDemand_InputMessage">
+    <wsdl:part name="parameters" element="tns:UnIndexMusicOnDemand" />
+  </wsdl:message>
+  <wsdl:message name="IMusic_UnIndexMusicOnDemand_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UnIndexMusicOnDemandResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMusic_DeleteLyricsFile_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteLyricsFile" />
+  </wsdl:message>
+  <wsdl:message name="IMusic_DeleteLyricsFile_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteLyricsFileResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMusic_UnIndexLyricsOnDemand_InputMessage">
+    <wsdl:part name="parameters" element="tns:UnIndexLyricsOnDemand" />
+  </wsdl:message>
+  <wsdl:message name="IMusic_UnIndexLyricsOnDemand_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UnIndexLyricsOnDemandResponse" />
+  </wsdl:message>
   <wsdl:portType name="IMusic">
     <wsdl:operation name="IndexLyricsOnDemand">
       <wsdl:input wsaw:Action="http://Sciendo.Music.Agent/IMusic/IndexLyricsOnDemand" message="tns:IMusic_IndexLyricsOnDemand_InputMessage" />
@@ -79,6 +97,18 @@
     <wsdl:operation name="GetSourceFolders">
       <wsdl:input wsaw:Action="http://Sciendo.Music.Agent/IMusic/GetSourceFolders" message="tns:IMusic_GetSourceFolders_InputMessage" />
       <wsdl:output wsaw:Action="http://Sciendo.Music.Agent/IMusic/GetSourceFoldersResponse" message="tns:IMusic_GetSourceFolders_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UnIndexMusicOnDemand">
+      <wsdl:input wsaw:Action="http://Sciendo.Music.Agent/IMusic/UnIndexMusicOnDemand" message="tns:IMusic_UnIndexMusicOnDemand_InputMessage" />
+      <wsdl:output wsaw:Action="http://Sciendo.Music.Agent/IMusic/UnIndexMusicOnDemandResponse" message="tns:IMusic_UnIndexMusicOnDemand_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteLyricsFile">
+      <wsdl:input wsaw:Action="http://Sciendo.Music.Agent/IMusic/DeleteLyricsFile" message="tns:IMusic_DeleteLyricsFile_InputMessage" />
+      <wsdl:output wsaw:Action="http://Sciendo.Music.Agent/IMusic/DeleteLyricsFileResponse" message="tns:IMusic_DeleteLyricsFile_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UnIndexLyricsOnDemand">
+      <wsdl:input wsaw:Action="http://Sciendo.Music.Agent/IMusic/UnIndexLyricsOnDemand" message="tns:IMusic_UnIndexLyricsOnDemand_InputMessage" />
+      <wsdl:output wsaw:Action="http://Sciendo.Music.Agent/IMusic/UnIndexLyricsOnDemandResponse" message="tns:IMusic_UnIndexLyricsOnDemand_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
 </wsdl:definitions>

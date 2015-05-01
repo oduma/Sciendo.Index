@@ -230,6 +230,8 @@
     <Content Include="App_Data\filteredjsonexample.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Properties\DataSources\Sciendo.Music.DataProviders.MusicClient.ProgressStatus.datasource" />
+    <Content Include="Properties\DataSources\Sciendo.Music.DataProviders.MusicClient.SourceFolders.datasource" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -294,12 +296,6 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\MusicClient\MusicService.wsdl" />
-    <Content Include="Service References\MusicClient\Sciendo.Music.Web.MusicClient.ProgressStatus.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <Content Include="Service References\MusicClient\Sciendo.Music.Web.MusicClient.SourceFolders.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\themes\base\images\" />

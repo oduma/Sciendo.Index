@@ -28,7 +28,13 @@ namespace Sciendo.Music.Real.Procesors.Common
             {
                 var response = Sender.TrySend(package);
                 if (progressEvent != null)
-                    progressEvent(response.Status, JsonConvert.SerializeObject(package));
+                {
+                    if (response == null || package == null || package.Length == 0 ||
+                        string.IsNullOrEmpty(package[0].FilePathId))
+                        progressEvent(Status.Error, "bogus package or unknown error");
+                    else
+                        progressEvent(response.Status, JsonConvert.SerializeObject(package));
+                }
                 foreach (var deletedDocument in DeletedDocuments)
                 {
                     response = Sender.TrySend(deletedDocument);
@@ -39,7 +45,7 @@ namespace Sciendo.Music.Real.Procesors.Common
                 var commit = new Commit();
                 response = Sender.TrySend(commit);
                 if (progressEvent != null)
-                    progressEvent(response.Status, JsonConvert.SerializeObject(commit));
+                    progressEvent(response.Status, (response.Status==Status.Done)?"Committed":"Not committed");
             }
             Counter += package.Length;
             LoggingManager.Debug("Processed batch of "+ package.Length +" files.");

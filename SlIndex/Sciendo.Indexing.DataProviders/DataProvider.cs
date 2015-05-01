@@ -71,7 +71,7 @@ namespace Sciendo.Music.DataProviders
 
         public ProgressStatusModel[] GetMonitoring()
         {
-            return _svc.GetLastProcessedPackages().Select(p=>new ProgressStatusModel{Id=p.Id.ToString(),Package=p.Package.ToString(CultureInfo.InvariantCulture),Status=p.Status.ToString()}).ToArray();
+            return _svc.GetLastProcessedPackages().Select(p=>new ProgressStatusModel{Id=p.Id.ToString(),Package=p.Package.ToString(CultureInfo.InvariantCulture),Status=p.Status.ToString(),CreateDateTime=p.MessageCreationDateTime}).ToArray();
 
         }
 
