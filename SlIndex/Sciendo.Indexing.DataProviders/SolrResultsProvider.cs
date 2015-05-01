@@ -8,7 +8,7 @@ namespace Sciendo.Music.DataProviders
     {
         public override ResultsPackage GetResultsPackage(string query,int numRows, int startRow)
         {
-            var solrResponse = SolRetriever.TryQuery(((QueryConfigurationSection)ConfigurationManager.GetSection("query")).SolrConnectionString, (new SolrQueryStrategy(query,numRows,startRow)).GetQueryString);
+            var solrResponse = SolRetriever.TryQuery(((QueryConfigurationSection)ConfigurationManager.GetSection(ConfigurationSectionNames.QueryProviderConfigurationName)).SolrConnectionString, (new SolrQueryStrategy(query,numRows,startRow)).GetQueryString);
             if (solrResponse == null)
                 return null;
 
@@ -23,7 +23,7 @@ namespace Sciendo.Music.DataProviders
 
         public override ResultsPackage GetFilteredResultsPackage(string criteria, int numRows, int startRow, string facetFieldName, string facetFieldValue)
         {
-            var solrResponse = SolRetriever.TryQuery(((QueryConfigurationSection)ConfigurationManager.GetSection("query")).SolrConnectionString, (new SolrQueryStrategy(criteria,numRows,startRow, facetFieldName, facetFieldValue)).GetFilterString);
+            var solrResponse = SolRetriever.TryQuery(((QueryConfigurationSection)ConfigurationManager.GetSection(ConfigurationSectionNames.QueryProviderConfigurationName)).SolrConnectionString, (new SolrQueryStrategy(criteria, numRows, startRow, facetFieldName, facetFieldValue)).GetFilterString);
             if (solrResponse == null)
                 return null;
 

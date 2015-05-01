@@ -93,7 +93,7 @@
     // routes
     function solrUrl(id, pageInfo)
     {
-        return "/sciendo.music.web/query/search?criteria=" + (id || "") + "&numRows=" + (pageInfo.RowsPerPage || "0") + "&startRow=" + (pageInfo.PageStartRow || "0");
+        return "/query/search?criteria=" + (id || "") + "&numRows=" + (pageInfo.RowsPerPage || "0") + "&startRow=" + (pageInfo.PageStartRow || "0");
     }
 
     function solrFilterUrl(id, pageInfo, facetName, facetId) {

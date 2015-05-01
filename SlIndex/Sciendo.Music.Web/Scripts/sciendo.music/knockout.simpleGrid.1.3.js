@@ -23,9 +23,13 @@
 
             this.linkColumn = configuration.linkColumn;
 
-            queue= function(itemId,e)
-            {
-                dataContextInstance.addToQueue((e.srcElement.id != "")?e.srcElement.id:e.srcElement.parentElement.id);
+            queue= function(itemId,e) {
+                var element = e.srcElement;
+
+                if (e.srcElement == null)
+                    element = e.originalEvent.srcElement;
+
+                dataContextInstance.addToQueue((element.id != "")?element.id:element.parentElement.id);
             }
 
         }
