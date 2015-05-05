@@ -1,0 +1,70 @@
+﻿{
+  "responseHeader":{
+    "status":0,
+    "QTime":45},
+  "response":{"numFound":6,"start":0,"docs":[
+      {
+        "artist":["The Doors"],
+        "title":"Unhappy Girl",
+        "album":"Strange Days",
+        "file_path_id":"c:\\users\\octo\\music\\d\\the doors\\strange days\\04. unhappy girl.mp3",
+        "file_path":"file:///c:\\users\\octo\\Music\\d\\The Doors\\Strange Days\\04. Unhappy Girl.mp3"},
+      {
+        "artist":["The Doors"],
+        "title":"You're Lost, Little Girl",
+        "album":"Strange Days",
+        "file_path_id":"c:\\users\\octo\\music\\d\\the doors\\strange days\\02. you're lost, little girl.mp3",
+        "file_path":"file:///c:\\users\\octo\\Music\\d\\The Doors\\Strange Days\\02. You're Lost, Little Girl.mp3"},
+      {
+        "artist":["The Doors"],
+        "title":"Maggie M'Gill",
+        "album":"Morrison Hotel",
+        "file_path_id":"c:\\users\\octo\\music\\d\\the doors\\morrison hotel\\11-maggie m'gill.mp3",
+        "file_path":"file:///c:\\users\\octo\\Music\\d\\The Doors\\Morrison Hotel\\11-Maggie M'Gill.mp3"},
+      {
+        "artist":["The Doors"],
+        "title":"Break On Through (Live)",
+        "album":"The Essential Raritets",
+        "file_path_id":"c:\\users\\octo\\music\\d\\the doors\\the essential rarities\\02-break_on_through_live.mp3",
+        "file_path":"file:///c:\\users\\octo\\Music\\d\\The Doors\\The Essential Rarities\\02-Break_On_Through_Live.mp3"},
+      {
+        "artist":["The Doors"],
+        "title":"Break on Through",
+        "album":"The Doors",
+        "file_path_id":"c:\\users\\octo\\music\\d\\the doors\\the doors\\01-break on through.mp3",
+        "file_path":"file:///c:\\users\\octo\\Music\\d\\The Doors\\The Doors\\01-Break on Through.mp3"},
+      {
+        "artist":["The Doors"],
+        "title":"Break On Through",
+        "album":"The Doors Greatest Hits",
+        "file_path_id":"c:\\users\\octo\\music\\d\\the doors\\the doors greatest hits\\break on through.mp3",
+        "file_path":"file:///c:\\users\\octo\\Music\\d\\The Doors\\The Doors Greatest Hits\\break on through.mp3"}]
+  },
+  "facet_counts":{
+    "facet_queries":{},
+    "facet_fields":{
+      "artist_f":[
+        "The Doors",6,
+        null,0],
+      "extension_f":[
+        "mp3",6,
+        null,0],
+      "letter_catalog_f":[
+        null,6]},
+    "facet_dates":{},
+    "facet_ranges":{},
+    "facet_intervals":{}},
+  "highlighting":{
+    "c:\\users\\octo\\music\\d\\the doors\\strange days\\04. unhappy girl.mp3":{
+      "title":["Unhappy <em>Girl</em>"]},
+    "c:\\users\\octo\\music\\d\\the doors\\strange days\\02. you're lost, little girl.mp3":{
+      "title":["You're Lost, Little <em>Girl</em>"]},
+    "c:\\users\\octo\\music\\d\\the doors\\morrison hotel\\11-maggie m'gill.mp3":{
+      "title":["Maggie M'<em>Gill</em>"]},
+    "c:\\users\\octo\\music\\d\\the doors\\the essential rarities\\02-break_on_through_live.mp3":{
+      "title":["<em>Break</em> On Through (Live)"]},
+    "c:\\users\\octo\\music\\d\\the doors\\the doors\\01-break on through.mp3":{
+      "title":["<em>Break</em> on Through"]},
+    "c:\\users\\octo\\music\\d\\the doors\\the doors greatest hits\\break on through.mp3":{
+      "title":["<em>Break</em> On Through"],
+      "album":["The Doors <em>Greatest</em> Hits"]}}}

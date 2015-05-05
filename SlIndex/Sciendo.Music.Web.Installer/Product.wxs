@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi" xmlns:util="http://schemas.microsoft.com/wix/UtilExtension"      
+     xmlns:iis="http://schemas.microsoft.com/wix/IIsExtension">
+  <Product Id="*" Name="Sciendo.Music.Web" Language="1033" Version="1.0.0.0" Manufacturer="Sciendo" UpgradeCode="6A699059-731D-4A11-9C1B-EF37C5B1930F">
+    <Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
+    <PropertyRef Id="NETFRAMEWORK45"></PropertyRef>
+    <Property Id="WIXUI_INSTALLDIR" Value="INSTALLLOCATION" />
+    <Property Id="SOLRHOSTNAME" Value="localhost"/>
+    <Property Id="SOLRPORT" Value="8090"/>
+    <Property Id="SOLRCORE" Value="medialib"/>
+    <Property Id="PAGESIZE" Value="25" />
+    <Property Id="AGENTHTTPADDRESS" Value="http://localhost:7080/"/>
+    <Property Id="Sciendo.Music.Web.AppPool.Name" Value="SciendoMusicWebAppPool"/>
+
+    <Property Id="TARGETWEBSITE" Value="Default Web Site"/>
+
+    <MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
+    <MediaTemplate />
+    <Condition Message='This setup requires the .NET Framework 4.5 installed.'>
+      <![CDATA[Installed OR NETFRAMEWORK45]]>
+    </Condition>
+    <!-- IIS Version 7 or higher check. -->
+    <PropertyRef Id="IISMAJORVERSION"/>
+    <Condition Message="This setup requires IIS 7.0 or higher installed.">
+      <![CDATA[IISMAJORVERSION >= "#7"]]>
+    </Condition>
+
+      <!--Ensures that these tables are present in the MSI table
+        Required by WebAppPool and WebVitualDir -->
+    <EnsureTable Id="IIsWebSite" />
+    <EnsureTable Id="IIsWebAddress" />
+
+    <Feature Id="Sciendo.Music.Web" Title="Sciendo Music Web" Level="1" ConfigurableDirectory="INSTALLLOCATION" AllowAdvertise="no">
+      <ComponentGroupRef Id="Sciendo.Music.Web.Files" />
+      <ComponentRef Id="Sciendo.Music.Web.AppPool.Component"/>
+      <ComponentRef Id="Sciendo.Music.Web.VirtualDirectory.Component"/>
+      <ComponentRef Id="cmpviewswebconfig"/>
+      <ComponentRef Id="cmplog4netconfigtransform"/>
+      <ComponentRef Id="cmpwebconfigtransform"/>
+      <ComponentRef Id="LOGS"/>
+    </Feature>
+  </Product>
+
+  <Fragment>
+    <Component Id="cmpwebconfigtransform" Directory="INSTALLLOCATION" Guid="{DF9A8AF6-2A7F-49FB-B413-9948ABEF1D0A}">
+      <File Id="filewebconfig" KeyPath="yes" Source="..\Sciendo.Music.Web\web.config"/>
+      <util:XmlFile Id="SetSolrConnectionString"
+            Action="setValue"
+            ElementPath="//queryDataProvider/@solrConnectionString"
+            Value="http://[SOLRHOSTNAME]:[SOLRPORT]/solr/[SOLRCORE]/select"
+            File="[#filewebconfig]" />
+      <util:XmlFile Id="SetPageSize"
+            Action="setValue"
+            ElementPath="//queryDataProvider/@pageSize"
+            Value="[PAGESIZE]"
+            File="[#filewebconfig]" />
+      <util:XmlFile Id="SetAgentBaseHTTPAddress"
+              Action="setValue"
+              ElementPath="//system.serviceModel/client/endpoint/@address"
+              Value="[AGENTHTTPADDRESS]MusicAgentService"
+              File="[#filewebconfig]" />
+      <util:XmlFile Id="SetTheIocToReal"
+              Action="setValue"
+              ElementPath="//queryDataProvider/@currentDataProvider"
+              Value="real"
+              File="[#filewebconfig]" />
+      <util:XmlFile Id="SetTheIocToReal1"
+              Action="setValue"
+              ElementPath="//indexDataProvider/@currentDataProvider"
+              Value="real"
+              File="[#filewebconfig]" />
+      <util:XmlFile Id="SetTheIocToReal2"
+              Action="setValue"
+              ElementPath="//playerProcessProvider/@currentPlayerProcess"
+              Value="real"
+              File="[#filewebconfig]" />
+    </Component>
+    <Component Id="cmplog4netconfigtransform" Directory="INSTALLLOCATION" Guid="{E9AC0381-17FB-45A1-B62C-652E21C0C61D}">
+      <File Id="filelog4netconfig" KeyPath="yes" Source="..\Sciendo.Music.Web\log4net.config"/>
+      <util:XmlFile Id="SetLogFileLocation"
+      Action="setValue"
+      ElementPath="//appender[\[]@name='IndexerAgentDebugAppender'[\]]/file/@value"
+      Value="c:\logs\sciendo\sciendo.music.web\release\IndexerAgentCoreDebug.log"
+      File="[#filelog4netconfig]" />
+      <util:XmlFile Id="SetLogFileLocation1"
+      Action="setValue"
+      ElementPath="//appender[\[]@name='IndexerAgentPerformanceAppender'[\]]/file/@value"
+      Value="c:\logs\sciendo\sciendo.music.web\release\IndexerAgentPerformance.log"
+      File="[#filelog4netconfig]" />
+      <util:XmlFile Id="SetLogFileLocation2"
+      Action="setValue"
+      ElementPath="//appender[\[]@name='IndexerAgentSystemErrorLogAppender'[\]]/file/@value"
+      Value="c:\logs\sciendo\sciendo.music.web\release\IndexerAgentSystemError.log"
+      File="[#filelog4netconfig]" />
+      <util:XmlFile Id="SetLogFileLocation3"
+      Action="setValue"
+      ElementPath="//appender[\[]@name='RollingFileAppender'[\]]/file/@value"
+      Value="c:\logs\sciendo\sciendo.music.web\release\IndexerAgentRollingFile.log"
+      File="[#filelog4netconfig]" />
+
+    </Component>
+
+  </Fragment>
+  <Fragment>
+    <Directory Id="TARGETDIR" Name="SourceDir">
+      <Directory Id="IISMain" Name="inetpub">
+        <Directory Id="WWWMain" Name="wwwroot"
+                   ComponentGuidGenerationSeed="EE1BD1EA-F39C-4DD5-BFE9-BBE6817D2282">
+          <Directory Id="INSTALLLOCATION" Name="Sciendo.Music.Web">
+          </Directory>
+        </Directory>
+      </Directory>
+      <Directory Id="LOGS" Name="Logs">
+        <Directory Id="SciendoLogs" Name ="Sciendo">
+          <Directory Id="Sciendo.Music.Web.Logs" Name="Sciendo.Music.Web">
+              <Directory Id="Release.Logs" Name="Release">
+                <Component Id="LOGS" Guid="{B9D68F59-C763-489D-8100-40C652EDDC6D}"
+                SharedDllRefCount="no" KeyPath="no" NeverOverwrite="no" Permanent="no" Transitive="no"
+                Win64="no" Location="either">
+                  <CreateFolder/>
+                </Component>
+              </Directory>
+          </Directory>
+        </Directory>
+      </Directory>
+    </Directory>
+    
+    <iis:WebSite
+    Id="Sciendo.Music.TargetWebSite"
+    Description='[TARGETWEBSITE]'>
+      <iis:WebAddress Id="AllUnassigned" Port="80" />
+    </iis:WebSite>
+    <DirectoryRef Id="TARGETDIR">
+      <Component
+          Id="Sciendo.Music.Web.AppPool.Component"
+          Guid="E851E83B-14F5-436E-A160-231746B5E4A7">
+        <iis:WebAppPool
+                Id="Sciendo.Music.Web.AppPool"
+                Name="Sciendo.Music.Web.AppPool"
+                ManagedRuntimeVersion="v4.0"
+                IdleTimeout="0"
+                RecycleMinutes="0"
+                ManagedPipelineMode="integrated"/>
+        <CreateFolder/>
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="INSTALLLOCATION">
+      <Component
+          Id="Sciendo.Music.Web.VirtualDirectory.Component"
+          Guid="C9DC4C2A-9C1B-460C-A4A3-01720C4CA789">
+        <iis:WebVirtualDir
+            Id="Sciendo.Music.Web.VirtualDirectory"
+            Alias="Sciendo.Music.Web"
+            Directory="INSTALLLOCATION"
+            WebSite="Sciendo.Music.TargetWebSite">
+          <iis:WebApplication
+              Id="Sciendo.Music.Web.Application"
+              Name="Sciendo.Music.Web"
+              WebAppPool="Sciendo.Music.Web.AppPool"/>
+        </iis:WebVirtualDir>
+        <CreateFolder/>
+      </Component>
+    </DirectoryRef>
+
+    <UI Id="MyWixUI">
+      <TextStyle Id="WixUI_Font_Normal" FaceName="Tahoma" Size="8" />
+      <TextStyle Id="WixUI_Font_Bigger" FaceName="Tahoma" Size="12" />
+      <TextStyle Id="WixUI_Font_Title" FaceName="Tahoma" Size="9" Bold="yes" />
+
+      <Property Id="DefaultUIFont" Value="WixUI_Font_Normal" />
+      <Property Id="WixUI_Mode" Value="Advanced" />
+
+      <Dialog Id="MySynchDlg" Width="370" Height="270"
+               Title="Settings - [ProductName]" NoMinimize="yes">
+
+        <!-- Solr Host Name prompt-->
+        <Control Id="SolrHostNameLabel" Type ="Text" X="25" Y="66" Width="150" Height="15" TabSkip="no" Text="&amp;Solr Host Name:"/>
+        <Control Id="SolrHostNameValue" Type ="Edit" X="25" Y="81" Width="150" Height="18" Property="SOLRHOSTNAME"/>
+
+        <!-- Solr Port prompt-->
+        <Control Id="SolrPortLabel" Type ="Text" X="190" Y="66" Width="150" Height="15" TabSkip="no" Text="Solr &amp;Port:"/>
+        <Control Id="SolrPortValue" Type ="Edit" X="190" Y="81" Width="150" Height="18" Integer="yes" Property="SOLRPORT"/>
+
+        <!-- Solr Core Name prompt-->
+        <Control Id="SolrCoreNameLabel" Type ="Text" X="25" Y="99" Width="150" Height="15" TabSkip="no" Text="Solr &amp;Core Name:"/>
+        <Control Id="SolrCoreNameValue" Type ="Edit" X="25" Y="114" Width="150" Height="18" Property="SOLRCORE"/>
+
+        <!-- Page Size prompt-->
+        <Control Id="PacgeSizeLabel" Type ="Text" X="190" Y="99" Width="150" Height="15" TabSkip="no" Text="Package &amp;Page Size:"/>
+        <Control Id="PacgeSizeValue" Type ="Edit" X="190" Y="114" Width="150" Height="18" Integer="yes" Property="PAGESIZE"/>
+
+        <!-- Agent Http Address prompt-->
+        <Control Id="AgentHttpAddressLabel" Type ="Text" X="25" Y="132" Width="100" Height="15" TabSkip="no" Text="&amp;Agent Http Address:"/>
+        <Control Id="AgentHttpAddressValue" Type ="Edit" X="25" Y="147" Width="315" Height="18" Property="AGENTHTTPADDRESS"/>
+
+        <!-- Back button -->
+        <Control Id="Back" Type="PushButton" X="180" Y="248"
+                Width="56" Height="17" Text="&amp;Back">
+          <Publish Event="NewDialog" Value="InstallDirDlg">1</Publish>
+        </Control>
+        <Control Id="Next" Type="PushButton" X="236" Y="248"
+               Width="56" Height="17" Default="yes" Text="&amp;Next">
+          <Publish Event="NewDialog" Value="VerifyReadyDlg">
+            1
+          </Publish>
+        </Control>
+        <Control Id="Cancel" Type="PushButton" X="304" Y="248"
+                   Width="56" Height="17" Cancel="yes" Text="Cancel">
+          <Publish Event="SpawnDialog" Value="CancelDlg">1</Publish>
+        </Control>
+        <Control Id="BannerBitmap" Type="Bitmap" X="0" Y="0"
+             Width="370" Height="44" TabSkip="no" Text="WixUI_Bmp_Banner" />
+        <Control Id="BottomLine" Type="Line" X="0" Y="242"
+              Width="370" Height="0" />
+        <Control Id="Title" Type="Text" X="15" Y="6"
+                Width="200" Height="15" Transparent="yes" NoPrefix="yes">
+          <Text>{\WixUI_Font_Title}Sciendo Music Web Configuration</Text>
+        </Control>
+        <Control Id="BannerLine" Type="Line" X="0" Y="44" Width="370" Height="0" />
+      </Dialog>
+
+
+      <DialogRef Id="BrowseDlg" />
+      <DialogRef Id="DiskCostDlg" />
+      <DialogRef Id="ErrorDlg" />
+      <DialogRef Id="FatalError" />
+      <DialogRef Id="FilesInUse" />
+      <DialogRef Id="MsiRMFilesInUse" />
+      <DialogRef Id="PrepareDlg" />
+      <DialogRef Id="ProgressDlg" />
+      <DialogRef Id="ResumeDlg" />
+      <DialogRef Id="UserExit" />
+
+      <Publish Dialog="BrowseDlg" Control="OK" Event="DoAction" Value="WixUIValidatePath" Order="3">1</Publish>
+      <Publish Dialog="BrowseDlg" Control="OK" Event="SpawnDialog" Value="InvalidDirDlg" Order="4"><![CDATA[WIXUI_INSTALLDIR_VALID<>"1"]]></Publish>
+
+      <Publish Dialog="ExitDialog" Control="Finish" Event="EndDialog" Value="Return" Order="999">1</Publish>
+
+      <Publish Dialog="WelcomeDlg" Control="Next" Event="NewDialog" Value="InstallDirDlg" Order="1">NOT Installed</Publish>
+      <Publish Dialog="WelcomeDlg" Control="Next" Event="NewDialog" Value="VerifyReadyDlg" Order="1">Installed AND PATCH</Publish>
+
+      <Publish Dialog="InstallDirDlg" Control="Back" Event="NewDialog" Value="WelcomeDlg">1</Publish>
+      <Publish Dialog="InstallDirDlg" Control="Next" Event="SetTargetPath" Value="[WIXUI_INSTALLDIR]" Order="1">1</Publish>
+      <Publish Dialog="InstallDirDlg" Control="Next" Event="DoAction" Value="WixUIValidatePath" Order="2">NOT WIXUI_DONTVALIDATEPATH</Publish>
+      <Publish Dialog="InstallDirDlg" Control="Next" Event="SpawnDialog" Value="InvalidDirDlg" Order="3"><![CDATA[NOT WIXUI_DONTVALIDATEPATH AND WIXUI_INSTALLDIR_VALID<>"1"]]></Publish>
+      <Publish Dialog="InstallDirDlg" Control="Next" Event="NewDialog" Value="MySynchDlg" Order="4">WIXUI_DONTVALIDATEPATH OR WIXUI_INSTALLDIR_VALID="1"</Publish>
+      <Publish Dialog="InstallDirDlg" Control="ChangeFolder" Property="_BrowseProperty" Value="[WIXUI_INSTALLDIR]" Order="1">1</Publish>
+      <Publish Dialog="InstallDirDlg" Control="ChangeFolder" Event="SpawnDialog" Value="BrowseDlg" Order="2">1</Publish>
+
+      <Publish Dialog="VerifyReadyDlg" Control="Back" Event="NewDialog" Value="MySynchDlg" Order="1">NOT Installed</Publish>
+      <Publish Dialog="VerifyReadyDlg" Control="Back" Event="NewDialog" Value="MaintenanceTypeDlg" Order="2">Installed AND NOT PATCH</Publish>
+      <Publish Dialog="VerifyReadyDlg" Control="Back" Event="NewDialog" Value="WelcomeDlg" Order="2">Installed AND PATCH</Publish>
+
+      <Publish Dialog="MaintenanceWelcomeDlg" Control="Next" Event="NewDialog" Value="MaintenanceTypeDlg">1</Publish>
+
+      <Publish Dialog="MaintenanceTypeDlg" Control="RepairButton" Event="NewDialog" Value="VerifyReadyDlg">1</Publish>
+      <Publish Dialog="MaintenanceTypeDlg" Control="RemoveButton" Event="NewDialog" Value="VerifyReadyDlg">1</Publish>
+      <Publish Dialog="MaintenanceTypeDlg" Control="Back" Event="NewDialog" Value="MaintenanceWelcomeDlg">1</Publish>
+
+    </UI>
+    <UIRef Id="WixUI_Common" />
+
+  </Fragment>
+</Wix>

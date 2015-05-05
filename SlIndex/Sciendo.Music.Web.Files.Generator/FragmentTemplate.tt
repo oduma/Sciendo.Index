@@ -1,0 +1,32 @@
+﻿<#@ template language="C#"#>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="System.IO" #>
+<#@ import namespace="Sciendo.Music.Web.Files.Generator" #>
+<?xml version="1.0" encoding="utf-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi" xmlns:util="http://schemas.microsoft.com/wix/UtilExtension" xmlns:wix="http://schemas.microsoft.com/wix/2006/wi">
+    <Fragment>
+        <DirectoryRef Id="INSTALLLOCATION">
+			<# 
+			var directoryTemplate = new DirectoryTemplate();
+			directoryTemplate.CurrentDirectory=OutsideParameters.SourceDirectory;
+			#>
+			<#=directoryTemplate.TransformText()#>
+		</DirectoryRef>
+	</Fragment>
+	<Fragment>
+		<ComponentGroup Id="Sciendo.Music.Web.Files">
+		<#foreach(var cmpId in OutsideParameters.ComponentIds)
+		{
+		#>
+			<ComponentRef Id="<#=cmpId#>"/>
+		<#
+		}
+		#>
+		</ComponentGroup>
+
+	</Fragment>
+</Wix>
+

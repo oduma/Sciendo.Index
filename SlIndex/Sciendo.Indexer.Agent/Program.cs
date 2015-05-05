@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.ServiceProcess;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ServiceProcess;
 
-namespace Sciendo.Indexer.Agent
+namespace Sciendo.Music.Agent
 {
     static class Program
     {
@@ -17,7 +12,7 @@ namespace Sciendo.Indexer.Agent
             ServiceBase[] ServicesToRun;
             ServicesToRun = new ServiceBase[] 
             { 
-                new IndexerAgent() 
+                new MusicAgent() 
             };
             ServiceBase.Run(ServicesToRun);
         }

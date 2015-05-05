@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://Sciendo.Music.Agent" elementFormDefault="qualified" targetNamespace="http://Sciendo.Music.Agent" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:7070/MusicAgentService?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Sciendo.Music.Contracts.MusicService" />
+  <xs:import schemaLocation="http://localhost:7070/MusicAgentService?xsd=xsd4" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:element name="IndexLyricsOnDemand">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="fromPath" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="IndexLyricsOnDemandResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="IndexLyricsOnDemandResult" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="IndexMusicOnDemand">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="fromPath" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="IndexMusicOnDemandResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="IndexMusicOnDemandResult" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AcquireLyricsOnDemandFor">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="musicPath" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="retryFailed" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AcquireLyricsOnDemandForResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="AcquireLyricsOnDemandForResult" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetLastProcessedPackages">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetLastProcessedPackagesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/Sciendo.Music.Contracts.MusicService" minOccurs="0" name="GetLastProcessedPackagesResult" nillable="true" type="q1:ArrayOfProgressStatus" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ListAvailableMusicPathsForIndexing">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="fromPath" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ListAvailableMusicPathsForIndexingResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q2="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="ListAvailableMusicPathsForIndexingResult" nillable="true" type="q2:ArrayOfstring" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ListAvailableLyricsPathsForIndexing">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="fromPath" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ListAvailableLyricsPathsForIndexingResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q3="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="ListAvailableLyricsPathsForIndexingResult" nillable="true" type="q3:ArrayOfstring" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetSourceFolders">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetSourceFoldersResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/Sciendo.Music.Contracts.MusicService" minOccurs="0" name="GetSourceFoldersResult" nillable="true" type="q4:SourceFolders" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UnIndexMusicOnDemand">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="musicFile" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UnIndexMusicOnDemandResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="UnIndexMusicOnDemandResult" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteLyricsFile">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="file" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteLyricsFileResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="DeleteLyricsFileResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UnIndexLyricsOnDemand">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="musicFile" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UnIndexLyricsOnDemandResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="UnIndexLyricsOnDemandResult" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

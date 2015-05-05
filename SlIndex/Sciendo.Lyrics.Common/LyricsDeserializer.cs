@@ -1,35 +1,39 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Serialization;
+﻿using Sciendo.Common.Logging;
+using Sciendo.Common.Serialization;
 
 namespace Sciendo.Lyrics.Common
 {
-    public static class LyricsDeserializer
+    public interface ILyricsDeserializer
     {
-        public static T Deserialize<T>(string xmlString) where T : class
+        T DeserializeFromFile<T>(string fileName) where T : class;
+        T Deserialize<T>(string xmlString) where T : class;
+    }
+
+    public class LyricsDeserializer : ILyricsDeserializer
+    {
+
+        public virtual T DeserializeFromFile<T>(string fileName) where T : class
         {
-            XmlSerializer xmlSerializer = new XmlSerializer(typeof(T));
-            MemoryStream ms = new MemoryStream(new UTF8Encoding().GetBytes(xmlString));
-            return xmlSerializer.Deserialize(ms) as T;
+            LoggingManager.Debug("Deserializing lyrics from file: " +fileName);
+            return Serializer.DeserializeOneFromFile<T>(fileName, LyricsNotEmpty, LyricsFix);
         }
 
-        public static T DeserializeOneFromFile<T>(string fileName) where T : class
+        public T Deserialize<T>(string xmlString) where T : class
         {
-            if (!File.Exists(fileName))
-                return null;
-            using (TextReader fs = File.OpenText(fileName))
-            {
-                var str= fs.ReadToEnd();
-                if (str.IndexOf(@"<lyrics>Not found</lyrics>") > 0 || str.IndexOf("<html xmlns=\"http://www.w3.org/1999/xhtml")>=0)
-                    return null;
-                str=str.Replace("\0", "");
-                return Deserialize<T>(str);
-            }
+            LoggingManager.Debug("Deserializing lyrics from string.");
+            return Serializer.Deserialize<T>(xmlString, LyricsNotEmpty, LyricsFix);
+
         }
 
+        private static string LyricsFix(string arg)
+        {
+            return arg.Replace("\0", "");
+        }
+
+        private static bool LyricsNotEmpty(string arg)
+        {
+            return !(arg.IndexOf(@"<lyrics>Not found</lyrics>") > 0 ||
+             arg.IndexOf("<html xmlns=\"http://www.w3.org/1999/xhtml") >= 0);
+        }
     }
 }

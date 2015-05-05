@@ -1,49 +1,59 @@
-﻿using Sciendo.Lyrics.Common;
-using System;
-using System.Collections.Generic;
-using System.Configuration;
+﻿using System;
+using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using CommandLine;
+using Sciendo.Indexer.Client;
 
 namespace Sciendo.Indexer
 {
-    class Program
+    internal class Program
     {
 
-        static void Main(string[] args)
+        private static int Main(string[] args)
         {
-            IndexerConfigurationSection indexerConfigurationSection = (IndexerConfigurationSection)ConfigurationManager.GetSection("indexer");
-            MusicFilesProcessor _musicFileProcessor = new MusicFilesProcessor();
-            LyricsFilesProcessor lyricsFileProcessor = new LyricsFilesProcessor(indexerConfigurationSection.Music.SourceDirectory);
-
-            Reader reader = new Reader(ProgressEvent);
-
-            reader.ProcessFiles = _musicFileProcessor.ProcessFilesBatch;
-            reader.ParseDirectory(indexerConfigurationSection.Music.SourceDirectory, indexerConfigurationSection.Music.SearchPattern);
-            Console.WriteLine("Music files indexed: {0}", _musicFileProcessor.Counter);
-
-            reader.ProcessFiles = lyricsFileProcessor.ProcessFilesBatch;
-            reader.ParseDirectory(indexerConfigurationSection.Lyrics.SourceDirectory, indexerConfigurationSection.Lyrics.SearchPattern);
-            Console.WriteLine("Lyrics files indexed: {0}", lyricsFileProcessor.Counter);
-            Console.ReadLine();
-
+            ParserResult<Options> result;
+            try
+            {
+                result = Parser.Default.ParseArguments<Options>(args);
+                if (result.Errors.Any() || (!Directory.Exists(result.Value.Path) &&!File.Exists(result.Value.Path)))
+                {
+                    PrintHelp();
+                    return -1;
+                }
+            }
+            catch
+            {
+                PrintHelp();
+                return -1;
+            }
+            var client= new IndexerAgentClient();
+            if (result.Value.IndexType == IndexingType.Music)
+            {
+                var response = client.IndexMusicOnDemand(new IndexMusicOnDemandRequest {fromPath = result.Value.Path});
+                if(Directory.Exists(result.Value.Path))
+                    Console.WriteLine("Indexed {0} music files from {1}.",response.IndexMusicOnDemandResult,Directory.GetFiles(result.Value.Path,"*.*",SearchOption.AllDirectories).Count());
+                else
+                {
+                    Console.WriteLine("Indexed {0} music files from 1.", response.IndexMusicOnDemandResult);
+                }
+            }
+            if (result.Value.IndexType == IndexingType.Lyrics)
+            {
+                var response = client.IndexLyricsOnDemand(new IndexLyricsOnDemandRequest { fromPath = result.Value.Path});
+                if (Directory.Exists(result.Value.Path))
+                    Console.WriteLine("Indexed {0} lyrics files from {1}.", response.IndexLyricsOnDemandResult, Directory.GetFiles(result.Value.Path, "*.*", SearchOption.AllDirectories).Count());
+                else
+                {
+                    Console.WriteLine("Indexed {0} lyrics files from 1.", response.IndexLyricsOnDemandResult);
+                }
+            }
+            Console.ReadKey();
+            return 1;
         }
 
-        private static void ProgressEvent(Status arg1, string arg2)
+        private static void PrintHelp()
         {
-            if (arg1 != Status.Done)
-            {
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.Write("error indexing: ");
-            }
-            else
-            {
-                Console.ForegroundColor = ConsoleColor.Green;
-                Console.Write("Indexed Ok: ");
-            }
-            Console.ResetColor();
-            Console.WriteLine(arg2);
+            Console.WriteLine("Sciendo.Indexer path -t indexingType\r\nindexingType can be: Music or Lyrics.");
         }
     }
 }
