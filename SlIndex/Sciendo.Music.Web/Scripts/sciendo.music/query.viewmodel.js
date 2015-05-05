@@ -2,11 +2,11 @@
     var self = this;
     self.criteria = ko.observable();
     self.resultData = ko.observable(),
-    self.error = ko.observable(),
-    self.selectedFacetValue = ko.observable(),
-    self.facetFiltered = ko.observable(false),
-    self.selectedFacetFieldName = ko.observable(),
-    self.pageInfo = ko.observable({ TotalRows: 0, RowsPerPage: 0, PageStartRow: 0 }),
+        self.error = ko.observable(),
+        self.selectedFacetValue = ko.observable(),
+        self.facetFiltered = ko.observable(false),
+        self.selectedFacetFieldName = ko.observable(),
+        self.pageInfo = ko.observable({ TotalRows: 0, RowsPerPage: 0, PageStartRow: 0 }),
     self.notMaxPage = ko.computed(function () {
         return (self.pageInfo().PageStartRow + self.pageInfo().RowsPerPage)<self.pageInfo().TotalRows;
     }, self);

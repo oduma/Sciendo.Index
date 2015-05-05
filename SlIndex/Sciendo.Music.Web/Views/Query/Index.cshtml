@@ -12,24 +12,24 @@
         <br/>
         <input style="display:block" type= "button" value="Show All" data-bind="visible:$root.facetFiltered, click: $root.getResults"/>
         <div class="all-facets" data-bind="if:$root.hasFacets()">
-        <div class="facet-titles-row">
-            <div class="facet-title" data-bind="text: fields[0].Name"></div>
-            <div class="facet-title" data-bind="text: fields[1].Name"></div>
-            <div class="facet-title" data-bind="text: fields[2].Name"></div>
-        </div>
-        <div class="facet-row">
-            <div class="facet-cell" data-bind="foreach: fields[0].Values">
-                <p><input type="radio" data-bind="value:Key, checked: $root.selectedFacetValue, click:$root.artistFacetSelected"/><span data-bind="text: ' ' + Key +' ('+ Count+')'"></span></p>
+            <div class="facet-titles-row">
+                <div class="facet-title" data-bind="text: fields[0].Name"></div>
+                <div class="facet-title" data-bind="text: fields[1].Name"></div>
+                <div class="facet-title" data-bind="text: fields[2].Name"></div>
             </div>
-            <div class="facet-cell" data-bind="foreach: fields[1].Values">
-                <p><input type="radio" data-bind="value:Key, checked: $root.selectedFacetValue, click:$root.extensionFacetSelected" /><span data-bind="text: ' ' + Key +' ('+ Count+')'"></span></p>
-            </div>
+            <div class="facet-row">
+                <div class="facet-cell" data-bind="foreach: fields[0].Values">
+                    <p><input type="radio" data-bind="value:Key, checked: $root.selectedFacetValue, click:$root.artistFacetSelected"/><span data-bind="text: ' ' + Key +' ('+ Count+')'"></span></p>
+                </div>
+                <div class="facet-cell" data-bind="foreach: fields[1].Values">
+                    <p><input type="radio" data-bind="value:Key, checked: $root.selectedFacetValue, click:$root.extensionFacetSelected" /><span data-bind="text: ' ' + Key +' ('+ Count+')'"></span></p>
+                </div>
 
-            <div class="facet-cell" data-bind="foreach: fields[2].Values">
-                <p><input type="radio" data-bind="value:Key, checked: $root.selectedFacetValue, click:$root.letterFacetSelected" /><span data-bind="text: ' ' + Key +' ('+ Count+')'"></span></p>
-            </div>
+                <div class="facet-cell" data-bind="foreach: fields[2].Values">
+                    <p><input type="radio" data-bind="value:Key, checked: $root.selectedFacetValue, click:$root.letterFacetSelected" /><span data-bind="text: ' ' + Key +' ('+ Count+')'"></span></p>
+                </div>
 
-        </div>
+            </div>
     </div>
     <div data-bind="simpleGrid:gridViewModel"></div>
 </div>
