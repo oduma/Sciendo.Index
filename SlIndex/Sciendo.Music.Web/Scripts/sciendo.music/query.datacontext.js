@@ -93,15 +93,15 @@
     // routes
     function solrUrl(id, pageInfo)
     {
-        return "/query/search?criteria=" + (id || "") + "&numRows=" + (pageInfo.RowsPerPage || "0") + "&startRow=" + (pageInfo.PageStartRow || "0");
+        return config.contextPath + "query/search?criteria=" + (id || "") + "&numRows=" + (pageInfo.RowsPerPage || "0") + "&startRow=" + (pageInfo.PageStartRow || "0");
     }
 
     function solrFilterUrl(id, pageInfo, facetName, facetId) {
-        return "/query/filter?criteria=" + (id || "") + "&numRows=" + (pageInfo.RowsPerPage || "0") + "&startRow=" + (pageInfo.PageStartRow || "0") + "&facetFieldName=" + (facetName || "") + "&facetFieldValue=" + (facetId || "");
+        return config.contextPath + "query/filter?criteria=" + (id || "") + "&numRows=" + (pageInfo.RowsPerPage || "0") + "&startRow=" + (pageInfo.PageStartRow || "0") + "&facetFieldName=" + (facetName || "") + "&facetFieldValue=" + (facetId || "");
     }
 
     function playerUrl(filePath)
     {
-        return "/query/addsongtoqueue?filePath=" + (filePath || "");
+        return config.contextPath + "query/addsongtoqueue?filePath=" + (filePath || "");
     }
 };

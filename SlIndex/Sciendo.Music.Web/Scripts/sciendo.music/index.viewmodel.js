@@ -128,11 +128,11 @@ function displayAcquireLyricsResults(data, resultObservable, errorObservable, la
 }
 
 function indexUrl(id, indexType) {
-    return "/home/startIndexing?fromPath=" + (id || "") + "&indexType=" + (indexType || 0);
+    return config.contextPath + "home/startIndexing?fromPath=" + (id || "") + "&indexType=" + (indexType || 0);
 }
 
 function acquireLyricsUrl(id, retryExisting) {
-    return "/home/startAcquiringLyrics?fromPath=" + (id || "") + "&retryExisting=" + (retryExisting || false);
+    return config.contextPath + "home/startAcquiringLyrics?fromPath=" + (id || "") + "&retryExisting=" + (retryExisting || false);
 }
 
 function ajaxRequest(type, url, data, dataType) { // Ajax helper
