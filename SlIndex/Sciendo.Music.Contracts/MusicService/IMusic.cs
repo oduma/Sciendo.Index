@@ -11,13 +11,16 @@ namespace Sciendo.Music.Contracts.MusicService
         [OperationContract]
         int IndexMusicOnDemand(string fromPath);
 
+        [OperationContract]
         int IndexLyrics(string fromPath, ProcessType processType);
 
+        [OperationContract]
         int IndexMusic(string fromPath, ProcessType processType);
 
         [OperationContract]
         int AcquireLyricsOnDemandFor(string musicPath, bool retryFailed);
 
+        [OperationContract]
         int AcquireLyricsFor(string fromPath, ProcessType processType);
 
         [OperationContract]
@@ -41,6 +44,7 @@ namespace Sciendo.Music.Contracts.MusicService
         [OperationContract]
         int UnIndexLyricsOnDemand(string musicFile);
 
+        [OperationContract]
         WorkingSet GetCurrentWorkingSet();
     }
 }

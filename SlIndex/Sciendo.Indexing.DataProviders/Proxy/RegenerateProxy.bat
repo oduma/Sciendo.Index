@@ -1,0 +1,1 @@
+﻿svcutil /t:code http://localhost:7000/MusicAgentService /l:c# /async /tcv:Version35

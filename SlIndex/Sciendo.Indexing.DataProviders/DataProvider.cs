@@ -2,14 +2,14 @@
 using System.Globalization;
 using System.Linq;
 using Sciendo.Music.DataProviders.Models.Indexing;
-using Sciendo.Music.DataProviders.MusicClient;
-using IMusic = Sciendo.Music.DataProviders.MusicClient.IMusic;
+using Sciendo.Music.Contracts.MusicService;
+
 
 namespace Sciendo.Music.DataProviders
 {
     public sealed class DataProvider:IDataProvider
     {
-        private IMusic _svc = new MusicClient.MusicClient();
+        private IMusic _svc = new MusicClient();
 
         public string[] GetMuiscAutocomplete(string term)
         {
@@ -79,6 +79,7 @@ namespace Sciendo.Music.DataProviders
         {
             try
             {
+                   
                  return new IndexingResult
                 {
                     NumberOfDocuments = _svc.AcquireLyricsOnDemandFor(fromPath, retryExisting).ToString(CultureInfo.InvariantCulture)
