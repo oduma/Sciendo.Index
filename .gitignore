@@ -17,6 +17,9 @@ build/
 bld/
 [Bb]in/
 [Oo]bj/
+MusicAgent/
+Util/
+
 
 # Roslyn cache directories
 *.ide/
