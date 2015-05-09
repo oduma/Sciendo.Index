@@ -99,7 +99,7 @@
           DisplayName="Sciendo Music Agent"
           Description="Monitores folders [MUSICROOTDIR] and [LYRICSROOTDIR] and indexes changes http://[SOLRHOSTNAME]:[SOLRPORT]/solr/[SOLRCORE]."
           Start="auto"
-          Account="NT Authority\NetworkService"
+          Account="LocalSystem"
           ErrorControl="ignore"
           Interactive="no">
         </ServiceInstall>

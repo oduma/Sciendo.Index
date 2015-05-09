@@ -9,6 +9,6 @@ namespace Sciendo.Music.DataProviders.Models.Playlist
 {
     public class PlaylistPropsedItem
     {
-        public ArtistSong
+        //public ArtistSong
     }
 }

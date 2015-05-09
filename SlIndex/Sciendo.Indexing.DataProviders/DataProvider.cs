@@ -2,14 +2,14 @@
 using System.Globalization;
 using System.Linq;
 using Sciendo.Music.DataProviders.Models.Indexing;
-using Sciendo.Music.DataProviders.MusicClient;
-using IMusic = Sciendo.Music.DataProviders.MusicClient.IMusic;
+using Sciendo.Music.Contracts.MusicService;
+
 
 namespace Sciendo.Music.DataProviders
 {
     public sealed class DataProvider:IDataProvider
     {
-        private IMusic _svc = new MusicClient.MusicClient();
+        private IMusic _svc = new MusicClient();
 
         public string[] GetMuiscAutocomplete(string term)
         {
@@ -30,43 +30,22 @@ namespace Sciendo.Music.DataProviders
             return formattedSourceFolders;
         }
 
-        public IndexingResult StartIndexing(string fromPath, IndexType indexType)
+        public void StartIndexing(string fromPath, IndexType indexType,Action<object,IndexMusicOnDemandCompletedEventArgs> indexMusicCompletedCallback,Action<object,IndexLyricsOnDemandCompletedEventArgs>indexLyricsCompletedCallback)
         {
-            try
-            {
+            ((MusicClient)_svc).IndexMusicOnDemandCompleted += new EventHandler<IndexMusicOnDemandCompletedEventArgs>(indexMusicCompletedCallback);
+            ((MusicClient)_svc).IndexLyricsOnDemandCompleted += new EventHandler<IndexLyricsOnDemandCompletedEventArgs>(indexLyricsCompletedCallback);
+
                 switch (indexType)
                 {
                     case IndexType.Music:
-                        return new IndexingResult
-                        {
-                            IndexType = indexType.ToString(),
-                            NumberOfDocuments = _svc.IndexMusicOnDemand(fromPath).ToString(CultureInfo.InvariantCulture)
-                        };
+                        ((MusicClient)_svc).IndexMusicOnDemandAsync(fromPath);
+                        break;
                     case IndexType.Lyrics:
-                        return new IndexingResult
-                        {
-                            IndexType = indexType.ToString(),
-                            NumberOfDocuments = _svc.IndexLyricsOnDemand(fromPath).ToString(CultureInfo.InvariantCulture)
-                        };
+                        ((MusicClient)_svc).IndexLyricsOnDemandAsync(fromPath);
+                        break;
                     default:
-                        return new IndexingResult
-                        {
-                            IndexType = IndexType.None.ToString(),
-                            NumberOfDocuments = 0.ToString(CultureInfo.InvariantCulture),
-                            Error = "Index Type unknown."
-                        };
+                        throw new Exception("Unnown type of index");
                 }
-
-            }
-            catch (Exception ex)
-            {
-                return new IndexingResult
-                {
-                    IndexType = indexType.ToString(),
-                    NumberOfDocuments = 0.ToString(CultureInfo.InvariantCulture),
-                    Error = ex.Message
-                };
-            }
         }
 
         public ProgressStatusModel[] GetMonitoring()
@@ -75,24 +54,11 @@ namespace Sciendo.Music.DataProviders
 
         }
 
-        public IndexingResult StartAcquyringLyrics(string fromPath, bool retryExisting)
-        {
-            try
-            {
-                 return new IndexingResult
-                {
-                    NumberOfDocuments = _svc.AcquireLyricsOnDemandFor(fromPath, retryExisting).ToString(CultureInfo.InvariantCulture)
-                };
 
-            }
-            catch (Exception ex)
-            {
-                return new IndexingResult
-                {
-                    NumberOfDocuments = 0.ToString(CultureInfo.InvariantCulture),
-                    Error = ex.Message
-                };
-            }
+        public void StartAcquyringLyrics(string fromPath, bool retryExisting,Action<object,AcquireLyricsOnDemandForCompletedEventArgs> acquireLyricsCallBack)
+        {
+            ((MusicClient)_svc).AcquireLyricsOnDemandForCompleted += new EventHandler<AcquireLyricsOnDemandForCompletedEventArgs>(acquireLyricsCallBack);
+            ((MusicClient)_svc).AcquireLyricsOnDemandForAsync(fromPath, retryExisting);
         }
 
         public void Dispose()

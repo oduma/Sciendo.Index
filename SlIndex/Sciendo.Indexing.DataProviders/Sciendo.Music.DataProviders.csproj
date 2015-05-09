@@ -81,68 +81,21 @@
     <Compile Include="Models\Query\PageInfo.cs" />
     <Compile Include="Models\Query\ResultsPackage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Proxy\MusicService.cs" />
     <Compile Include="Response.cs" />
     <Compile Include="ResponseHeader.cs" />
     <Compile Include="ResultsProviderBase.cs" />
-    <Compile Include="Service References\MusicClient\Reference.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Compile>
     <Compile Include="SolRetriever.cs" />
     <Compile Include="SolrVagueQueryStrategy.cs" />
     <Compile Include="SolrResponse.cs" />
     <Compile Include="SolrResultsProvider.cs" />
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadata Include="Service References\" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
     <None Include="Properties\DataSources\Sciendo.Music.Contracts.MusicService.ProgressStatus.datasource" />
     <None Include="Properties\DataSources\Sciendo.Music.Contracts.MusicService.SourceFolders.datasource" />
-    <None Include="Service References\MusicClient\MusicAgentService.wsdl" />
-    <None Include="Service References\MusicClient\MusicAgentService.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\MusicClient\MusicAgentService1.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\MusicClient\MusicAgentService2.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\MusicClient\MusicAgentService3.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\MusicClient\MusicAgentService4.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\MusicClient\MusicService.wsdl" />
-    <None Include="Service References\MusicClient\Sciendo.Music.DataProviders.MusicClient.ProgressStatus.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\MusicClient\Sciendo.Music.DataProviders.MusicClient.SourceFolders.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadataStorage Include="Service References\MusicClient\" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\MusicClient\MusicAgentService.disco" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\MusicClient\configuration91.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\MusicClient\configuration.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\MusicClient\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
+    <None Include="Proxy\RegenerateProxy.bat" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Sciendo.Music.Contracts\Sciendo.Music.Contracts.csproj">

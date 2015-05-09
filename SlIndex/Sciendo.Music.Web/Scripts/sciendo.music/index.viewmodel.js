@@ -18,6 +18,7 @@
     });
 
     self.hub = $.connection.monitoringHub;
+    self.subscription = ko.observable("not subscribed");
     self.monitoringMessages = ko.observableArray([]);
     self.maximumMonitoringMessagesDisplay = ko.observable(10);
     self.monitoringActionName = ko.observable("Subscribe");
@@ -60,80 +61,84 @@
             self.lyricsFromPath(value);
 
     }
-    self.indexMusic= function() {
-        return ajaxRequest("get", indexUrl(self.musicFromPath(),1))
-            .done(getSucceeded)
-            .fail(getFailed);
+    self.indexMusic = function () {
+        self.hub.startIndexing(self.musicFromPath(), 1);
+        //return ajaxRequest("get", indexUrl(self.musicFromPath(),1))
+        //    .done(getSucceeded)
+        //    .fail(getFailed);
 
-        function getSucceeded(data) {
-            displayResults(data, self.indexingResult, self.indexingError, self.lastIndexingType);
-        }
-        function getFailed() {
-            indexingError("Error indexing.");
-            indexingResult();
-        }
+        //function getSucceeded(data) {
+        //    displayResults(data, self.indexingResult, self.indexingError, self.lastIndexingType);
+        //}
+        //function getFailed() {
+        //    indexingError("Error indexing.");
+        //    indexingResult();
+        //}
     
     }
 
-    self.acquireLyrics=function() {
-        return ajaxRequest("get", acquireLyricsUrl(self.musicFromPath(), self.retryExisting()))
-            .done(getSucceeded)
-            .fail(getFailed);
+    self.acquireLyrics = function () {
+        self.hub.server.startAcquiringLyrics(self.musicFromPath(), self.retryExisting());
+        //return ajaxRequest("get", acquireLyricsUrl(self.musicFromPath(), self.retryExisting()))
+        //    .done(getSucceeded)
+        //    .fail(getFailed);
 
-        function getSucceeded(data) {
-            displayAcquireLyricsResults(data, self.indexingResult, self.indexingError,self.lastIndexingType);
-        }
-        function getFailed() {
-            indexingError("Error indexing.");
-            indexingResult();
-        }
-
-    }
-    self.indexLyrics= function() {
-        return ajaxRequest("get", indexUrl(self.lyricsFromPath(), 2))
-            .done(getSucceeded)
-            .fail(getFailed);
-
-        function getSucceeded(data) {
-            displayResults(data, self.indexingResult, self.indexingError, self.lastIndexingType);
-        }
-        function getFailed() {
-            indexingError("Error indexing.");
-            indexingResult();
-        }
+        //function getSucceeded(data) {
+        //    displayAcquireLyricsResults(data, self.indexingResult, self.indexingError,self.lastIndexingType);
+        //}
+        //function getFailed() {
+        //    indexingError("Error indexing.");
+        //    indexingResult();
+        //}
 
     }
+    self.indexLyrics = function () {
+        self.hub.server.startIndexing(self.lyricsFromPath(), 2);
+        //return ajaxRequest("get", indexUrl(self.lyricsFromPath(), 2))
+        //    .done(getSucceeded)
+        //    .fail(getFailed);
 
+        //function getSucceeded(data) {
+        //    displayResults(data, self.indexingResult, self.indexingError, self.lastIndexingType);
+        //}
+        //function getFailed() {
+        //    indexingError("Error indexing.");
+        //    indexingResult();
+        //}
+
+    }
+    self.hub.client.returnCompletedMessage=function(data)
+    {
+        self.indexingResult(data.NumberOfDocuments);
+
+        self.indexingError(data.Error);
+
+        if (data.IndexType==null || data.IndexType == "" || data.Ind == "None")
+            self.lastIndexingType("Acquyring Lyrics");
+        else
+            self.lastIndexingType(data.IndexType);
+
+    }
 
 }
 
-function displayResults(data, resultObservable, errorObservable, lastIndexingTypeObservable) {
+//function displayResults(data, resultObservable, errorObservable, lastIndexingTypeObservable) {
 
-    resultObservable(data.NumberOfDocuments);
+//    resultObservable(data.NumberOfDocuments);
 
-    errorObservable(data.Error);
+//    errorObservable(data.Error);
 
-    lastIndexingTypeObservable(data.IndexType);
+//    lastIndexingTypeObservable(data.IndexType);
 
-}
+//}
 
-function displayAcquireLyricsResults(data, resultObservable, errorObservable, lastIndexingTypeObservable) {
+//function indexUrl(id, indexType) {
+//    return config.contextPath + "home/startIndexing?fromPath=" + (id || "") + "&indexType=" + (indexType || 0);
+//}
 
-    resultObservable(data.NumberOfDocuments);
-
-    errorObservable(data.Error);
-
-    lastIndexingTypeObservable("Acquyring Lyrics");
-
-}
-
-function indexUrl(id, indexType) {
-    return "/home/startIndexing?fromPath=" + (id || "") + "&indexType=" + (indexType || 0);
-}
-
-function acquireLyricsUrl(id, retryExisting) {
-    return "/home/startAcquiringLyrics?fromPath=" + (id || "") + "&retryExisting=" + (retryExisting || false);
-}
+//function acquireLyricsUrl(id, retryExisting) {
+//    return config.contextPath + "home/startAcquiringLyrics?fromPath=" + (id || "") + "&retryExisting=" + (retryExisting || false);
+//}
 
 function ajaxRequest(type, url, data, dataType) { // Ajax helper
     var options = {

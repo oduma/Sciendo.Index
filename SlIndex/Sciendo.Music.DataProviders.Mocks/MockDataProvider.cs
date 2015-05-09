@@ -1,7 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Globalization;
 using Sciendo.Music.DataProviders.Models.Indexing;
-using Sciendo.Music.DataProviders.MusicClient;
+using Sciendo.Music.Contracts.MusicService;
+using System;
 
 namespace Sciendo.Music.DataProviders.Mocks
 {
@@ -48,13 +49,15 @@ namespace Sciendo.Music.DataProviders.Mocks
             return new SourceFolders {Music = "c:\\preroot\\root".Replace(@"\","/"), Lyrics = "not avaialble".Replace(@"\","/")};
         }
 
-        public IndexingResult StartIndexing(string fromPath, IndexType indexType)
+        public void StartIndexing(string fromPath, IndexType indexType,Action<object,IndexMusicOnDemandCompletedEventArgs> indexMusicCompletedCallback,Action<object,IndexLyricsOnDemandCompletedEventArgs>indexLyricsCompletedCallback)
         {
             if (indexType == IndexType.Music)
             {
-                return new IndexingResult { IndexType = indexType.ToString(), NumberOfDocuments = 20.ToString(CultureInfo.InvariantCulture) };
+                if (indexMusicCompletedCallback != null)
+                    indexMusicCompletedCallback(this, new IndexMusicOnDemandCompletedEventArgs(new object [1] {20}, null, false, null));
             }
-            return new IndexingResult { IndexType = indexType.ToString(), Error = "Lyrics indexing not available." };
+            if (indexLyricsCompletedCallback != null)
+                indexLyricsCompletedCallback(this, new IndexLyricsOnDemandCompletedEventArgs(new object[0] { }, new Exception("Lyrics indexing not available"), false, null));
         }
 
         public ProgressStatusModel[] GetMonitoring()
@@ -65,10 +68,13 @@ namespace Sciendo.Music.DataProviders.Mocks
                 new ProgressStatusModel {Id = "Id2", Package = "Package2", Status = "Error"}
             };
         }
+        
 
-        public IndexingResult StartAcquyringLyrics(string fromPath, bool retryExisting)
+
+        public void StartAcquyringLyrics(string fromPath, bool retryExisting,Action<object, AcquireLyricsOnDemandForCompletedEventArgs> acquireLyricsCallback)
         {
-            return new IndexingResult {NumberOfDocuments = "1"};
+                if (acquireLyricsCallback != null)
+                    acquireLyricsCallback(this, new AcquireLyricsOnDemandForCompletedEventArgs(new[] { new IndexingResult { NumberOfDocuments = "1" } }, null, false, null));
         }
 
         public void Dispose()
