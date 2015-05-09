@@ -4,16 +4,16 @@ using System.Net;
 
 namespace Sciendo.Music.DataProviders
 {
-    public class SolrQueryStrategy
+    public class SolrVagueQueryStrategy : ISolrQueryStrategy
     {
-        public SolrQueryStrategy(string query, int numRows, int startRow)
+        public SolrVagueQueryStrategy(string query, int numRows, int startRow)
         {
             _query = query;
             _numRows = numRows;
             _startRow = startRow;
         }
 
-        public SolrQueryStrategy(string query,int numRows, int startRow, string filterField, string filterValue):this(query, numRows, startRow)
+        public SolrVagueQueryStrategy(string query,int numRows, int startRow, string filterField, string filterValue):this(query, numRows, startRow)
         {
             _filterField=filterField;
             _filterValue=filterValue;

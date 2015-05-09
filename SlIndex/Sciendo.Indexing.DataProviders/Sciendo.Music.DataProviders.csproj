@@ -62,10 +62,18 @@
     <Compile Include="IDataProvider.cs" />
     <Compile Include="IPlayerProcess.cs" />
     <Compile Include="IResultsProvider.cs" />
+    <Compile Include="ISolrQueryStrategy.cs" />
     <Compile Include="Models\Indexing\IndexingResult.cs" />
     <Compile Include="Models\Indexing\IndexModel.cs" />
     <Compile Include="Models\Indexing\IndexType.cs" />
     <Compile Include="Models\Indexing\ProgressStatusModel.cs" />
+    <Compile Include="Models\Playlist\Info.cs" />
+    <Compile Include="Models\Playlist\LastFmResponse.cs" />
+    <Compile Include="Models\Playlist\LovedItem.cs" />
+    <Compile Include="Models\Playlist\LovedDate.cs" />
+    <Compile Include="Models\Playlist\LovedTracks.cs" />
+    <Compile Include="Models\Playlist\Streamable.cs" />
+    <Compile Include="Models\Playlist\Track.cs" />
     <Compile Include="Models\Query\Doc.cs" />
     <Compile Include="Models\Query\Field.cs" />
     <Compile Include="Models\Query\FieldValue.cs" />
@@ -81,7 +89,7 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
     <Compile Include="SolRetriever.cs" />
-    <Compile Include="SolrQueryStrategy.cs" />
+    <Compile Include="SolrVagueQueryStrategy.cs" />
     <Compile Include="SolrResponse.cs" />
     <Compile Include="SolrResultsProvider.cs" />
   </ItemGroup>
@@ -134,6 +142,12 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Sciendo.Music.Contracts\Sciendo.Music.Contracts.csproj">
+      <Project>{D132D9C7-2FB8-4C89-84AB-54A1A65532F1}</Project>
+      <Name>Sciendo.Music.Contracts</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

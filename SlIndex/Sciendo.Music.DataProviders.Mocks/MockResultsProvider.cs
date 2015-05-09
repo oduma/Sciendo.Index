@@ -7,7 +7,7 @@ namespace Sciendo.Music.DataProviders.Mocks
 {
     public class MockResultsProvider : ResultsProviderBase
     {
-        public override ResultsPackage GetResultsPackage(string query, int numRow, int startRow)
+        public override ResultsPackage GetResultsPackage(string query, int numRow, int startRow, ISolrQueryStrategy solrQueryStrategy)
         {
             var dir = Path.Combine(AppDomain.CurrentDomain.BaseDirectory,"App_data");
             var mockFilePath =
@@ -32,7 +32,7 @@ namespace Sciendo.Music.DataProviders.Mocks
         }
 
 
-        public override ResultsPackage GetFilteredResultsPackage(string criteria, int numRows, int startRow, string facetFieldName, string facetFieldValue)
+        public override ResultsPackage GetFilteredResultsPackage(string criteria, int numRows, int startRow, string facetFieldName, string facetFieldValue, ISolrQueryStrategy solrQueryStrategy)
         {
             var dir = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "App_data");
             var mockFilePath =

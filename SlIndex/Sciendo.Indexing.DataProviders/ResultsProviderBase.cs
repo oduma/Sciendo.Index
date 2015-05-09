@@ -7,7 +7,7 @@ namespace Sciendo.Music.DataProviders
 {
     public abstract class ResultsProviderBase:IResultsProvider
     {
-        public abstract ResultsPackage GetResultsPackage(string query, int numRow, int startRow);
+        public abstract ResultsPackage GetResultsPackage(string query, int numRow, int startRow, ISolrQueryStrategy solrQueryStrategy);
 
         protected Field[] GetFields(SolrResponse solrResponse)
         {
@@ -66,6 +66,6 @@ namespace Sciendo.Music.DataProviders
             return new PageInfo { TotalRows = response.response.NumFound, RowsPerPage = numRowsRequested, PageStartRow = startRow };
         }
 
-        public abstract ResultsPackage GetFilteredResultsPackage(string criteria, int numRow, int startRow, string facetFieldName, string facetFieldValue);
+        public abstract ResultsPackage GetFilteredResultsPackage(string criteria, int numRow, int startRow, string facetFieldName, string facetFieldValue, ISolrQueryStrategy solrQueryStrategy);
     }
 }

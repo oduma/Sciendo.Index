@@ -232,6 +232,7 @@
     </Content>
     <Content Include="Properties\DataSources\Sciendo.Music.DataProviders.MusicClient.ProgressStatus.datasource" />
     <Content Include="Properties\DataSources\Sciendo.Music.DataProviders.MusicClient.SourceFolders.datasource" />
+    <Content Include="App_Data\examplefromlastfm.json" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -296,6 +297,7 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\MusicClient\MusicService.wsdl" />
+    <Content Include="Views\Query\BuildPlaylist.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\themes\base\images\" />

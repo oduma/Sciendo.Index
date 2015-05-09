@@ -8,7 +8,12 @@ namespace Sciendo.Music.Web.Controllers
 
         public ActionResult Index()
         {
-            return View();
+            return View("Index");
+        }
+
+        public ActionResult BuildPlaylist()
+        {
+            return View("BuildPlaylist");
         }
 
         [HttpGet]
@@ -21,7 +26,7 @@ namespace Sciendo.Music.Web.Controllers
                 Json(
                     SciendoConfiguration.Container.Resolve<IResultsProvider>(
                         SciendoConfiguration.QueryConfiguration.CurrentDataProvider)
-                        .GetResultsPackage(criteria,numRows,startRow), JsonRequestBehavior.AllowGet);
+                        .GetResultsPackage(criteria,numRows,startRow, new SolrVagueQueryStrategy(criteria,numRows,startRow)), JsonRequestBehavior.AllowGet);
         }
 
         [HttpGet]
@@ -33,7 +38,7 @@ namespace Sciendo.Music.Web.Controllers
                 Json(
                     SciendoConfiguration.Container.Resolve<IResultsProvider>(
                         SciendoConfiguration.QueryConfiguration.CurrentDataProvider)
-                        .GetFilteredResultsPackage(criteria,numRows, startRow, facetFieldName, facetFieldValue), JsonRequestBehavior.AllowGet);
+                        .GetFilteredResultsPackage(criteria,numRows, startRow, facetFieldName, facetFieldValue, new SolrVagueQueryStrategy(criteria,numRows,startRow,facetFieldName,facetFieldValue)), JsonRequestBehavior.AllowGet);
         }
 
         [HttpGet]
