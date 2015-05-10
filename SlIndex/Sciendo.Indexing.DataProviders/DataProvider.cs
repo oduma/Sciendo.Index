@@ -50,7 +50,14 @@ namespace Sciendo.Music.DataProviders
 
         public ProgressStatusModel[] GetMonitoring()
         {
-            return _svc.GetLastProcessedPackages().Select(p=>new ProgressStatusModel{Id=p.Id.ToString(),Package=p.Package.ToString(CultureInfo.InvariantCulture),Status=p.Status.ToString(),CreateDateTime=p.MessageCreationDateTime}).ToArray();
+            try
+            {
+                return _svc.GetLastProcessedPackages().Select(p => new ProgressStatusModel { Id = p.Id.ToString(), Package = p.Package.ToString(CultureInfo.InvariantCulture), Status = p.Status.ToString(), CreateDateTime = p.MessageCreationDateTime }).ToArray();
+            }
+            catch(Exception ex)
+            {
+                return new ProgressStatusModel[] { new ProgressStatusModel { CreateDateTime = DateTime.Now, Id = "Unknown error on service", Status = "Error" ,Package="Most likely the server has timed out."} };
+            }
 
         }
 

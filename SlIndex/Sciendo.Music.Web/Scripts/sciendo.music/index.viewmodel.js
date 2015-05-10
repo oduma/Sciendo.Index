@@ -140,22 +140,22 @@
 //    return config.contextPath + "home/startAcquiringLyrics?fromPath=" + (id || "") + "&retryExisting=" + (retryExisting || false);
 //}
 
-function ajaxRequest(type, url, data, dataType) { // Ajax helper
-    var options = {
-        dataType: dataType || "json",
-        contentType: "application/json",
-        cache: false,
-        type: type,
-        data: data ? data.toJson() : null
-    };
-    var antiForgeryToken = $("#antiForgeryToken").val();
-    if (antiForgeryToken) {
-        options.headers = {
-            'RequestVerificationToken': antiForgeryToken
-        }
-    }
-    return $.ajax(url, options);
-}
+//function ajaxRequest(type, url, data, dataType) { // Ajax helper
+//    var options = {
+//        dataType: dataType || "json",
+//        contentType: "application/json",
+//        cache: false,
+//        type: type,
+//        data: data ? data.toJson() : null
+//    };
+//    var antiForgeryToken = $("#antiForgeryToken").val();
+//    if (antiForgeryToken) {
+//        options.headers = {
+//            'RequestVerificationToken': antiForgeryToken
+//        }
+//    }
+//    return $.ajax(url, options);
+//}
 function escapeRegExp(string) {
     return string.replace(/([.*+?^=!:${}()|\[\]\/\\])/g, "\\$1");
 }
