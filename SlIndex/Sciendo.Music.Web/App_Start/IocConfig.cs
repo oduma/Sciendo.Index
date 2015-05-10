@@ -11,6 +11,7 @@ namespace Sciendo.Music.Web
             container.UsingConfiguration().AddAllFromFilteredAssemblies<IDataProvider>(LifeStyle.Transient);
             container.UsingConfiguration().AddAllFromFilteredAssemblies<IResultsProvider>(LifeStyle.Transient);
             container.UsingConfiguration().AddAllFromFilteredAssemblies<IPlayerProcess>(LifeStyle.Transient);
+            container.UsingConfiguration().AddAllFromFilteredAssemblies<IPlaylistProvider>(LifeStyle.Transient);
         }
     }
 }

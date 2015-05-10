@@ -1,12 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Sciendo.Music.Contracts.Solr;
+using Sciendo.Music.DataProviders.Models.Query;
 
 namespace Sciendo.Music.DataProviders
 {
-    interface IPlaylistProvider
+    public interface IPlaylistProvider
     {
+        ResultsPackage GetFullDocuments(int page, string userName, string lastFmBaseApiUrl, string lastFmApiKey, IResultsProvider resultsProvider);
+
+        string CreatePlaylistPackage();
+
+        void AddToPlaylist(string[] filePaths);
+
+        void ResetPlaylist();
+
     }
 }

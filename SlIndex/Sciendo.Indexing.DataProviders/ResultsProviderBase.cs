@@ -7,8 +7,6 @@ namespace Sciendo.Music.DataProviders
 {
     public abstract class ResultsProviderBase:IResultsProvider
     {
-        public abstract ResultsPackage GetResultsPackage(string query, int numRow, int startRow, ISolrQueryStrategy solrQueryStrategy);
-
         protected Field[] GetFields(SolrResponse solrResponse)
         {
             if(solrResponse==null || solrResponse.facet_counts==null || solrResponse.facet_counts.FacetFields==null)
@@ -48,6 +46,9 @@ namespace Sciendo.Music.DataProviders
 
         protected Doc[] ApplyHighlights(SolrResponse response)
         {
+            if (response.highlighting == null)
+                return response.response.Docs;
+
             return response.response.Docs.Join(response.highlighting, d => d.FilePathId, h => h.Key,
                 (d, h) =>
                     new Doc
@@ -66,6 +67,10 @@ namespace Sciendo.Music.DataProviders
             return new PageInfo { TotalRows = response.response.NumFound, RowsPerPage = numRowsRequested, PageStartRow = startRow };
         }
 
-        public abstract ResultsPackage GetFilteredResultsPackage(string criteria, int numRow, int startRow, string facetFieldName, string facetFieldValue, ISolrQueryStrategy solrQueryStrategy);
+        public abstract ResultsPackage GetResultsPackage(string query, int numRows, int startRow, ISolrQueryStrategy solrQueryStrategy,
+            Func<string, Func<string>, SolrResponse> retrieverMethod);
+
+        public abstract ResultsPackage GetFilteredResultsPackage(string criteria, int numRows, int startRow, string facetFieldName,
+            string facetFieldValue, ISolrQueryStrategy solrQueryStrategy, Func<string, Func<string>, SolrResponse> retrieverMethod);
     }
 }

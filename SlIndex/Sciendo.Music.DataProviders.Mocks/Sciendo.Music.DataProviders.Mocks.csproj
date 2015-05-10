@@ -46,6 +46,7 @@
   <ItemGroup>
     <Compile Include="MockDataProvider.cs" />
     <Compile Include="MockPlayerProcess.cs" />
+    <Compile Include="MockPlaylistProvider.cs" />
     <Compile Include="MockResultsProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

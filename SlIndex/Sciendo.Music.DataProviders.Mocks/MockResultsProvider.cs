@@ -7,12 +7,13 @@ namespace Sciendo.Music.DataProviders.Mocks
 {
     public class MockResultsProvider : ResultsProviderBase
     {
-        public override ResultsPackage GetResultsPackage(string query, int numRow, int startRow, ISolrQueryStrategy solrQueryStrategy)
+        public override ResultsPackage GetResultsPackage(string query, int numRows, int startRow, ISolrQueryStrategy solrQueryStrategy,
+            Func<string, Func<string>, SolrResponse> retrieverMethod)
         {
             var dir = Path.Combine(AppDomain.CurrentDomain.BaseDirectory,"App_data");
             var mockFilePath =
                     Path.Combine(dir,"examplequeryresult.json");
-            return Deserialize(mockFilePath, numRow, startRow);
+            return Deserialize(mockFilePath, numRows, startRow);
         }
 
         private ResultsPackage Deserialize(string mockFilePath,int numRows, int startRow)
@@ -32,12 +33,15 @@ namespace Sciendo.Music.DataProviders.Mocks
         }
 
 
-        public override ResultsPackage GetFilteredResultsPackage(string criteria, int numRows, int startRow, string facetFieldName, string facetFieldValue, ISolrQueryStrategy solrQueryStrategy)
+        public override ResultsPackage GetFilteredResultsPackage(string criteria, int numRows, int startRow, string facetFieldName,
+            string facetFieldValue, ISolrQueryStrategy solrQueryStrategy, Func<string, Func<string>, SolrResponse> retrieverMethod)
         {
             var dir = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "App_data");
             var mockFilePath =
                     Path.Combine(dir, "filteredjsonexample.json");
             return Deserialize(mockFilePath,numRows,startRow);
         }
+
+
     }
 }

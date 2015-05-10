@@ -40,7 +40,7 @@ namespace Sciendo.Music.Web
             get
             {
                 if (!HttpContext.Current.Application.AllKeys.Contains("query"))
-                    HttpContext.Current.Application.Add("query", ConfigurationManager.GetSection("queryDataProvider"));
+                    HttpContext.Current.Application.Add("query", ConfigurationManager.GetSection(ConfigurationSectionNames.QueryProviderConfigurationName));
                 return HttpContext.Current.Application["query"] as QueryConfigurationSection;
             }
         }
@@ -50,7 +50,7 @@ namespace Sciendo.Music.Web
             get
             {
                 if (!HttpContext.Current.Application.AllKeys.Contains("index"))
-                    HttpContext.Current.Application.Add("index", ConfigurationManager.GetSection("indexDataProvider"));
+                    HttpContext.Current.Application.Add("index", ConfigurationManager.GetSection(ConfigurationSectionNames.IndexProviderConfigurationName));
                 return HttpContext.Current.Application["index"] as IndexDataProviderConfigurationSection;
             }
         }
@@ -59,8 +59,17 @@ namespace Sciendo.Music.Web
             get
             {
                 if (!HttpContext.Current.Application.AllKeys.Contains("player"))
-                    HttpContext.Current.Application.Add("player", ConfigurationManager.GetSection("playerProcessProvider"));
+                    HttpContext.Current.Application.Add("player", ConfigurationManager.GetSection(ConfigurationSectionNames.PlayerProcessConfigurationName));
                 return HttpContext.Current.Application["player"] as PlayerConfigurationSection;
+            }
+        }
+        public static PlaylistProviderConfigurationSection PlaylistConfiguration
+        {
+            get
+            {
+                if (!HttpContext.Current.Application.AllKeys.Contains("playlist"))
+                    HttpContext.Current.Application.Add("playlist", ConfigurationManager.GetSection(ConfigurationSectionNames.PlaylistProviderConfigurationName));
+                return HttpContext.Current.Application["playlist"] as PlaylistProviderConfigurationSection;
             }
         }
     }

@@ -8,15 +8,15 @@ namespace Sciendo.Music.DataProviders.Models.Playlist.LastFm
         public string User { get; set; }
 
         [JsonProperty("page")]
-        public string Page { get; set; }
+        public int Page { get; set; }
         
         [JsonProperty("perPage")]
-        public string PerPage { get; set; }
+        public int PerPage { get; set; }
         
         [JsonProperty("totalPages")]
-        public string TotalPages { get; set; }
+        public int TotalPages { get; set; }
 
         [JsonProperty("total")]
-        public string Total { get; set; }
+        public int Total { get; set; }
     }
 }
