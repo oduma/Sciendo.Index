@@ -77,6 +77,9 @@
     <Compile Include="Models\Playlist\LastFm\LovedTracks.cs" />
     <Compile Include="Models\Playlist\LastFm\Streamable.cs" />
     <Compile Include="Models\Playlist\LastFm\Track.cs" />
+    <Compile Include="Models\Playlist\PlaylistItem.cs" />
+    <Compile Include="Models\Playlist\PlaylistModel.cs" />
+    <Compile Include="Models\Playlist\PlaylistPageModel.cs" />
     <Compile Include="Models\Query\Doc.cs" />
     <Compile Include="Models\Query\Field.cs" />
     <Compile Include="Models\Query\FieldValue.cs" />

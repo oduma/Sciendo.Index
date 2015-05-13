@@ -23,14 +23,18 @@
 
             this.linkColumn = configuration.linkColumn;
 
-            queue= function(itemId,e) {
+            this.selectColumn = configuration.selectColumn;
+
+            this.sendToPlaylist = dataContextInstance.sendToPlaylist;
+
+            queue = function (itemId, e) {
                 var element = e.srcElement;
 
                 if (e.srcElement == null)
                     element = e.originalEvent.srcElement;
 
-                dataContextInstance.addToQueue((element.id != "")?element.id:element.parentElement.id);
-            }
+                dataContextInstance.addToQueue((element.id != "") ? element.id : element.parentElement.id);
+            };
 
         }
     };
@@ -59,7 +63,10 @@
                                         <a href=\"#\" data-bind=\"click:queue, attr:{'id': $parent[$root.keyColumn] }, html: typeof rowText == 'function' ? rowText($parent) : $parent[rowText]\"/></td>\
                                     <!-- /ko -->\
                                     <!-- ko ifnot:isLink-->\
-                                        <td data-bind=\"html: typeof rowText == 'function' ? rowText($parent) : $parent[rowText] \"></td>\
+                                        <!-- ko ifnot:isSelect--><td data-bind=\"html: typeof rowText == 'function' ? rowText($parent) : $parent[rowText] \"></td>\
+                                    <!-- /ko--><!-- ko if:isSelect-->\
+                                        <td><input type=\"checkbox\" data-bind=\"attr:{'id': $parent[$root.keyColumn] },checked:rowText == 'function' ? rowText($parent) : $parent[rowText], click:$parent.select\"/></td>\
+                                    <!-- /ko -->\
                                     <!-- /ko -->\
                                 <!-- /ko -->\
                             </tr>\

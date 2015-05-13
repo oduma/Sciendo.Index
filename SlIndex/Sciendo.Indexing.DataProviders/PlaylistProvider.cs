@@ -7,6 +7,7 @@ using Sciendo.Music.Contracts.Solr;
 using Sciendo.Music.DataProviders.Common;
 using Sciendo.Music.DataProviders.Models.Playlist.LastFm;
 using Sciendo.Music.DataProviders.Models.Query;
+using Sciendo.Music.DataProviders.Models.Playlist;
 
 namespace Sciendo.Music.DataProviders
 {
@@ -17,30 +18,40 @@ namespace Sciendo.Music.DataProviders
         private string _lastFmUser;
         private int _page;
 
-        public ResultsPackage GetFullDocuments(int page, string userName,string lastFmBaseApiUrl, string lastFmApiKey,IResultsProvider resultsProvider)
+        public PlaylistPageModel GetNewPlaylistPage(int page, string userName,string lastFmBaseApiUrl, string lastFmApiKey,IResultsProvider resultsProvider)
         {
             _lastFmBaseApiUrl = lastFmBaseApiUrl;
             _lastFmApiKey = lastFmApiKey;
             _page = page;
             _lastFmUser = userName;
+
+            var results = GetPlaylistPage(resultsProvider);
+            return results;
+            }
+
+        private PlaylistPageModel GetPlaylistPage(IResultsProvider resultsProvider)
+        {
             LastFmResponse lastFmResponse = GetLastFmResponse();
 
             var solrQuery = TranslateLastFmToSolr(lastFmResponse);
 
-            var results=
+            var results =
                 resultsProvider.GetResultsPackage(solrQuery
-                    , lastFmResponse.LovedTracks.Info.PerPage,0,new SolrPreciseQueryStrategy(solrQuery),WebRetriever.TryPost<SolrResponse>);
+                    , lastFmResponse.LovedTracks.Info.PerPage, 0, new SolrPreciseQueryStrategy(solrQuery), 
+                    WebRetriever.TryPost<SolrResponse>);
 
-            results.PageInfo =
+            var playlistPage = new PlaylistPageModel();
+            playlistPage.PageInfo=
                 new PageInfo
                 {
                     PageStartRow =
-                        (lastFmResponse.LovedTracks.Info.Page - 1)*lastFmResponse.LovedTracks.Info.PerPage,
+                        (lastFmResponse.LovedTracks.Info.Page - 1) * lastFmResponse.LovedTracks.Info.PerPage,
                     RowsPerPage = lastFmResponse.LovedTracks.Info.PerPage,
                     TotalRows = lastFmResponse.LovedTracks.Info.Total
                 };
-            return results;
-            }
+            playlistPage.ResultRows = results.ResultRows.Select(r => new PlaylistItem { FilePathId = r.FilePathId, FilePath = r.FilePath, Album = r.Album, Artist = r.Artist, Lyrics = r.Lyrics, Title = r.Title }).ToArray();
+            return playlistPage;
+        }
 
         protected virtual string TranslateLastFmToSolr(LastFmResponse lastFmResponse)
         {
@@ -76,6 +87,18 @@ namespace Sciendo.Music.DataProviders
         public void ResetPlaylist()
         {
             throw new NotImplementedException();
+        }
+
+
+        public PlaylistModel RefreshPlaylist(string lastFmUserName, string lastFmBaseApiUrl, string lastFmApiKey, IResultsProvider resultsProvider)
+        {
+            _lastFmBaseApiUrl = lastFmBaseApiUrl;
+            _lastFmApiKey = lastFmApiKey;
+            _page = 1;
+            _lastFmUser = lastFmUserName;
+            var playlist = new PlaylistModel();
+            playlist.Pages.Add(GetPlaylistPage(resultsProvider));
+            return playlist;
         }
     }
 }
