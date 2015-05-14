@@ -62,52 +62,17 @@
 
     }
     self.indexMusic = function () {
-        self.hub.startIndexing(self.musicFromPath(), 1);
-        //return ajaxRequest("get", indexUrl(self.musicFromPath(),1))
-        //    .done(getSucceeded)
-        //    .fail(getFailed);
-
-        //function getSucceeded(data) {
-        //    displayResults(data, self.indexingResult, self.indexingError, self.lastIndexingType);
-        //}
-        //function getFailed() {
-        //    indexingError("Error indexing.");
-        //    indexingResult();
-        //}
-    
+        self.hub.server.startIndexing(self.musicFromPath(), 1);
     }
 
     self.acquireLyrics = function () {
         self.hub.server.startAcquiringLyrics(self.musicFromPath(), self.retryExisting());
-        //return ajaxRequest("get", acquireLyricsUrl(self.musicFromPath(), self.retryExisting()))
-        //    .done(getSucceeded)
-        //    .fail(getFailed);
-
-        //function getSucceeded(data) {
-        //    displayAcquireLyricsResults(data, self.indexingResult, self.indexingError,self.lastIndexingType);
-        //}
-        //function getFailed() {
-        //    indexingError("Error indexing.");
-        //    indexingResult();
-        //}
-
     }
     self.indexLyrics = function () {
         self.hub.server.startIndexing(self.lyricsFromPath(), 2);
-        //return ajaxRequest("get", indexUrl(self.lyricsFromPath(), 2))
-        //    .done(getSucceeded)
-        //    .fail(getFailed);
-
-        //function getSucceeded(data) {
-        //    displayResults(data, self.indexingResult, self.indexingError, self.lastIndexingType);
-        //}
-        //function getFailed() {
-        //    indexingError("Error indexing.");
-        //    indexingResult();
-        //}
-
     }
-    self.hub.client.returnCompletedMessage=function(data)
+
+    self.hub.client.returnCompletedMessage = function (data)
     {
         self.indexingResult(data.NumberOfDocuments);
 
@@ -122,40 +87,6 @@
 
 }
 
-//function displayResults(data, resultObservable, errorObservable, lastIndexingTypeObservable) {
-
-//    resultObservable(data.NumberOfDocuments);
-
-//    errorObservable(data.Error);
-
-//    lastIndexingTypeObservable(data.IndexType);
-
-//}
-
-//function indexUrl(id, indexType) {
-//    return config.contextPath + "home/startIndexing?fromPath=" + (id || "") + "&indexType=" + (indexType || 0);
-//}
-
-//function acquireLyricsUrl(id, retryExisting) {
-//    return config.contextPath + "home/startAcquiringLyrics?fromPath=" + (id || "") + "&retryExisting=" + (retryExisting || false);
-//}
-
-//function ajaxRequest(type, url, data, dataType) { // Ajax helper
-//    var options = {
-//        dataType: dataType || "json",
-//        contentType: "application/json",
-//        cache: false,
-//        type: type,
-//        data: data ? data.toJson() : null
-//    };
-//    var antiForgeryToken = $("#antiForgeryToken").val();
-//    if (antiForgeryToken) {
-//        options.headers = {
-//            'RequestVerificationToken': antiForgeryToken
-//        }
-//    }
-//    return $.ajax(url, options);
-//}
 function escapeRegExp(string) {
     return string.replace(/([.*+?^=!:${}()|\[\]\/\\])/g, "\\$1");
 }

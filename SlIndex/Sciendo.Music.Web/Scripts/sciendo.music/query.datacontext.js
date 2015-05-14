@@ -50,11 +50,11 @@
             data: data.ResultRows,
             keyColumn: "FilePath",
             columns: [
-                { headerText: "Add to playlist", rowText: "FilePath", isKey:true, isLink:false, colWidth:"0px"},
-                { headerText: "Album", rowText: "Album", isKey: false, isLink: false, colWidth: "300px" },
-                { headerText: "Artist", rowText: "Artist", isKey: false, isLink: false, colWidth: "100px" },
-                { headerText: "Title", rowText: "Title", isKey: false, isLink: true, colWidth: "300px" },
-                { headerText: "Lyrics", rowText: "Lyrics", isKey: false, isLink: false, colWidth: "500px" }
+                { headerText: "Add to playlist", rowText: "FilePath", isKey:true, isSelect:false,isLink:false, colWidth:"0px"},
+                { headerText: "Album", rowText: "Album", isKey: false, isLink: false, isSelect: false, colWidth: "300px" },
+                { headerText: "Artist", rowText: "Artist", isKey: false, isLink: false, isSelect: false, colWidth: "100px" },
+                { headerText: "Title", rowText: "Title", isKey: false, isLink: true, isSelect: false, colWidth: "300px" },
+                { headerText: "Lyrics", rowText: "Lyrics", isKey: false, isLink: false, isSelect: false, colWidth: "500px" }
             ]
         },self);
         resultObservable({ fields: data.Fields, resultRows: data.ResultRows, gridViewModel: grdModel });
