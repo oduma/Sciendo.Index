@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,6 +9,7 @@ using Sciendo.Music.DataProviders.Common;
 using Sciendo.Music.DataProviders.Models.Playlist.LastFm;
 using Sciendo.Music.DataProviders.Models.Query;
 using Sciendo.Music.DataProviders.Models.Playlist;
+using System.IO.Compression;
 
 namespace Sciendo.Music.DataProviders
 {
@@ -28,6 +30,56 @@ namespace Sciendo.Music.DataProviders
             var results = GetPlaylistPage(resultsProvider);
             return results;
             }
+
+        public byte[] CreatePlaylistPackage(PlaylistModel playlistModel)
+        {
+            //create the plu file
+            string m3UString = CreateM3UString(playlistModel);
+            //create batch copy file
+            string batchString = CreateBatchString(playlistModel);
+            //zipp them toigether and send the byte array
+            return ZipResponseToMemory(m3UString, batchString);
+        }
+
+        private byte[] ZipResponseToMemory(string m3UString, string batchString)
+        {
+            using (MemoryStream zipStream = new MemoryStream())
+            {
+                
+                using (ZipArchive archive = new ZipArchive(zipStream, ZipArchiveMode.Create,true))
+                {
+                    ZipArchiveEntry playlistEntry = archive.CreateEntry("playlist.m3u");
+                    using (StreamWriter writer = new StreamWriter(playlistEntry.Open()))
+                    {
+                        writer.Write(m3UString);
+                    }
+                    ZipArchiveEntry batchFile = archive.CreateEntry("filecopy.bat");
+                    using (StreamWriter writer = new StreamWriter(batchFile.Open()))
+                    {
+                        writer.Write(batchString);
+                    }
+                }
+                long size = zipStream.Length;
+                var resultBuffer = new byte[size];
+                zipStream.Position = 0;
+                zipStream.Read(resultBuffer, 0, (int)size);
+                return resultBuffer;
+            }
+        }
+
+        private string CreateBatchString(PlaylistModel playlistModel)
+        {
+            return string.Join("\r\n", playlistModel.Pages.SelectMany(p => p.ResultRows).Select((i) =>string.Format("copy \"{0}\" *",i.FilePath.Replace(@"file:///",""))));
+        }
+
+        private string CreateM3UString(PlaylistModel playlistModel)
+        {
+            return string.Join("\r\n", playlistModel.Pages.SelectMany(p => p.ResultRows).Select((i) =>
+            {
+                var iarray = i.FilePath.Split(new[] {'\\'});
+                return string.Format("\"{0}\"",iarray[iarray.Length - 1]);
+            }));
+        }
 
         private PlaylistPageModel GetPlaylistPage(IResultsProvider resultsProvider)
         {
@@ -73,22 +125,6 @@ namespace Sciendo.Music.DataProviders
             return "method=user.getlovedtracks&page=" + _page + "&user=" + _lastFmUser + "&api_key=" + _lastFmApiKey +
                    "&format=json";
         }
-
-        public string CreatePlaylistPackage()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void AddToPlaylist(string[] filePaths)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void ResetPlaylist()
-        {
-            throw new NotImplementedException();
-        }
-
 
         public PlaylistModel RefreshPlaylist(string lastFmUserName, string lastFmBaseApiUrl, string lastFmApiKey, IResultsProvider resultsProvider)
         {

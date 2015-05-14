@@ -2,55 +2,65 @@
 
     var self = this;
 
-    self.filterByFacet = function (query, resultObservable, errorObservable, filterFieldNameObservable, selectedFacetObservable, facetFilteredObservable, pageInfoObservable) {
-        return ajaxRequest("get", solrFilterUrl(query(), pageInfoObservable(), filterFieldNameObservable(), selectedFacetObservable()))
+    self.createPlaylist = function (errorObservable) {
+        return ajaxRequest("get", createPlaylistUrl())
+            .done(getSucceeded)
+            .fail(getFailed);
+
+        function getSucceeded() {
+        }
+        function getFailed() {
+            errorObservable("Error retrieving results.");
+        }
+    }
+
+    self.getPlaylistPage = function (resultObservable, errorObservable, user, pageInfoObservable) {
+        return ajaxRequest("get", getPlaylistPageUrl(user(),pageInfoObservable()))
             .done(getSucceeded)
             .fail(getFailed);
 
         function getSucceeded(data) {
-            displayResults(data, resultObservable, errorObservable, facetFilteredObservable, pageInfoObservable, true);
+            self.displayResults(data, resultObservable, errorObservable, pageInfoObservable);
         }
         function getFailed() {
             errorObservable("Error retrieving results.");
             resultObservable();
-            facetFilteredObservable(false);
 
         }
     }
-    self.refreshPlaylist = function (user, resultObservable, errorObservable, facetFilteredObservable, pageInfoObservable) {
+
+    self.refreshPlaylist = function (user, resultObservable, errorObservable, pageInfoObservable) {
         return ajaxRequest("get", getRefreshUrl(user()))
             .done(getSucceeded)
             .fail(getFailed);
 
         function getSucceeded(data) {
             
-            self.displayResults(data, resultObservable, errorObservable, facetFilteredObservable, pageInfoObservable, false);
+            self.displayResults(data, resultObservable, errorObservable, pageInfoObservable);
         }
 
         function getFailed() {
             errorObservable("Error retrieving results.");
             resultObservable();
-            facetFilteredObservable(false);
 
         }
     }
 
-    self.changePlaylist = function (playlistItem, onOff, resultObservable, errorObservable, facetFilteredObservable, pageInfoObservable) {
+    self.changePlaylist = function (playlistItem, onOff, resultObservable, errorObservable, pageInfoObservable) {
         return ajaxRequest("get", changeItemInPlaylistUrl(playlistItem, onOff, pageInfoObservable()))
         .done(getSucceeded)
         .fail(getFailed);
 
         function getSucceeded(data) {
-            self.displayResults(data, resultObservable, errorObservable, facetFilteredObservable, pageInfoObservable, false);
+            self.displayResults(data, resultObservable, errorObservable, pageInfoObservable);
         }
         function getFailed() {
             errorObservable("Error retrieving results.");
             resultObservable();
-            facetFilteredObservable(false);
         }
     }
 
-    self.displayResults=function(data, resultObservable, errorObservable, facetFilteredObservable, pageInfoObservable, filtered) {
+    self.displayResults=function(data, resultObservable, errorObservable, pageInfoObservable) {
 
         for (var i = 0; i < data.ResultRows.length; i++)
         {
@@ -60,7 +70,7 @@
                 if (e.srcElement == null)
                     element = e.originalEvent.srcElement;
 
-                self.changePlaylist(element.id, element.checked, resultObservable, errorObservable, facetFilteredObservable,pageInfoObservable);
+                self.changePlaylist(element.id, element.checked, resultObservable, errorObservable,pageInfoObservable);
 
             };
         }
@@ -80,9 +90,7 @@
 
         errorObservable("");
 
-        facetFilteredObservable(filtered);
-
-        pageInfoObservable(data.PageInfo)
+        pageInfoObservable(data.PageInfo);
 
     }
 
@@ -114,11 +122,15 @@
         return config.contextPath + "query/refreshplaylist?lastFmUserName=" + (userName || "");
     }
 
-    function solrFilterUrl(id, pageInfo, facetName, facetId) {
-        return config.contextPath + "query/filter?criteria=" + (id || "") + "&numRows=" + (pageInfo.RowsPerPage || "0") + "&startRow=" + (pageInfo.PageStartRow || "0") + "&facetFieldName=" + (facetName || "") + "&facetFieldValue=" + (facetId || "");
+    function getPlaylistPageUrl(userName, pageInfo) {
+        return config.contextPath + "query/getplaylistpage?lastFmUserName=" + (userName || "") +"&numRows=" + (pageInfo.RowsPerPage || "0") + "&startRow=" + (pageInfo.PageStartRow || "0");
     }
 
     function changeItemInPlaylistUrl(playlistItem,onOff,pageInfo) {
         return config.contextPath + "query/changeiteminplaylist?playlistItem=" + (playlistItem || "") + "&onOff=" + (onOff || false) + "&numRows=" + (pageInfo.RowsPerPage || "0") + "&startRow=" + (pageInfo.PageStartRow || "0");
+    }
+
+    function createPlaylistUrl() {
+        return config.contextPath + "query/createplaylist";
     }
 };

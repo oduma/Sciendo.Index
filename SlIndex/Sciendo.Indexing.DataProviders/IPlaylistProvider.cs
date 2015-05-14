@@ -1,6 +1,4 @@
-﻿using Sciendo.Music.Contracts.Solr;
-using Sciendo.Music.DataProviders.Models.Playlist;
-using Sciendo.Music.DataProviders.Models.Query;
+﻿using Sciendo.Music.DataProviders.Models.Playlist;
 
 namespace Sciendo.Music.DataProviders
 {
@@ -8,11 +6,7 @@ namespace Sciendo.Music.DataProviders
     {
         PlaylistPageModel GetNewPlaylistPage(int page, string userName, string lastFmBaseApiUrl, string lastFmApiKey, IResultsProvider resultsProvider);
 
-        string CreatePlaylistPackage();
-
-        void AddToPlaylist(string[] filePaths);
-
-        void ResetPlaylist();
+        byte[] CreatePlaylistPackage(PlaylistModel playlistModel);
 
         PlaylistModel RefreshPlaylist(string lastFmUserName,  string lastFmBaseApiUrl, string lastFmApiKey, IResultsProvider resultsProvider);
     }

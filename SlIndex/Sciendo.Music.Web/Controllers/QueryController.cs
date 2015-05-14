@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using System;
+using System.Web.Mvc;
 using Sciendo.Music.DataProviders;
 using Sciendo.Music.DataProviders.Common;
 using Sciendo.Music.DataProviders.Models.Query;
@@ -32,16 +33,50 @@ namespace Sciendo.Music.Web.Controllers
             {
                 Session.Remove("currentplaylist");
             }
-            var currentPlaylist=SciendoConfiguration.Container.Resolve<IPlaylistProvider>(
-    SciendoConfiguration.PlaylistConfiguration.CurrentPlaylistProvider)
-    .RefreshPlaylist(lastFmUserName,
-        SciendoConfiguration.PlaylistConfiguration.LastFmBaseApiUrl,
-        SciendoConfiguration.PlaylistConfiguration.LastFmApiKey, SciendoConfiguration.Container.Resolve<IResultsProvider>(SciendoConfiguration.QueryConfiguration.CurrentDataProvider));
-            Session.Add("currentplaylist",currentPlaylist);
+            var currentPlaylist = SciendoConfiguration.Container.Resolve<IPlaylistProvider>(
+                SciendoConfiguration.PlaylistConfiguration.CurrentPlaylistProvider)
+                .RefreshPlaylist(lastFmUserName,
+                    SciendoConfiguration.PlaylistConfiguration.LastFmBaseApiUrl,
+                    SciendoConfiguration.PlaylistConfiguration.LastFmApiKey,
+                    SciendoConfiguration.Container.Resolve<IResultsProvider>(
+                        SciendoConfiguration.QueryConfiguration.CurrentDataProvider));
+            Session.Add("currentplaylist", currentPlaylist);
 
             return Json(currentPlaylist.Pages[0], JsonRequestBehavior.AllowGet);
         }
 
+        [HttpGet]
+        public JsonResult GetPlaylistPage(string lastFmUserName, int numRows, int startRow)
+        {
+            int pageNo;
+            if (numRows == 0)
+            {
+                pageNo = 0;
+            }
+            else
+            {
+                pageNo = startRow / numRows;
+            }
+
+            if (Session["currentplaylist"] == null)
+            {
+                throw new Exception("No Playlist on the server!");
+            }
+            var playlist = ((PlaylistModel) Session["currentplaylist"]);
+            if (playlist.Pages.Count < pageNo)
+                return Json(((PlaylistModel) Session["currentplaylist"]).Pages[pageNo], JsonRequestBehavior.AllowGet);
+
+            playlist.Pages.Add(SciendoConfiguration.Container.Resolve<IPlaylistProvider>(
+                SciendoConfiguration.PlaylistConfiguration.CurrentPlaylistProvider)
+                .GetNewPlaylistPage(pageNo,lastFmUserName,
+                    SciendoConfiguration.PlaylistConfiguration.LastFmBaseApiUrl,
+                    SciendoConfiguration.PlaylistConfiguration.LastFmApiKey,
+                    SciendoConfiguration.Container.Resolve<IResultsProvider>(
+                        SciendoConfiguration.QueryConfiguration.CurrentDataProvider)));
+            Session["currentplaylist"]=playlist;
+
+            return Json(playlist.Pages[pageNo], JsonRequestBehavior.AllowGet);
+        }
 
         [HttpGet]
         public JsonResult ChangeItemInPlaylist(string playlistItem, bool onOff, int numRows, int startRow)
@@ -57,7 +92,7 @@ namespace Sciendo.Music.Web.Controllers
             }
             if (string.IsNullOrEmpty(playlistItem) || Session["currentplaylist"] == null)
             {
-                return Json(((PlaylistModel)Session["currentplaylist"]).Pages[pageNo], JsonRequestBehavior.AllowGet);
+                return Json(((PlaylistModel) Session["currentplaylist"]).Pages[pageNo], JsonRequestBehavior.AllowGet);
 
             }
 
@@ -72,6 +107,27 @@ namespace Sciendo.Music.Web.Controllers
                 item.Included = onOff;
             }
             return Json(((PlaylistModel)Session["currentplaylist"]).Pages[pageNo], JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        public ActionResult CreatePlaylist()
+        {
+            var cd = new System.Net.Mime.ContentDisposition
+            {
+                // for example foo.bak
+                FileName = "playlist.zip",
+
+                // always prompt the user for downloading, set to true if you want 
+                // the browser to try to show the file inline
+                Inline = false,
+            };
+            if(Session["currentplaylist"]==null)
+                throw new Exception("no playlist on the server.");
+            Response.AppendHeader("Content-Disposition", cd.ToString());
+            var content = SciendoConfiguration.Container.Resolve<IPlaylistProvider>(
+                SciendoConfiguration.PlaylistConfiguration.CurrentPlaylistProvider)
+                .CreatePlaylistPackage((PlaylistModel) Session["currentplaylist"]);
+            return File(content,"application/zip, application/octet-stream");
         }
 
         [HttpGet]

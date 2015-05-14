@@ -12,34 +12,18 @@
         return (self.pageInfo().PageStartRow + self.pageInfo().RowsPerPage > self.pageInfo().TotalRows) ? self.pageInfo().TotalRows : self.pageInfo().PageStartRow + self.pageInfo().RowsPerPage;
     }, self);
     self.getResults = function () {
-        (new pldatacontext()).refreshPlaylist(self.lastFmUser, self.resultData, self.error, self.facetFiltered, self.pageInfo);
+        (new pldatacontext()).refreshPlaylist(self.lastFmUser, self.resultData, self.error,self.pageInfo);
+    }
+    self.createPlaylist=function() {
+        (new pldatacontext()).createPlaylist(self.error);
     }
     self.getNextPage = function () {
         self.pageInfo().PageStartRow += self.pageInfo().RowsPerPage;
-            (new datacontext()).getPlaylistPage(self.resultData, self.error, self.facetFiltered, self.pageInfo);
+        (new pldatacontext()).getPlaylistPage(self.resultData, self.error, self.lastFmUser, self.pageInfo);
     }
     self.getPreviousPage = function () {
         self.pageInfo().PageStartRow -= self.pageInfo().RowsPerPage;
-        if (self.facetFiltered())
-            (new datacontext()).filterByFacet(self.criteria, self.resultData, self.error, self.selectedFacetFieldName, self.selectedFacetValue, self.facetFiltered, self.pageInfo);
-        else
-            (new datacontext()).doSearch(self.criteria, self.resultData, self.error, self.facetFiltered, self.pageInfo);
-    }
-
-    self.artistFacetSelected = function () {
-        self.selectedFacetFieldName("artist_f");
-        self.pageInfo({ TotalRows: 0, RowsPerPage: 0, PageStartRow: 0 });
-        (new datacontext()).filterByFacet(self.criteria, self.resultData, self.error, self.selectedFacetFieldName, self.selectedFacetValue, self.facetFiltered, self.pageInfo);
-    }
-    self.extensionFacetSelected = function () {
-        self.selectedFacetFieldName("extension_f");
-        self.pageInfo({ TotalRows: 0, RowsPerPage: 0, PageStartRow: 0 });
-        (new datacontext()).filterByFacet(self.criteria, self.resultData, self.error, self.selectedFacetFieldName, self.selectedFacetValue, self.facetFiltered, self.pageInfo);
-    }
-    self.letterFacetSelected = function () {
-        self.selectedFacetFieldName("letter_catalog_f");
-        self.pageInfo({ TotalRows: 0, RowsPerPage: 0, PageStartRow: 0 });
-        (new datacontext()).filterByFacet(self.criteria, self.resultData, self.error, self.selectedFacetFieldName, self.selectedFacetValue, self.facetFiltered, self.pageInfo);
+        (new pldatacontext()).getPlaylistPage(self.resultData, self.error, self.lastFmUser, self.pageInfo);
     }
 }
 
