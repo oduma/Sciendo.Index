@@ -119,7 +119,7 @@ namespace Sciendo.Music.Agent.Service
 
         public ProgressStatus[] GetLastProcessedPackages()
         {
-            LoggingManager.Debug("Starting Get last packages");
+            //LoggingManager.Debug("Starting Get last packages");
             return _progressStatuses.GetAllInQueue();
         }
 

@@ -28,8 +28,9 @@ namespace Sciendo.Music.Real.Lyrics.Provider
 
         private static bool LyricsNotEmpty(string arg)
         {
-            return !(arg.IndexOf(@"<lyrics>Not found</lyrics>") > 0 ||
-             arg.IndexOf("<html xmlns=\"http://www.w3.org/1999/xhtml") >= 0);
+            //return !(arg.IndexOf(@"<lyrics>Not found</lyrics>") > 0 ||
+            // arg.IndexOf("<html xmlns=\"http://www.w3.org/1999/xhtml") >= 0);
+            return true;
         }
     }
 }
