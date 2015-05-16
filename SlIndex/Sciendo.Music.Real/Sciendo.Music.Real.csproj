@@ -67,8 +67,7 @@
     <Compile Include="Procesors\Common\FilesProcessorBase.cs" />
     <Compile Include="Procesors\Configuration\AgentConfigurationSection.cs" />
     <Compile Include="Procesors\Configuration\AgentConfigurationSource.cs" />
-    <Compile Include="Procesors\LyricsSourced\LyricsFilesProcessor.cs" />
-    <Compile Include="Procesors\MusicSourced\MusicFilesProcessor.cs" />
+    <Compile Include="Procesors\MusicSourced\IndexingFilesProcessor.cs" />
     <Compile Include="Procesors\MusicSourced\MusicToLyricsFilesProcessor.cs" />
     <Compile Include="Procesors\MusicSourced\SongInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

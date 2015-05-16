@@ -4,9 +4,8 @@ namespace Sciendo.Music.Contracts.MusicService
 {
     public class WorkingSet
     {
-        public Type MusicFilesProcessorType { get; set; }
-        public Type MusicToLyricsFilesProcessorType { get; set; }
-        public Type LyricsFilesProcessorType { get; set; } 
+        public Type IndexingFilesProcessorType { get; set; }
+        public Type LyricsAcquirerFilesProcessorType { get; set; }
 
     }
 }

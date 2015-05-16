@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Globalization;
 using System.Linq;
+using Sciendo.Common.Logging;
 using Sciendo.Music.DataProviders.Models.Indexing;
-using Sciendo.Music.Contracts.MusicService;
 
 
 namespace Sciendo.Music.DataProviders
@@ -11,51 +11,34 @@ namespace Sciendo.Music.DataProviders
     {
         private IMusic _svc = new MusicClient();
 
-        public string[] GetMuiscAutocomplete(string term)
+        public string[] GetIndexingAutocomplete(string term)
         {
             
-            return _svc.ListAvailableMusicPathsForIndexing(term);
+            return _svc.ListAvailablePathsForIndexing(term);
         }
 
-        public string[] GetLyricsAutocomplete(string term)
+        public string GetSourceFolder()
         {
-            return _svc.ListAvailableLyricsPathsForIndexing(term);
+            var formattedSourceFolder = _svc.GetSourceFolder();
+            return formattedSourceFolder.Replace("\\", "/");
         }
 
-        public SourceFolders GetSourceFolders()
+        public void StartIndexing(string fromPath, Action<object,IndexOnDemandCompletedEventArgs> indexCompletedCallback)
         {
-            var formattedSourceFolders = _svc.GetSourceFolders();
-            formattedSourceFolders.Music=formattedSourceFolders.Music.Replace("\\", "/");
-            formattedSourceFolders.Lyrics = formattedSourceFolders.Lyrics.Replace("\\", "/");
-            return formattedSourceFolders;
-        }
-
-        public void StartIndexing(string fromPath, IndexType indexType,Action<object,IndexMusicOnDemandCompletedEventArgs> indexMusicCompletedCallback,Action<object,IndexLyricsOnDemandCompletedEventArgs>indexLyricsCompletedCallback)
-        {
-            ((MusicClient)_svc).IndexMusicOnDemandCompleted += new EventHandler<IndexMusicOnDemandCompletedEventArgs>(indexMusicCompletedCallback);
-            ((MusicClient)_svc).IndexLyricsOnDemandCompleted += new EventHandler<IndexLyricsOnDemandCompletedEventArgs>(indexLyricsCompletedCallback);
-
-                switch (indexType)
-                {
-                    case IndexType.Music:
-                        ((MusicClient)_svc).IndexMusicOnDemandAsync(fromPath);
-                        break;
-                    case IndexType.Lyrics:
-                        ((MusicClient)_svc).IndexLyricsOnDemandAsync(fromPath);
-                        break;
-                    default:
-                        throw new Exception("Unnown type of index");
-                }
+            ((MusicClient)_svc).IndexOnDemandCompleted += new EventHandler<IndexOnDemandCompletedEventArgs>(indexCompletedCallback);
+            ((MusicClient)_svc).IndexOnDemandAsync(fromPath);
         }
 
         public ProgressStatusModel[] GetMonitoring()
         {
             try
             {
+                var packages = _svc.GetLastProcessedPackages();
                 return _svc.GetLastProcessedPackages().Select(p => new ProgressStatusModel { Id = p.Id.ToString(), Package = p.Package.ToString(CultureInfo.InvariantCulture), Status = p.Status.ToString(), CreateDateTime = p.MessageCreationDateTime }).ToArray();
             }
             catch(Exception ex)
             {
+                LoggingManager.LogSciendoSystemError(ex);
                 return new ProgressStatusModel[] { new ProgressStatusModel { CreateDateTime = DateTime.Now, Id = "Unknown error on service", Status = "Error" ,Package="Most likely the server has timed out."} };
             }
 

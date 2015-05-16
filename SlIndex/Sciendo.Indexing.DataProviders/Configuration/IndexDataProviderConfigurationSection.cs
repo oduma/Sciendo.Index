@@ -16,6 +16,13 @@ namespace Sciendo.Music.DataProviders.Configuration
                 this["currentDataProvider"] = value;
             }
         }
+        public override string ToString()
+        {
+            return
+                string.Format(
+                    "\r\n\tCurrent Data Provider:{0}\r\n",
+                    CurrentDataProvider);
+        }
 
     }
 }

@@ -10,13 +10,13 @@ using Sciendo.Music.Real.Procesors.MusicSourced;
 
 namespace Sciendo.Music.Mocks.Processing
 {
-    public class MockMusicFilesProcessor:MusicFilesProcessor
+    public class MockIndexingFilesProcessor:IndexingFilesProcessor
     {
-        public MockMusicFilesProcessor()
+        public MockIndexingFilesProcessor()
         {
             LoggingManager.Debug("Constructing MockMusicFilesprocessor...");
             Sender = new MockSender();
-            CurrentConfiguration = ((AgentConfigurationSection) ConfigurationManager.GetSection("agent")).Music;
+            CurrentConfiguration = ((AgentConfigurationSection) ConfigurationManager.GetSection("agent"));
             LoggingManager.Debug("MockMusicFilesprocessor constructed.");
         }
 

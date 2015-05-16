@@ -29,5 +29,14 @@ namespace Sciendo.Music.DataProviders.Configuration
                 this["playerProcessIdentifier"] = value;
             }
         }
+
+        public override string ToString()
+        {
+            return
+                string.Format(
+                    "\r\n\tCurrent Player Process:{0}\r\n\tPlayer Process Identifier:{1}\r\n",
+                    CurrentPlayerProcess, PlayerProcessIdentifier);
+        }
+
     }
 }

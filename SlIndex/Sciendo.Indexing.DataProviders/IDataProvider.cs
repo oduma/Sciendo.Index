@@ -7,10 +7,9 @@ namespace Sciendo.Music.DataProviders
 {
     public interface IDataProvider:IDisposable
     {
-        string[] GetMuiscAutocomplete(string term);
-        string[] GetLyricsAutocomplete(string term);
-        SourceFolders GetSourceFolders();
-        void StartIndexing(string fromPath, IndexType indexType,Action<object,IndexMusicOnDemandCompletedEventArgs> indexMusicCompletedCallback,Action<object,IndexLyricsOnDemandCompletedEventArgs> indexLyricsCompletedCallback);
+        string[] GetIndexingAutocomplete(string term);
+        string GetSourceFolder();
+        void StartIndexing(string fromPath, Action<object,IndexOnDemandCompletedEventArgs> indexMusicCompletedCallback);
         ProgressStatusModel[] GetMonitoring();
         void StartAcquyringLyrics(string fromPath, bool retryExisting,Action<object,AcquireLyricsOnDemandForCompletedEventArgs> acquireLyricsCallback);
     }

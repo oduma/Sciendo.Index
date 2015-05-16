@@ -58,8 +58,7 @@
     <Compile Include="Monitoring\MockFolderMonitor.cs" />
     <Compile Include="Processing\MockDownloader.cs" />
     <Compile Include="Processing\MockLyricsDeserializer.cs" />
-    <Compile Include="Processing\MockLyricsFilesProcessor.cs" />
-    <Compile Include="Processing\MockMusicFilesProcessor.cs" />
+    <Compile Include="Processing\MockIndexingFilesProcessor.cs" />
     <Compile Include="Processing\MockMusicToLyricsFilesProcessor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Solr\MockSender.cs" />

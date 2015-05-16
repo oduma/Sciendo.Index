@@ -270,23 +270,6 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\Query\Index.cshtml" />
-    <None Include="Service References\MusicClient\MusicAgentService.wsdl" />
-    <None Include="Service References\MusicClient\MusicAgentService.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\MusicClient\MusicAgentService1.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\MusicClient\MusicAgentService2.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\MusicClient\MusicAgentService3.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\MusicClient\MusicAgentService4.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\MusicClient\MusicService.wsdl" />
     <Content Include="Views\Query\BuildPlaylist.cshtml" />
   </ItemGroup>
   <ItemGroup>

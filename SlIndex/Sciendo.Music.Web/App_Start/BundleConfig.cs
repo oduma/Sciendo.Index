@@ -1,4 +1,5 @@
 ﻿using System.Web.Optimization;
+using Sciendo.Common.Logging;
 
 namespace Sciendo.Music.Web
 {
@@ -7,6 +8,7 @@ namespace Sciendo.Music.Web
         // For more information on bundling, visit http://go.microsoft.com/fwlink/?LinkId=301862
         public static void RegisterBundles(BundleCollection bundles)
         {
+            LoggingManager.Debug("Bundles Registration starting...");
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/Scripts/jquery-{version}.js"));
 
@@ -52,6 +54,7 @@ namespace Sciendo.Music.Web
             // Set EnableOptimizations to false for debugging. For more information,
             // visit http://go.microsoft.com/fwlink/?LinkId=301862
             BundleTable.EnableOptimizations = false;
+            LoggingManager.Debug("Bundles Registration finished optimization is "+ BundleTable.EnableOptimizations +".");
         }
     }
 }

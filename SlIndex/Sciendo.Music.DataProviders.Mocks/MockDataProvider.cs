@@ -9,7 +9,7 @@ namespace Sciendo.Music.DataProviders.Mocks
     public sealed class MockDataProvider:IDataProvider
     {
         
-        public string[] GetMuiscAutocomplete(string term)
+        public string[] GetIndexingAutocomplete(string term)
         {
             if(term == "c:\\preroot\\root\\")
             return new[]
@@ -39,25 +39,15 @@ namespace Sciendo.Music.DataProviders.Mocks
             return null;
         }
 
-        public string[] GetLyricsAutocomplete(string term)
+        public string GetSourceFolder()
         {
-            return GetMuiscAutocomplete(term);
+            return "c:\\preroot\\root".Replace(@"\","/");
         }
 
-        public SourceFolders GetSourceFolders()
+        public void StartIndexing(string fromPath, Action<object,IndexOnDemandCompletedEventArgs> indexMusicCompletedCallback)
         {
-            return new SourceFolders {Music = "c:\\preroot\\root".Replace(@"\","/"), Lyrics = "not avaialble".Replace(@"\","/")};
-        }
-
-        public void StartIndexing(string fromPath, IndexType indexType,Action<object,IndexMusicOnDemandCompletedEventArgs> indexMusicCompletedCallback,Action<object,IndexLyricsOnDemandCompletedEventArgs>indexLyricsCompletedCallback)
-        {
-            if (indexType == IndexType.Music)
-            {
-                if (indexMusicCompletedCallback != null)
-                    indexMusicCompletedCallback(this, new IndexMusicOnDemandCompletedEventArgs(new object [1] {20}, null, false, null));
-            }
-            if (indexLyricsCompletedCallback != null)
-                indexLyricsCompletedCallback(this, new IndexLyricsOnDemandCompletedEventArgs(new object[0] { }, new Exception("Lyrics indexing not available"), false, null));
+            if (indexMusicCompletedCallback != null)
+                indexMusicCompletedCallback(this, new IndexOnDemandCompletedEventArgs(new object [1] {20}, null, false, null));
         }
 
         public ProgressStatusModel[] GetMonitoring()

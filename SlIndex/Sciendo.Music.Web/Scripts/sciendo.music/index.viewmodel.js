@@ -1,20 +1,18 @@
-﻿function indexViewModel(musicSource, lyricsSource) {
+﻿function indexViewModel(musicSource) {
     var self = this;
-    self.musicFromPath = ko.observable(replaceAll(musicSource,"/","\\"));
-    self.lyricsFromPath = ko.observable(replaceAll(lyricsSource, "/", "\\"));
+    self.indexFromPath = ko.observable(replaceAll(musicSource,"/","\\"));
     self.retryExisting = ko.observable(false);
     self.indexingResult = ko.observable();
     self.indexingError = ko.observable();
-    self.lastIndexingType = ko.observable();
     self.indexedOccured = ko.computed(function() {
          return self.indexingResult() != null || self.indexingError() != null;
     });
     self.indexedWithError = ko.constructor(function() { return self.indexingError() != null; });
     self.indexingResultMessage = ko.computed(function () {
         if (!self.indexedWithError()) {
-            return "Indexed " + self.indexingResult() + " " + self.lastIndexingType() + " files Ok.";
+            return "Indexed " + self.indexingResult() + " files Ok.";
         }
-        return "Tryed to index " + self.lastIndexingType() + " unsuccesfull:";
+        return "Tryed to index unsuccesfull:";
     });
 
     self.hub = $.connection.monitoringHub;
@@ -55,21 +53,14 @@
     }
 
     self.selectValue = function (property, value) {
-        if (property == "musicIndexFromPath")
-            self.musicFromPath(value);
-        if (property == "lyricsIndexFromPath")
-            self.lyricsFromPath(value);
-
+            self.indexFromPath(value);
     }
-    self.indexMusic = function () {
-        self.hub.server.startIndexing(self.musicFromPath(), 1);
+    self.index = function () {
+        self.hub.server.startIndexing(self.indexFromPath());
     }
 
     self.acquireLyrics = function () {
         self.hub.server.startAcquiringLyrics(self.musicFromPath(), self.retryExisting());
-    }
-    self.indexLyrics = function () {
-        self.hub.server.startIndexing(self.lyricsFromPath(), 2);
     }
 
     self.hub.client.returnCompletedMessage = function (data)
@@ -77,12 +68,6 @@
         self.indexingResult(data.NumberOfDocuments);
 
         self.indexingError(data.Error);
-
-        if (data.IndexType==null || data.IndexType == "" || data.Ind == "None")
-            self.lastIndexingType("Acquyring Lyrics");
-        else
-            self.lastIndexingType(data.IndexType);
-
     }
 
 }

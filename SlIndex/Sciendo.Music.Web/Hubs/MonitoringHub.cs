@@ -15,49 +15,31 @@ namespace Sciendo.Music.Web.Hubs
             IndexingCacheData.ContinueMonitoring = on;
         }
 
-        public void StartIndexing(string fromPath, IndexType indexType)
+        public void StartIndexing(string fromPath)
         {
             try
             {
                 SciendoConfiguration.Container.Resolve<IDataProvider>(
                             SciendoConfiguration.IndexingConfiguration.CurrentDataProvider)
-                            .StartIndexing(fromPath, indexType, StartIndexingMusicCompletedCallback, StartIndexingLyricsCompletedCallback);
+                            .StartIndexing(fromPath, StartIndexingOnDemandCompletedCallback);
 
             }
             catch(Exception ex)
             {
-                if(indexType==IndexType.Lyrics)
-                {
-                    StartIndexingLyricsCompletedCallback(this, new IndexLyricsOnDemandCompletedEventArgs(new object[0] { }, ex, false, null));
-                }
-                StartIndexingMusicCompletedCallback(this, new IndexMusicOnDemandCompletedEventArgs(new object[0] { }, ex, false, null));
+                StartIndexingOnDemandCompletedCallback(this, new IndexOnDemandCompletedEventArgs(new object[0] { }, ex, false, null));
             }
         }
 
-        private void StartIndexingLyricsCompletedCallback(object arg1, IndexLyricsOnDemandCompletedEventArgs arg2)
+        private void StartIndexingOnDemandCompletedCallback(object arg1, IndexOnDemandCompletedEventArgs arg2)
         {
             IndexingResult result;
             if (arg2.Error == null)
             {
-                result = new IndexingResult { NumberOfDocuments = arg2.Result.ToString(),IndexType=IndexType.Lyrics.ToString() };
+                result = new IndexingResult { NumberOfDocuments = arg2.Result.ToString()};
             }
             else
             {
-                result = new IndexingResult { NumberOfDocuments = "", Error = arg2.Error.Message,IndexType=IndexType.Lyrics.ToString() };
-            }
-            Clients.All.returnCompletedMessage(result);
-        }
-
-        private void StartIndexingMusicCompletedCallback(object arg1, IndexMusicOnDemandCompletedEventArgs arg2)
-        {
-            IndexingResult result;
-            if (arg2.Error == null)
-            {
-                result = new IndexingResult { NumberOfDocuments = arg2.Result.ToString(), IndexType = IndexType.Music.ToString() };
-            }
-            else
-            {
-                result = new IndexingResult { NumberOfDocuments = "", Error = arg2.Error.Message, IndexType = IndexType.Music.ToString() };
+                result = new IndexingResult { NumberOfDocuments = "", Error = arg2.Error.Message };
             }
             Clients.All.returnCompletedMessage(result);
         }

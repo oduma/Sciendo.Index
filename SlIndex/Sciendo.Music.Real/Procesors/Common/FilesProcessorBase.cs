@@ -2,14 +2,16 @@
 using System.Collections.Generic;
 using Sciendo.Common.Logging;
 using Sciendo.Music.Contracts.Common;
+using Sciendo.Music.Contracts.Processing;
 using Sciendo.Music.Real.Procesors.Configuration;
 
 namespace Sciendo.Music.Real.Procesors.Common
 {
     public abstract class FilesProcessorBase<TIn>
     {
+        public ILyricsDeserializer LyricsDeserializer { get; set; }
 
-        public AgentConfigurationSource CurrentConfiguration { get; protected set; }
+        public AgentConfigurationSection CurrentConfiguration { get; protected set; }
 
         public int Counter { get; protected set; }
 

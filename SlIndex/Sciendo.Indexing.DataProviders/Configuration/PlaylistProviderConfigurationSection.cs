@@ -53,6 +53,13 @@ namespace Sciendo.Music.DataProviders.Configuration
                 this["lastFmUser"] = value;
             }
         }
+        public override string ToString()
+        {
+            return
+                string.Format(
+                    "\r\n\tCurrent Playlist Provider:{0}\r\n\tLast.Fm base API Url:{1}\r\n\tLast.Fm API Key: {2}\r\n\tLast.Fm API user: {3}",
+                    CurrentPlaylistProvider, LastFmBaseApiUrl, LastFmApiKey,LastFmUser);
+        }
 
     }
 }

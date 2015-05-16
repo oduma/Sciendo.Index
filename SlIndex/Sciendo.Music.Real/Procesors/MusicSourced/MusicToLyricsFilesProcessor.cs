@@ -24,16 +24,12 @@ namespace Sciendo.Music.Real.Procesors.MusicSourced
             LoggingManager.Debug("Constructing Music to Lyrics file processor...");
             var configSection = (AgentConfigurationSection)ConfigurationManager.GetSection("agent");
             WebClient = new WebDownloader();
-            CurrentConfiguration = configSection.Lyrics;
-            CurrentMusicConfiguration = configSection.Music;
+            CurrentConfiguration = configSection;
             LyricsDeserializer = new LyricsDeserializer();
             LoggingManager.Debug("Music to Lyrics file processor constructed.");
 
         }
 
-        public AgentConfigurationSource CurrentMusicConfiguration { get; set; }
-
-        public ILyricsDeserializer LyricsDeserializer { get; set; }
 
         public bool RetryExisting { get; set; }
 
@@ -45,7 +41,7 @@ namespace Sciendo.Music.Real.Procesors.MusicSourced
             if(!RetryExisting)
             {
                 subjectFiles = files.Where(f=> !File.Exists(Path.ChangeExtension(
-                    f.Replace(CurrentMusicConfiguration.SourceDirectory, CurrentConfiguration.SourceDirectory), CurrentConfiguration.SearchPattern.Replace("*.",""))));
+                    f.Replace(CurrentConfiguration.Music.SourceDirectory, CurrentConfiguration.Lyrics.SourceDirectory), CurrentConfiguration.Lyrics.SearchPattern.Replace("*.",""))));
             }
             else
             {
@@ -68,28 +64,33 @@ namespace Sciendo.Music.Real.Procesors.MusicSourced
 
         private LyricsResult TransformToLyricsResult(SongInfo songInfo, string file)
         {
-           var fullTargetPath = Path.ChangeExtension(
-                    file.Replace(CurrentMusicConfiguration.SourceDirectory, CurrentConfiguration.SourceDirectory), CurrentConfiguration.SearchPattern.Replace("*.",""));
-                var directoryPath = fullTargetPath.Replace(Path.GetFileName(fullTargetPath), "");
+            var fullTargetPath = Path.ChangeExtension(
+                    file.Replace(CurrentConfiguration.Music.SourceDirectory, CurrentConfiguration.Lyrics.SourceDirectory), CurrentConfiguration.Lyrics.SearchPattern.Replace("*.",""));
+            return GetLyricsResult(songInfo, fullTargetPath);
+        }
+
+        public LyricsResult GetLyricsResult(SongInfo songInfo, string lyricsFile)
+        {
+            var directoryPath = lyricsFile.Replace(Path.GetFileName(lyricsFile), "");
 
             if (songInfo == null) //assume the music file has been deleted so try to delete the lyrics file
-                DeleteLyrics(fullTargetPath);
-                
-            var artist = string.Join("", songInfo.Artists[0].Replace(" ", "_").ToCharArray().Where(c => (int)c >= 32));
+                DeleteLyrics(lyricsFile);
+
+            var artist = string.Join("", songInfo.Artists[0].Replace(" ", "_").ToCharArray().Where(c => (int) c >= 32));
             var song = songInfo.Title.Replace(" ", "_");
             string downloadedFromApi = string.Empty;
             try
             {
-                LoggingManager.Debug("Trying to get lyrics from the url: "+GetUrl(artist,song));
-                downloadedFromApi = WebClient.TryQuery<string>(GetUrl(artist,song));
+                LoggingManager.Debug("Trying to get lyrics from the url: " + GetUrl(artist, song));
+                downloadedFromApi = WebClient.TryQuery<string>(GetUrl(artist, song));
                 var result = LyricsDeserializer.Deserialize<LyricsResult>(downloadedFromApi);
                 if (!Directory.Exists(directoryPath))
                     Directory.CreateDirectory(directoryPath);
-                using (StreamWriter fs = File.CreateText(fullTargetPath))
+                using (StreamWriter fs = File.CreateText(lyricsFile))
                 {
                     fs.Write(downloadedFromApi);
-                    if(_progressEvent!=null)
-                        _progressEvent(Status.LyricsDownloadedOk,downloadedFromApi);
+                    if (_progressEvent != null)
+                        _progressEvent(Status.LyricsDownloadedOk, downloadedFromApi);
                     return result;
                 }
             }
@@ -104,7 +105,6 @@ namespace Sciendo.Music.Real.Procesors.MusicSourced
                 LoggingManager.LogSciendoSystemError(downloadedFromApi, ex);
                 if (_progressEvent != null)
                     _progressEvent(Status.Error, ex.Message);
-
             }
             return null;
         }

@@ -3,46 +3,29 @@ using Sciendo.Music.Contracts.Monitoring;
 
 namespace Sciendo.Music.Contracts.MusicService
 {
-    [ServiceContract(Namespace="http://Sciendo.Music.Agent")]
+    [ServiceContract(Namespace = "http://Sciendo.Music.Agent")]
     public interface IMusic
     {
         [OperationContract]
-        int IndexLyricsOnDemand(string fromPath);
-        [OperationContract]
-        int IndexMusicOnDemand(string fromPath);
+        int IndexOnDemand(string fromPath);
 
         [OperationContract]
-        int IndexLyrics(string fromPath, ProcessType processType);
-
-        [OperationContract]
-        int IndexMusic(string fromPath, ProcessType processType);
+        int Index(string fromPath,ProcessType processType);
 
         [OperationContract]
         int AcquireLyricsOnDemandFor(string musicPath, bool retryFailed);
 
         [OperationContract]
-        int AcquireLyricsFor(string fromPath, ProcessType processType);
-
-        [OperationContract]
         ProgressStatus[] GetLastProcessedPackages();
 
         [OperationContract]
-        string[] ListAvailableMusicPathsForIndexing(string fromPath);
+        string[] ListAvailablePathsForIndexing(string fromPath);
 
         [OperationContract]
-        string[] ListAvailableLyricsPathsForIndexing(string fromPath);
+        string GetSourceFolder();
 
         [OperationContract]
-        SourceFolders GetSourceFolders();
-
-        [OperationContract]
-        int UnIndexMusicOnDemand(string musicFile);
-
-        [OperationContract]
-        bool DeleteLyricsFile(string file);
-
-        [OperationContract]
-        int UnIndexLyricsOnDemand(string musicFile);
+        int UnIndexOnDemand(string musicFile);
 
         [OperationContract]
         WorkingSet GetCurrentWorkingSet();

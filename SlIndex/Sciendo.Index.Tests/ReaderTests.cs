@@ -63,7 +63,7 @@ namespace Sciendo.Music.Tests
         [ExpectedException(typeof(ArgumentException),ExpectedMessage="Invalid path")]
         public void ReaderTestsInvalidPathNotDelete()
         {
-            MockMusicFilesProcessor _fileProcessor = new MockMusicFilesProcessor();
+            MockIndexingFilesProcessor _fileProcessor = new MockIndexingFilesProcessor();
             Reader reader = new Reader(null);
             reader.ProcessFiles = _fileProcessor.ProcessFilesBatch;
             reader.ParsePath(@"c:\users\something\something", "*.mp3|*.ogg");
@@ -72,7 +72,7 @@ namespace Sciendo.Music.Tests
         [Test]
         public void ReaderTestsInvalidPathDelete()
         {
-            MockMusicFilesProcessor _fileProcessor = new MockMusicFilesProcessor();
+            MockIndexingFilesProcessor _fileProcessor = new MockIndexingFilesProcessor();
             Reader reader = new Reader(null);
             reader.ProcessFiles = _fileProcessor.ProcessFilesBatch;
             reader.ParsePath(@"c:\users\something\something", "*.mp3|*.ogg",ProcessType.Delete);
@@ -82,7 +82,7 @@ namespace Sciendo.Music.Tests
         [Test]
         public void ReaderMusicTestsFolderOk()
         {
-            MockMusicFilesProcessor _fileProcessor = new MockMusicFilesProcessor();
+            MockIndexingFilesProcessor _fileProcessor = new MockIndexingFilesProcessor();
             Reader reader = new Reader(null);
             reader.ProcessFiles = _fileProcessor.ProcessFilesBatch;
             reader.ParsePath(@"TestData\Music", "*.mp3|*.ogg");
@@ -92,7 +92,7 @@ namespace Sciendo.Music.Tests
         [Test]
         public void ReaderMusicTestsFileOk()
         {
-            MockMusicFilesProcessor _fileProcessor = new MockMusicFilesProcessor();
+            MockIndexingFilesProcessor _fileProcessor = new MockIndexingFilesProcessor();
             Reader reader = new Reader(null);
             reader.ProcessFiles = _fileProcessor.ProcessFilesBatch;
             reader.ParsePath(@"TestData\Music\MockMp3.mp3", "*.mp3|*.ogg");
@@ -102,69 +102,13 @@ namespace Sciendo.Music.Tests
         [Test]
         public void ReaderMusicTestsFileDeletedOk()
         {
-            MockMusicFilesProcessor _fileProcessor = new MockMusicFilesProcessor();
+            MockIndexingFilesProcessor _fileProcessor = new MockIndexingFilesProcessor();
             Reader reader = new Reader(null);
             reader.ProcessFiles = _fileProcessor.ProcessFilesBatch;
             reader.ParsePath(@"TestData\Music\MockMp3.mp3", "*.mp3|*.ogg",ProcessType.Delete);
             Assert.AreEqual(1, _fileProcessor.Counter);
         }
 
-        [Test]
-        [ExpectedException(typeof(ArgumentException), ExpectedMessage = "Invalid path")]
-        public void ReaderLyricsTestsInvalidLyricsPathGiven()
-        {
-            MockLyricsFilesProcessor processor = new MockLyricsFilesProcessor(@"TestData\Lyrics", @"TestData\Music");
-            Reader reader = new Reader(null);
-            reader.ProcessFiles = processor.ProcessFilesBatch;
-            reader.ParsePath(@"C:\something\something", "*.lrc");
-        }
-        [Test]
-        public void ReaderLyricsTestsInvalidLyricsPathGivenToDelete()
-        {
-            MockLyricsFilesProcessor processor = new MockLyricsFilesProcessor(@"TestData\Lyrics", @"TestData\Music");
-            Reader reader = new Reader(null);
-            reader.ProcessFiles = processor.ProcessFilesBatch;
-            reader.ParsePath(@"C:\something\something", "*.lrc",ProcessType.Delete);
-            Assert.AreEqual(0,processor.Counter);
-        }
-
-        [Test]
-        public void ReaderLyricsTestsFolderOk()
-        {
-            MockLyricsFilesProcessor processor = new MockLyricsFilesProcessor(@"TestData\Lyrics", @"TestData\Music");
-            Reader reader = new Reader(null);
-            reader.ProcessFiles = processor.ProcessFilesBatch;
-            reader.ParsePath(@"TestData\Lyrics", "*.lrc");
-            Assert.AreEqual(2,processor.Counter);
-        }
-        [Test]
-        public void ReaderLyricsTestsFileOk()
-        {
-            MockLyricsFilesProcessor processor = new MockLyricsFilesProcessor(@"TestData\Lyrics", @"TestData\Music");
-            Reader reader = new Reader(null);
-            reader.ProcessFiles = processor.ProcessFilesBatch;
-            reader.ParsePath(@"TestData\Lyrics\Sub\MockOgg.lrc", "*.lrc");
-            Assert.AreEqual(1, processor.Counter);
-        }
-        [Test]
-        public void ReaderLyricsTestsFileDeletedMusicFileExistsOk()
-        {
-            File.Create(_musicFileWithoutALyricsFile);
-            MockLyricsFilesProcessor processor = new MockLyricsFilesProcessor(@"TestData\Lyrics", @"TestData\Music");
-            Reader reader = new Reader(null);
-            reader.ProcessFiles = processor.ProcessFilesBatch;
-            reader.ParsePath(@"TestData\Music\Sub\NewMockMp3Del.lrc", "*.lrc", ProcessType.Delete);
-            Assert.AreEqual(1, processor.Counter);
-        }
-        [Test]
-        public void ReaderLyricsTestsFileDeletedMusicFileAlreadyDeletedOk()
-        {
-            MockLyricsFilesProcessor processor = new MockLyricsFilesProcessor(@"TestData\Lyrics", @"TestData\Music");
-            Reader reader = new Reader(null);
-            reader.ProcessFiles = processor.ProcessFilesBatch;
-            reader.ParsePath(@"TestData\Music\Sub\NewMockMp3Del1.lrc", "*.lrc", ProcessType.Delete);
-            Assert.AreEqual(0, processor.Counter);
-        }
         [Test]
         [ExpectedException(typeof(ArgumentException), ExpectedMessage = "Invalid path")]
         public void ReaderTestsInvalidPath1()

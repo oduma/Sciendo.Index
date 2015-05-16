@@ -42,5 +42,12 @@ namespace Sciendo.Music.DataProviders.Configuration
             }
         }
 
+        public override string ToString()
+        {
+            return
+                string.Format(
+                    "\r\n\tCurrent Data Provider:{0}\r\n\tSolr Connection string:{1}\r\n\tPage Size: {2}\r\n",
+                    CurrentDataProvider, SolrConnectionString, PageSize);
+        }
     }
 }

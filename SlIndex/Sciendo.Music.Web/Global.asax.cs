@@ -4,6 +4,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using Sciendo.Common.Logging;
 using Sciendo.IOC;
 using Sciendo.Music.DataProviders.Configuration;
 
@@ -13,18 +14,27 @@ namespace Sciendo.Music.Web
     {
         protected void Application_Start()
         {
+            LoggingManager.Debug("Application starting...");
+            LoggingManager.Debug(SciendoConfiguration.ToString());
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             IocConfig.RegisterComponents(SciendoConfiguration.Container);
-
+            LoggingManager.Debug("Application started.");
         }
     }
 
     public static class SciendoConfiguration
     {
-
+        public static new string ToString()
+        {
+            return
+                string.Format(
+                    "With configuration:\r\nFor querying:{0}\r\nFor indexing:{1}\r\nFor Playing:{2}\r\nFor Playlists:{3} ",
+                    QueryConfiguration.ToString(), IndexingConfiguration.ToString(), PlayerConfiguration.ToString(),
+                    PlaylistConfiguration.ToString());
+        }
         public static Container Container
         {
             get

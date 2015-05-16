@@ -8,30 +8,20 @@ namespace Sciendo.Music.Web.Controllers
     {
         public ActionResult Index()
         {
-
             IndexModel indexModel= new IndexModel(SciendoConfiguration.Container.Resolve<IDataProvider>(
                 SciendoConfiguration.IndexingConfiguration.CurrentDataProvider)
-                .GetSourceFolders());
-
+                .GetSourceFolder());
 
             return View("Index", indexModel);
         }
 
         [HttpGet]
-        public JsonResult GetMusicAutoComplete(string term)
+        public JsonResult GetIndexingAutoComplete(string term)
         {
             return
                 Json(SciendoConfiguration.Container.Resolve<IDataProvider>(
                         SciendoConfiguration.IndexingConfiguration.CurrentDataProvider)
-                        .GetMuiscAutocomplete(term), JsonRequestBehavior.AllowGet);
-        }
-        [HttpGet]
-        public JsonResult GetLyricsAutoComplete(string term)
-        {
-            return
-                Json(SciendoConfiguration.Container.Resolve<IDataProvider>(
-                        SciendoConfiguration.IndexingConfiguration.CurrentDataProvider)
-                        .GetLyricsAutocomplete(term), JsonRequestBehavior.AllowGet);
+                        .GetIndexingAutocomplete(term), JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult About()
