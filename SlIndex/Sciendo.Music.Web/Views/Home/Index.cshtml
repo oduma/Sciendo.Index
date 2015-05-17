@@ -17,7 +17,7 @@
         class="longfield"
         data-autocomplete="@Url.Action("GetIndexingAutocomplete", "Home")" />
     <button data-bind="click:index">Index</button>
-    <input type="checkbox" data-bind="checked:retryExisting"/>Retry existing <button data-bind="click:acquireLyrics">Acquire Lyrics</button>
+    <input type="checkbox" data-bind="checked:retryExisting"/>Retry existing <button data-bind="click:acquireLyrics, text:acquireLyricsText, enable:notAcquiring"></button>
 </div>
 <div data-bind="if:indexedOccured">
     <label id="resultsIndexed" data-bind="text:indexingResultMessage"></label>

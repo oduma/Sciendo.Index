@@ -4,15 +4,16 @@
     self.retryExisting = ko.observable(false);
     self.indexingResult = ko.observable();
     self.indexingError = ko.observable();
+    self.acquireLyricsText = ko.observable("Acquire Lyrics");
     self.indexedOccured = ko.computed(function() {
          return self.indexingResult() != null || self.indexingError() != null;
     });
     self.indexedWithError = ko.constructor(function() { return self.indexingError() != null; });
     self.indexingResultMessage = ko.computed(function () {
         if (!self.indexedWithError()) {
-            return "Indexed " + self.indexingResult() + " files Ok.";
+            return self.indexingResult() + " files Ok.";
         }
-        return "Tryed to index unsuccesfull:";
+        return "Error during last operation:";
     });
 
     self.hub = $.connection.monitoringHub;
@@ -32,6 +33,8 @@
         }
         
     }
+    self.notAcquiring = ko.computed(function () { return self.acquireLyricsText() == "Acquire Lyrics"; });
+
     self.hasSubscription = ko.computed(function () { return self.monitoringActionName() =="Unsubscribe"; });
 
     self.hub.client.addNewMessageToPage = function (message) {
@@ -60,6 +63,7 @@
     }
 
     self.acquireLyrics = function () {
+        self.acquireLyricsText("Acquiring Lyrics...");
         $.connection.hub.start().done(function () {
             self.hub.server.startAcquiringLyrics(self.indexFromPath(), self.retryExisting());
         });
@@ -67,7 +71,12 @@
 
     self.hub.client.returnCompletedMessage = function (data)
     {
-        self.indexingResult(data.NumberOfDocuments);
+        var lastActivity = "Indexed ";
+        if (self.acquireLyricsText() == "Acquiring Lyrics...") {
+            self.acquireLyricsText("Acquire Lyrics");
+            lastActivity = "Acquired Lyrics for ";
+        }
+        self.indexingResult(lastActivity + data.NumberOfDocuments);
 
         self.indexingError(data.Error);
     }
