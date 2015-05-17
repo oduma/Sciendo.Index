@@ -114,7 +114,7 @@
       <Name>Sciendo.Music.Agent</Name>
     </ProjectReference>
     <ProjectReference Include="..\Sciendo.Indexing.DataProviders\Sciendo.Music.DataProviders.csproj">
-      <Project>{E0E60437-5683-4AE7-A448-4848B4BDDD2A}</Project>
+      <Project>{e0e60437-5683-4ae7-a448-4848b4bddd2a}</Project>
       <Name>Sciendo.Music.DataProviders</Name>
     </ProjectReference>
     <ProjectReference Include="..\Sciendo.Music.Contracts\Sciendo.Music.Contracts.csproj">

@@ -69,15 +69,15 @@ namespace Sciendo.Music.Tests
             reader.ParsePath(@"c:\users\something\something", "*.mp3|*.ogg");
         }
 
-        [Test]
-        public void ReaderTestsInvalidPathDelete()
-        {
-            MockIndexingFilesProcessor _fileProcessor = new MockIndexingFilesProcessor();
-            Reader reader = new Reader(null);
-            reader.ProcessFiles = _fileProcessor.ProcessFilesBatch;
-            reader.ParsePath(@"c:\users\something\something", "*.mp3|*.ogg",ProcessType.Delete);
-            Assert.AreEqual(1, _fileProcessor.Counter);
-        }
+        //[Test]
+        //public void ReaderTestsInvalidPathDelete()
+        //{
+        //    MockIndexingFilesProcessor _fileProcessor = new MockIndexingFilesProcessor();
+        //    Reader reader = new Reader(null);
+        //    reader.ProcessFiles = _fileProcessor.ProcessFilesBatch;
+        //    reader.ParsePath(@"c:\users\something\something", "*.mp3|*.ogg", Sciendo.Music.Contracts.Monitoring.ProcessType.Delete);
+        //    Assert.AreEqual(1, _fileProcessor.Counter);
+        //}
 
         [Test]
         public void ReaderMusicTestsFolderOk()
@@ -99,15 +99,15 @@ namespace Sciendo.Music.Tests
             Assert.AreEqual(1, _fileProcessor.Counter);
         }
 
-        [Test]
-        public void ReaderMusicTestsFileDeletedOk()
-        {
-            MockIndexingFilesProcessor _fileProcessor = new MockIndexingFilesProcessor();
-            Reader reader = new Reader(null);
-            reader.ProcessFiles = _fileProcessor.ProcessFilesBatch;
-            reader.ParsePath(@"TestData\Music\MockMp3.mp3", "*.mp3|*.ogg",ProcessType.Delete);
-            Assert.AreEqual(1, _fileProcessor.Counter);
-        }
+        //[Test]
+        //public void ReaderMusicTestsFileDeletedOk()
+        //{
+        //    MockIndexingFilesProcessor _fileProcessor = new MockIndexingFilesProcessor();
+        //    Reader reader = new Reader(null);
+        //    reader.ProcessFiles = _fileProcessor.ProcessFilesBatch;
+        //    reader.ParsePath(@"TestData\Music\MockMp3.mp3", "*.mp3|*.ogg",ProcessType.Delete);
+        //    Assert.AreEqual(1, _fileProcessor.Counter);
+        //}
 
         [Test]
         [ExpectedException(typeof(ArgumentException), ExpectedMessage = "Invalid path")]
@@ -162,16 +162,16 @@ namespace Sciendo.Music.Tests
             Assert.AreEqual(0, _fileProcessor.Counter);
         }
 
-        [Test]
-        public void ReaderMusicToLyricsTestsFileNoLyricsFoundInDelete()
-        {
-            MockMusicToLyricsFilesProcessor _fileProcessor = new MockMusicToLyricsFilesProcessor();
-            Reader reader = new Reader(null);
-            _fileProcessor.RetryExisting = true;
-            reader.ProcessFiles = _fileProcessor.ProcessFilesBatch;
-            reader.ParsePath(@"TestData\Music\Sub\MockOgg.ogg", "*.mp3|*.ogg",ProcessType.Delete);
-            Assert.AreEqual(0, _fileProcessor.Counter);
-        }
+        //[Test]
+        //public void ReaderMusicToLyricsTestsFileNoLyricsFoundInDelete()
+        //{
+        //    MockMusicToLyricsFilesProcessor _fileProcessor = new MockMusicToLyricsFilesProcessor();
+        //    Reader reader = new Reader(null);
+        //    _fileProcessor.RetryExisting = true;
+        //    reader.ProcessFiles = _fileProcessor.ProcessFilesBatch;
+        //    reader.ParsePath(@"TestData\Music\Sub\MockOgg.ogg", "*.mp3|*.ogg",ProcessType.Delete);
+        //    Assert.AreEqual(0, _fileProcessor.Counter);
+        //}
 
         [Test]
         public void ReaderMusicToLyricsTestsFileNeedsPostProcessing()

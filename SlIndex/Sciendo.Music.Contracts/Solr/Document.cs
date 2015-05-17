@@ -9,24 +9,12 @@ namespace Sciendo.Music.Contracts.Solr
         private const string Prefix = "file:///";
         public Document()
         { }
-
-        public Document (string filePath, string catalogLetter)
-        {
-            if (string.IsNullOrEmpty(filePath))
-                throw new ArgumentNullException("filePath");
-            FilePathId = filePath.ToLower();
-            file_path = new Field<string> { Set = Prefix + filePath };
-
-            ExtensionF = new Field<string> { Set = Path.GetExtension(FilePathId).Replace(".", "") };
-            LetterCatalogF = new Field<string> { Set = catalogLetter };
-
-        }
-
-        public Document(string filePath, string catalogLetter, string songLyrics)
-            :this(filePath,catalogLetter)
-        {
-            Lyrics =  new Field<string> {Set = songLyrics};
-        }
+        [JsonProperty("artist")]
+        public Field<string[]> Artist { get; set; }
+        [JsonProperty("title")]
+        public Field<string> Title { get; set; }
+        [JsonProperty("album")]
+        public Field<string> Album { get; set; }
 
         [JsonProperty("file_path_id")]
         public string FilePathId { get; set; }
@@ -38,5 +26,25 @@ namespace Sciendo.Music.Contracts.Solr
         public Field<string> LetterCatalogF { get; set; }
         [JsonProperty("lyrics")]
         public Field<string> Lyrics { get; set; }
+
+        public Document(string filePath, string catalogLetter, string[] artists, string song, string albumName)
+        {
+            if (string.IsNullOrEmpty(filePath))
+                throw new ArgumentNullException("filePath");
+            FilePathId = filePath.ToLower();
+            file_path = new Field<string> { Set = Prefix + filePath };
+
+            ExtensionF = new Field<string> { Set = Path.GetExtension(FilePathId).Replace(".", "") };
+            LetterCatalogF = new Field<string> { Set = catalogLetter };
+
+            Artist = new Field<string[]> { Set = artists };
+            Title = new Field<string> { Set = song };
+            Album = new Field<string> { Set = albumName };
+        }
+
+        public Document(string filePath, string rootFolder, string[] artists, string songTitle, string albumName, string lyrics):this(filePath,rootFolder,artists,songTitle,albumName)
+        {
+            Lyrics = new Field<string> {Set = lyrics};
+        }
     }
 }

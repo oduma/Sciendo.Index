@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json;
 using NUnit.Framework;
-using Sciendo.Music.Contracts.Common;
-using Sciendo.Music.Contracts.Solr;
+//using Sciendo.Music.Contracts.Common;
+//using Sciendo.Music.Contracts.Solr;
 using Sciendo.Music.Real.Solr;
 
 namespace Sciendo.Music.Tests
