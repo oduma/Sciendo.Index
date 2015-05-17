@@ -19,14 +19,14 @@
     self.subscription = ko.observable("not subscribed");
     self.monitoringMessages = ko.observableArray([]);
     self.maximumMonitoringMessagesDisplay = ko.observable(10);
-    self.monitoringActionName = ko.observable("Subscribe");
+    self.monitoringActionName = ko.observable("Unsubscribe");
     //Initializes the view model
     self.toggle = function () {
         var on = (self.monitoringActionName() == "Subscribe");
         self.hub.server.toggleSending(on);
         if (on) {
             self.monitoringActionName("Unsubscribe");
-            self.hub.server.send();
+            //self.hub.server.send();
         } else {
             self.monitoringActionName("Subscribe");
         }
@@ -60,7 +60,9 @@
     }
 
     self.acquireLyrics = function () {
-        self.hub.server.startAcquiringLyrics(self.musicFromPath(), self.retryExisting());
+        $.connection.hub.start().done(function () {
+            self.hub.server.startAcquiringLyrics(self.indexFromPath(), self.retryExisting());
+        });
     }
 
     self.hub.client.returnCompletedMessage = function (data)

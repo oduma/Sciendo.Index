@@ -36,7 +36,7 @@ namespace Sciendo.Music.Agent.Service
         private void ProgressEvent(Status arg1, string arg2)
         {
             LoggingManager.Debug("Package: " +arg2+" status: " +arg1);
-            _progressStatuses.Enqueue(new ProgressStatus{Package=arg2,Status =arg1,Id=Guid.NewGuid()});
+            //_progressStatuses.Enqueue(new ProgressStatus{Package=arg2,Status =arg1,Id=Guid.NewGuid()});
         }
 
         public int IndexOnDemand(string fromPath)
@@ -61,7 +61,17 @@ namespace Sciendo.Music.Agent.Service
         public int AcquireLyricsOnDemandFor(string musicPath, bool retryFailed)
         {
             LoggingManager.Debug("Starting AcquireLyricsOnDemand from path:" + musicPath);
-            AcquireLyrics(musicPath,retryFailed,ProcessType.Update);
+            try
+            {
+                AcquireLyrics(musicPath, retryFailed, ProcessType.Update);
+
+            }
+            catch(Exception ex)
+            {
+                LoggingManager.LogSciendoSystemError(ex);
+                LoggingManager.Debug("Errored while AcquiringLyricsOnDemand on path: " + musicPath + " Counter: " + _lyricsAcquireFilesProcessor.Counter);
+                return _lyricsAcquireFilesProcessor.Counter;
+            }
             LoggingManager.Debug("AcquiredLyricsOnDemand on path: " + musicPath + " Counter: " + _lyricsAcquireFilesProcessor.Counter);
             return _lyricsAcquireFilesProcessor.Counter;
         }

@@ -64,6 +64,8 @@ namespace Sciendo.Music.Real.Procesors.MusicSourced
 
         private LyricsResult TransformToLyricsResult(SongInfo songInfo, string file)
         {
+            if (songInfo == null || string.IsNullOrEmpty(songInfo.Title) || songInfo.Artists.Length <= 0)
+                return null;
             var fullTargetPath = Path.ChangeExtension(
                     file.Replace(CurrentConfiguration.Music.SourceDirectory, CurrentConfiguration.Lyrics.SourceDirectory), CurrentConfiguration.Lyrics.SearchPattern.Replace("*.",""));
             return GetLyricsResult(songInfo, fullTargetPath);

@@ -73,21 +73,21 @@ namespace Sciendo.Music.Web.Hubs
             Clients.All.returnCompletedMessage(result);
         }
 
-        public void Send()
-        {
-            do
-            {
+//        public void Send()
+//        {
+//            do
+//            {
 
-                foreach (var progressStatus in SciendoConfiguration.Container.Resolve<IDataProvider>(
-                        SciendoConfiguration.IndexingConfiguration.CurrentDataProvider)
-                        .GetMonitoring())
-                {
-                    Clients.All.addNewMessageToPage(progressStatus);
-                }
-                Thread.Sleep(2000);
+//                foreach (var progressStatus in SciendoConfiguration.Container.Resolve<IDataProvider>(
+//                        SciendoConfiguration.IndexingConfiguration.CurrentDataProvider)
+//                        .GetMonitoring())
+//                {
+//                    Clients.All.addNewMessageToPage(progressStatus);
+//                }
+//                Thread.Sleep(2000);
 
-            } while (IndexingCacheData.ContinueMonitoring);
-// ReSharper disable once FunctionNeverReturns
-        }
+//            } while (IndexingCacheData.ContinueMonitoring);
+//// ReSharper disable once FunctionNeverReturns
+//        }
     }
 }
