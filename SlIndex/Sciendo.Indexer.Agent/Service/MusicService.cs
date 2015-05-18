@@ -36,7 +36,7 @@ namespace Sciendo.Music.Agent.Service
         private void ProgressEvent(Status arg1, string arg2)
         {
             LoggingManager.Debug("Package: " +arg2+" status: " +arg1);
-            //_progressStatuses.Enqueue(new ProgressStatus{Package=arg2,Status =arg1,Id=Guid.NewGuid()});
+            _progressStatuses.Enqueue(new ProgressStatus{Package=arg2,Status =arg1,Id=Guid.NewGuid()});
         }
 
         public int IndexOnDemand(string fromPath)
@@ -94,8 +94,17 @@ namespace Sciendo.Music.Agent.Service
 
         public ProgressStatus[] GetLastProcessedPackages()
         {
-            //LoggingManager.Debug("Starting Get last packages");
-            return _progressStatuses.GetAllInQueue();
+            LoggingManager.Debug("Starting Get last packages");
+            try
+            {
+                return _progressStatuses.GetAllInQueue();
+
+            }
+            catch(Exception ex)
+            {
+                LoggingManager.LogSciendoSystemError(ex);
+                return null;
+            }
         }
 
         public string[] ListAvailablePathsForIndexing(string fromPath)

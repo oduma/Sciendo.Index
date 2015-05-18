@@ -92,7 +92,7 @@ namespace Sciendo.Music.Real.Procesors.MusicSourced
                 {
                     fs.Write(downloadedFromApi);
                     if (_progressEvent != null)
-                        _progressEvent(Status.LyricsDownloadedOk, downloadedFromApi);
+                        _progressEvent(Status.LyricsDownloadedOk,  downloadedFromApi);
                     return result;
                 }
             }

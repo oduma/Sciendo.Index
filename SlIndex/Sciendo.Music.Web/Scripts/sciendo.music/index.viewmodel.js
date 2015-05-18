@@ -5,6 +5,7 @@
     self.indexingResult = ko.observable();
     self.indexingError = ko.observable();
     self.acquireLyricsText = ko.observable("Acquire Lyrics");
+
     self.indexedOccured = ko.computed(function() {
          return self.indexingResult() != null || self.indexingError() != null;
     });
@@ -17,17 +18,32 @@
     });
 
     self.hub = $.connection.monitoringHub;
-    self.subscription = ko.observable("not subscribed");
     self.monitoringMessages = ko.observableArray([]);
     self.maximumMonitoringMessagesDisplay = ko.observable(10);
-    self.monitoringActionName = ko.observable("Unsubscribe");
+    self.monitoringActionName = ko.observable("Subscribe");
     //Initializes the view model
     self.toggle = function () {
         var on = (self.monitoringActionName() == "Subscribe");
-        self.hub.server.toggleSending(on);
+        if ($.connection.hub.state != $.connection.connectionState.connected) {
+            $.connection.hub.start().done(function () {
+                self.hub.server.toggleSending(on);
+            });
+        }
+        else {
+            self.hub.server.toggleSending(on);
+        }
         if (on) {
             self.monitoringActionName("Unsubscribe");
-            //self.hub.server.send();
+            if ($.connection.hub.state != $.connection.connectionState.connected)
+            {
+                $.connection.hub.start().done(function () {
+                    self.hub.server.send();
+                });
+            }
+            else
+            {
+                self.hub.server.send();
+            }
         } else {
             self.monitoringActionName("Subscribe");
         }
@@ -38,9 +54,11 @@
     self.hasSubscription = ko.computed(function () { return self.monitoringActionName() =="Unsubscribe"; });
 
     self.hub.client.addNewMessageToPage = function (message) {
+        if (self.monitoringMessages().indexOf(message) != -1)
+            alert("mesaj nou");
         if (self.monitoringMessages().length > self.maximumMonitoringMessagesDisplay())
             self.monitoringMessages.removeAll();
-        message.StatusOk = (message.Status == 'Done') ? true : false;
+        message.StatusOk = (message.Status == 'Done' || message.Status == 'LyricsDownloadedOk') ? true : false;
         message.DetailsVisible = ko.observable(false);
         message.DetailsActionName = ko.observable("Details");
         message.revealDetails = function () {
@@ -59,14 +77,28 @@
             self.indexFromPath(value);
     }
     self.index = function () {
-        self.hub.server.startIndexing(self.indexFromPath());
+        if ($.connection.hub.state != $.connection.connectionState.connected) {
+            $.connection.hub.start().done(function () {
+                self.hub.server.startIndexing(self.indexFromPath());
+            });
+        }
+        else {
+            self.hub.server.startIndexing(self.indexFromPath());
+        }
+
     }
 
     self.acquireLyrics = function () {
         self.acquireLyricsText("Acquiring Lyrics...");
-        $.connection.hub.start().done(function () {
+        if ($.connection.hub.state != $.connection.connectionState.connected) {
+            $.connection.hub.start().done(function () {
+                self.hub.server.startAcquiringLyrics(self.indexFromPath(), self.retryExisting());
+            });
+        }
+        else {
             self.hub.server.startAcquiringLyrics(self.indexFromPath(), self.retryExisting());
-        });
+        }
+
     }
 
     self.hub.client.returnCompletedMessage = function (data)
