@@ -49,6 +49,8 @@ namespace Sciendo.Music.Real.Procesors.MusicSourced
 
         protected override Document TransformToDocument(SongInfo songInfo, string file)
         {
+            if (songInfo == null || songInfo.Artists.Length <= 0 || string.IsNullOrEmpty(songInfo.Title))
+                return null;
             var lyricsFile = GetLyricsFile(file);
             string lyrics = string.Empty;
             if (!File.Exists(lyricsFile))

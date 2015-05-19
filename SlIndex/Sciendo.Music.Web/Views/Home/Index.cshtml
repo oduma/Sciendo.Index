@@ -16,7 +16,7 @@
         name="indexFromPath"
         class="longfield"
         data-autocomplete="@Url.Action("GetIndexingAutocomplete", "Home")" />
-    <button data-bind="click:index">Index</button>
+    <button data-bind="click:index, text:indexText, enable:notIndexing"></button>
     <input type="checkbox" data-bind="checked:retryExisting"/>Retry existing <button data-bind="click:acquireLyrics, text:acquireLyricsText, enable:notAcquiring"></button>
 </div>
 <div data-bind="if:indexedOccured">
@@ -24,7 +24,8 @@
     <div class="validation-summary-errors" data-bind="if:indexedWithError"></div>
     <label id="errorIndexed" data-bind="text:indexingError"></label>
 </div>
-<h3>Monitoring</h3>
+
+@*<h3>Monitoring</h3>
 <a href="#" data-bind="click:toggle, text:monitoringActionName"></a>
 <!--ko if: hasSubscription-->
 <div class="container" data-bind="foreach: monitoringMessages">
@@ -39,7 +40,7 @@
         <label data-bind="text: $data.Package, visible:$data.DetailsVisible"></label>
     </span>
 </div>
-<!-- /ko-->
+<!-- /ko-->*@
 @section scripts
 {
     @Scripts.Render("~/bundles/signalR")
@@ -52,9 +53,9 @@
         // Initiate the Knockout bindings
         var vm = new indexViewModel("@Server.HtmlEncode(@Model.SourceFolder)");
         ko.applyBindings(vm);
-        $.connection.hub.start().done(function () {
-            vm.toggle(true);
-        });
+        //$.connection.hub.start().done(function () {
+        //    vm.toggle(true);
+        //});
 
     </script>
 }

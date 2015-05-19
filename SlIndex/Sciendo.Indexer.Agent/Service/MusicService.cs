@@ -35,8 +35,9 @@ namespace Sciendo.Music.Agent.Service
 
         private void ProgressEvent(Status arg1, string arg2)
         {
-            LoggingManager.Debug("Package: " +arg2+" status: " +arg1);
-            _progressStatuses.Enqueue(new ProgressStatus{Package=arg2,Status =arg1,Id=Guid.NewGuid()});
+            var messageId = Guid.NewGuid();
+            LoggingManager.Debug("MessageId: " + messageId+ "Package: " +arg2+" status: " +arg1);
+            _progressStatuses.Enqueue(new ProgressStatus{Package="Look in server side logs for the Id",Status =arg1,Id=messageId});
         }
 
         public int IndexOnDemand(string fromPath)

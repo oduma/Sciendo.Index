@@ -23,16 +23,14 @@ namespace Sciendo.Music.Real.Procesors.Common
         {
             LoggingManager.Debug("Starting process batch of files " +files.Count());
             DeletedDocuments=new List<DeleteDocument>();
-            var package = TransformFiles(files,TransformToDocument).ToArray();
+            var package = TransformFiles(files,TransformToDocument).Where(p=>p!=null).ToArray();
             if (Sender != null)
             {
                 var response = Sender.TrySend(package);
                 if (progressEvent != null)
                 {
-                    if (response == null || package == null || package.Length == 0 ||
-                        string.IsNullOrEmpty(package[0].FilePathId))
-                        progressEvent(Status.Error, "bogus package or unknown error");
-                    else
+                    if (response != null && package != null && package.Length != 0 &&
+                        !string.IsNullOrEmpty(package[0].FilePathId))
                         progressEvent(response.Status, JsonConvert.SerializeObject(package));
                 }
                 foreach (var deletedDocument in DeletedDocuments)
