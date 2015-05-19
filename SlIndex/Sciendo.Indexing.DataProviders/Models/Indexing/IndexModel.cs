@@ -5,9 +5,7 @@ namespace Sciendo.Music.DataProviders.Models.Indexing
     {
         public string SourceFolder { get; set; }
 
-        public IndexModel(string sourceFolder)
-        {
-            SourceFolder = sourceFolder;
-        }
+
+        public string ErrorMessage { get; set; }
     }
 }

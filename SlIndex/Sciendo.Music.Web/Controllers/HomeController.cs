@@ -8,9 +8,14 @@ namespace Sciendo.Music.Web.Controllers
     {
         public ActionResult Index()
         {
-            IndexModel indexModel= new IndexModel(SciendoConfiguration.Container.Resolve<IDataProvider>(
+            var sourceFolder = SciendoConfiguration.Container.Resolve<IDataProvider>(
                 SciendoConfiguration.IndexingConfiguration.CurrentDataProvider)
-                .GetSourceFolder());
+                .GetSourceFolder();
+            IndexModel indexModel = new IndexModel();
+            if (string.IsNullOrEmpty(sourceFolder))
+                indexModel.ErrorMessage = "Agent not available.";
+            else
+                indexModel.SourceFolder = sourceFolder;
 
             return View("Index", indexModel);
         }

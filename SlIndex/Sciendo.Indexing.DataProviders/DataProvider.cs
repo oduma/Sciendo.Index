@@ -19,8 +19,17 @@ namespace Sciendo.Music.DataProviders
 
         public string GetSourceFolder()
         {
-            var formattedSourceFolder = _svc.GetSourceFolder();
-            return formattedSourceFolder.Replace("\\", "/");
+            try
+            {
+                var formattedSourceFolder = _svc.GetSourceFolder();
+                return formattedSourceFolder.Replace("\\", "/");
+
+            }
+            catch(Exception ex)
+            {
+                LoggingManager.LogSciendoSystemError("Possibly the agent is down or not responding.", ex);
+                return string.Empty;
+            }
         }
 
         public void StartIndexing(string fromPath, Action<object,IndexOnDemandCompletedEventArgs> indexCompletedCallback)
