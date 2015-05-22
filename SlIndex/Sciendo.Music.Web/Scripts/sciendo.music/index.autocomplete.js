@@ -6,14 +6,15 @@ var createAutocomplete = function () {
     var options = {
         source: function( request, response ) {
             var term = request.term;
-            if (term in cache) {
-                lastTerm = term;
-                response( cache[ term ] );
-                return;
-            }
+            //if (term in cache) {
+            //    lastTerm = term;
+            //    response( cache[ term ] );
+            //    return;
+            //}
             if (request.term.indexOf("\\", request.term.length - "\\".length) !== -1) {
+                $.ajaxSetup({ "cache": false });
                 $.getJSON(self.attr("data-autocomplete"), request, function (data, status, xhr) {
-                    cache[term] = data;
+                    //cache[term] = data;
                     lastTerm = term;
                     response(data);
                 });

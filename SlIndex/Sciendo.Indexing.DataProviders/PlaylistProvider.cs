@@ -4,7 +4,6 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Sciendo.Music.Contracts.Solr;
 using Sciendo.Music.DataProviders.Common;
 using Sciendo.Music.DataProviders.Models.Playlist.LastFm;
 using Sciendo.Music.DataProviders.Models.Query;

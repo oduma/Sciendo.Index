@@ -110,12 +110,6 @@
     <None Include="Properties\DataSources\Sciendo.Music.Contracts.MusicService.SourceFolders.datasource" />
     <None Include="Proxy\RegenerateProxy.bat" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Sciendo.Music.Contracts\Sciendo.Music.Contracts.csproj">
-      <Project>{D132D9C7-2FB8-4C89-84AB-54A1A65532F1}</Project>
-      <Name>Sciendo.Music.Contracts</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

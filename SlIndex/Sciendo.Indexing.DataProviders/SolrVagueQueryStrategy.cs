@@ -20,6 +20,8 @@ namespace Sciendo.Music.DataProviders
         }
 
         private readonly Dictionary<string, FieldProperty> _outputFields = new Dictionary<string, FieldProperty> { 
+        { "artist_f", new FieldProperty { Boost = 100, Highlight = false } }, 
+        { "title_f", new FieldProperty { Boost = 100, Highlight = false } }, 
         { "lyrics", new FieldProperty { Boost = 10, Highlight = true } }, 
         { "title", new FieldProperty { Boost = 5, Highlight = true } }, 
         { "album", new FieldProperty { Boost = 3, Highlight = true } }, 

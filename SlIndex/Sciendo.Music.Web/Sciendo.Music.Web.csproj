@@ -161,6 +161,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Hubs\AsyncOperationsHub.cs" />
     <Compile Include="Hubs\ICacheProvider.cs" />
     <Compile Include="Hubs\IndexingCacheData.cs" />
     <Compile Include="Hubs\MonitoringHub.cs" />

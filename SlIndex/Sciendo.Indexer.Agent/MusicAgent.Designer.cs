@@ -16,7 +16,8 @@
             if (disposing && (components != null))
             {
                 components.Dispose();
-                _agentServiceHost.Close();
+                if(_agentServiceHost!=null)
+                    _agentServiceHost.Close();
             }
             base.Dispose(disposing);
         }

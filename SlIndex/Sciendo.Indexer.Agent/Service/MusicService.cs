@@ -35,8 +35,9 @@ namespace Sciendo.Music.Agent.Service
 
         private void ProgressEvent(Status arg1, string arg2)
         {
-            LoggingManager.Debug("Package: " +arg2+" status: " +arg1);
-            _progressStatuses.Enqueue(new ProgressStatus{Package=arg2,Status =arg1,Id=Guid.NewGuid()});
+            var messageId = Guid.NewGuid();
+            LoggingManager.Debug("MessageId: " + messageId+ "Package: " +arg2+" status: " +arg1);
+            _progressStatuses.Enqueue(new ProgressStatus{Package="Look in server side logs for the Id",Status =arg1,Id=messageId});
         }
 
         public int IndexOnDemand(string fromPath)
@@ -61,7 +62,17 @@ namespace Sciendo.Music.Agent.Service
         public int AcquireLyricsOnDemandFor(string musicPath, bool retryFailed)
         {
             LoggingManager.Debug("Starting AcquireLyricsOnDemand from path:" + musicPath);
-            AcquireLyrics(musicPath,retryFailed,ProcessType.Update);
+            try
+            {
+                AcquireLyrics(musicPath, retryFailed, ProcessType.Update);
+
+            }
+            catch(Exception ex)
+            {
+                LoggingManager.LogSciendoSystemError(ex);
+                LoggingManager.Debug("Errored while AcquiringLyricsOnDemand on path: " + musicPath + " Counter: " + _lyricsAcquireFilesProcessor.Counter);
+                return _lyricsAcquireFilesProcessor.Counter;
+            }
             LoggingManager.Debug("AcquiredLyricsOnDemand on path: " + musicPath + " Counter: " + _lyricsAcquireFilesProcessor.Counter);
             return _lyricsAcquireFilesProcessor.Counter;
         }
@@ -84,8 +95,17 @@ namespace Sciendo.Music.Agent.Service
 
         public ProgressStatus[] GetLastProcessedPackages()
         {
-            //LoggingManager.Debug("Starting Get last packages");
-            return _progressStatuses.GetAllInQueue();
+            LoggingManager.Debug("Starting Get last packages");
+            try
+            {
+                return _progressStatuses.GetAllInQueue();
+
+            }
+            catch(Exception ex)
+            {
+                LoggingManager.LogSciendoSystemError(ex);
+                return null;
+            }
         }
 
         public string[] ListAvailablePathsForIndexing(string fromPath)

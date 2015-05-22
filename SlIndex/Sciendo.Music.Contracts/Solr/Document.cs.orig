@@ -7,6 +7,17 @@ namespace Sciendo.Music.Contracts.Solr
     public class Document
     {
         private const string Prefix = "file:///";
+<<<<<<< HEAD
+
+        [JsonProperty("artist")]
+        public Field<string[]> Artist { get; set; }
+        [JsonProperty("title")]
+        public Field<string> Title { get; set; }
+        [JsonProperty("album")]
+        public Field<string> Album { get; set; }
+=======
+        public Document()
+        { }
         [JsonProperty("artist")]
         public Field<string[]> Artist { get; set; }
         [JsonProperty("title")]
@@ -14,7 +25,13 @@ namespace Sciendo.Music.Contracts.Solr
         [JsonProperty("album")]
         public Field<string> Album { get; set; }
 
-        public Document (string filePath, string catalogLetter)
+>>>>>>> origin/master
+        [JsonProperty("file_path_id")]
+        public string FilePathId { get; set; }
+        [JsonProperty("file_path")]
+        public Field<string> file_path { get; set; }
+        [JsonProperty("extension_f")]
+        public Field<string> ExtensionF { get; set; }
         [JsonProperty("letter_catalog_f")]
         public Field<string> LetterCatalogF { get; set; }
         [JsonProperty("lyrics")]
@@ -35,13 +52,21 @@ namespace Sciendo.Music.Contracts.Solr
             Album = new Field<string> { Set = albumName };
         }
 
-        public Document(string filePath, string catalogLetter, string songLyrics)
+<<<<<<< HEAD
+        public Document():base()
         {
-            Lyrics =  new Field<string> {Set = songLyrics};
+            
         }
-        [JsonProperty("file_path_id")]
-        public string FilePathId { get; set; }
-        [JsonProperty("file_path")]
-        public Field<string> file_path { get; set; }
+
+        public Document(string filePath, string catalogLetter, string[] artists, string songTitle, string albumName, string lyrics):this(filePath,catalogLetter,artists,songTitle,albumName)
+        {
+            Lyrics = new Field<string> {Set = lyrics};
+        }
+=======
+        public Document(string filePath, string rootFolder, string[] artists, string songTitle, string albumName, string lyrics):this(filePath,rootFolder,artists,songTitle,albumName)
+        {
+            Lyrics = new Field<string> {Set = lyrics};
+        }
+>>>>>>> origin/master
     }
 }

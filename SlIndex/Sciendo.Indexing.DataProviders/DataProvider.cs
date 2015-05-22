@@ -19,8 +19,17 @@ namespace Sciendo.Music.DataProviders
 
         public string GetSourceFolder()
         {
-            var formattedSourceFolder = _svc.GetSourceFolder();
-            return formattedSourceFolder.Replace("\\", "/");
+            try
+            {
+                var formattedSourceFolder = _svc.GetSourceFolder();
+                return formattedSourceFolder.Replace("\\", "/");
+
+            }
+            catch(Exception ex)
+            {
+                LoggingManager.LogSciendoSystemError("Possibly the agent is down or not responding.", ex);
+                return string.Empty;
+            }
         }
 
         public void StartIndexing(string fromPath, Action<object,IndexOnDemandCompletedEventArgs> indexCompletedCallback)
@@ -33,7 +42,6 @@ namespace Sciendo.Music.DataProviders
         {
             try
             {
-                var packages = _svc.GetLastProcessedPackages();
                 return _svc.GetLastProcessedPackages().Select(p => new ProgressStatusModel { Id = p.Id.ToString(), Package = p.Package.ToString(CultureInfo.InvariantCulture), Status = p.Status.ToString(), CreateDateTime = p.MessageCreationDateTime }).ToArray();
             }
             catch(Exception ex)
