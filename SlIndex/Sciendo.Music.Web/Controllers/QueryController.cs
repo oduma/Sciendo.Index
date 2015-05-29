@@ -5,6 +5,7 @@ using Sciendo.Music.DataProviders.Common;
 using Sciendo.Music.DataProviders.Models.Query;
 using Sciendo.Music.DataProviders.Models.Playlist;
 using System.Linq;
+using Sciendo.Music.DataProviders.SolrContracts;
 
 namespace Sciendo.Music.Web.Controllers
 {
