@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json;
 using Sciendo.Music.DataProviders.Models.Query;
 
-namespace Sciendo.Music.DataProviders
+namespace Sciendo.Music.DataProviders.SolrContracts
 {
     public class Response
     {

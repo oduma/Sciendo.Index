@@ -1,5 +1,6 @@
 ﻿using System;
 using Sciendo.Music.DataProviders.Models.Query;
+using Sciendo.Music.DataProviders.SolrContracts;
 
 namespace Sciendo.Music.DataProviders
 {

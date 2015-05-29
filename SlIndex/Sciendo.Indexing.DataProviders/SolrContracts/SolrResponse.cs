@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Sciendo.Music.DataProviders
+namespace Sciendo.Music.DataProviders.SolrContracts
 {
     public class SolrResponse
     {

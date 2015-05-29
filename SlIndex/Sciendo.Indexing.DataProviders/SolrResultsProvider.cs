@@ -3,6 +3,7 @@ using System.Configuration;
 using Sciendo.Music.DataProviders.Common;
 using Sciendo.Music.DataProviders.Configuration;
 using Sciendo.Music.DataProviders.Models.Query;
+using Sciendo.Music.DataProviders.SolrContracts;
 
 namespace Sciendo.Music.DataProviders
 {

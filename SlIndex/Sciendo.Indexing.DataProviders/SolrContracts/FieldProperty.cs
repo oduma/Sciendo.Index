@@ -1,4 +1,4 @@
-﻿namespace Sciendo.Music.DataProviders
+﻿namespace Sciendo.Music.DataProviders.SolrContracts
 {
     public class FieldProperty
     {

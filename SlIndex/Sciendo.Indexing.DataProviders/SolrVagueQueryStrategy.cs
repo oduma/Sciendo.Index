@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using Sciendo.Music.DataProviders.SolrContracts;
 
 namespace Sciendo.Music.DataProviders
 {

@@ -9,6 +9,7 @@ using Sciendo.Music.DataProviders.Models.Playlist.LastFm;
 using Sciendo.Music.DataProviders.Models.Query;
 using Sciendo.Music.DataProviders.Models.Playlist;
 using System.IO.Compression;
+using Sciendo.Music.DataProviders.SolrContracts;
 
 namespace Sciendo.Music.DataProviders
 {

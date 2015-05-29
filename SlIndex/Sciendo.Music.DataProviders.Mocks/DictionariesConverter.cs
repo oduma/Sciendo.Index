@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using Sciendo.Music.DataProviders.SolrContracts;
 
-namespace Sciendo.Music.DataProviders
+namespace Sciendo.Music.DataProviders.Mocks
 {
     public class DictionariesConverter : JsonConverter
     {
