@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.30501.0
+VisualStudioVersion = 12.0.30723.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sciendo.Music.Tests", "Sciendo.Index.Tests\Sciendo.Music.Tests.csproj", "{5E5FAE5D-0401-4BF0-ACA0-88E1AE109F8F}"
 EndProject
@@ -29,6 +29,8 @@ EndProject
 Project("{930C7802-8A8C-48F9-8165-68863BCCD9DD}") = "Sciendo.Music.Web.Installer", "Sciendo.Music.Web.Installer\Sciendo.Music.Web.Installer.wixproj", "{49C7B680-A9C7-4CB5-9883-41215FD408C0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sciendo.Music.Web.Files.Generator", "Sciendo.Music.Web.Files.Generator\Sciendo.Music.Web.Files.Generator.csproj", "{ADACACD4-2BC5-4393-9FDB-9793932D55A7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sciendo.Music.Data", "Sciendo.Music.Data\Sciendo.Music.Data.csproj", "{F40150DA-B8A9-496B-99F3-EC4C2A52C08E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -150,6 +152,16 @@ Global
 		{ADACACD4-2BC5-4393-9FDB-9793932D55A7}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{ADACACD4-2BC5-4393-9FDB-9793932D55A7}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{ADACACD4-2BC5-4393-9FDB-9793932D55A7}.Release|x86.ActiveCfg = Release|Any CPU
+		{F40150DA-B8A9-496B-99F3-EC4C2A52C08E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F40150DA-B8A9-496B-99F3-EC4C2A52C08E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F40150DA-B8A9-496B-99F3-EC4C2A52C08E}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{F40150DA-B8A9-496B-99F3-EC4C2A52C08E}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{F40150DA-B8A9-496B-99F3-EC4C2A52C08E}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{F40150DA-B8A9-496B-99F3-EC4C2A52C08E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F40150DA-B8A9-496B-99F3-EC4C2A52C08E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F40150DA-B8A9-496B-99F3-EC4C2A52C08E}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{F40150DA-B8A9-496B-99F3-EC4C2A52C08E}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{F40150DA-B8A9-496B-99F3-EC4C2A52C08E}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

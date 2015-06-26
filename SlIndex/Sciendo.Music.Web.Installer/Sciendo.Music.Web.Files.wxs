@@ -3,737 +3,737 @@
     <Fragment>
         <DirectoryRef Id="INSTALLLOCATION">
 						
-						<Directory Id="dirdc6290c89bc44ba18cd654a2b37bd71e" Name="App_Data">
+						<Directory Id="direa836c16b1224fb0a9e7da9c0280e471" Name="App_Data">
 						
 												
-			<Component Id="cmpa4b62e0ba7e44c67b1bfc11673449637" Guid="{a4b62e0b-a7e4-4c67-b1bf-c11673449637}">
-				<File Id="filea4b62e0ba7e44c67b1bfc11673449637" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\App_Data\examplefromlastfm.json"/>
+			<Component Id="cmp70306edc43f54ae4a97957d13d23fda9" Guid="{70306edc-43f5-4ae4-a979-57d13d23fda9}">
+				<File Id="file70306edc43f54ae4a97957d13d23fda9" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\App_Data\examplefromlastfm.json"/>
 			</Component>
 	
 												
-			<Component Id="cmp14444257f6674f64b169cc6697b1cecb" Guid="{14444257-f667-4f64-b169-cc6697b1cecb}">
-				<File Id="file14444257f6674f64b169cc6697b1cecb" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\App_Data\examplequeryresult.json"/>
+			<Component Id="cmp4daa42790dfe47c9a4c7edc64cc43285" Guid="{4daa4279-0dfe-47c9-a4c7-edc64cc43285}">
+				<File Id="file4daa42790dfe47c9a4c7edc64cc43285" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\App_Data\examplequeryresult.json"/>
 			</Component>
 	
 												
-			<Component Id="cmpedb9974c7df8460c9b5669a3cebd1ca3" Guid="{edb9974c-7df8-460c-9b56-69a3cebd1ca3}">
-				<File Id="fileedb9974c7df8460c9b5669a3cebd1ca3" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\App_Data\filteredjsonexample.json"/>
+			<Component Id="cmp85efc975950441c5bb40286d858ebb79" Guid="{85efc975-9504-41c5-bb40-286d858ebb79}">
+				<File Id="file85efc975950441c5bb40286d858ebb79" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\App_Data\filteredjsonexample.json"/>
 			</Component>
 	
 			
 			</Directory>
-						<Directory Id="dir29e4a53eead04864931926faac214560" Name="bin">
+						<Directory Id="dird50fdc4cb94b4c179820724cd6512542" Name="bin">
 						
-						<Directory Id="dir56800c2a666946028669809bdb406c2c" Name="App_Data">
-						
-												
-			<Component Id="cmpb8b5bd8546814f699a8fe506a9e3050c" Guid="{b8b5bd85-4681-4f69-9a8f-e506a9e3050c}">
-				<File Id="fileb8b5bd8546814f699a8fe506a9e3050c" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\bin\App_Data\examplequeryresult.json"/>
-			</Component>
-	
-												
-			<Component Id="cmp6b0cf58284b4416f9b596ac0891bddfd" Guid="{6b0cf582-84b4-416f-9b59-6ac0891bddfd}">
-				<File Id="file6b0cf58284b4416f9b596ac0891bddfd" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\bin\App_Data\filteredjsonexample.json"/>
-			</Component>
-	
-			
-			</Directory>
-												
-			<Component Id="cmpa23799af4a694da9bf62ef31e94549d3" Guid="{a23799af-4a69-4da9-bf62-ef31e94549d3}">
-				<File Id="filea23799af4a694da9bf62ef31e94549d3" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\bin\Antlr3.Runtime.dll"/>
-			</Component>
-	
-												
-			<Component Id="cmp5a5e1804454c4a739c2c3a5fd32bac22" Guid="{5a5e1804-454c-4a73-9c2c-3a5fd32bac22}">
-				<File Id="file5a5e1804454c4a739c2c3a5fd32bac22" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\bin\Antlr3.Runtime.pdb"/>
-			</Component>
-	
-												
-			<Component Id="cmp50c8aafb768c47feb20e4ce6dd933156" Guid="{50c8aafb-768c-47fe-b20e-4ce6dd933156}">
-				<File Id="file50c8aafb768c47feb20e4ce6dd933156" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\bin\Id3.dll"/>
-			</Component>
-	
-												
-			<Component Id="cmp90540612f23c4dd784f525082acbb83e" Guid="{90540612-f23c-4dd7-84f5-25082acbb83e}">
-				<File Id="file90540612f23c4dd784f525082acbb83e" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\bin\log4net.dll"/>
-			</Component>
-	
-												
-			<Component Id="cmp3b54d0ba0be34232b817e976b87b0d75" Guid="{3b54d0ba-0be3-4232-b817-e976b87b0d75}">
-				<File Id="file3b54d0ba0be34232b817e976b87b0d75" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\bin\log4net.xml"/>
-			</Component>
-	
-												
-			<Component Id="cmpb025aedda7ba48e9b9eadf8af6ba102a" Guid="{b025aedd-a7ba-48e9-b9ea-df8af6ba102a}">
-				<File Id="fileb025aedda7ba48e9b9eadf8af6ba102a" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\bin\Microsoft.AspNet.SignalR.Core.dll"/>
-			</Component>
-	
-												
-			<Component Id="cmp92a6918b565c4e4fa407f30aafa8f84f" Guid="{92a6918b-565c-4e4f-a407-f30aafa8f84f}">
-				<File Id="file92a6918b565c4e4fa407f30aafa8f84f" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\bin\Microsoft.AspNet.SignalR.Core.xml"/>
-			</Component>
-	
-												
-			<Component Id="cmpf2b4cc2818ed476fb799e9a9131af05e" Guid="{f2b4cc28-18ed-476f-b799-e9a9131af05e}">
-				<File Id="filef2b4cc2818ed476fb799e9a9131af05e" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\bin\Microsoft.AspNet.SignalR.SystemWeb.dll"/>
-			</Component>
-	
-												
-			<Component Id="cmp4aee36bc30ba48f2b76b65620add8e94" Guid="{4aee36bc-30ba-48f2-b76b-65620add8e94}">
-				<File Id="file4aee36bc30ba48f2b76b65620add8e94" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\bin\Microsoft.AspNet.SignalR.SystemWeb.xml"/>
-			</Component>
-	
-												
-			<Component Id="cmp684d5d2696664d72abac11760166a310" Guid="{684d5d26-9666-4d72-abac-11760166a310}">
-				<File Id="file684d5d2696664d72abac11760166a310" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\bin\Microsoft.Owin.dll"/>
-			</Component>
-	
-												
-			<Component Id="cmp2327fd15b457438a9a6ca8124e13bbaa" Guid="{2327fd15-b457-438a-9a6c-a8124e13bbaa}">
-				<File Id="file2327fd15b457438a9a6ca8124e13bbaa" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\bin\Microsoft.Owin.Host.SystemWeb.dll"/>
-			</Component>
-	
-												
-			<Component Id="cmp34c4a9169eeb475e8e1f5397355ec274" Guid="{34c4a916-9eeb-475e-8e1f-5397355ec274}">
-				<File Id="file34c4a9169eeb475e8e1f5397355ec274" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\bin\Microsoft.Owin.Host.SystemWeb.xml"/>
-			</Component>
-	
-												
-			<Component Id="cmp5a93c07b7dc24bc2aabfd6a3cb5106d9" Guid="{5a93c07b-7dc2-4bc2-aabf-d6a3cb5106d9}">
-				<File Id="file5a93c07b7dc24bc2aabfd6a3cb5106d9" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\bin\Microsoft.Owin.Security.dll"/>
-			</Component>
-	
-												
-			<Component Id="cmpc289024948db4824b3454ad57396c1cf" Guid="{c2890249-48db-4824-b345-4ad57396c1cf}">
-				<File Id="filec289024948db4824b3454ad57396c1cf" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\bin\Microsoft.Owin.Security.xml"/>
-			</Component>
-	
-												
-			<Component Id="cmpf989a8e96f624c47a59f924bec193d9b" Guid="{f989a8e9-6f62-4c47-a59f-924bec193d9b}">
-				<File Id="filef989a8e96f624c47a59f924bec193d9b" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\bin\Microsoft.Owin.xml"/>
-			</Component>
-	
-												
-			<Component Id="cmp475f64e92f8e4986a072ead57e61809c" Guid="{475f64e9-2f8e-4986-a072-ead57e61809c}">
-				<File Id="file475f64e92f8e4986a072ead57e61809c" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\bin\Microsoft.Web.Infrastructure.dll"/>
-			</Component>
-	
-												
-			<Component Id="cmpb532d0422bc6483cbe8d73407e38c0b9" Guid="{b532d042-2bc6-483c-be8d-73407e38c0b9}">
-				<File Id="fileb532d0422bc6483cbe8d73407e38c0b9" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\bin\Newtonsoft.Json.dll"/>
-			</Component>
-	
-												
-			<Component Id="cmp04700c94eed54fc3bd2a0589a8ae3e85" Guid="{04700c94-eed5-4fc3-bd2a-0589a8ae3e85}">
-				<File Id="file04700c94eed54fc3bd2a0589a8ae3e85" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\bin\Newtonsoft.Json.xml"/>
-			</Component>
-	
-												
-			<Component Id="cmpe0bfe0c6afdf44a29c65cc13047a1982" Guid="{e0bfe0c6-afdf-44a2-9c65-cc13047a1982}">
-				<File Id="filee0bfe0c6afdf44a29c65cc13047a1982" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\bin\Owin.dll"/>
-			</Component>
-	
-												
-			<Component Id="cmpa21a713dfaec471e8ff888213a8a03f8" Guid="{a21a713d-faec-471e-8ff8-88213a8a03f8}">
-				<File Id="filea21a713dfaec471e8ff888213a8a03f8" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\bin\Sciendo.Common.dll"/>
-			</Component>
-	
-												
-			<Component Id="cmp1c5ff61d5afc405cae06440df7b35719" Guid="{1c5ff61d-5afc-405c-ae06-440df7b35719}">
-				<File Id="file1c5ff61d5afc405cae06440df7b35719" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\bin\Sciendo.IOC.Configuration.dll"/>
-			</Component>
-	
-												
-			<Component Id="cmp11e4777d45624fada02d36d5979feacf" Guid="{11e4777d-4562-4fad-a02d-36d5979feacf}">
-				<File Id="file11e4777d45624fada02d36d5979feacf" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\bin\Sciendo.IOC.dll"/>
-			</Component>
-	
-												
-			<Component Id="cmp6444a706632d4c2f930fb104b75a07be" Guid="{6444a706-632d-4c2f-930f-b104b75a07be}">
-				<File Id="file6444a706632d4c2f930fb104b75a07be" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\bin\Sciendo.Music.Contracts.dll"/>
-			</Component>
-	
-												
-			<Component Id="cmp65d8634ad57848839089ae67cc98b82d" Guid="{65d8634a-d578-4883-9089-ae67cc98b82d}">
-				<File Id="file65d8634ad57848839089ae67cc98b82d" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\bin\Sciendo.Music.DataProviders.dll"/>
-			</Component>
-	
-												
-			<Component Id="cmpdcb25f5a027b447d936dc227e60595e5" Guid="{dcb25f5a-027b-447d-936d-c227e60595e5}">
-				<File Id="filedcb25f5a027b447d936dc227e60595e5" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\bin\Sciendo.Music.DataProviders.Mocks.dll"/>
-			</Component>
-	
-												
-			<Component Id="cmp7144c6fc22a94decb9c9642ac9b739f7" Guid="{7144c6fc-22a9-4dec-b9c9-642ac9b739f7}">
-				<File Id="file7144c6fc22a94decb9c9642ac9b739f7" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\bin\Sciendo.Music.DataProviders.Mocks.pdb"/>
-			</Component>
-	
-												
-			<Component Id="cmp44c0e61ad0904d12afb31c0db62edd38" Guid="{44c0e61a-d090-4d12-afb3-1c0db62edd38}">
-				<File Id="file44c0e61ad0904d12afb31c0db62edd38" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\bin\Sciendo.Music.DataProviders.pdb"/>
-			</Component>
-	
-												
-			<Component Id="cmp21b4e2f53cf84b0db7b99373217c6cfb" Guid="{21b4e2f5-3cf8-4b0d-b7b9-9373217c6cfb}">
-				<File Id="file21b4e2f53cf84b0db7b99373217c6cfb" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\bin\Sciendo.Music.Web.dll"/>
-			</Component>
-	
-												
-			<Component Id="cmp9a2312bd7a204a87a9dfe4479542101e" Guid="{9a2312bd-7a20-4a87-a9df-e4479542101e}">
-				<File Id="file9a2312bd7a204a87a9dfe4479542101e" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\bin\Sciendo.Music.Web.pdb"/>
-			</Component>
-	
-												
-			<Component Id="cmp1ee77283b5a246bcad1a45a52d25f1a6" Guid="{1ee77283-b5a2-46bc-ad1a-45a52d25f1a6}">
-				<File Id="file1ee77283b5a246bcad1a45a52d25f1a6" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\bin\System.Web.Helpers.dll"/>
-			</Component>
-	
-												
-			<Component Id="cmp97ff19e602814c9292f9c3a5d086686d" Guid="{97ff19e6-0281-4c92-92f9-c3a5d086686d}">
-				<File Id="file97ff19e602814c9292f9c3a5d086686d" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\bin\System.Web.Helpers.xml"/>
-			</Component>
-	
-												
-			<Component Id="cmpa737a44f561f4af9a0e01ea747bb4726" Guid="{a737a44f-561f-4af9-a0e0-1ea747bb4726}">
-				<File Id="filea737a44f561f4af9a0e01ea747bb4726" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\bin\System.Web.Mvc.dll"/>
-			</Component>
-	
-												
-			<Component Id="cmp89f0ca604e4f4b79b4983ac2e4028529" Guid="{89f0ca60-4e4f-4b79-b498-3ac2e4028529}">
-				<File Id="file89f0ca604e4f4b79b4983ac2e4028529" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\bin\System.Web.Mvc.xml"/>
-			</Component>
-	
-												
-			<Component Id="cmp7f0824fda8f042ad818f793782a22bcc" Guid="{7f0824fd-a8f0-42ad-818f-793782a22bcc}">
-				<File Id="file7f0824fda8f042ad818f793782a22bcc" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\bin\System.Web.Optimization.dll"/>
-			</Component>
-	
-												
-			<Component Id="cmpf90990f9aa8a4b718a83f0df290ec5d0" Guid="{f90990f9-aa8a-4b71-8a83-f0df290ec5d0}">
-				<File Id="filef90990f9aa8a4b718a83f0df290ec5d0" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\bin\System.Web.Optimization.xml"/>
-			</Component>
-	
-												
-			<Component Id="cmp9fba3bd4d4a64167b30d805f8b5422db" Guid="{9fba3bd4-d4a6-4167-b30d-805f8b5422db}">
-				<File Id="file9fba3bd4d4a64167b30d805f8b5422db" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\bin\System.Web.Razor.dll"/>
-			</Component>
-	
-												
-			<Component Id="cmp3c0cb4296a7a4585b9890d709a3cf629" Guid="{3c0cb429-6a7a-4585-b989-0d709a3cf629}">
-				<File Id="file3c0cb4296a7a4585b9890d709a3cf629" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\bin\System.Web.Razor.xml"/>
-			</Component>
-	
-												
-			<Component Id="cmp2e030ed39c1340b49342be7baab9b7b1" Guid="{2e030ed3-9c13-40b4-9342-be7baab9b7b1}">
-				<File Id="file2e030ed39c1340b49342be7baab9b7b1" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\bin\System.Web.WebPages.Deployment.dll"/>
-			</Component>
-	
-												
-			<Component Id="cmpb952409bdec44ccdbbe8f73f22f1c4e8" Guid="{b952409b-dec4-4ccd-bbe8-f73f22f1c4e8}">
-				<File Id="fileb952409bdec44ccdbbe8f73f22f1c4e8" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\bin\System.Web.WebPages.Deployment.xml"/>
-			</Component>
-	
-												
-			<Component Id="cmp63aace08c2e4412491a4238c7778e4fa" Guid="{63aace08-c2e4-4124-91a4-238c7778e4fa}">
-				<File Id="file63aace08c2e4412491a4238c7778e4fa" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\bin\System.Web.WebPages.dll"/>
-			</Component>
-	
-												
-			<Component Id="cmp1946c167e20a4ddc8a98a6d14c8ec88f" Guid="{1946c167-e20a-4ddc-8a98-a6d14c8ec88f}">
-				<File Id="file1946c167e20a4ddc8a98a6d14c8ec88f" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\bin\System.Web.WebPages.Razor.dll"/>
-			</Component>
-	
-												
-			<Component Id="cmp8da94260539f4a6594bc2baa04650b34" Guid="{8da94260-539f-4a65-94bc-2baa04650b34}">
-				<File Id="file8da94260539f4a6594bc2baa04650b34" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\bin\System.Web.WebPages.Razor.xml"/>
-			</Component>
-	
-												
-			<Component Id="cmp3463dfcceef84b2da8a9eb4f7353214c" Guid="{3463dfcc-eef8-4b2d-a8a9-eb4f7353214c}">
-				<File Id="file3463dfcceef84b2da8a9eb4f7353214c" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\bin\System.Web.WebPages.xml"/>
-			</Component>
-	
-												
-			<Component Id="cmp76de90b3e0b940b492799931774b939d" Guid="{76de90b3-e0b9-40b4-9279-9931774b939d}">
-				<File Id="file76de90b3e0b940b492799931774b939d" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\bin\WebGrease.dll"/>
-			</Component>
-	
-			
-			</Directory>
-						<Directory Id="dird760edf8a42f4cf2946c58bd7627084f" Name="Content">
-						
-						<Directory Id="dirb84488c0a6a847c69eaf2b1379d5f84c" Name="indexing">
-						
-						<Directory Id="dir63da3d2295fe41b88355a44a57c36996" Name="images">
+						<Directory Id="dir67caeed5a83c430886dbee4a9a77e4d7" Name="App_Data">
 						
 												
-			<Component Id="cmp9b51e88b981545db8a40809c1c851380" Guid="{9b51e88b-9815-45db-8a40-809c1c851380}">
-				<File Id="file9b51e88b981545db8a40809c1c851380" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\Content\indexing\images\accent.png"/>
+			<Component Id="cmp470b61ea5c80428d86bc274c2e9e093b" Guid="{470b61ea-5c80-428d-86bc-274c2e9e093b}">
+				<File Id="file470b61ea5c80428d86bc274c2e9e093b" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\bin\App_Data\examplequeryresult.json"/>
 			</Component>
 	
 												
-			<Component Id="cmp669d014ab89b48428ec8737a9cf3cea1" Guid="{669d014a-b89b-4842-8ec8-737a9cf3cea1}">
-				<File Id="file669d014ab89b48428ec8737a9cf3cea1" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\Content\indexing\images\bullet.png"/>
-			</Component>
-	
-												
-			<Component Id="cmp220653b57b784a33990cb5ca8bb7ee23" Guid="{220653b5-7b78-4a33-990c-b5ca8bb7ee23}">
-				<File Id="file220653b57b784a33990cb5ca8bb7ee23" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\Content\indexing\images\Done.png"/>
-			</Component>
-	
-												
-			<Component Id="cmp9d4c3e4bd7f04b7082c0e272bea8213c" Guid="{9d4c3e4b-d7f0-4b70-82c0-e272bea8213c}">
-				<File Id="file9d4c3e4bd7f04b7082c0e272bea8213c" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\Content\indexing\images\Error.png"/>
-			</Component>
-	
-												
-			<Component Id="cmp1958e0a96160426f98b562e9dc052cbd" Guid="{1958e0a9-6160-426f-98b5-62e9dc052cbd}">
-				<File Id="file1958e0a96160426f98b562e9dc052cbd" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\Content\indexing\images\heroAccent.png"/>
-			</Component>
-	
-												
-			<Component Id="cmpdd2997703e384d34a787458286fe281c" Guid="{dd299770-3e38-4d34-a787-458286fe281c}">
-				<File Id="filedd2997703e384d34a787458286fe281c" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\Content\indexing\images\orderedList0.png"/>
-			</Component>
-	
-												
-			<Component Id="cmpa2c058aec3c946a39ce4eccec08483d7" Guid="{a2c058ae-c3c9-46a3-9ce4-eccec08483d7}">
-				<File Id="filea2c058aec3c946a39ce4eccec08483d7" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\Content\indexing\images\orderedList1.png"/>
-			</Component>
-	
-												
-			<Component Id="cmp58debd5fd99b42ee94be416b53042fe7" Guid="{58debd5f-d99b-42ee-94be-416b53042fe7}">
-				<File Id="file58debd5fd99b42ee94be416b53042fe7" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\Content\indexing\images\orderedList2.png"/>
-			</Component>
-	
-												
-			<Component Id="cmp953ed65e7b254e7f820681a29a3f06ee" Guid="{953ed65e-7b25-4e7f-8206-81a29a3f06ee}">
-				<File Id="file953ed65e7b254e7f820681a29a3f06ee" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\Content\indexing\images\orderedList3.png"/>
-			</Component>
-	
-												
-			<Component Id="cmpcd70cf06105546b78bc3efddffe9ea90" Guid="{cd70cf06-1055-46b7-8bc3-efddffe9ea90}">
-				<File Id="filecd70cf06105546b78bc3efddffe9ea90" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\Content\indexing\images\orderedList4.png"/>
-			</Component>
-	
-												
-			<Component Id="cmp4a455100e9d445aa8b554492b8131459" Guid="{4a455100-e9d4-45aa-8b55-4492b8131459}">
-				<File Id="file4a455100e9d445aa8b554492b8131459" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\Content\indexing\images\orderedList5.png"/>
-			</Component>
-	
-												
-			<Component Id="cmp112c2169d95a494bb5ef5c8ec5e1bd33" Guid="{112c2169-d95a-494b-b5ef-5c8ec5e1bd33}">
-				<File Id="file112c2169d95a494bb5ef5c8ec5e1bd33" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\Content\indexing\images\orderedList6.png"/>
-			</Component>
-	
-												
-			<Component Id="cmpa725c500a3a548ee85f8497eac4e1ce9" Guid="{a725c500-a3a5-48ee-85f8-497eac4e1ce9}">
-				<File Id="filea725c500a3a548ee85f8497eac4e1ce9" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\Content\indexing\images\orderedList7.png"/>
-			</Component>
-	
-												
-			<Component Id="cmp8311ef5130374a9dac87fd647a71d89c" Guid="{8311ef51-3037-4a9d-ac87-fd647a71d89c}">
-				<File Id="file8311ef5130374a9dac87fd647a71d89c" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\Content\indexing\images\orderedList8.png"/>
-			</Component>
-	
-												
-			<Component Id="cmpc1c3479609bd44c08e382f7d21813a57" Guid="{c1c34796-09bd-44c0-8e38-2f7d21813a57}">
-				<File Id="filec1c3479609bd44c08e382f7d21813a57" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\Content\indexing\images\orderedList9.png"/>
-			</Component>
-	
-												
-			<Component Id="cmpa4b1208bb5fb45ec8a1956a92542063e" Guid="{a4b1208b-b5fb-45ec-8a19-56a92542063e}">
-				<File Id="filea4b1208bb5fb45ec8a1956a92542063e" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\Content\indexing\images\playlist_add.png"/>
+			<Component Id="cmp1583b1d442dd4fcdbbb2e558feef3076" Guid="{1583b1d4-42dd-4fcd-bbb2-e558feef3076}">
+				<File Id="file1583b1d442dd4fcdbbb2e558feef3076" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\bin\App_Data\filteredjsonexample.json"/>
 			</Component>
 	
 			
 			</Directory>
 												
-			<Component Id="cmp0463a827c6b64359a2a92ebc90555363" Guid="{0463a827-c6b6-4359-a2a9-2ebc90555363}">
-				<File Id="file0463a827c6b64359a2a92ebc90555363" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\Content\indexing\specific.css"/>
+			<Component Id="cmp7b87372ee6c4407c96fb0992943fa96a" Guid="{7b87372e-e6c4-407c-96fb-0992943fa96a}">
+				<File Id="file7b87372ee6c4407c96fb0992943fa96a" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\bin\Antlr3.Runtime.dll"/>
+			</Component>
+	
+												
+			<Component Id="cmp2a21a63932a94e1f9964d668e59db3d8" Guid="{2a21a639-32a9-4e1f-9964-d668e59db3d8}">
+				<File Id="file2a21a63932a94e1f9964d668e59db3d8" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\bin\Antlr3.Runtime.pdb"/>
+			</Component>
+	
+												
+			<Component Id="cmp61d87cc1655b4c18b0f176b0848d0e28" Guid="{61d87cc1-655b-4c18-b0f1-76b0848d0e28}">
+				<File Id="file61d87cc1655b4c18b0f176b0848d0e28" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\bin\Id3.dll"/>
+			</Component>
+	
+												
+			<Component Id="cmp1b38231f0f524aeda86d0f2bb945db90" Guid="{1b38231f-0f52-4aed-a86d-0f2bb945db90}">
+				<File Id="file1b38231f0f524aeda86d0f2bb945db90" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\bin\log4net.dll"/>
+			</Component>
+	
+												
+			<Component Id="cmpe997503c4cd34fd7bf16dbf6a5dd3e0b" Guid="{e997503c-4cd3-4fd7-bf16-dbf6a5dd3e0b}">
+				<File Id="filee997503c4cd34fd7bf16dbf6a5dd3e0b" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\bin\log4net.xml"/>
+			</Component>
+	
+												
+			<Component Id="cmp2553488f9f5e4506b9326a7814ed91f0" Guid="{2553488f-9f5e-4506-b932-6a7814ed91f0}">
+				<File Id="file2553488f9f5e4506b9326a7814ed91f0" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\bin\Microsoft.AspNet.SignalR.Core.dll"/>
+			</Component>
+	
+												
+			<Component Id="cmp982449234d0440d987a9f41ecbc98e19" Guid="{98244923-4d04-40d9-87a9-f41ecbc98e19}">
+				<File Id="file982449234d0440d987a9f41ecbc98e19" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\bin\Microsoft.AspNet.SignalR.Core.xml"/>
+			</Component>
+	
+												
+			<Component Id="cmpa067f826e5bc4239a5642416a73e91d3" Guid="{a067f826-e5bc-4239-a564-2416a73e91d3}">
+				<File Id="filea067f826e5bc4239a5642416a73e91d3" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\bin\Microsoft.AspNet.SignalR.SystemWeb.dll"/>
+			</Component>
+	
+												
+			<Component Id="cmp43f1e5137fb540a3837a435a251d7ce6" Guid="{43f1e513-7fb5-40a3-837a-435a251d7ce6}">
+				<File Id="file43f1e5137fb540a3837a435a251d7ce6" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\bin\Microsoft.AspNet.SignalR.SystemWeb.xml"/>
+			</Component>
+	
+												
+			<Component Id="cmpce93eeef10c943dcaf48daf059bfc781" Guid="{ce93eeef-10c9-43dc-af48-daf059bfc781}">
+				<File Id="filece93eeef10c943dcaf48daf059bfc781" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\bin\Microsoft.Owin.dll"/>
+			</Component>
+	
+												
+			<Component Id="cmp1e1c518135f7463f8c65e843f280a287" Guid="{1e1c5181-35f7-463f-8c65-e843f280a287}">
+				<File Id="file1e1c518135f7463f8c65e843f280a287" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\bin\Microsoft.Owin.Host.SystemWeb.dll"/>
+			</Component>
+	
+												
+			<Component Id="cmpdde029df2bc242359ffadbf42bdfa01a" Guid="{dde029df-2bc2-4235-9ffa-dbf42bdfa01a}">
+				<File Id="filedde029df2bc242359ffadbf42bdfa01a" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\bin\Microsoft.Owin.Host.SystemWeb.xml"/>
+			</Component>
+	
+												
+			<Component Id="cmp3a96e7087c4845bbb6e560bda3de8446" Guid="{3a96e708-7c48-45bb-b6e5-60bda3de8446}">
+				<File Id="file3a96e7087c4845bbb6e560bda3de8446" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\bin\Microsoft.Owin.Security.dll"/>
+			</Component>
+	
+												
+			<Component Id="cmp8d4c95eb08d7450e8b8bc8b11ecb4190" Guid="{8d4c95eb-08d7-450e-8b8b-c8b11ecb4190}">
+				<File Id="file8d4c95eb08d7450e8b8bc8b11ecb4190" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\bin\Microsoft.Owin.Security.xml"/>
+			</Component>
+	
+												
+			<Component Id="cmp4ab221d4f4a5476c8ff5074bcddc4071" Guid="{4ab221d4-f4a5-476c-8ff5-074bcddc4071}">
+				<File Id="file4ab221d4f4a5476c8ff5074bcddc4071" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\bin\Microsoft.Owin.xml"/>
+			</Component>
+	
+												
+			<Component Id="cmp55656d6930594acab5a1a57adef8af20" Guid="{55656d69-3059-4aca-b5a1-a57adef8af20}">
+				<File Id="file55656d6930594acab5a1a57adef8af20" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\bin\Microsoft.Web.Infrastructure.dll"/>
+			</Component>
+	
+												
+			<Component Id="cmp675025df4f704a1fae5c9906a2b15109" Guid="{675025df-4f70-4a1f-ae5c-9906a2b15109}">
+				<File Id="file675025df4f704a1fae5c9906a2b15109" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\bin\Newtonsoft.Json.dll"/>
+			</Component>
+	
+												
+			<Component Id="cmpab609966eff44c96a337edca38ade9c2" Guid="{ab609966-eff4-4c96-a337-edca38ade9c2}">
+				<File Id="fileab609966eff44c96a337edca38ade9c2" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\bin\Newtonsoft.Json.xml"/>
+			</Component>
+	
+												
+			<Component Id="cmpb180c25468da4563ba5a25d1cf48fa6e" Guid="{b180c254-68da-4563-ba5a-25d1cf48fa6e}">
+				<File Id="fileb180c25468da4563ba5a25d1cf48fa6e" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\bin\Owin.dll"/>
+			</Component>
+	
+												
+			<Component Id="cmp4d50d8b36539404eadce05df58fd06ee" Guid="{4d50d8b3-6539-404e-adce-05df58fd06ee}">
+				<File Id="file4d50d8b36539404eadce05df58fd06ee" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\bin\Sciendo.Common.dll"/>
+			</Component>
+	
+												
+			<Component Id="cmp29abfb490c454c74ac80df8df71d61ab" Guid="{29abfb49-0c45-4c74-ac80-df8df71d61ab}">
+				<File Id="file29abfb490c454c74ac80df8df71d61ab" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\bin\Sciendo.IOC.Configuration.dll"/>
+			</Component>
+	
+												
+			<Component Id="cmpeb1b9e1ba49743678e3600b8d8b8f2d8" Guid="{eb1b9e1b-a497-4367-8e36-00b8d8b8f2d8}">
+				<File Id="fileeb1b9e1ba49743678e3600b8d8b8f2d8" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\bin\Sciendo.IOC.dll"/>
+			</Component>
+	
+												
+			<Component Id="cmpe82eb17e95fb4eab8fdc635bed99b531" Guid="{e82eb17e-95fb-4eab-8fdc-635bed99b531}">
+				<File Id="filee82eb17e95fb4eab8fdc635bed99b531" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\bin\Sciendo.Music.Contracts.dll"/>
+			</Component>
+	
+												
+			<Component Id="cmpf4728ff09c5a49ae9f9f4524b2504a7f" Guid="{f4728ff0-9c5a-49ae-9f9f-4524b2504a7f}">
+				<File Id="filef4728ff09c5a49ae9f9f4524b2504a7f" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\bin\Sciendo.Music.DataProviders.dll"/>
+			</Component>
+	
+												
+			<Component Id="cmp223596e98b124e4f94bc5dd243134452" Guid="{223596e9-8b12-4e4f-94bc-5dd243134452}">
+				<File Id="file223596e98b124e4f94bc5dd243134452" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\bin\Sciendo.Music.DataProviders.Mocks.dll"/>
+			</Component>
+	
+												
+			<Component Id="cmp9aac9877871048d4a2a320b4ea49bbf0" Guid="{9aac9877-8710-48d4-a2a3-20b4ea49bbf0}">
+				<File Id="file9aac9877871048d4a2a320b4ea49bbf0" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\bin\Sciendo.Music.DataProviders.Mocks.pdb"/>
+			</Component>
+	
+												
+			<Component Id="cmp29fa9eeb12e44cb197209a16f6945260" Guid="{29fa9eeb-12e4-4cb1-9720-9a16f6945260}">
+				<File Id="file29fa9eeb12e44cb197209a16f6945260" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\bin\Sciendo.Music.DataProviders.pdb"/>
+			</Component>
+	
+												
+			<Component Id="cmpb986a2032d2e4957823691948fa71abc" Guid="{b986a203-2d2e-4957-8236-91948fa71abc}">
+				<File Id="fileb986a2032d2e4957823691948fa71abc" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\bin\Sciendo.Music.Web.dll"/>
+			</Component>
+	
+												
+			<Component Id="cmpff0f2dd4f3374a4182e353c07b3051e9" Guid="{ff0f2dd4-f337-4a41-82e3-53c07b3051e9}">
+				<File Id="fileff0f2dd4f3374a4182e353c07b3051e9" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\bin\Sciendo.Music.Web.pdb"/>
+			</Component>
+	
+												
+			<Component Id="cmp22919f8d08944c728c958f7f6864a91b" Guid="{22919f8d-0894-4c72-8c95-8f7f6864a91b}">
+				<File Id="file22919f8d08944c728c958f7f6864a91b" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\bin\System.Web.Helpers.dll"/>
+			</Component>
+	
+												
+			<Component Id="cmp401f508e357948ad9d03dde11dd18f57" Guid="{401f508e-3579-48ad-9d03-dde11dd18f57}">
+				<File Id="file401f508e357948ad9d03dde11dd18f57" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\bin\System.Web.Helpers.xml"/>
+			</Component>
+	
+												
+			<Component Id="cmp3831e22e719d4f55a87aa681e9cc00ed" Guid="{3831e22e-719d-4f55-a87a-a681e9cc00ed}">
+				<File Id="file3831e22e719d4f55a87aa681e9cc00ed" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\bin\System.Web.Mvc.dll"/>
+			</Component>
+	
+												
+			<Component Id="cmp289325b3ddbe405ca5d134ff51d71c4f" Guid="{289325b3-ddbe-405c-a5d1-34ff51d71c4f}">
+				<File Id="file289325b3ddbe405ca5d134ff51d71c4f" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\bin\System.Web.Mvc.xml"/>
+			</Component>
+	
+												
+			<Component Id="cmpc8eebbcac3b04175a9f51e199b024aa7" Guid="{c8eebbca-c3b0-4175-a9f5-1e199b024aa7}">
+				<File Id="filec8eebbcac3b04175a9f51e199b024aa7" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\bin\System.Web.Optimization.dll"/>
+			</Component>
+	
+												
+			<Component Id="cmpf95357e558834b86976db0f557accaaf" Guid="{f95357e5-5883-4b86-976d-b0f557accaaf}">
+				<File Id="filef95357e558834b86976db0f557accaaf" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\bin\System.Web.Optimization.xml"/>
+			</Component>
+	
+												
+			<Component Id="cmp60fd5ee8f8974c5e8e23e844c847515a" Guid="{60fd5ee8-f897-4c5e-8e23-e844c847515a}">
+				<File Id="file60fd5ee8f8974c5e8e23e844c847515a" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\bin\System.Web.Razor.dll"/>
+			</Component>
+	
+												
+			<Component Id="cmpde9fee5fcd7e414187d8918ff9fb160c" Guid="{de9fee5f-cd7e-4141-87d8-918ff9fb160c}">
+				<File Id="filede9fee5fcd7e414187d8918ff9fb160c" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\bin\System.Web.Razor.xml"/>
+			</Component>
+	
+												
+			<Component Id="cmp27a24a925ec14de4ae12563098659408" Guid="{27a24a92-5ec1-4de4-ae12-563098659408}">
+				<File Id="file27a24a925ec14de4ae12563098659408" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\bin\System.Web.WebPages.Deployment.dll"/>
+			</Component>
+	
+												
+			<Component Id="cmp101011704cbd4b1e96c64b71ddb90412" Guid="{10101170-4cbd-4b1e-96c6-4b71ddb90412}">
+				<File Id="file101011704cbd4b1e96c64b71ddb90412" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\bin\System.Web.WebPages.Deployment.xml"/>
+			</Component>
+	
+												
+			<Component Id="cmp856f4c1907ac497782f996865140b49b" Guid="{856f4c19-07ac-4977-82f9-96865140b49b}">
+				<File Id="file856f4c1907ac497782f996865140b49b" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\bin\System.Web.WebPages.dll"/>
+			</Component>
+	
+												
+			<Component Id="cmp0faa9a2c90794a2280e99e9fe746d90e" Guid="{0faa9a2c-9079-4a22-80e9-9e9fe746d90e}">
+				<File Id="file0faa9a2c90794a2280e99e9fe746d90e" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\bin\System.Web.WebPages.Razor.dll"/>
+			</Component>
+	
+												
+			<Component Id="cmpa629904ab9d947ef9b3cd9b0ff703dd4" Guid="{a629904a-b9d9-47ef-9b3c-d9b0ff703dd4}">
+				<File Id="filea629904ab9d947ef9b3cd9b0ff703dd4" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\bin\System.Web.WebPages.Razor.xml"/>
+			</Component>
+	
+												
+			<Component Id="cmp27bb1d3caf204d65b88e9e814b7cc5b7" Guid="{27bb1d3c-af20-4d65-b88e-9e814b7cc5b7}">
+				<File Id="file27bb1d3caf204d65b88e9e814b7cc5b7" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\bin\System.Web.WebPages.xml"/>
+			</Component>
+	
+												
+			<Component Id="cmped4feea999544e0a93eadf969a3511ca" Guid="{ed4feea9-9954-4e0a-93ea-df969a3511ca}">
+				<File Id="fileed4feea999544e0a93eadf969a3511ca" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\bin\WebGrease.dll"/>
 			</Component>
 	
 			
 			</Directory>
-						<Directory Id="dird099ad6efbfd49c38bb1d3cdeaec864e" Name="themes">
+						<Directory Id="dir3d15c31de0eb4d4484ec409b2a3ac03e" Name="Content">
 						
-						<Directory Id="dir6552fc4879ee4fcd8910fc093336ccde" Name="base">
+						<Directory Id="dirb41a09c9693e4fcdb46d09c431f70eb2" Name="indexing">
 						
-						<Directory Id="dir2c66b7aab7ab4cfe88cbffbb6d6d42ff" Name="images">
-						
-			
-			</Directory>
-												
-			<Component Id="cmpb1f4f4ec82584a36a6de8bfe4e7e07ef" Guid="{b1f4f4ec-8258-4a36-a6de-8bfe4e7e07ef}">
-				<File Id="fileb1f4f4ec82584a36a6de8bfe4e7e07ef" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\Content\themes\base\accordion.css"/>
-			</Component>
-	
-												
-			<Component Id="cmpb452c194a3294ab49525b6167eead927" Guid="{b452c194-a329-4ab4-9525-b6167eead927}">
-				<File Id="fileb452c194a3294ab49525b6167eead927" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\Content\themes\base\all.css"/>
-			</Component>
-	
-												
-			<Component Id="cmpeda8e5f60d8e4e39ba552a85459413df" Guid="{eda8e5f6-0d8e-4e39-ba55-2a85459413df}">
-				<File Id="fileeda8e5f60d8e4e39ba552a85459413df" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\Content\themes\base\autocomplete.css"/>
-			</Component>
-	
-												
-			<Component Id="cmp4eec4ffb239f4cf09967cb3a844a34bc" Guid="{4eec4ffb-239f-4cf0-9967-cb3a844a34bc}">
-				<File Id="file4eec4ffb239f4cf09967cb3a844a34bc" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\Content\themes\base\base.css"/>
-			</Component>
-	
-												
-			<Component Id="cmpa044a89042754eafba2af911b8e18246" Guid="{a044a890-4275-4eaf-ba2a-f911b8e18246}">
-				<File Id="filea044a89042754eafba2af911b8e18246" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\Content\themes\base\button.css"/>
-			</Component>
-	
-												
-			<Component Id="cmp725201d882874b3b95fa9176e56d3bd6" Guid="{725201d8-8287-4b3b-95fa-9176e56d3bd6}">
-				<File Id="file725201d882874b3b95fa9176e56d3bd6" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\Content\themes\base\core.css"/>
-			</Component>
-	
-												
-			<Component Id="cmp934893ff22924e90b7a80c5ae7ec17b6" Guid="{934893ff-2292-4e90-b7a8-0c5ae7ec17b6}">
-				<File Id="file934893ff22924e90b7a80c5ae7ec17b6" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\Content\themes\base\datepicker.css"/>
-			</Component>
-	
-												
-			<Component Id="cmpe64128d42aed48f0baaaa5ac0aa9c3de" Guid="{e64128d4-2aed-48f0-baaa-a5ac0aa9c3de}">
-				<File Id="filee64128d42aed48f0baaaa5ac0aa9c3de" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\Content\themes\base\dialog.css"/>
-			</Component>
-	
-												
-			<Component Id="cmpb83c53d4ad2240eba7262b4ec36b7fbc" Guid="{b83c53d4-ad22-40eb-a726-2b4ec36b7fbc}">
-				<File Id="fileb83c53d4ad2240eba7262b4ec36b7fbc" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\Content\themes\base\draggable.css"/>
-			</Component>
-	
-												
-			<Component Id="cmp3abeedb7743643f1a1dd99f3d9e6f61d" Guid="{3abeedb7-7436-43f1-a1dd-99f3d9e6f61d}">
-				<File Id="file3abeedb7743643f1a1dd99f3d9e6f61d" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\Content\themes\base\menu.css"/>
-			</Component>
-	
-												
-			<Component Id="cmp4fe4d01cb4fa42f5a1b9f8ba8b2557f3" Guid="{4fe4d01c-b4fa-42f5-a1b9-f8ba8b2557f3}">
-				<File Id="file4fe4d01cb4fa42f5a1b9f8ba8b2557f3" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\Content\themes\base\progressbar.css"/>
-			</Component>
-	
-												
-			<Component Id="cmpc01baeffdd7340aea24dede8fe828ff7" Guid="{c01baeff-dd73-40ae-a24d-ede8fe828ff7}">
-				<File Id="filec01baeffdd7340aea24dede8fe828ff7" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\Content\themes\base\resizable.css"/>
-			</Component>
-	
-												
-			<Component Id="cmp9909f24871ce4b8baaf3b0c7abdd9586" Guid="{9909f248-71ce-4b8b-aaf3-b0c7abdd9586}">
-				<File Id="file9909f24871ce4b8baaf3b0c7abdd9586" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\Content\themes\base\selectable.css"/>
-			</Component>
-	
-												
-			<Component Id="cmp46a31c56d8e248919f37eb552268a742" Guid="{46a31c56-d8e2-4891-9f37-eb552268a742}">
-				<File Id="file46a31c56d8e248919f37eb552268a742" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\Content\themes\base\selectmenu.css"/>
-			</Component>
-	
-												
-			<Component Id="cmpbac77e0ac5144c689a8d171c3f92964b" Guid="{bac77e0a-c514-4c68-9a8d-171c3f92964b}">
-				<File Id="filebac77e0ac5144c689a8d171c3f92964b" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\Content\themes\base\slider.css"/>
-			</Component>
-	
-												
-			<Component Id="cmp24be64022d114be596545fc1499ec484" Guid="{24be6402-2d11-4be5-9654-5fc1499ec484}">
-				<File Id="file24be64022d114be596545fc1499ec484" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\Content\themes\base\sortable.css"/>
-			</Component>
-	
-												
-			<Component Id="cmp4b65b0eb152c46fe90a6909500380da2" Guid="{4b65b0eb-152c-46fe-90a6-909500380da2}">
-				<File Id="file4b65b0eb152c46fe90a6909500380da2" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\Content\themes\base\spinner.css"/>
-			</Component>
-	
-												
-			<Component Id="cmpe7ceb79a1bae4910890655edd487e055" Guid="{e7ceb79a-1bae-4910-8906-55edd487e055}">
-				<File Id="filee7ceb79a1bae4910890655edd487e055" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\Content\themes\base\tabs.css"/>
-			</Component>
-	
-												
-			<Component Id="cmpfcbb247533034966b5d60b7e6eb3b3e9" Guid="{fcbb2475-3303-4966-b5d6-0b7e6eb3b3e9}">
-				<File Id="filefcbb247533034966b5d60b7e6eb3b3e9" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\Content\themes\base\theme.css"/>
-			</Component>
-	
-												
-			<Component Id="cmp47c4e6b831264628856fb4d00ce45be5" Guid="{47c4e6b8-3126-4628-856f-b4d00ce45be5}">
-				<File Id="file47c4e6b831264628856fb4d00ce45be5" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\Content\themes\base\tooltip.css"/>
-			</Component>
-	
-			
-			</Directory>
-			
-			</Directory>
-												
-			<Component Id="cmp59f54fb3e3794cf1b1bb2b65ac2ed032" Guid="{59f54fb3-e379-4cf1-b1bb-2b65ac2ed032}">
-				<File Id="file59f54fb3e3794cf1b1bb2b65ac2ed032" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\Content\bootstrap.css"/>
-			</Component>
-	
-												
-			<Component Id="cmp875c0d27ca29494faea31eda2d5a85e0" Guid="{875c0d27-ca29-494f-aea3-1eda2d5a85e0}">
-				<File Id="file875c0d27ca29494faea31eda2d5a85e0" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\Content\bootstrap.min.css"/>
-			</Component>
-	
-												
-			<Component Id="cmp32dc4e34fb7749919dd607862b6deea0" Guid="{32dc4e34-fb77-4991-9dd6-07862b6deea0}">
-				<File Id="file32dc4e34fb7749919dd607862b6deea0" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\Content\ko.binding.style.css"/>
-			</Component>
-	
-												
-			<Component Id="cmp36d47f3380e14ad283a733247e86bd43" Guid="{36d47f33-80e1-4ad2-83a7-33247e86bd43}">
-				<File Id="file36d47f3380e14ad283a733247e86bd43" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\Content\Site.css"/>
-			</Component>
-	
-			
-			</Directory>
-						<Directory Id="dird94779e255724d578219e2e1b7abc1b1" Name="fonts">
+						<Directory Id="dir58b97dd7a67541b9a431994d5c18ee38" Name="images">
 						
 												
-			<Component Id="cmp83c0b425b6744064a7d49c9a65bc73f8" Guid="{83c0b425-b674-4064-a7d4-9c9a65bc73f8}">
-				<File Id="file83c0b425b6744064a7d49c9a65bc73f8" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\fonts\glyphicons-halflings-regular.eot"/>
+			<Component Id="cmp53d0758f0dd844aba9e80d987c2fc8fc" Guid="{53d0758f-0dd8-44ab-a9e8-0d987c2fc8fc}">
+				<File Id="file53d0758f0dd844aba9e80d987c2fc8fc" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\Content\indexing\images\accent.png"/>
 			</Component>
 	
 												
-			<Component Id="cmp2e207b67802e41cab45f899ecec7a45f" Guid="{2e207b67-802e-41ca-b45f-899ecec7a45f}">
-				<File Id="file2e207b67802e41cab45f899ecec7a45f" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\fonts\glyphicons-halflings-regular.svg"/>
+			<Component Id="cmpcc6f2a9c19184038917a6e0d66ab5f87" Guid="{cc6f2a9c-1918-4038-917a-6e0d66ab5f87}">
+				<File Id="filecc6f2a9c19184038917a6e0d66ab5f87" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\Content\indexing\images\bullet.png"/>
 			</Component>
 	
 												
-			<Component Id="cmp81a19b1118524683a1d6dfeafa4f44c6" Guid="{81a19b11-1852-4683-a1d6-dfeafa4f44c6}">
-				<File Id="file81a19b1118524683a1d6dfeafa4f44c6" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\fonts\glyphicons-halflings-regular.ttf"/>
+			<Component Id="cmpc639354e4ac24dd6bc832dc492746409" Guid="{c639354e-4ac2-4dd6-bc83-2dc492746409}">
+				<File Id="filec639354e4ac24dd6bc832dc492746409" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\Content\indexing\images\Done.png"/>
 			</Component>
 	
 												
-			<Component Id="cmp4a2b1973225240d0baf95e335bd1d97d" Guid="{4a2b1973-2252-40d0-baf9-5e335bd1d97d}">
-				<File Id="file4a2b1973225240d0baf95e335bd1d97d" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\fonts\glyphicons-halflings-regular.woff"/>
+			<Component Id="cmp3a98ffdaca2c4009a426a4028e979663" Guid="{3a98ffda-ca2c-4009-a426-a4028e979663}">
+				<File Id="file3a98ffdaca2c4009a426a4028e979663" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\Content\indexing\images\Error.png"/>
+			</Component>
+	
+												
+			<Component Id="cmpe59937dc2c0443ea98175d45831ad8e5" Guid="{e59937dc-2c04-43ea-9817-5d45831ad8e5}">
+				<File Id="filee59937dc2c0443ea98175d45831ad8e5" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\Content\indexing\images\heroAccent.png"/>
+			</Component>
+	
+												
+			<Component Id="cmp7f173f7ff5a6495394454f46b35e348c" Guid="{7f173f7f-f5a6-4953-9445-4f46b35e348c}">
+				<File Id="file7f173f7ff5a6495394454f46b35e348c" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\Content\indexing\images\orderedList0.png"/>
+			</Component>
+	
+												
+			<Component Id="cmpc872da8a53814e0db98aad25ec83e4cd" Guid="{c872da8a-5381-4e0d-b98a-ad25ec83e4cd}">
+				<File Id="filec872da8a53814e0db98aad25ec83e4cd" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\Content\indexing\images\orderedList1.png"/>
+			</Component>
+	
+												
+			<Component Id="cmp3069f962612a465ba0272639627840b7" Guid="{3069f962-612a-465b-a027-2639627840b7}">
+				<File Id="file3069f962612a465ba0272639627840b7" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\Content\indexing\images\orderedList2.png"/>
+			</Component>
+	
+												
+			<Component Id="cmp3eb69fa77a7741bc95069f5a5147aab8" Guid="{3eb69fa7-7a77-41bc-9506-9f5a5147aab8}">
+				<File Id="file3eb69fa77a7741bc95069f5a5147aab8" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\Content\indexing\images\orderedList3.png"/>
+			</Component>
+	
+												
+			<Component Id="cmp858abd0d993648b79afcaada8eaf3704" Guid="{858abd0d-9936-48b7-9afc-aada8eaf3704}">
+				<File Id="file858abd0d993648b79afcaada8eaf3704" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\Content\indexing\images\orderedList4.png"/>
+			</Component>
+	
+												
+			<Component Id="cmpb24c4a200d374d47af0de99401c005d5" Guid="{b24c4a20-0d37-4d47-af0d-e99401c005d5}">
+				<File Id="fileb24c4a200d374d47af0de99401c005d5" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\Content\indexing\images\orderedList5.png"/>
+			</Component>
+	
+												
+			<Component Id="cmpf9c8da665afe4b6b8ff1b807e471fd37" Guid="{f9c8da66-5afe-4b6b-8ff1-b807e471fd37}">
+				<File Id="filef9c8da665afe4b6b8ff1b807e471fd37" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\Content\indexing\images\orderedList6.png"/>
+			</Component>
+	
+												
+			<Component Id="cmpe32a27d31edc432bbf1438a50976beb1" Guid="{e32a27d3-1edc-432b-bf14-38a50976beb1}">
+				<File Id="filee32a27d31edc432bbf1438a50976beb1" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\Content\indexing\images\orderedList7.png"/>
+			</Component>
+	
+												
+			<Component Id="cmpf958ecc9e75f46cfbb8e55e11b15b674" Guid="{f958ecc9-e75f-46cf-bb8e-55e11b15b674}">
+				<File Id="filef958ecc9e75f46cfbb8e55e11b15b674" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\Content\indexing\images\orderedList8.png"/>
+			</Component>
+	
+												
+			<Component Id="cmpa47bbaed7f2b4e7d94a8ba9d806d76a3" Guid="{a47bbaed-7f2b-4e7d-94a8-ba9d806d76a3}">
+				<File Id="filea47bbaed7f2b4e7d94a8ba9d806d76a3" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\Content\indexing\images\orderedList9.png"/>
+			</Component>
+	
+												
+			<Component Id="cmp840c24c0e93d43bbb8bbe9f139d3827c" Guid="{840c24c0-e93d-43bb-b8bb-e9f139d3827c}">
+				<File Id="file840c24c0e93d43bbb8bbe9f139d3827c" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\Content\indexing\images\playlist_add.png"/>
 			</Component>
 	
 			
 			</Directory>
-						<Directory Id="dir43d9a1e540ae4d5d9bd5f2884b7056af" Name="Scripts">
+												
+			<Component Id="cmp65702ed313d24dc186420ee426a2c094" Guid="{65702ed3-13d2-4dc1-8642-0ee426a2c094}">
+				<File Id="file65702ed313d24dc186420ee426a2c094" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\Content\indexing\specific.css"/>
+			</Component>
+	
+			
+			</Directory>
+						<Directory Id="direfd865a0054d4ffd978dd5a248f41634" Name="themes">
 						
-						<Directory Id="dir812e49cbe42f4068b2514b73649c5621" Name="sciendo.music">
+						<Directory Id="dirc2d015daa27d447ba1ecc354c47a43e1" Name="base">
+						
+						<Directory Id="dir37995137ec13479a88f77f8ee7b46e99" Name="images">
+						
+			
+			</Directory>
+												
+			<Component Id="cmp9bae9740fb3b43848a71abff0f2cf91d" Guid="{9bae9740-fb3b-4384-8a71-abff0f2cf91d}">
+				<File Id="file9bae9740fb3b43848a71abff0f2cf91d" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\Content\themes\base\accordion.css"/>
+			</Component>
+	
+												
+			<Component Id="cmpf6d6c2062a1841b2ab973981fed4b7d9" Guid="{f6d6c206-2a18-41b2-ab97-3981fed4b7d9}">
+				<File Id="filef6d6c2062a1841b2ab973981fed4b7d9" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\Content\themes\base\all.css"/>
+			</Component>
+	
+												
+			<Component Id="cmp10748199a8a74d2e9568bd56fbbe465a" Guid="{10748199-a8a7-4d2e-9568-bd56fbbe465a}">
+				<File Id="file10748199a8a74d2e9568bd56fbbe465a" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\Content\themes\base\autocomplete.css"/>
+			</Component>
+	
+												
+			<Component Id="cmpfebbdadf8e4747c2900d3fd752928088" Guid="{febbdadf-8e47-47c2-900d-3fd752928088}">
+				<File Id="filefebbdadf8e4747c2900d3fd752928088" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\Content\themes\base\base.css"/>
+			</Component>
+	
+												
+			<Component Id="cmp9807f53fe9c846d8ac2bab0394fd0189" Guid="{9807f53f-e9c8-46d8-ac2b-ab0394fd0189}">
+				<File Id="file9807f53fe9c846d8ac2bab0394fd0189" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\Content\themes\base\button.css"/>
+			</Component>
+	
+												
+			<Component Id="cmp1d77a4a93c1a4b1bb84279c4d4d5c0b6" Guid="{1d77a4a9-3c1a-4b1b-b842-79c4d4d5c0b6}">
+				<File Id="file1d77a4a93c1a4b1bb84279c4d4d5c0b6" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\Content\themes\base\core.css"/>
+			</Component>
+	
+												
+			<Component Id="cmp101489d04a884ee19a0a5a23b5c339c1" Guid="{101489d0-4a88-4ee1-9a0a-5a23b5c339c1}">
+				<File Id="file101489d04a884ee19a0a5a23b5c339c1" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\Content\themes\base\datepicker.css"/>
+			</Component>
+	
+												
+			<Component Id="cmpd45692070f0145969fe4a57d891fee83" Guid="{d4569207-0f01-4596-9fe4-a57d891fee83}">
+				<File Id="filed45692070f0145969fe4a57d891fee83" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\Content\themes\base\dialog.css"/>
+			</Component>
+	
+												
+			<Component Id="cmpf0a26e7d4577494f8bc20ab06d4ec08e" Guid="{f0a26e7d-4577-494f-8bc2-0ab06d4ec08e}">
+				<File Id="filef0a26e7d4577494f8bc20ab06d4ec08e" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\Content\themes\base\draggable.css"/>
+			</Component>
+	
+												
+			<Component Id="cmp44f190c1a6904a4b8258eac044b3d1e0" Guid="{44f190c1-a690-4a4b-8258-eac044b3d1e0}">
+				<File Id="file44f190c1a6904a4b8258eac044b3d1e0" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\Content\themes\base\menu.css"/>
+			</Component>
+	
+												
+			<Component Id="cmpad2c42fa0bc64fb4a131e9d225176989" Guid="{ad2c42fa-0bc6-4fb4-a131-e9d225176989}">
+				<File Id="filead2c42fa0bc64fb4a131e9d225176989" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\Content\themes\base\progressbar.css"/>
+			</Component>
+	
+												
+			<Component Id="cmp554afa180dba45d3902abfe5751d5db2" Guid="{554afa18-0dba-45d3-902a-bfe5751d5db2}">
+				<File Id="file554afa180dba45d3902abfe5751d5db2" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\Content\themes\base\resizable.css"/>
+			</Component>
+	
+												
+			<Component Id="cmpc5ff80d522eb4728b5cc739e4f2eaa9f" Guid="{c5ff80d5-22eb-4728-b5cc-739e4f2eaa9f}">
+				<File Id="filec5ff80d522eb4728b5cc739e4f2eaa9f" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\Content\themes\base\selectable.css"/>
+			</Component>
+	
+												
+			<Component Id="cmp2178c491b4be4ec2b8d3f893a7b5aa8d" Guid="{2178c491-b4be-4ec2-b8d3-f893a7b5aa8d}">
+				<File Id="file2178c491b4be4ec2b8d3f893a7b5aa8d" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\Content\themes\base\selectmenu.css"/>
+			</Component>
+	
+												
+			<Component Id="cmpdaf8ac248d7f4b709f9eb79d037f09a1" Guid="{daf8ac24-8d7f-4b70-9f9e-b79d037f09a1}">
+				<File Id="filedaf8ac248d7f4b709f9eb79d037f09a1" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\Content\themes\base\slider.css"/>
+			</Component>
+	
+												
+			<Component Id="cmped8524877bf949879b00af250f4ad603" Guid="{ed852487-7bf9-4987-9b00-af250f4ad603}">
+				<File Id="fileed8524877bf949879b00af250f4ad603" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\Content\themes\base\sortable.css"/>
+			</Component>
+	
+												
+			<Component Id="cmpcf8e914360e340849af649bae4bd0897" Guid="{cf8e9143-60e3-4084-9af6-49bae4bd0897}">
+				<File Id="filecf8e914360e340849af649bae4bd0897" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\Content\themes\base\spinner.css"/>
+			</Component>
+	
+												
+			<Component Id="cmp2f56e0ebc88442ddb2acb062fe692312" Guid="{2f56e0eb-c884-42dd-b2ac-b062fe692312}">
+				<File Id="file2f56e0ebc88442ddb2acb062fe692312" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\Content\themes\base\tabs.css"/>
+			</Component>
+	
+												
+			<Component Id="cmp79ed52ba4a0f45fb833c9fc98ccec596" Guid="{79ed52ba-4a0f-45fb-833c-9fc98ccec596}">
+				<File Id="file79ed52ba4a0f45fb833c9fc98ccec596" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\Content\themes\base\theme.css"/>
+			</Component>
+	
+												
+			<Component Id="cmpb3427efa8edd4019a19ecf0906e705b6" Guid="{b3427efa-8edd-4019-a19e-cf0906e705b6}">
+				<File Id="fileb3427efa8edd4019a19ecf0906e705b6" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\Content\themes\base\tooltip.css"/>
+			</Component>
+	
+			
+			</Directory>
+			
+			</Directory>
+												
+			<Component Id="cmp8f3ff885cfea46b08d0f9475d462521a" Guid="{8f3ff885-cfea-46b0-8d0f-9475d462521a}">
+				<File Id="file8f3ff885cfea46b08d0f9475d462521a" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\Content\bootstrap.css"/>
+			</Component>
+	
+												
+			<Component Id="cmp1ab64615488a44cc9b64dbd035650807" Guid="{1ab64615-488a-44cc-9b64-dbd035650807}">
+				<File Id="file1ab64615488a44cc9b64dbd035650807" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\Content\bootstrap.min.css"/>
+			</Component>
+	
+												
+			<Component Id="cmpe16d9815e68b41d383ffb6d4c512682e" Guid="{e16d9815-e68b-41d3-83ff-b6d4c512682e}">
+				<File Id="filee16d9815e68b41d383ffb6d4c512682e" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\Content\ko.binding.style.css"/>
+			</Component>
+	
+												
+			<Component Id="cmp40b5bd3256df474fb70aff1b277a0d63" Guid="{40b5bd32-56df-474f-b70a-ff1b277a0d63}">
+				<File Id="file40b5bd3256df474fb70aff1b277a0d63" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\Content\Site.css"/>
+			</Component>
+	
+			
+			</Directory>
+						<Directory Id="dir75e67ddcb1ff4a7580cd3d970b68ab41" Name="fonts">
 						
 												
-			<Component Id="cmp74ef6d0ef4b943768aba6e28fb7009f3" Guid="{74ef6d0e-f4b9-4376-8aba-6e28fb7009f3}">
-				<File Id="file74ef6d0ef4b943768aba6e28fb7009f3" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\Scripts\sciendo.music\index.autocomplete.js"/>
+			<Component Id="cmp627f9038ce3c4c16a852e2980af3d7eb" Guid="{627f9038-ce3c-4c16-a852-e2980af3d7eb}">
+				<File Id="file627f9038ce3c4c16a852e2980af3d7eb" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\fonts\glyphicons-halflings-regular.eot"/>
 			</Component>
 	
 												
-			<Component Id="cmpdff0179028ba49a1bd1ae8a28a2ae90e" Guid="{dff01790-28ba-49a1-bd1a-e8a28a2ae90e}">
-				<File Id="filedff0179028ba49a1bd1ae8a28a2ae90e" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\Scripts\sciendo.music\index.viewmodel.js"/>
+			<Component Id="cmp1a42299ee3e940278be29215f776c725" Guid="{1a42299e-e3e9-4027-8be2-9215f776c725}">
+				<File Id="file1a42299ee3e940278be29215f776c725" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\fonts\glyphicons-halflings-regular.svg"/>
 			</Component>
 	
 												
-			<Component Id="cmp0eeaaa1a23c84eecb4a414f2074134cb" Guid="{0eeaaa1a-23c8-4eec-b4a4-14f2074134cb}">
-				<File Id="file0eeaaa1a23c84eecb4a414f2074134cb" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\Scripts\sciendo.music\knockout.simpleGrid.1.3.js"/>
+			<Component Id="cmp32ab7960f72047878ed38f39de49f70c" Guid="{32ab7960-f720-4787-8ed3-8f39de49f70c}">
+				<File Id="file32ab7960f72047878ed38f39de49f70c" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\fonts\glyphicons-halflings-regular.ttf"/>
 			</Component>
 	
 												
-			<Component Id="cmp377a3749c2864dce8ca1d0e6ffa8762b" Guid="{377a3749-c286-4dce-8ca1-d0e6ffa8762b}">
-				<File Id="file377a3749c2864dce8ca1d0e6ffa8762b" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\Scripts\sciendo.music\playlist.datacontext.js"/>
+			<Component Id="cmpdb9f9d63468647718eb041e40b0cc084" Guid="{db9f9d63-4686-4771-8eb0-41e40b0cc084}">
+				<File Id="filedb9f9d63468647718eb041e40b0cc084" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\fonts\glyphicons-halflings-regular.woff"/>
+			</Component>
+	
+			
+			</Directory>
+						<Directory Id="dir8413b5680d514f3ea46d3fbff702d4dc" Name="Scripts">
+						
+						<Directory Id="dire78aeadd587e416482b570294c8c5012" Name="sciendo.music">
+						
+												
+			<Component Id="cmpff85f6a2ddda40f1bb01ccf8eeb8b1b9" Guid="{ff85f6a2-ddda-40f1-bb01-ccf8eeb8b1b9}">
+				<File Id="fileff85f6a2ddda40f1bb01ccf8eeb8b1b9" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\Scripts\sciendo.music\index.autocomplete.js"/>
 			</Component>
 	
 												
-			<Component Id="cmpa79bbedc87ec42f5b730f7f544e2d583" Guid="{a79bbedc-87ec-42f5-b730-f7f544e2d583}">
-				<File Id="filea79bbedc87ec42f5b730f7f544e2d583" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\Scripts\sciendo.music\playlist.viewmodel.js"/>
+			<Component Id="cmp7b4c995efb284eabaea0c999f868c17f" Guid="{7b4c995e-fb28-4eab-aea0-c999f868c17f}">
+				<File Id="file7b4c995efb284eabaea0c999f868c17f" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\Scripts\sciendo.music\index.viewmodel.js"/>
 			</Component>
 	
 												
-			<Component Id="cmp16eda42d903a47a78ebc7b19e7ed5d30" Guid="{16eda42d-903a-47a7-8ebc-7b19e7ed5d30}">
-				<File Id="file16eda42d903a47a78ebc7b19e7ed5d30" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\Scripts\sciendo.music\query.datacontext.js"/>
+			<Component Id="cmp5145d0187e454bc8bd14f0fd3f9f7d7f" Guid="{5145d018-7e45-4bc8-bd14-f0fd3f9f7d7f}">
+				<File Id="file5145d0187e454bc8bd14f0fd3f9f7d7f" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\Scripts\sciendo.music\knockout.simpleGrid.1.3.js"/>
 			</Component>
 	
 												
-			<Component Id="cmp671021b9d7d24f1c87df8a94d0d80695" Guid="{671021b9-d7d2-4f1c-87df-8a94d0d80695}">
-				<File Id="file671021b9d7d24f1c87df8a94d0d80695" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\Scripts\sciendo.music\query.viewmodel.js"/>
+			<Component Id="cmp3b6932bcb47f4f6fb8557ebb9db8a9be" Guid="{3b6932bc-b47f-4f6f-b855-7ebb9db8a9be}">
+				<File Id="file3b6932bcb47f4f6fb8557ebb9db8a9be" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\Scripts\sciendo.music\playlist.datacontext.js"/>
+			</Component>
+	
+												
+			<Component Id="cmpef3b3db27fb9498ebae9273419ec270d" Guid="{ef3b3db2-7fb9-498e-bae9-273419ec270d}">
+				<File Id="fileef3b3db27fb9498ebae9273419ec270d" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\Scripts\sciendo.music\playlist.viewmodel.js"/>
+			</Component>
+	
+												
+			<Component Id="cmp933e361a86c249baa1b689bf1fd10c50" Guid="{933e361a-86c2-49ba-a1b6-89bf1fd10c50}">
+				<File Id="file933e361a86c249baa1b689bf1fd10c50" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\Scripts\sciendo.music\query.datacontext.js"/>
+			</Component>
+	
+												
+			<Component Id="cmp78bfd59b2a1b4b8e8110b829b4a0c2ed" Guid="{78bfd59b-2a1b-4b8e-8110-b829b4a0c2ed}">
+				<File Id="file78bfd59b2a1b4b8e8110b829b4a0c2ed" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\Scripts\sciendo.music\query.viewmodel.js"/>
 			</Component>
 	
 			
 			</Directory>
 												
-			<Component Id="cmpdc6d62cda2d14847a933c2b5b8f49a8d" Guid="{dc6d62cd-a2d1-4847-a933-c2b5b8f49a8d}">
-				<File Id="filedc6d62cda2d14847a933c2b5b8f49a8d" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\Scripts\bootstrap.js"/>
+			<Component Id="cmpaea75b80f42049fb9b88c5b6972dc1bd" Guid="{aea75b80-f420-49fb-9b88-c5b6972dc1bd}">
+				<File Id="fileaea75b80f42049fb9b88c5b6972dc1bd" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\Scripts\bootstrap.js"/>
 			</Component>
 	
 												
-			<Component Id="cmp3a19fccd48a44f1fb2ebf828a8c7c897" Guid="{3a19fccd-48a4-4f1f-b2eb-f828a8c7c897}">
-				<File Id="file3a19fccd48a44f1fb2ebf828a8c7c897" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\Scripts\bootstrap.min.js"/>
+			<Component Id="cmp959b0e71fdd14b0ba04fe12b29dc8d7f" Guid="{959b0e71-fdd1-4b0b-a04f-e12b29dc8d7f}">
+				<File Id="file959b0e71fdd14b0ba04fe12b29dc8d7f" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\Scripts\bootstrap.min.js"/>
 			</Component>
 	
 												
-			<Component Id="cmpeea2939537814f549ea886d2cce30cd5" Guid="{eea29395-3781-4f54-9ea8-86d2cce30cd5}">
-				<File Id="fileeea2939537814f549ea886d2cce30cd5" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\Scripts\jquery-1.10.2.intellisense.js"/>
+			<Component Id="cmp73dbdd5176d44ce2a7767ccc0bddda78" Guid="{73dbdd51-76d4-4ce2-a776-7ccc0bddda78}">
+				<File Id="file73dbdd5176d44ce2a7767ccc0bddda78" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\Scripts\jquery-1.10.2.intellisense.js"/>
 			</Component>
 	
 												
-			<Component Id="cmp51003346693c4bf8ad168aa14e895af1" Guid="{51003346-693c-4bf8-ad16-8aa14e895af1}">
-				<File Id="file51003346693c4bf8ad168aa14e895af1" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\Scripts\jquery-1.10.2.js"/>
+			<Component Id="cmp415a4bf2b0464b6d855d0e4d12a059c9" Guid="{415a4bf2-b046-4b6d-855d-0e4d12a059c9}">
+				<File Id="file415a4bf2b0464b6d855d0e4d12a059c9" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\Scripts\jquery-1.10.2.js"/>
 			</Component>
 	
 												
-			<Component Id="cmp3f8b6cb6f47a46baa8e33c93a106aaa5" Guid="{3f8b6cb6-f47a-46ba-a8e3-3c93a106aaa5}">
-				<File Id="file3f8b6cb6f47a46baa8e33c93a106aaa5" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\Scripts\jquery-1.10.2.min.js"/>
+			<Component Id="cmp6affb47d4b394f9e9cd1b2716de6757e" Guid="{6affb47d-4b39-4f9e-9cd1-b2716de6757e}">
+				<File Id="file6affb47d4b394f9e9cd1b2716de6757e" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\Scripts\jquery-1.10.2.min.js"/>
 			</Component>
 	
 												
-			<Component Id="cmp261dda5e594d465492e13694c501cbed" Guid="{261dda5e-594d-4654-92e1-3694c501cbed}">
-				<File Id="file261dda5e594d465492e13694c501cbed" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\Scripts\jquery-1.10.2.min.map"/>
+			<Component Id="cmp47165ede309045188eab0a7ffe5849bc" Guid="{47165ede-3090-4518-8eab-0a7ffe5849bc}">
+				<File Id="file47165ede309045188eab0a7ffe5849bc" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\Scripts\jquery-1.10.2.min.map"/>
 			</Component>
 	
 												
-			<Component Id="cmp4d560362ac48444daa69581c3c6fb14c" Guid="{4d560362-ac48-444d-aa69-581c3c6fb14c}">
-				<File Id="file4d560362ac48444daa69581c3c6fb14c" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\Scripts\jquery-ui-1.11.3.js"/>
+			<Component Id="cmp8db60306a9f146aa910c46eac45452d3" Guid="{8db60306-a9f1-46aa-910c-46eac45452d3}">
+				<File Id="file8db60306a9f146aa910c46eac45452d3" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\Scripts\jquery-ui-1.11.3.js"/>
 			</Component>
 	
 												
-			<Component Id="cmp5f82a46b1481403d928e28616dd7a5a8" Guid="{5f82a46b-1481-403d-928e-28616dd7a5a8}">
-				<File Id="file5f82a46b1481403d928e28616dd7a5a8" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\Scripts\jquery-ui-1.11.3.min.js"/>
+			<Component Id="cmp45c740a607ed4bd49219a254b02add98" Guid="{45c740a6-07ed-4bd4-9219-a254b02add98}">
+				<File Id="file45c740a607ed4bd49219a254b02add98" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\Scripts\jquery-ui-1.11.3.min.js"/>
 			</Component>
 	
 												
-			<Component Id="cmp9700fac141bb464c87758757c1ddb87d" Guid="{9700fac1-41bb-464c-8775-8757c1ddb87d}">
-				<File Id="file9700fac141bb464c87758757c1ddb87d" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\Scripts\jquery.signalR-2.2.0.js"/>
+			<Component Id="cmp1618412b3cdb4a3b9d91ee978c5f7017" Guid="{1618412b-3cdb-4a3b-9d91-ee978c5f7017}">
+				<File Id="file1618412b3cdb4a3b9d91ee978c5f7017" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\Scripts\jquery.signalR-2.2.0.js"/>
 			</Component>
 	
 												
-			<Component Id="cmp9c37d711dc0f4fc2b89f2d7f68aff174" Guid="{9c37d711-dc0f-4fc2-b89f-2d7f68aff174}">
-				<File Id="file9c37d711dc0f4fc2b89f2d7f68aff174" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\Scripts\jquery.signalR-2.2.0.min.js"/>
+			<Component Id="cmp67a5dd3f827b46c58ada628f9c1e7707" Guid="{67a5dd3f-827b-46c5-8ada-628f9c1e7707}">
+				<File Id="file67a5dd3f827b46c58ada628f9c1e7707" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\Scripts\jquery.signalR-2.2.0.min.js"/>
 			</Component>
 	
 												
-			<Component Id="cmpe5958d9ba625420b81313ae16b2ecd6b" Guid="{e5958d9b-a625-420b-8131-3ae16b2ecd6b}">
-				<File Id="filee5958d9ba625420b81313ae16b2ecd6b" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\Scripts\jquery.validate-vsdoc.js"/>
+			<Component Id="cmpcc22b781836845a7915e33654ef1b492" Guid="{cc22b781-8368-45a7-915e-33654ef1b492}">
+				<File Id="filecc22b781836845a7915e33654ef1b492" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\Scripts\jquery.validate-vsdoc.js"/>
 			</Component>
 	
 												
-			<Component Id="cmp98d012ef6ae4436386a6b6b023091c93" Guid="{98d012ef-6ae4-4363-86a6-b6b023091c93}">
-				<File Id="file98d012ef6ae4436386a6b6b023091c93" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\Scripts\jquery.validate.js"/>
+			<Component Id="cmp70f01f572c8043d8b3ef19c5547ad51d" Guid="{70f01f57-2c80-43d8-b3ef-19c5547ad51d}">
+				<File Id="file70f01f572c8043d8b3ef19c5547ad51d" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\Scripts\jquery.validate.js"/>
 			</Component>
 	
 												
-			<Component Id="cmpdf1dcf3723474b428ceb9be0ec5e0db5" Guid="{df1dcf37-2347-4b42-8ceb-9be0ec5e0db5}">
-				<File Id="filedf1dcf3723474b428ceb9be0ec5e0db5" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\Scripts\jquery.validate.min.js"/>
+			<Component Id="cmpe640639b531a4ad18e8a8d7d3efc8cbd" Guid="{e640639b-531a-4ad1-8e8a-8d7d3efc8cbd}">
+				<File Id="filee640639b531a4ad18e8a8d7d3efc8cbd" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\Scripts\jquery.validate.min.js"/>
 			</Component>
 	
 												
-			<Component Id="cmp9b05ed249ef24ae7adbeb1a2357891aa" Guid="{9b05ed24-9ef2-4ae7-adbe-b1a2357891aa}">
-				<File Id="file9b05ed249ef24ae7adbeb1a2357891aa" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\Scripts\jquery.validate.unobtrusive.js"/>
+			<Component Id="cmpdf97ad59b8874f16a182155732bf3eb5" Guid="{df97ad59-b887-4f16-a182-155732bf3eb5}">
+				<File Id="filedf97ad59b8874f16a182155732bf3eb5" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\Scripts\jquery.validate.unobtrusive.js"/>
 			</Component>
 	
 												
-			<Component Id="cmp3ec269cae13447a6892b2fa2716ad22c" Guid="{3ec269ca-e134-47a6-892b-2fa2716ad22c}">
-				<File Id="file3ec269cae13447a6892b2fa2716ad22c" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\Scripts\jquery.validate.unobtrusive.min.js"/>
+			<Component Id="cmp765684f2d58246d08faa28b775174a34" Guid="{765684f2-d582-46d0-8faa-28b775174a34}">
+				<File Id="file765684f2d58246d08faa28b775174a34" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\Scripts\jquery.validate.unobtrusive.min.js"/>
 			</Component>
 	
 												
-			<Component Id="cmp77dee5606a594e32882b18583447ab6c" Guid="{77dee560-6a59-4e32-882b-18583447ab6c}">
-				<File Id="file77dee5606a594e32882b18583447ab6c" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\Scripts\knockout-3.2.0.debug.js"/>
+			<Component Id="cmpc8e1afdf5f944426a93770eb549ddddc" Guid="{c8e1afdf-5f94-4426-a937-70eb549ddddc}">
+				<File Id="filec8e1afdf5f944426a93770eb549ddddc" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\Scripts\knockout-3.2.0.debug.js"/>
 			</Component>
 	
 												
-			<Component Id="cmp4e958faab63e41ffa385bf7e7002cafe" Guid="{4e958faa-b63e-41ff-a385-bf7e7002cafe}">
-				<File Id="file4e958faab63e41ffa385bf7e7002cafe" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\Scripts\knockout-3.2.0.js"/>
+			<Component Id="cmp0ef93f839aeb40ddb369f870bf21fb97" Guid="{0ef93f83-9aeb-40dd-b369-f870bf21fb97}">
+				<File Id="file0ef93f839aeb40ddb369f870bf21fb97" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\Scripts\knockout-3.2.0.js"/>
 			</Component>
 	
 												
-			<Component Id="cmpd331dcffef0a4ab19042f9d1dcb44503" Guid="{d331dcff-ef0a-4ab1-9042-f9d1dcb44503}">
-				<File Id="filed331dcffef0a4ab19042f9d1dcb44503" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\Scripts\ko.autocomplete.js"/>
+			<Component Id="cmp1e0a24310fb3453098f1a2c103c666ad" Guid="{1e0a2431-0fb3-4530-98f1-a2c103c666ad}">
+				<File Id="file1e0a24310fb3453098f1a2c103c666ad" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\Scripts\ko.autocomplete.js"/>
 			</Component>
 	
 												
-			<Component Id="cmp67324989901b4d7f9c27a0412b73abcd" Guid="{67324989-901b-4d7f-9c27-a0412b73abcd}">
-				<File Id="file67324989901b4d7f9c27a0412b73abcd" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\Scripts\modernizr-2.6.2.js"/>
+			<Component Id="cmpb4003f31720d40aaab3dbc59b244eacd" Guid="{b4003f31-720d-40aa-ab3d-bc59b244eacd}">
+				<File Id="fileb4003f31720d40aaab3dbc59b244eacd" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\Scripts\modernizr-2.6.2.js"/>
 			</Component>
 	
 												
-			<Component Id="cmpd9c216b9f5a8428eaa8d441773974565" Guid="{d9c216b9-f5a8-428e-aa8d-441773974565}">
-				<File Id="filed9c216b9f5a8428eaa8d441773974565" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\Scripts\respond.js"/>
+			<Component Id="cmp4502f6652d674a7caa0f03be0139ea32" Guid="{4502f665-2d67-4a7c-aa0f-03be0139ea32}">
+				<File Id="file4502f6652d674a7caa0f03be0139ea32" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\Scripts\respond.js"/>
 			</Component>
 	
 												
-			<Component Id="cmpa0f4d88f0aea4b55b58ea6baeda28ef0" Guid="{a0f4d88f-0aea-4b55-b58e-a6baeda28ef0}">
-				<File Id="filea0f4d88f0aea4b55b58ea6baeda28ef0" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\Scripts\respond.min.js"/>
+			<Component Id="cmp876b9179c95d4c86881f48ca132e2072" Guid="{876b9179-c95d-4c86-881f-48ca132e2072}">
+				<File Id="file876b9179c95d4c86881f48ca132e2072" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\Scripts\respond.min.js"/>
 			</Component>
 	
 												
-			<Component Id="cmp554aca6fdfcb4d2f8305ce023c92d7fc" Guid="{554aca6f-dfcb-4d2f-8305-ce023c92d7fc}">
-				<File Id="file554aca6fdfcb4d2f8305ce023c92d7fc" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\Scripts\_references.js"/>
+			<Component Id="cmpec78f4e9d9254e089e525633181ea858" Guid="{ec78f4e9-d925-4e08-9e52-5633181ea858}">
+				<File Id="fileec78f4e9d9254e089e525633181ea858" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\Scripts\_references.js"/>
 			</Component>
 	
 			
 			</Directory>
-						<Directory Id="dire02e0d53ec0b48aeacf78569bc7e1a66" Name="Views">
+						<Directory Id="dire62d167b64b748b09ca3ebb065665ba6" Name="Views">
 						<Component Id="cmpviewswebconfig" Guid="{47321547-AC70-4541-AD1F-AA8C6E7BBF8E}">
 				<File Id="fileviewswebconfig" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\Views\web.config"/>
 			</Component>
 
 						
-						<Directory Id="dir3a1c8ddfa61348f99e803e36497d75b0" Name="Home">
+						<Directory Id="dir7110cb08d61d4bfaa917c9a02f389039" Name="Home">
 						
 												
-			<Component Id="cmpcd9c012ebdcb4030a99303fb4ad5903f" Guid="{cd9c012e-bdcb-4030-a993-03fb4ad5903f}">
-				<File Id="filecd9c012ebdcb4030a99303fb4ad5903f" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\Views\Home\About.cshtml"/>
+			<Component Id="cmp791c15f2bd644a1ea2a56ee565907608" Guid="{791c15f2-bd64-4a1e-a2a5-6ee565907608}">
+				<File Id="file791c15f2bd644a1ea2a56ee565907608" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\Views\Home\About.cshtml"/>
 			</Component>
 	
 												
-			<Component Id="cmpded7565c54d8477f933c838d1427f4be" Guid="{ded7565c-54d8-477f-933c-838d1427f4be}">
-				<File Id="fileded7565c54d8477f933c838d1427f4be" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\Views\Home\Contact.cshtml"/>
+			<Component Id="cmp82c0d60a073448928750bc7f78098129" Guid="{82c0d60a-0734-4892-8750-bc7f78098129}">
+				<File Id="file82c0d60a073448928750bc7f78098129" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\Views\Home\Contact.cshtml"/>
 			</Component>
 	
 												
-			<Component Id="cmp7bc7e5c17cc145f182bcfc7ebb626275" Guid="{7bc7e5c1-7cc1-45f1-82bc-fc7ebb626275}">
-				<File Id="file7bc7e5c17cc145f182bcfc7ebb626275" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\Views\Home\Index.cshtml"/>
+			<Component Id="cmp968be3bdc42c490cb41bbfc823e79f73" Guid="{968be3bd-c42c-490c-b41b-bfc823e79f73}">
+				<File Id="file968be3bdc42c490cb41bbfc823e79f73" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\Views\Home\Index.cshtml"/>
 			</Component>
 	
 			
 			</Directory>
-						<Directory Id="dirb069958214d24ca498b3f1d9f01a0b56" Name="Query">
+						<Directory Id="dir605095a06961420a9139f002bb957fa5" Name="Query">
 						
 												
-			<Component Id="cmp9ad04838049b43ccacef4c176f802ea1" Guid="{9ad04838-049b-43cc-acef-4c176f802ea1}">
-				<File Id="file9ad04838049b43ccacef4c176f802ea1" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\Views\Query\BuildPlaylist.cshtml"/>
+			<Component Id="cmpe18154aee29041ce834b72a3b6dfa144" Guid="{e18154ae-e290-41ce-834b-72a3b6dfa144}">
+				<File Id="filee18154aee29041ce834b72a3b6dfa144" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\Views\Query\BuildPlaylist.cshtml"/>
 			</Component>
 	
 												
-			<Component Id="cmpafdff9f5ce9643d49af75a2e8df6bfb7" Guid="{afdff9f5-ce96-43d4-9af7-5a2e8df6bfb7}">
-				<File Id="fileafdff9f5ce9643d49af75a2e8df6bfb7" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\Views\Query\Index.cshtml"/>
+			<Component Id="cmp7160994c9fef4350ac405a1caa335594" Guid="{7160994c-9fef-4350-ac40-5a1caa335594}">
+				<File Id="file7160994c9fef4350ac405a1caa335594" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\Views\Query\Index.cshtml"/>
 			</Component>
 	
 			
 			</Directory>
-						<Directory Id="dir1d0aa4fa119549a7bc54e430eaef46bf" Name="Shared">
+						<Directory Id="dir5cc600c1efab40faad1cbf4a3382be98" Name="Shared">
 						
 												
-			<Component Id="cmp3607eafc21494a5b92eef1d4b1425bc0" Guid="{3607eafc-2149-4a5b-92ee-f1d4b1425bc0}">
-				<File Id="file3607eafc21494a5b92eef1d4b1425bc0" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\Views\Shared\Error.cshtml"/>
+			<Component Id="cmp9728be165c314df490ccdf3e0aa4bf4e" Guid="{9728be16-5c31-4df4-90cc-df3e0aa4bf4e}">
+				<File Id="file9728be165c314df490ccdf3e0aa4bf4e" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\Views\Shared\Error.cshtml"/>
 			</Component>
 	
 												
-			<Component Id="cmp08c8e23d64964f6c9284788f3f978739" Guid="{08c8e23d-6496-4f6c-9284-788f3f978739}">
-				<File Id="file08c8e23d64964f6c9284788f3f978739" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\Views\Shared\_Layout.cshtml"/>
-			</Component>
-	
-			
-			</Directory>
-												
-			<Component Id="cmp77a06ace1d35410cb456eeeb9cb0959d" Guid="{77a06ace-1d35-410c-b456-eeeb9cb0959d}">
-				<File Id="file77a06ace1d35410cb456eeeb9cb0959d" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\Views\_ViewStart.cshtml"/>
+			<Component Id="cmpdb46732035474030bf6d6193e9ab2111" Guid="{db467320-3547-4030-bf6d-6193e9ab2111}">
+				<File Id="filedb46732035474030bf6d6193e9ab2111" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\Views\Shared\_Layout.cshtml"/>
 			</Component>
 	
 			
 			</Directory>
 												
-			<Component Id="cmp31d6ddd32f9f4c2187d9bc29800bdd8e" Guid="{31d6ddd3-2f9f-4c21-87d9-bc29800bdd8e}">
-				<File Id="file31d6ddd32f9f4c2187d9bc29800bdd8e" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\favicon.ico"/>
+			<Component Id="cmp38a5a2e36e1049f4a6fff45a2b315345" Guid="{38a5a2e3-6e10-49f4-a6ff-f45a2b315345}">
+				<File Id="file38a5a2e36e1049f4a6fff45a2b315345" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\Views\_ViewStart.cshtml"/>
+			</Component>
+	
+			
+			</Directory>
+												
+			<Component Id="cmpf6f34457a8d84fdd94938e2918b56284" Guid="{f6f34457-a8d8-4fdd-9493-8e2918b56284}">
+				<File Id="filef6f34457a8d84fdd94938e2918b56284" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\favicon.ico"/>
 			</Component>
 	
 												
-			<Component Id="cmp0e236b892edc48e8b1bb54413aaf3c85" Guid="{0e236b89-2edc-48e8-b1bb-54413aaf3c85}">
-				<File Id="file0e236b892edc48e8b1bb54413aaf3c85" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\Global.asax"/>
+			<Component Id="cmpafc7b3d10cc14e0ca288e2723573be87" Guid="{afc7b3d1-0cc1-4e0c-a288-e2723573be87}">
+				<File Id="fileafc7b3d10cc14e0ca288e2723573be87" KeyPath="yes" Source="C:\Code\Sciendo\Sciendo.Index\SlIndex\Sciendo.Music.Web\Global.asax"/>
 			</Component>
 	
 			
@@ -741,139 +741,139 @@
 	</Fragment>
 	<Fragment>
 		<ComponentGroup Id="Sciendo.Music.Web.Files">
-					<ComponentRef Id="cmpa4b62e0ba7e44c67b1bfc11673449637"/>
-					<ComponentRef Id="cmp14444257f6674f64b169cc6697b1cecb"/>
-					<ComponentRef Id="cmpedb9974c7df8460c9b5669a3cebd1ca3"/>
-					<ComponentRef Id="cmpb8b5bd8546814f699a8fe506a9e3050c"/>
-					<ComponentRef Id="cmp6b0cf58284b4416f9b596ac0891bddfd"/>
-					<ComponentRef Id="cmpa23799af4a694da9bf62ef31e94549d3"/>
-					<ComponentRef Id="cmp5a5e1804454c4a739c2c3a5fd32bac22"/>
-					<ComponentRef Id="cmp50c8aafb768c47feb20e4ce6dd933156"/>
-					<ComponentRef Id="cmp90540612f23c4dd784f525082acbb83e"/>
-					<ComponentRef Id="cmp3b54d0ba0be34232b817e976b87b0d75"/>
-					<ComponentRef Id="cmpb025aedda7ba48e9b9eadf8af6ba102a"/>
-					<ComponentRef Id="cmp92a6918b565c4e4fa407f30aafa8f84f"/>
-					<ComponentRef Id="cmpf2b4cc2818ed476fb799e9a9131af05e"/>
-					<ComponentRef Id="cmp4aee36bc30ba48f2b76b65620add8e94"/>
-					<ComponentRef Id="cmp684d5d2696664d72abac11760166a310"/>
-					<ComponentRef Id="cmp2327fd15b457438a9a6ca8124e13bbaa"/>
-					<ComponentRef Id="cmp34c4a9169eeb475e8e1f5397355ec274"/>
-					<ComponentRef Id="cmp5a93c07b7dc24bc2aabfd6a3cb5106d9"/>
-					<ComponentRef Id="cmpc289024948db4824b3454ad57396c1cf"/>
-					<ComponentRef Id="cmpf989a8e96f624c47a59f924bec193d9b"/>
-					<ComponentRef Id="cmp475f64e92f8e4986a072ead57e61809c"/>
-					<ComponentRef Id="cmpb532d0422bc6483cbe8d73407e38c0b9"/>
-					<ComponentRef Id="cmp04700c94eed54fc3bd2a0589a8ae3e85"/>
-					<ComponentRef Id="cmpe0bfe0c6afdf44a29c65cc13047a1982"/>
-					<ComponentRef Id="cmpa21a713dfaec471e8ff888213a8a03f8"/>
-					<ComponentRef Id="cmp1c5ff61d5afc405cae06440df7b35719"/>
-					<ComponentRef Id="cmp11e4777d45624fada02d36d5979feacf"/>
-					<ComponentRef Id="cmp6444a706632d4c2f930fb104b75a07be"/>
-					<ComponentRef Id="cmp65d8634ad57848839089ae67cc98b82d"/>
-					<ComponentRef Id="cmpdcb25f5a027b447d936dc227e60595e5"/>
-					<ComponentRef Id="cmp7144c6fc22a94decb9c9642ac9b739f7"/>
-					<ComponentRef Id="cmp44c0e61ad0904d12afb31c0db62edd38"/>
-					<ComponentRef Id="cmp21b4e2f53cf84b0db7b99373217c6cfb"/>
-					<ComponentRef Id="cmp9a2312bd7a204a87a9dfe4479542101e"/>
-					<ComponentRef Id="cmp1ee77283b5a246bcad1a45a52d25f1a6"/>
-					<ComponentRef Id="cmp97ff19e602814c9292f9c3a5d086686d"/>
-					<ComponentRef Id="cmpa737a44f561f4af9a0e01ea747bb4726"/>
-					<ComponentRef Id="cmp89f0ca604e4f4b79b4983ac2e4028529"/>
-					<ComponentRef Id="cmp7f0824fda8f042ad818f793782a22bcc"/>
-					<ComponentRef Id="cmpf90990f9aa8a4b718a83f0df290ec5d0"/>
-					<ComponentRef Id="cmp9fba3bd4d4a64167b30d805f8b5422db"/>
-					<ComponentRef Id="cmp3c0cb4296a7a4585b9890d709a3cf629"/>
-					<ComponentRef Id="cmp2e030ed39c1340b49342be7baab9b7b1"/>
-					<ComponentRef Id="cmpb952409bdec44ccdbbe8f73f22f1c4e8"/>
-					<ComponentRef Id="cmp63aace08c2e4412491a4238c7778e4fa"/>
-					<ComponentRef Id="cmp1946c167e20a4ddc8a98a6d14c8ec88f"/>
-					<ComponentRef Id="cmp8da94260539f4a6594bc2baa04650b34"/>
-					<ComponentRef Id="cmp3463dfcceef84b2da8a9eb4f7353214c"/>
-					<ComponentRef Id="cmp76de90b3e0b940b492799931774b939d"/>
-					<ComponentRef Id="cmp9b51e88b981545db8a40809c1c851380"/>
-					<ComponentRef Id="cmp669d014ab89b48428ec8737a9cf3cea1"/>
-					<ComponentRef Id="cmp220653b57b784a33990cb5ca8bb7ee23"/>
-					<ComponentRef Id="cmp9d4c3e4bd7f04b7082c0e272bea8213c"/>
-					<ComponentRef Id="cmp1958e0a96160426f98b562e9dc052cbd"/>
-					<ComponentRef Id="cmpdd2997703e384d34a787458286fe281c"/>
-					<ComponentRef Id="cmpa2c058aec3c946a39ce4eccec08483d7"/>
-					<ComponentRef Id="cmp58debd5fd99b42ee94be416b53042fe7"/>
-					<ComponentRef Id="cmp953ed65e7b254e7f820681a29a3f06ee"/>
-					<ComponentRef Id="cmpcd70cf06105546b78bc3efddffe9ea90"/>
-					<ComponentRef Id="cmp4a455100e9d445aa8b554492b8131459"/>
-					<ComponentRef Id="cmp112c2169d95a494bb5ef5c8ec5e1bd33"/>
-					<ComponentRef Id="cmpa725c500a3a548ee85f8497eac4e1ce9"/>
-					<ComponentRef Id="cmp8311ef5130374a9dac87fd647a71d89c"/>
-					<ComponentRef Id="cmpc1c3479609bd44c08e382f7d21813a57"/>
-					<ComponentRef Id="cmpa4b1208bb5fb45ec8a1956a92542063e"/>
-					<ComponentRef Id="cmp0463a827c6b64359a2a92ebc90555363"/>
-					<ComponentRef Id="cmpb1f4f4ec82584a36a6de8bfe4e7e07ef"/>
-					<ComponentRef Id="cmpb452c194a3294ab49525b6167eead927"/>
-					<ComponentRef Id="cmpeda8e5f60d8e4e39ba552a85459413df"/>
-					<ComponentRef Id="cmp4eec4ffb239f4cf09967cb3a844a34bc"/>
-					<ComponentRef Id="cmpa044a89042754eafba2af911b8e18246"/>
-					<ComponentRef Id="cmp725201d882874b3b95fa9176e56d3bd6"/>
-					<ComponentRef Id="cmp934893ff22924e90b7a80c5ae7ec17b6"/>
-					<ComponentRef Id="cmpe64128d42aed48f0baaaa5ac0aa9c3de"/>
-					<ComponentRef Id="cmpb83c53d4ad2240eba7262b4ec36b7fbc"/>
-					<ComponentRef Id="cmp3abeedb7743643f1a1dd99f3d9e6f61d"/>
-					<ComponentRef Id="cmp4fe4d01cb4fa42f5a1b9f8ba8b2557f3"/>
-					<ComponentRef Id="cmpc01baeffdd7340aea24dede8fe828ff7"/>
-					<ComponentRef Id="cmp9909f24871ce4b8baaf3b0c7abdd9586"/>
-					<ComponentRef Id="cmp46a31c56d8e248919f37eb552268a742"/>
-					<ComponentRef Id="cmpbac77e0ac5144c689a8d171c3f92964b"/>
-					<ComponentRef Id="cmp24be64022d114be596545fc1499ec484"/>
-					<ComponentRef Id="cmp4b65b0eb152c46fe90a6909500380da2"/>
-					<ComponentRef Id="cmpe7ceb79a1bae4910890655edd487e055"/>
-					<ComponentRef Id="cmpfcbb247533034966b5d60b7e6eb3b3e9"/>
-					<ComponentRef Id="cmp47c4e6b831264628856fb4d00ce45be5"/>
-					<ComponentRef Id="cmp59f54fb3e3794cf1b1bb2b65ac2ed032"/>
-					<ComponentRef Id="cmp875c0d27ca29494faea31eda2d5a85e0"/>
-					<ComponentRef Id="cmp32dc4e34fb7749919dd607862b6deea0"/>
-					<ComponentRef Id="cmp36d47f3380e14ad283a733247e86bd43"/>
-					<ComponentRef Id="cmp83c0b425b6744064a7d49c9a65bc73f8"/>
-					<ComponentRef Id="cmp2e207b67802e41cab45f899ecec7a45f"/>
-					<ComponentRef Id="cmp81a19b1118524683a1d6dfeafa4f44c6"/>
-					<ComponentRef Id="cmp4a2b1973225240d0baf95e335bd1d97d"/>
-					<ComponentRef Id="cmp74ef6d0ef4b943768aba6e28fb7009f3"/>
-					<ComponentRef Id="cmpdff0179028ba49a1bd1ae8a28a2ae90e"/>
-					<ComponentRef Id="cmp0eeaaa1a23c84eecb4a414f2074134cb"/>
-					<ComponentRef Id="cmp377a3749c2864dce8ca1d0e6ffa8762b"/>
-					<ComponentRef Id="cmpa79bbedc87ec42f5b730f7f544e2d583"/>
-					<ComponentRef Id="cmp16eda42d903a47a78ebc7b19e7ed5d30"/>
-					<ComponentRef Id="cmp671021b9d7d24f1c87df8a94d0d80695"/>
-					<ComponentRef Id="cmpdc6d62cda2d14847a933c2b5b8f49a8d"/>
-					<ComponentRef Id="cmp3a19fccd48a44f1fb2ebf828a8c7c897"/>
-					<ComponentRef Id="cmpeea2939537814f549ea886d2cce30cd5"/>
-					<ComponentRef Id="cmp51003346693c4bf8ad168aa14e895af1"/>
-					<ComponentRef Id="cmp3f8b6cb6f47a46baa8e33c93a106aaa5"/>
-					<ComponentRef Id="cmp261dda5e594d465492e13694c501cbed"/>
-					<ComponentRef Id="cmp4d560362ac48444daa69581c3c6fb14c"/>
-					<ComponentRef Id="cmp5f82a46b1481403d928e28616dd7a5a8"/>
-					<ComponentRef Id="cmp9700fac141bb464c87758757c1ddb87d"/>
-					<ComponentRef Id="cmp9c37d711dc0f4fc2b89f2d7f68aff174"/>
-					<ComponentRef Id="cmpe5958d9ba625420b81313ae16b2ecd6b"/>
-					<ComponentRef Id="cmp98d012ef6ae4436386a6b6b023091c93"/>
-					<ComponentRef Id="cmpdf1dcf3723474b428ceb9be0ec5e0db5"/>
-					<ComponentRef Id="cmp9b05ed249ef24ae7adbeb1a2357891aa"/>
-					<ComponentRef Id="cmp3ec269cae13447a6892b2fa2716ad22c"/>
-					<ComponentRef Id="cmp77dee5606a594e32882b18583447ab6c"/>
-					<ComponentRef Id="cmp4e958faab63e41ffa385bf7e7002cafe"/>
-					<ComponentRef Id="cmpd331dcffef0a4ab19042f9d1dcb44503"/>
-					<ComponentRef Id="cmp67324989901b4d7f9c27a0412b73abcd"/>
-					<ComponentRef Id="cmpd9c216b9f5a8428eaa8d441773974565"/>
-					<ComponentRef Id="cmpa0f4d88f0aea4b55b58ea6baeda28ef0"/>
-					<ComponentRef Id="cmp554aca6fdfcb4d2f8305ce023c92d7fc"/>
-					<ComponentRef Id="cmpcd9c012ebdcb4030a99303fb4ad5903f"/>
-					<ComponentRef Id="cmpded7565c54d8477f933c838d1427f4be"/>
-					<ComponentRef Id="cmp7bc7e5c17cc145f182bcfc7ebb626275"/>
-					<ComponentRef Id="cmp9ad04838049b43ccacef4c176f802ea1"/>
-					<ComponentRef Id="cmpafdff9f5ce9643d49af75a2e8df6bfb7"/>
-					<ComponentRef Id="cmp3607eafc21494a5b92eef1d4b1425bc0"/>
-					<ComponentRef Id="cmp08c8e23d64964f6c9284788f3f978739"/>
-					<ComponentRef Id="cmp77a06ace1d35410cb456eeeb9cb0959d"/>
-					<ComponentRef Id="cmp31d6ddd32f9f4c2187d9bc29800bdd8e"/>
-					<ComponentRef Id="cmp0e236b892edc48e8b1bb54413aaf3c85"/>
+					<ComponentRef Id="cmp70306edc43f54ae4a97957d13d23fda9"/>
+					<ComponentRef Id="cmp4daa42790dfe47c9a4c7edc64cc43285"/>
+					<ComponentRef Id="cmp85efc975950441c5bb40286d858ebb79"/>
+					<ComponentRef Id="cmp470b61ea5c80428d86bc274c2e9e093b"/>
+					<ComponentRef Id="cmp1583b1d442dd4fcdbbb2e558feef3076"/>
+					<ComponentRef Id="cmp7b87372ee6c4407c96fb0992943fa96a"/>
+					<ComponentRef Id="cmp2a21a63932a94e1f9964d668e59db3d8"/>
+					<ComponentRef Id="cmp61d87cc1655b4c18b0f176b0848d0e28"/>
+					<ComponentRef Id="cmp1b38231f0f524aeda86d0f2bb945db90"/>
+					<ComponentRef Id="cmpe997503c4cd34fd7bf16dbf6a5dd3e0b"/>
+					<ComponentRef Id="cmp2553488f9f5e4506b9326a7814ed91f0"/>
+					<ComponentRef Id="cmp982449234d0440d987a9f41ecbc98e19"/>
+					<ComponentRef Id="cmpa067f826e5bc4239a5642416a73e91d3"/>
+					<ComponentRef Id="cmp43f1e5137fb540a3837a435a251d7ce6"/>
+					<ComponentRef Id="cmpce93eeef10c943dcaf48daf059bfc781"/>
+					<ComponentRef Id="cmp1e1c518135f7463f8c65e843f280a287"/>
+					<ComponentRef Id="cmpdde029df2bc242359ffadbf42bdfa01a"/>
+					<ComponentRef Id="cmp3a96e7087c4845bbb6e560bda3de8446"/>
+					<ComponentRef Id="cmp8d4c95eb08d7450e8b8bc8b11ecb4190"/>
+					<ComponentRef Id="cmp4ab221d4f4a5476c8ff5074bcddc4071"/>
+					<ComponentRef Id="cmp55656d6930594acab5a1a57adef8af20"/>
+					<ComponentRef Id="cmp675025df4f704a1fae5c9906a2b15109"/>
+					<ComponentRef Id="cmpab609966eff44c96a337edca38ade9c2"/>
+					<ComponentRef Id="cmpb180c25468da4563ba5a25d1cf48fa6e"/>
+					<ComponentRef Id="cmp4d50d8b36539404eadce05df58fd06ee"/>
+					<ComponentRef Id="cmp29abfb490c454c74ac80df8df71d61ab"/>
+					<ComponentRef Id="cmpeb1b9e1ba49743678e3600b8d8b8f2d8"/>
+					<ComponentRef Id="cmpe82eb17e95fb4eab8fdc635bed99b531"/>
+					<ComponentRef Id="cmpf4728ff09c5a49ae9f9f4524b2504a7f"/>
+					<ComponentRef Id="cmp223596e98b124e4f94bc5dd243134452"/>
+					<ComponentRef Id="cmp9aac9877871048d4a2a320b4ea49bbf0"/>
+					<ComponentRef Id="cmp29fa9eeb12e44cb197209a16f6945260"/>
+					<ComponentRef Id="cmpb986a2032d2e4957823691948fa71abc"/>
+					<ComponentRef Id="cmpff0f2dd4f3374a4182e353c07b3051e9"/>
+					<ComponentRef Id="cmp22919f8d08944c728c958f7f6864a91b"/>
+					<ComponentRef Id="cmp401f508e357948ad9d03dde11dd18f57"/>
+					<ComponentRef Id="cmp3831e22e719d4f55a87aa681e9cc00ed"/>
+					<ComponentRef Id="cmp289325b3ddbe405ca5d134ff51d71c4f"/>
+					<ComponentRef Id="cmpc8eebbcac3b04175a9f51e199b024aa7"/>
+					<ComponentRef Id="cmpf95357e558834b86976db0f557accaaf"/>
+					<ComponentRef Id="cmp60fd5ee8f8974c5e8e23e844c847515a"/>
+					<ComponentRef Id="cmpde9fee5fcd7e414187d8918ff9fb160c"/>
+					<ComponentRef Id="cmp27a24a925ec14de4ae12563098659408"/>
+					<ComponentRef Id="cmp101011704cbd4b1e96c64b71ddb90412"/>
+					<ComponentRef Id="cmp856f4c1907ac497782f996865140b49b"/>
+					<ComponentRef Id="cmp0faa9a2c90794a2280e99e9fe746d90e"/>
+					<ComponentRef Id="cmpa629904ab9d947ef9b3cd9b0ff703dd4"/>
+					<ComponentRef Id="cmp27bb1d3caf204d65b88e9e814b7cc5b7"/>
+					<ComponentRef Id="cmped4feea999544e0a93eadf969a3511ca"/>
+					<ComponentRef Id="cmp53d0758f0dd844aba9e80d987c2fc8fc"/>
+					<ComponentRef Id="cmpcc6f2a9c19184038917a6e0d66ab5f87"/>
+					<ComponentRef Id="cmpc639354e4ac24dd6bc832dc492746409"/>
+					<ComponentRef Id="cmp3a98ffdaca2c4009a426a4028e979663"/>
+					<ComponentRef Id="cmpe59937dc2c0443ea98175d45831ad8e5"/>
+					<ComponentRef Id="cmp7f173f7ff5a6495394454f46b35e348c"/>
+					<ComponentRef Id="cmpc872da8a53814e0db98aad25ec83e4cd"/>
+					<ComponentRef Id="cmp3069f962612a465ba0272639627840b7"/>
+					<ComponentRef Id="cmp3eb69fa77a7741bc95069f5a5147aab8"/>
+					<ComponentRef Id="cmp858abd0d993648b79afcaada8eaf3704"/>
+					<ComponentRef Id="cmpb24c4a200d374d47af0de99401c005d5"/>
+					<ComponentRef Id="cmpf9c8da665afe4b6b8ff1b807e471fd37"/>
+					<ComponentRef Id="cmpe32a27d31edc432bbf1438a50976beb1"/>
+					<ComponentRef Id="cmpf958ecc9e75f46cfbb8e55e11b15b674"/>
+					<ComponentRef Id="cmpa47bbaed7f2b4e7d94a8ba9d806d76a3"/>
+					<ComponentRef Id="cmp840c24c0e93d43bbb8bbe9f139d3827c"/>
+					<ComponentRef Id="cmp65702ed313d24dc186420ee426a2c094"/>
+					<ComponentRef Id="cmp9bae9740fb3b43848a71abff0f2cf91d"/>
+					<ComponentRef Id="cmpf6d6c2062a1841b2ab973981fed4b7d9"/>
+					<ComponentRef Id="cmp10748199a8a74d2e9568bd56fbbe465a"/>
+					<ComponentRef Id="cmpfebbdadf8e4747c2900d3fd752928088"/>
+					<ComponentRef Id="cmp9807f53fe9c846d8ac2bab0394fd0189"/>
+					<ComponentRef Id="cmp1d77a4a93c1a4b1bb84279c4d4d5c0b6"/>
+					<ComponentRef Id="cmp101489d04a884ee19a0a5a23b5c339c1"/>
+					<ComponentRef Id="cmpd45692070f0145969fe4a57d891fee83"/>
+					<ComponentRef Id="cmpf0a26e7d4577494f8bc20ab06d4ec08e"/>
+					<ComponentRef Id="cmp44f190c1a6904a4b8258eac044b3d1e0"/>
+					<ComponentRef Id="cmpad2c42fa0bc64fb4a131e9d225176989"/>
+					<ComponentRef Id="cmp554afa180dba45d3902abfe5751d5db2"/>
+					<ComponentRef Id="cmpc5ff80d522eb4728b5cc739e4f2eaa9f"/>
+					<ComponentRef Id="cmp2178c491b4be4ec2b8d3f893a7b5aa8d"/>
+					<ComponentRef Id="cmpdaf8ac248d7f4b709f9eb79d037f09a1"/>
+					<ComponentRef Id="cmped8524877bf949879b00af250f4ad603"/>
+					<ComponentRef Id="cmpcf8e914360e340849af649bae4bd0897"/>
+					<ComponentRef Id="cmp2f56e0ebc88442ddb2acb062fe692312"/>
+					<ComponentRef Id="cmp79ed52ba4a0f45fb833c9fc98ccec596"/>
+					<ComponentRef Id="cmpb3427efa8edd4019a19ecf0906e705b6"/>
+					<ComponentRef Id="cmp8f3ff885cfea46b08d0f9475d462521a"/>
+					<ComponentRef Id="cmp1ab64615488a44cc9b64dbd035650807"/>
+					<ComponentRef Id="cmpe16d9815e68b41d383ffb6d4c512682e"/>
+					<ComponentRef Id="cmp40b5bd3256df474fb70aff1b277a0d63"/>
+					<ComponentRef Id="cmp627f9038ce3c4c16a852e2980af3d7eb"/>
+					<ComponentRef Id="cmp1a42299ee3e940278be29215f776c725"/>
+					<ComponentRef Id="cmp32ab7960f72047878ed38f39de49f70c"/>
+					<ComponentRef Id="cmpdb9f9d63468647718eb041e40b0cc084"/>
+					<ComponentRef Id="cmpff85f6a2ddda40f1bb01ccf8eeb8b1b9"/>
+					<ComponentRef Id="cmp7b4c995efb284eabaea0c999f868c17f"/>
+					<ComponentRef Id="cmp5145d0187e454bc8bd14f0fd3f9f7d7f"/>
+					<ComponentRef Id="cmp3b6932bcb47f4f6fb8557ebb9db8a9be"/>
+					<ComponentRef Id="cmpef3b3db27fb9498ebae9273419ec270d"/>
+					<ComponentRef Id="cmp933e361a86c249baa1b689bf1fd10c50"/>
+					<ComponentRef Id="cmp78bfd59b2a1b4b8e8110b829b4a0c2ed"/>
+					<ComponentRef Id="cmpaea75b80f42049fb9b88c5b6972dc1bd"/>
+					<ComponentRef Id="cmp959b0e71fdd14b0ba04fe12b29dc8d7f"/>
+					<ComponentRef Id="cmp73dbdd5176d44ce2a7767ccc0bddda78"/>
+					<ComponentRef Id="cmp415a4bf2b0464b6d855d0e4d12a059c9"/>
+					<ComponentRef Id="cmp6affb47d4b394f9e9cd1b2716de6757e"/>
+					<ComponentRef Id="cmp47165ede309045188eab0a7ffe5849bc"/>
+					<ComponentRef Id="cmp8db60306a9f146aa910c46eac45452d3"/>
+					<ComponentRef Id="cmp45c740a607ed4bd49219a254b02add98"/>
+					<ComponentRef Id="cmp1618412b3cdb4a3b9d91ee978c5f7017"/>
+					<ComponentRef Id="cmp67a5dd3f827b46c58ada628f9c1e7707"/>
+					<ComponentRef Id="cmpcc22b781836845a7915e33654ef1b492"/>
+					<ComponentRef Id="cmp70f01f572c8043d8b3ef19c5547ad51d"/>
+					<ComponentRef Id="cmpe640639b531a4ad18e8a8d7d3efc8cbd"/>
+					<ComponentRef Id="cmpdf97ad59b8874f16a182155732bf3eb5"/>
+					<ComponentRef Id="cmp765684f2d58246d08faa28b775174a34"/>
+					<ComponentRef Id="cmpc8e1afdf5f944426a93770eb549ddddc"/>
+					<ComponentRef Id="cmp0ef93f839aeb40ddb369f870bf21fb97"/>
+					<ComponentRef Id="cmp1e0a24310fb3453098f1a2c103c666ad"/>
+					<ComponentRef Id="cmpb4003f31720d40aaab3dbc59b244eacd"/>
+					<ComponentRef Id="cmp4502f6652d674a7caa0f03be0139ea32"/>
+					<ComponentRef Id="cmp876b9179c95d4c86881f48ca132e2072"/>
+					<ComponentRef Id="cmpec78f4e9d9254e089e525633181ea858"/>
+					<ComponentRef Id="cmp791c15f2bd644a1ea2a56ee565907608"/>
+					<ComponentRef Id="cmp82c0d60a073448928750bc7f78098129"/>
+					<ComponentRef Id="cmp968be3bdc42c490cb41bbfc823e79f73"/>
+					<ComponentRef Id="cmpe18154aee29041ce834b72a3b6dfa144"/>
+					<ComponentRef Id="cmp7160994c9fef4350ac405a1caa335594"/>
+					<ComponentRef Id="cmp9728be165c314df490ccdf3e0aa4bf4e"/>
+					<ComponentRef Id="cmpdb46732035474030bf6d6193e9ab2111"/>
+					<ComponentRef Id="cmp38a5a2e36e1049f4a6fff45a2b315345"/>
+					<ComponentRef Id="cmpf6f34457a8d84fdd94938e2918b56284"/>
+					<ComponentRef Id="cmpafc7b3d10cc14e0ca288e2723573be87"/>
 				</ComponentGroup>
 
 	</Fragment>

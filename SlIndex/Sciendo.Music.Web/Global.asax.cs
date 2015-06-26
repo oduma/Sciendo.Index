@@ -14,14 +14,14 @@ namespace Sciendo.Music.Web
     {
         protected void Application_Start()
         {
-            LoggingManager.Debug("Application starting...");
-            LoggingManager.Debug(SciendoConfiguration.ToString());
+            //LoggingManager.Debug("Application starting...");
+            //LoggingManager.Debug(SciendoConfiguration.ToString());
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             IocConfig.RegisterComponents(SciendoConfiguration.Container);
-            LoggingManager.Debug("Application started.");
+            //LoggingManager.Debug("Application started.");
         }
     }
 

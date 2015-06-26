@@ -31,6 +31,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Id3">
       <HintPath>..\packages\Id3.1.0.0-Build00000\lib\portable-net40+sl40+win+wp80\Id3.dll</HintPath>
     </Reference>
@@ -63,9 +70,11 @@
       <HintPath>..\packages\Sciendo.IOC.Configuration.1.0.0-Build00016\lib\net45\Sciendo.IOC.Configuration.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.ServiceProcess" />
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -73,6 +82,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AnalysisTests.cs" />
     <Compile Include="DeserializingSolrResponseTests.cs" />
     <Compile Include="LyricsDeserializerTests.cs" />
     <Compile Include="MusicAgentTests.cs" />
