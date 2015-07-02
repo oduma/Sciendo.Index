@@ -31,9 +31,9 @@ namespace Sciendo.Music.Web
         {
             return
                 string.Format(
-                    "With configuration:\r\nFor querying:{0}\r\nFor indexing:{1}\r\nFor Playing:{2}\r\nFor Playlists:{3} ",
+                    "With configuration:\r\nFor querying:{0}\r\nFor indexing:{1}\r\nFor Playing:{2}\r\nFor Playlists:{3}\r\nFor Statistics:{4} ",
                     QueryConfiguration.ToString(), IndexingConfiguration.ToString(), PlayerConfiguration.ToString(),
-                    PlaylistConfiguration.ToString());
+                    PlaylistConfiguration.ToString(),StatisticsConfiguration.ToString());
         }
         public static Container Container
         {
@@ -80,6 +80,15 @@ namespace Sciendo.Music.Web
                 if (!HttpContext.Current.Application.AllKeys.Contains("playlist"))
                     HttpContext.Current.Application.Add("playlist", ConfigurationManager.GetSection(ConfigurationSectionNames.PlaylistProviderConfigurationName));
                 return HttpContext.Current.Application["playlist"] as PlaylistProviderConfigurationSection;
+            }
+        }
+        public static StatisticsProviderConfigurationSection StatisticsConfiguration
+        {
+            get
+            {
+                if (!HttpContext.Current.Application.AllKeys.Contains("statistics"))
+                    HttpContext.Current.Application.Add("statistics", ConfigurationManager.GetSection(ConfigurationSectionNames.StatisticsProviderConfigurationName));
+                return HttpContext.Current.Application["statistics"] as StatisticsProviderConfigurationSection;
             }
         }
     }

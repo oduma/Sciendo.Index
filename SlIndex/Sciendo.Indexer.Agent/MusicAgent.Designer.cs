@@ -16,8 +16,11 @@
             if (disposing && (components != null))
             {
                 components.Dispose();
-                if(_agentServiceHost!=null)
-                    _agentServiceHost.Close();
+                foreach (var agentServiceHost in _agentServiceHosts)
+                {
+                    if (agentServiceHost != null)
+                        agentServiceHost.Close();
+                }
             }
             base.Dispose(disposing);
         }

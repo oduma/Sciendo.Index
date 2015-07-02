@@ -15,17 +15,21 @@ using Sciendo.Music.Contracts.Monitoring;
 using Sciendo.Music.Contracts.MusicService;
 using Sciendo.Music.Real.Procesors.Configuration;
 using Sciendo.Music.Real.Procesors.MusicSourced;
+using Sciendo.Music.Contracts.Analysis;
 
 namespace Sciendo.Music.Agent
 {
     public partial class MusicAgent : ServiceBase
     {
         private IMusic _agentService;
-        private ServiceHost _agentServiceHost;
+        private IAnalysis _analysisService;
+        private ServiceHost[] _agentServiceHosts;
         private readonly AgentConfigurationSection _agentConfigurationSection;
         private MonitoringInstance _monitoringInstance;
         public MonitoringInstance MonitoringInstance { get { return _monitoringInstance; } }
         public IMusic AgentService { get { return _agentService; } }
+        public IAnalysis AnalysisService { get { return _analysisService; } }
+
         public MusicAgent()
         {
             AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
@@ -69,7 +73,7 @@ namespace Sciendo.Music.Agent
             }
             catch (Exception ex)
             {
-                LoggingManager.LogSciendoSystemError("Agent not started.",ex);
+                LoggingManager.LogSciendoSystemError("Agent not started.", ex);
                 throw;
             }
 
@@ -94,6 +98,9 @@ namespace Sciendo.Music.Agent
             _agentService = new MusicService(mProc,
                 m2LProc,
                 packageRetainerlimit);
+            _analysisService = new AnalysisService(mProc.CurrentConfiguration.Music.SourceDirectory,
+                m2LProc.CurrentConfiguration.Lyrics.SourceDirectory,
+                mProc.CurrentConfiguration.Music.SearchPattern);
         }
 
         private void StartMonitoringInstances()
@@ -112,12 +119,16 @@ namespace Sciendo.Music.Agent
         {
             try
             {
-                LoggingManager.Debug("Opening service host...");
-                if (_agentServiceHost != null)
-                    _agentServiceHost.Close();
-                _agentServiceHost = new ServiceHost(_agentService);
-                _agentServiceHost.Open();
-                LoggingManager.Debug("Service host opened.");
+                LoggingManager.Debug("Opening service hosts...");
+                if(_agentServiceHosts != null)
+                    foreach(var agentServiceHost in _agentServiceHosts)
+                        if (agentServiceHost != null)
+                            agentServiceHost.Close();
+
+                _agentServiceHosts = new ServiceHost[] {new ServiceHost(_agentService), new ServiceHost(_analysisService)};
+                foreach(var agentServiceHost in _agentServiceHosts)
+                    agentServiceHost.Open();
+                LoggingManager.Debug("Service hosts opened.");
             }
             catch (Exception ex)
             {
@@ -132,9 +143,12 @@ namespace Sciendo.Music.Agent
 
             _monitoringInstance.CancellationTokenSource.Cancel();
 
-            if (_agentServiceHost != null)
-                _agentServiceHost.Close();
-            _agentServiceHost = null;
+            if(_agentServiceHosts!= null)
+                foreach (var agentServiceHost in _agentServiceHosts)
+                {
+                    if (agentServiceHost != null)
+                        agentServiceHost.Close();
+                }
             LoggingManager.Debug("Agent stopped.");
         }
     }

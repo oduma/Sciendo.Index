@@ -33,5 +33,15 @@ namespace Sciendo.Music.Contracts.Analysis
         public int LyricsNotFound { get; set; }
 
         public int Indexed { get; set; }
+
+        public int NotIndexed { get; set; }
+
+        public int IndexedArtist { get; set; }
+
+        public int IndexedAlbum { get; set; }
+
+        public int IndexedTitle { get; set; }
+
+        public int IndexedLyrics { get; set; }
     }
 }

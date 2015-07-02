@@ -1,21 +1,32 @@
 ﻿using Sciendo.Common.Logging;
 using Sciendo.Music.Contracts.Analysis;
 using Sciendo.Music.Data;
+using Sciendo.Music.Real.Analysis;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Sciendo.Music.Agent.Service
 {
+    [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single)]
     public class AnalysisService:IAnalysis
     {
-        private readonly string _sourceFolder;
+        private readonly string _musicSourceFolder;
+        private readonly string _lyricsSourceFolder; 
 
-        public AnalysisService(string sourceFolder)
+        private readonly string _pattern; 
+
+        public AnalysisService(string musicSourceFolder, string lyricsSourceFolder, string pattern)
         {
-            _sourceFolder = sourceFolder;
+            LoggingManager.Debug("Constructing Analysis Service...");
+            _musicSourceFolder = musicSourceFolder;
+            _lyricsSourceFolder = lyricsSourceFolder;
+            _pattern = pattern;
+            LoggingManager.Debug("Analysis service constructed with: " + _musicSourceFolder);
         }
 
         public Snapshot[] GetAllAnalysisSnaphots()
@@ -76,7 +87,7 @@ namespace Sciendo.Music.Agent.Service
                 //GetTotals for the source folder
                 using(Statistics container = new Statistics())
                 {
-                    return new StatisticRow[] {GetAggregatedStatisticRow(container.Elements.Where(e=>e.SnapshotId==snapshotId),_sourceFolder)};
+                    return new StatisticRow[] {GetAggregatedStatisticRow(container.Elements.Where(e=>e.SnapshotId==snapshotId),_musicSourceFolder)};
                 }
             }
             else
@@ -110,8 +121,12 @@ namespace Sciendo.Music.Agent.Service
                 LyricsOk = ((e.LyricsFileFlag & LyricsFileFlag.LyricsFileOk) == LyricsFileFlag.LyricsFileOk) ? 1 : 0,
                 LyricsNotFound = ((e.LyricsFileFlag & LyricsFileFlag.LyricsFileNoLyrics) == LyricsFileFlag.LyricsFileNoLyrics) ? 1 : 0,
                 LyricsError = ((e.LyricsFileFlag & LyricsFileFlag.LyricsFileWithError) == LyricsFileFlag.LyricsFileWithError) ? 1 : 0,
-                Indexed = (e.IsIndexed) ? 1 : 0
-
+                NotIndexed = (e.IndexedFlag==IndexedFlag.NotIndexed) ? 1 : 0,
+                Indexed = ((e.IndexedFlag & IndexedFlag.Indexed)==IndexedFlag.Indexed) ? 1 : 0,
+                IndexedArtist = ((e.IndexedFlag & IndexedFlag.IndexedArtist) == IndexedFlag.IndexedArtist) ? 1 : 0,
+                IndexedAlbum = ((e.IndexedFlag & IndexedFlag.IndexedAlbum) == IndexedFlag.IndexedAlbum) ? 1 : 0,
+                IndexedTitle = ((e.IndexedFlag & IndexedFlag.IndexedTitle) == IndexedFlag.IndexedTitle) ? 1 : 0,
+                IndexedLyrics = ((e.IndexedFlag & IndexedFlag.IndexedLyrics) == IndexedFlag.IndexedLyrics) ? 1 : 0
             });
         }
 
@@ -133,8 +148,33 @@ namespace Sciendo.Music.Agent.Service
                 LyricsOk = elements.Count(e => (e.LyricsFileFlag & LyricsFileFlag.LyricsFileOk) == LyricsFileFlag.LyricsFileOk),
                 LyricsNotFound = elements.Count(e => (e.LyricsFileFlag & LyricsFileFlag.LyricsFileNoLyrics) == LyricsFileFlag.LyricsFileNoLyrics),
                 LyricsError = elements.Count(e => (e.LyricsFileFlag & LyricsFileFlag.LyricsFileWithError) == LyricsFileFlag.LyricsFileWithError),
-                Indexed = elements.Count(e => e.IsIndexed)
+                NotIndexed = elements.Count(e => (e.IndexedFlag==IndexedFlag.NotIndexed)),
+                Indexed = elements.Count(e => (e.IndexedFlag & IndexedFlag.Indexed) == IndexedFlag.Indexed),
+                IndexedArtist = elements.Count(e => (e.IndexedFlag & IndexedFlag.IndexedArtist) == IndexedFlag.IndexedArtist),
+                IndexedAlbum = elements.Count(e => (e.IndexedFlag & IndexedFlag.IndexedAlbum) == IndexedFlag.IndexedAlbum),
+                IndexedTitle = elements.Count(e => (e.IndexedFlag & IndexedFlag.IndexedTitle) == IndexedFlag.IndexedTitle),
+                IndexedLyrics = elements.Count(e => (e.IndexedFlag & IndexedFlag.IndexedLyrics) == IndexedFlag.IndexedLyrics)
+
             };
+        }
+
+
+        public int AnaliseThis(string folder, int snapshotId)
+        {
+            List<Element> newElements = new List<Element>();
+            foreach(string file in Directory.GetFiles(folder))
+            {
+                var musicFileFlag=Utils.GetMusicFlag(file,_pattern,Utils.Mp3MusicFile);
+                newElements.Add(new Element
+                {
+                    Name = file,
+                    SnapshotId = snapshotId,
+                    MusicFileFlag = musicFileFlag,
+                    LyricsFileFlag = (musicFileFlag==MusicFileFlag.NotAMusicFile)?LyricsFileFlag.NoLyricsFile:Utils.GetLyricsFlag(file,_pattern,_musicSourceFolder,_lyricsSourceFolder),
+                    IndexedFlag = (musicFileFlag==MusicFileFlag.NotAMusicFile)?IndexedFlag.NotIndexed:Utils.CheckIndex(file)
+                });
+            }
+            return CreateElements(newElements.ToArray());
         }
     }
 }

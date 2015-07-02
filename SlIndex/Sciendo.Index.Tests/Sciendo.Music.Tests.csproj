@@ -38,12 +38,13 @@
     <Reference Include="EntityFramework.SqlServer">
       <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
-    <Reference Include="Id3">
-      <HintPath>..\packages\Id3.1.0.0-Build00000\lib\portable-net40+sl40+win+wp80\Id3.dll</HintPath>
+    <Reference Include="Id3, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Id3.1.0.0-Build00001\lib\portable-net40+sl40+win+wp80\Id3.dll</HintPath>
     </Reference>
     <Reference Include="Id3.Files, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Id3.Files.1.0.0-Build00000\lib\net451\Id3.Files.dll</HintPath>
+      <HintPath>..\packages\Id3.Files.1.0.0-Build00001\lib\net451\Id3.Files.dll</HintPath>
     </Reference>
     <Reference Include="log4net, Version=1.2.13.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -85,6 +86,7 @@
     <Compile Include="AnalysisTests.cs" />
     <Compile Include="DeserializingSolrResponseTests.cs" />
     <Compile Include="LyricsDeserializerTests.cs" />
+    <Compile Include="Mp3StreamMockUtils.cs" />
     <Compile Include="MusicAgentTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReaderTests.cs" />
@@ -114,6 +116,18 @@
     <None Include="TestData\Lyrics\Sub\MockOgg.lrc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="TestData\Music\Sub1\MockOggLyricsNotFound.ogg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\Music\Sub1\MockOggWithErrorLyrics.ogg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\Music\Sub1\MockOggWithLyrics.ogg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\Music\Sub1\MockOggWithoutLyrics.ogg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="TestData\Music\Sub\MockOgg.ogg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -122,10 +136,6 @@
     <ProjectReference Include="..\Sciendo.Indexer.Agent\Sciendo.Music.Agent.csproj">
       <Project>{866d1694-dd87-4f37-b542-ff50863317df}</Project>
       <Name>Sciendo.Music.Agent</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Sciendo.Indexing.DataProviders\Sciendo.Music.DataProviders.csproj">
-      <Project>{e0e60437-5683-4ae7-a448-4848b4bddd2a}</Project>
-      <Name>Sciendo.Music.DataProviders</Name>
     </ProjectReference>
     <ProjectReference Include="..\Sciendo.Music.Contracts\Sciendo.Music.Contracts.csproj">
       <Project>{d132d9c7-2fb8-4c89-84ab-54a1a65532f1}</Project>
@@ -157,6 +167,15 @@
     <Content Include="TestData\ExampleWrongFormat.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="TestData\Lyrics\Sub1\MockOggLyricsNotFound.lrc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\Lyrics\Sub1\MockOggWithErrorLyrics.lrc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\Lyrics\Sub1\MockOggWithLyrics.lrc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <Content Include="TestData\Music\MockMp3.mp3">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

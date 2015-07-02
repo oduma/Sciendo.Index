@@ -25,5 +25,8 @@ namespace Sciendo.Music.Contracts.Analysis
         [OperationContract]
         StatisticRow[] GetStatistics(string fromPath, int snapshotId);
 
+        [OperationContract]
+        int AnaliseThis(string folder, int snapshotId);
+
     }
 }

@@ -48,6 +48,7 @@
   <ItemGroup>
     <Compile Include="Analysis\Element.cs" />
     <Compile Include="Analysis\IAnalysis.cs" />
+    <Compile Include="Analysis\IndexedFlag.cs" />
     <Compile Include="Analysis\LyricsFileFlag.cs" />
     <Compile Include="Analysis\MusicFileFlag.cs" />
     <Compile Include="Analysis\Snapshot.cs" />

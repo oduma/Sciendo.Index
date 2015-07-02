@@ -63,17 +63,20 @@
     <Compile Include="Configuration\PlayerConfigurationSection.cs" />
     <Compile Include="Configuration\PlaylistProviderConfigurationSection.cs" />
     <Compile Include="Configuration\QueryConfigurationSection.cs" />
+    <Compile Include="Configuration\StatisticsProviderConfigurationSection.cs" />
     <Compile Include="DataProvider.cs" />
     <Compile Include="DictionariesConverter.cs" />
     <Compile Include="FacetFields.cs" />
     <Compile Include="Facets.cs" />
     <Compile Include="FieldProperty.cs" />
     <Compile Include="Highlighting.cs" />
+    <Compile Include="IStatisticsProvider.cs" />
     <Compile Include="IDataProvider.cs" />
     <Compile Include="IPlayerProcess.cs" />
     <Compile Include="IPlaylistProvider.cs" />
     <Compile Include="IResultsProvider.cs" />
     <Compile Include="ISolrQueryStrategy.cs" />
+    <Compile Include="Models\Analysis\StatisticsModel.cs" />
     <Compile Include="Models\Indexing\IndexingResult.cs" />
     <Compile Include="Models\Indexing\IndexModel.cs" />
     <Compile Include="Models\Indexing\ProgressStatusModel.cs" />
@@ -94,6 +97,7 @@
     <Compile Include="Models\Query\ResultsPackage.cs" />
     <Compile Include="PlaylistProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Proxy\AnalysisService.cs" />
     <Compile Include="Proxy\MusicService.cs" />
     <Compile Include="Response.cs" />
     <Compile Include="ResponseHeader.cs" />
@@ -102,6 +106,7 @@
     <Compile Include="SolrVagueQueryStrategy.cs" />
     <Compile Include="SolrResponse.cs" />
     <Compile Include="SolrResultsProvider.cs" />
+    <Compile Include="StatisticsProvider.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

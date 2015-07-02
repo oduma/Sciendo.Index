@@ -10,7 +10,7 @@ namespace Sciendo.Music.Contracts.Analysis
 
         public MusicFileFlag MusicFileFlag { get; set; }
 
-        public bool IsIndexed { get; set; }
+        public IndexedFlag IndexedFlag { get; set; }
 
         public int SnapshotId { get; set; }
     }

@@ -16,7 +16,7 @@ namespace Sciendo.Music.Data.Configuration
             this.Property<int>(c => c.ElementId).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
             this.Property<LyricsFileFlag>(c => c.LyricsFileFlag).HasColumnType("int");
             this.Property<MusicFileFlag>(c => c.MusicFileFlag).HasColumnType("int");
-            this.Property<bool>(c => c.IsIndexed).HasColumnType("bit");
+            this.Property<IndexedFlag>(c => c.IndexedFlag).HasColumnType("int");
 
             this.HasKey<int>(c => c.ElementId).ToTable("Element");
 
