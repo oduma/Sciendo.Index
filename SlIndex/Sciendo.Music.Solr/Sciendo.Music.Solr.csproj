@@ -4,14 +4,13 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{3919D695-CBD3-48F8-B799-339F1F52525F}</ProjectGuid>
+    <ProjectGuid>{66CC3581-C7C4-4486-9273-F20A705727ED}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Sciendo.Music.Real</RootNamespace>
-    <AssemblyName>Sciendo.Music.Real</AssemblyName>
-    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <RootNamespace>Sciendo.Music.Solr</RootNamespace>
+    <AssemblyName>Sciendo.Music.Solr</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -31,23 +30,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Id3, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Id3.1.0.0-Build00001\lib\portable-net40+sl40+win+wp80\Id3.dll</HintPath>
-    </Reference>
-    <Reference Include="Id3.Files, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Id3.Files.1.0.0-Build00001\lib\net451\Id3.Files.dll</HintPath>
-    </Reference>
-    <Reference Include="log4net">
-      <HintPath>..\packages\log4net.2.0.3\lib\net40-full\log4net.dll</HintPath>
-    </Reference>
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Newtonsoft.Json.6.0.7\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="Sciendo.Common">
-      <HintPath>..\packages\Sciendo.Common.1.0.0-Build00016\lib\net40\Sciendo.Common.dll</HintPath>
+      <HintPath>..\packages\Newtonsoft.Json.6.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
@@ -61,33 +46,31 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Analysis\Utils.cs" />
-    <Compile Include="Lyrics\Provider\LyricsDeserializer.cs" />
-    <Compile Include="Lyrics\Provider\WebDownloader.cs" />
-    <Compile Include="Lyrics\Provider\WebDownloaderBase.cs" />
-    <Compile Include="Monitoring\FolderMonitor.cs" />
-    <Compile Include="Procesors\Common\FilesProcessor.cs" />
-    <Compile Include="Procesors\Common\FilesProcessorBase.cs" />
-    <Compile Include="Procesors\Configuration\AgentConfigurationSection.cs" />
-    <Compile Include="Procesors\Configuration\AgentConfigurationSource.cs" />
-    <Compile Include="Procesors\MusicSourced\IndexingFilesProcessor.cs" />
-    <Compile Include="Procesors\MusicSourced\MusicToLyricsFilesProcessor.cs" />
-    <Compile Include="Procesors\MusicSourced\SongInfo.cs" />
+    <Compile Include="Configuration\QueryConfigurationName.cs" />
+    <Compile Include="Configuration\QueryConfigurationSection.cs" />
+    <Compile Include="Query\Common\Doc.cs" />
+    <Compile Include="Query\FromSolr\FacetFields.cs" />
+    <Compile Include="Query\FromSolr\Facets.cs" />
+    <Compile Include="Query\ResultsProviderBase.cs" />
+    <Compile Include="Query\ToConsummer\Field.cs" />
+    <Compile Include="Query\ToConsummer\FieldValue.cs" />
+    <Compile Include="Query\FromSolr\Highlighting.cs" />
+    <Compile Include="Query\ToConsummer\PageInfo.cs" />
+    <Compile Include="Query\FromSolr\Response.cs" />
+    <Compile Include="Query\FromSolr\ResponseHeader.cs" />
+    <Compile Include="Query\ToConsummer\ResultsPackage.cs" />
+    <Compile Include="Query\FromSolr\SolrResponse.cs" />
+    <Compile Include="Query\SolrResultsProvider.cs" />
+    <Compile Include="RequestType.cs" />
+    <Compile Include="Strategies\FieldProperty.cs" />
+    <Compile Include="Query\IResultsProvider.cs" />
+    <Compile Include="Strategies\ISolrQueryStrategy.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Solr\SolrSender.cs" />
+    <Compile Include="Strategies\SolrPreciseQueryStrategy.cs" />
+    <Compile Include="Strategies\SolrVagueQueryStrategy.cs" />
+    <Compile Include="WebRetriever.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Sciendo.Music.Contracts\Sciendo.Music.Contracts.csproj">
-      <Project>{D132D9C7-2FB8-4C89-84AB-54A1A65532F1}</Project>
-      <Name>Sciendo.Music.Contracts</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Sciendo.Music.Solr\Sciendo.Music.Solr.csproj">
-      <Project>{66cc3581-c7c4-4486-9273-f20a705727ed}</Project>
-      <Name>Sciendo.Music.Solr</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup />

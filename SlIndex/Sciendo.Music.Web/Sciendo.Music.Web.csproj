@@ -293,9 +293,9 @@
       <Project>{e0e60437-5683-4ae7-a448-4848b4bddd2a}</Project>
       <Name>Sciendo.Music.DataProviders</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Sciendo.Music.DataProviders.Mocks\Sciendo.Music.DataProviders.Mocks.csproj">
-      <Project>{bdc85158-71a5-40ec-8ec5-008aab403e1a}</Project>
-      <Name>Sciendo.Music.DataProviders.Mocks</Name>
+    <ProjectReference Include="..\Sciendo.Music.Solr\Sciendo.Music.Solr.csproj">
+      <Project>{66cc3581-c7c4-4486-9273-f20a705727ed}</Project>
+      <Name>Sciendo.Music.Solr</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

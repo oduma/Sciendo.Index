@@ -17,7 +17,7 @@ namespace Sciendo.Music.Tests
         [Test]
         public void GetAllSnapshotsOk()
         {
-            AnalysisService analysisService = new AnalysisService("","","");
+            AnalysisService analysisService = new AnalysisService("","","",null);
             var actual = analysisService.GetAllAnalysisSnaphots();
             Assert.IsNotNull(actual);
             Assert.Greater(actual.Length,1);
@@ -25,7 +25,7 @@ namespace Sciendo.Music.Tests
         [Test]
         public void GetElementsBySnapshotOk()
         {
-            AnalysisService analysisService = new AnalysisService("","","");
+            AnalysisService analysisService = new AnalysisService("","","",null);
             var actual = analysisService.GetAnalysis("leaf", 3);
             Assert.IsNotNull(actual);
             Assert.Greater(actual.Length, 1);
@@ -36,11 +36,11 @@ namespace Sciendo.Music.Tests
         {
             using(TransactionScope transactionScope= new TransactionScope(TransactionScopeOption.RequiresNew))
             {
-                AnalysisService analysisService = new AnalysisService("","","");
+                AnalysisService analysisService = new AnalysisService("","","",null);
                 var actual = analysisService.CreateNewSnapshot("test");
                 Assert.IsNotNull(actual);
                 Assert.Greater(actual.SnapshotId, 1);
-                analysisService = new AnalysisService("","","");
+                analysisService = new AnalysisService("","","",null);
                 var actualsnapshots = analysisService.GetAllAnalysisSnaphots();
                 Assert.AreEqual(4, actualsnapshots.Length);
             }
@@ -50,7 +50,7 @@ namespace Sciendo.Music.Tests
         {
             using (TransactionScope transactionScope = new TransactionScope(TransactionScopeOption.RequiresNew))
             {
-                AnalysisService analysisService = new AnalysisService("","","");
+                AnalysisService analysisService = new AnalysisService("","","",null);
                 var actual = analysisService.CreateElements(new Element[] { new Element {IndexedFlag = IndexedFlag.NotIndexed, LyricsFileFlag = LyricsFileFlag.HasLyricsFile | LyricsFileFlag.LyricsFileOk, MusicFileFlag = MusicFileFlag.HasTag | MusicFileFlag.IsMusicFile | MusicFileFlag.HasArtistTag, Name = "test element one", SnapshotId = 3 } });
                 Assert.IsNotNull(actual);
                 Assert.AreEqual(1, actual);
@@ -133,6 +133,68 @@ namespace Sciendo.Music.Tests
         public void AnalysisUtilsLyricsFileFlagOkTest()
         {
             Assert.AreEqual(LyricsFileFlag.HasLyricsFile | LyricsFileFlag.LyricsFileOk, Utils.GetLyricsFlag(@"TestData\Music\Sub1\MockOggWithLyrics.ogg", "*.mp3|*.ogg", @"TestData\Music", @"TestData\Lyrics"));
+        }
+
+        [Test]
+        public void AnalysisUtilsIndexedFlagNotIndexedTest1()
+        {
+            Assert.AreEqual(IndexedFlag.NotIndexed, Utils.GetIndexedFlag("something.else", SolrResultsProviderMocks.GetExceptionMock("something.else")));
+        }
+        [Test]
+        public void AnalysisUtilsIndexedFlagNotIndexedTest2()
+        {
+            Assert.AreEqual(IndexedFlag.NotIndexed, Utils.GetIndexedFlag("something.else", SolrResultsProviderMocks.GetNullResultsMock("something.else")));
+        }
+        [Test]
+        public void AnalysisUtilsIndexedFlagNotIndexedTest3()
+        {
+            Assert.AreEqual(IndexedFlag.NotIndexed, Utils.GetIndexedFlag("something.else", SolrResultsProviderMocks.GetNullResultRowsMock("something.else")));
+        }
+        [Test]
+        public void AnalysisUtilsIndexedFlagNotIndexedTest4()
+        {
+            Assert.AreEqual(IndexedFlag.NotIndexed, Utils.GetIndexedFlag("something.else", SolrResultsProviderMocks.GetNoResultRowsMock("something.else")));
+        }
+        [Test]
+        public void AnalysisUtilsIndexedFlagNotIndexedTest5()
+        {
+            Assert.AreEqual(IndexedFlag.NotIndexed, Utils.GetIndexedFlag("something.else", SolrResultsProviderMocks.GetOneEmptyResultRowsMock("something.else")));
+        }
+        [Test]
+        public void AnalysisUtilsIndexedFlagIndexedEverythingButTheAlbumTest()
+        {
+            Assert.AreEqual(IndexedFlag.Indexed|IndexedFlag.IndexedArtist|IndexedFlag.IndexedLyrics|IndexedFlag.IndexedTitle, Utils.GetIndexedFlag("something.else", SolrResultsProviderMocks.GetIndexedResultMock("something.else",MissingType.Album)));
+        }
+        [Test]
+        public void AnalysisUtilsIndexedFlagIndexedEverythingButTheArtistTest()
+        {
+            Assert.AreEqual(IndexedFlag.Indexed | IndexedFlag.IndexedAlbum | IndexedFlag.IndexedLyrics | IndexedFlag.IndexedTitle, Utils.GetIndexedFlag("something.else", SolrResultsProviderMocks.GetIndexedResultMock("something.else", MissingType.Artist)));
+        }
+        [Test]
+        public void AnalysisUtilsIndexedFlagIndexedEverythingButTheTitleTest()
+        {
+            Assert.AreEqual(IndexedFlag.Indexed | IndexedFlag.IndexedArtist | IndexedFlag.IndexedLyrics | IndexedFlag.IndexedAlbum, Utils.GetIndexedFlag("something.else", SolrResultsProviderMocks.GetIndexedResultMock("something.else", MissingType.Title)));
+        }
+        [Test]
+        public void AnalysisUtilsIndexedFlagIndexedEverythingButTheLyricsTest()
+        {
+            Assert.AreEqual(IndexedFlag.Indexed | IndexedFlag.IndexedArtist | IndexedFlag.IndexedAlbum | IndexedFlag.IndexedTitle, Utils.GetIndexedFlag("something.else", SolrResultsProviderMocks.GetIndexedResultMock("something.else", MissingType.Lyrics)));
+        }
+        [Test]
+        public void AnalysisUtilsIndexedFlagIndexedOnlyFileTest()
+        {
+            Assert.AreEqual(IndexedFlag.Indexed , Utils.GetIndexedFlag("something.else", SolrResultsProviderMocks.GetIndexedResultMock("something.else", MissingType.All)));
+        }
+        [Test]
+        public void AnalysisUtilsIndexedFlagIndexedEverythingTest()
+        {
+            Assert.AreEqual(IndexedFlag.Indexed | IndexedFlag.IndexedArtist | IndexedFlag.IndexedAlbum | IndexedFlag.IndexedTitle |IndexedFlag.IndexedLyrics, Utils.GetIndexedFlag("something.else", SolrResultsProviderMocks.GetIndexedResultMock("something.else", MissingType.None)));
+        }
+
+        [Test]
+        public void AnalyseThisTest()
+        {
+
         }
     }
 }

@@ -13,7 +13,7 @@ namespace Sciendo.Music.Tests
         {
             IndexingFilesProcessor musicFilesProcessor= new MockIndexingFilesProcessor();
             MusicService svc = new MusicService(musicFilesProcessor,null,2);
-            Assert.AreEqual(2,svc.IndexOnDemand(@"TestData\Music"));
+            Assert.AreEqual(6,svc.IndexOnDemand(@"TestData\Music"));
         }
 
         [Test]

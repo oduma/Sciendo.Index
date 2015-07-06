@@ -2,6 +2,7 @@
 using Sciendo.IOC;
 using Sciendo.IOC.Configuration;
 using Sciendo.Music.DataProviders;
+using Sciendo.Music.Solr.Query;
 
 namespace Sciendo.Music.Web
 {

@@ -149,6 +149,10 @@
       <Project>{3919d695-cbd3-48f8-b799-339f1f52525f}</Project>
       <Name>Sciendo.Music.Real</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Sciendo.Music.Solr\Sciendo.Music.Solr.csproj">
+      <Project>{66cc3581-c7c4-4486-9273-f20a705727ed}</Project>
+      <Name>Sciendo.Music.Solr</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Analysis\" />

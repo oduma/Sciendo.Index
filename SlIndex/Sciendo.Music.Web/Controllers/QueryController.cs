@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Web.Mvc;
 using Sciendo.Music.DataProviders;
-using Sciendo.Music.DataProviders.Common;
-using Sciendo.Music.DataProviders.Models.Query;
 using Sciendo.Music.DataProviders.Models.Playlist;
 using System.Linq;
+using Sciendo.Music.Solr.Query;
+using Sciendo.Music.Solr.Strategies;
+using Sciendo.Music.Solr.Query.FromSolr;
+using Sciendo.Music.Solr;
 
 namespace Sciendo.Music.Web.Controllers
 {
@@ -140,7 +142,7 @@ namespace Sciendo.Music.Web.Controllers
                 Json(
                     SciendoConfiguration.Container.Resolve<IResultsProvider>(
                         SciendoConfiguration.QueryConfiguration.CurrentDataProvider)
-                        .GetResultsPackage(criteria,numRows,startRow, new SolrVagueQueryStrategy(criteria,numRows,startRow),WebRetriever.TryGet<SolrResponse>), JsonRequestBehavior.AllowGet);
+                        .GetResultsPackageWithVagueStrategy(criteria,numRows,startRow, RequestType.Get), JsonRequestBehavior.AllowGet);
         }
 
         [HttpGet]
@@ -152,8 +154,7 @@ namespace Sciendo.Music.Web.Controllers
                 Json(
                     SciendoConfiguration.Container.Resolve<IResultsProvider>(
                         SciendoConfiguration.QueryConfiguration.CurrentDataProvider)
-                        .GetFilteredResultsPackage(criteria, numRows, startRow, facetFieldName, facetFieldValue,
-                            new SolrVagueQueryStrategy(criteria, numRows, startRow, facetFieldName, facetFieldValue),WebRetriever.TryGet<SolrResponse>),
+                        .GeFilteredtResultsPackageWithVagueStrategy(criteria, numRows, startRow, facetFieldName, facetFieldValue,RequestType.Get),
                     JsonRequestBehavior.AllowGet);
         }
 

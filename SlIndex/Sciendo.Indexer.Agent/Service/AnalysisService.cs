@@ -2,6 +2,7 @@
 using Sciendo.Music.Contracts.Analysis;
 using Sciendo.Music.Data;
 using Sciendo.Music.Real.Analysis;
+using Sciendo.Music.Solr.Query;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -17,15 +18,16 @@ namespace Sciendo.Music.Agent.Service
     {
         private readonly string _musicSourceFolder;
         private readonly string _lyricsSourceFolder; 
+        private readonly string _pattern;
+        private readonly IResultsProvider _resultsProvider;
 
-        private readonly string _pattern; 
-
-        public AnalysisService(string musicSourceFolder, string lyricsSourceFolder, string pattern)
+        public AnalysisService(string musicSourceFolder, string lyricsSourceFolder, string pattern, IResultsProvider solrResultsProvider)
         {
             LoggingManager.Debug("Constructing Analysis Service...");
             _musicSourceFolder = musicSourceFolder;
             _lyricsSourceFolder = lyricsSourceFolder;
             _pattern = pattern;
+            _resultsProvider = solrResultsProvider;
             LoggingManager.Debug("Analysis service constructed with: " + _musicSourceFolder);
         }
 
@@ -171,7 +173,7 @@ namespace Sciendo.Music.Agent.Service
                     SnapshotId = snapshotId,
                     MusicFileFlag = musicFileFlag,
                     LyricsFileFlag = (musicFileFlag==MusicFileFlag.NotAMusicFile)?LyricsFileFlag.NoLyricsFile:Utils.GetLyricsFlag(file,_pattern,_musicSourceFolder,_lyricsSourceFolder),
-                    IndexedFlag = (musicFileFlag==MusicFileFlag.NotAMusicFile)?IndexedFlag.NotIndexed:Utils.CheckIndex(file)
+                    IndexedFlag = (musicFileFlag==MusicFileFlag.NotAMusicFile)?IndexedFlag.NotIndexed:Utils.GetIndexedFlag(file,_resultsProvider)
                 });
             }
             return CreateElements(newElements.ToArray());

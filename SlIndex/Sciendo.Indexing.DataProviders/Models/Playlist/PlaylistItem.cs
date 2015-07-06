@@ -1,4 +1,4 @@
-﻿using Sciendo.Music.DataProviders.Models.Query;
+﻿using Sciendo.Music.Solr.Query.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;

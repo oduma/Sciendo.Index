@@ -16,6 +16,7 @@ using Sciendo.Music.Contracts.MusicService;
 using Sciendo.Music.Real.Procesors.Configuration;
 using Sciendo.Music.Real.Procesors.MusicSourced;
 using Sciendo.Music.Contracts.Analysis;
+using Sciendo.Music.Solr.Query;
 
 namespace Sciendo.Music.Agent
 {
@@ -100,7 +101,7 @@ namespace Sciendo.Music.Agent
                 packageRetainerlimit);
             _analysisService = new AnalysisService(mProc.CurrentConfiguration.Music.SourceDirectory,
                 m2LProc.CurrentConfiguration.Lyrics.SourceDirectory,
-                mProc.CurrentConfiguration.Music.SearchPattern);
+                mProc.CurrentConfiguration.Music.SearchPattern,new SolrResultsProvider());
         }
 
         private void StartMonitoringInstances()

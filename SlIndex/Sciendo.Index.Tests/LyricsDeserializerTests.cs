@@ -4,6 +4,7 @@ using Sciendo.Common.Serialization;
 using Sciendo.Music.Agent.Processing;
 using Sciendo.Music.Contracts.Common;
 using Sciendo.Music.Real.Lyrics.Provider;
+using System;
 
 namespace Sciendo.Music.Tests
 {
@@ -17,14 +18,13 @@ namespace Sciendo.Music.Tests
             Assert.IsNull(lyrics.DeserializeFromFile<LyricsResult>("nosuchfile.xml"));
         }
         [Test]
-        [ExpectedException(typeof(PreSerializationCheckException))]
         public void LyricsDeserializerFileNoLyrics()
         {
             LyricsDeserializer lyrics = new LyricsDeserializer();
-            Assert.IsNull(lyrics.DeserializeFromFile<LyricsResult>(@"TestData\ExampleNoLyrics.xml"));
+            Assert.IsNotNull(lyrics.DeserializeFromFile<LyricsResult>(@"TestData\ExampleNoLyrics.xml"));
         }
         [Test]
-        [ExpectedException(typeof(PreSerializationCheckException))]
+        [ExpectedException(typeof(InvalidOperationException))]
         public void LyricsDeserializerFileWrongFromat()
         {
             LyricsDeserializer lyrics = new LyricsDeserializer();

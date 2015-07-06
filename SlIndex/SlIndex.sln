@@ -20,8 +20,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sciendo.Music.Contracts", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sciendo.Music.Real", "Sciendo.Music.Real\Sciendo.Music.Real.csproj", "{3919D695-CBD3-48F8-B799-339F1F52525F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sciendo.Music.DataProviders.Mocks", "Sciendo.Music.DataProviders.Mocks\Sciendo.Music.DataProviders.Mocks.csproj", "{BDC85158-71A5-40EC-8EC5-008AAB403E1A}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sciendo.Music.Web", "Sciendo.Music.Web\Sciendo.Music.Web.csproj", "{DFB10CC4-E5B4-4727-8229-0E316A294891}"
 EndProject
 Project("{930C7802-8A8C-48F9-8165-68863BCCD9DD}") = "Sciendo.Music.Agent.Installer", "Sciendo.Music.Agent.Installer\Sciendo.Music.Agent.Installer.wixproj", "{CB462F6B-F0D5-4FD3-B3E6-D2D2F2B21314}"
@@ -31,6 +29,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sciendo.Music.Web.Files.Generator", "Sciendo.Music.Web.Files.Generator\Sciendo.Music.Web.Files.Generator.csproj", "{ADACACD4-2BC5-4393-9FDB-9793932D55A7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sciendo.Music.Data", "Sciendo.Music.Data\Sciendo.Music.Data.csproj", "{F40150DA-B8A9-496B-99F3-EC4C2A52C08E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sciendo.Music.Solr", "Sciendo.Music.Solr\Sciendo.Music.Solr.csproj", "{66CC3581-C7C4-4486-9273-F20A705727ED}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -102,16 +102,6 @@ Global
 		{3919D695-CBD3-48F8-B799-339F1F52525F}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{3919D695-CBD3-48F8-B799-339F1F52525F}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{3919D695-CBD3-48F8-B799-339F1F52525F}.Release|x86.ActiveCfg = Release|Any CPU
-		{BDC85158-71A5-40EC-8EC5-008AAB403E1A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BDC85158-71A5-40EC-8EC5-008AAB403E1A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BDC85158-71A5-40EC-8EC5-008AAB403E1A}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{BDC85158-71A5-40EC-8EC5-008AAB403E1A}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{BDC85158-71A5-40EC-8EC5-008AAB403E1A}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{BDC85158-71A5-40EC-8EC5-008AAB403E1A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BDC85158-71A5-40EC-8EC5-008AAB403E1A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{BDC85158-71A5-40EC-8EC5-008AAB403E1A}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{BDC85158-71A5-40EC-8EC5-008AAB403E1A}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{BDC85158-71A5-40EC-8EC5-008AAB403E1A}.Release|x86.ActiveCfg = Release|Any CPU
 		{DFB10CC4-E5B4-4727-8229-0E316A294891}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{DFB10CC4-E5B4-4727-8229-0E316A294891}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DFB10CC4-E5B4-4727-8229-0E316A294891}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
@@ -162,6 +152,16 @@ Global
 		{F40150DA-B8A9-496B-99F3-EC4C2A52C08E}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{F40150DA-B8A9-496B-99F3-EC4C2A52C08E}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{F40150DA-B8A9-496B-99F3-EC4C2A52C08E}.Release|x86.ActiveCfg = Release|Any CPU
+		{66CC3581-C7C4-4486-9273-F20A705727ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{66CC3581-C7C4-4486-9273-F20A705727ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{66CC3581-C7C4-4486-9273-F20A705727ED}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{66CC3581-C7C4-4486-9273-F20A705727ED}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{66CC3581-C7C4-4486-9273-F20A705727ED}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{66CC3581-C7C4-4486-9273-F20A705727ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{66CC3581-C7C4-4486-9273-F20A705727ED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{66CC3581-C7C4-4486-9273-F20A705727ED}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{66CC3581-C7C4-4486-9273-F20A705727ED}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{66CC3581-C7C4-4486-9273-F20A705727ED}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

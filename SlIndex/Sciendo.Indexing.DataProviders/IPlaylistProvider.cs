@@ -1,4 +1,5 @@
 ﻿using Sciendo.Music.DataProviders.Models.Playlist;
+using Sciendo.Music.Solr.Query;
 
 namespace Sciendo.Music.DataProviders
 {

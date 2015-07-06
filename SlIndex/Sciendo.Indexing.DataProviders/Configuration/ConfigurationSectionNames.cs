@@ -8,7 +8,6 @@ namespace Sciendo.Music.DataProviders.Configuration
 {
     public static class ConfigurationSectionNames
     {
-        public static string QueryProviderConfigurationName = "queryDataProvider";
         public static string IndexProviderConfigurationName = "indexDataProvider";
         public static string PlayerProcessConfigurationName = "playerProcessProvider";
         public static string PlaylistProviderConfigurationName = "playlistProvider";

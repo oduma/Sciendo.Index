@@ -84,15 +84,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AnalysisTests.cs" />
-    <Compile Include="DeserializingSolrResponseTests.cs" />
     <Compile Include="LyricsDeserializerTests.cs" />
     <Compile Include="Mp3StreamMockUtils.cs" />
     <Compile Include="MusicAgentTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReaderTests.cs" />
     <Compile Include="ServiceTester.cs" />
-    <Compile Include="SolrPackageJsonGenerationTests.cs" />
     <Compile Include="SolrQueryStrategyTests.cs" />
+    <Compile Include="SolrResultsProviderMocks.cs" />
     <Compile Include="SongInfoTests.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -141,10 +140,6 @@
       <Project>{d132d9c7-2fb8-4c89-84ab-54a1a65532f1}</Project>
       <Name>Sciendo.Music.Contracts</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Sciendo.Music.DataProviders.Mocks\Sciendo.Music.DataProviders.Mocks.csproj">
-      <Project>{BDC85158-71A5-40EC-8EC5-008AAB403E1A}</Project>
-      <Name>Sciendo.Music.DataProviders.Mocks</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Sciendo.Music.Mocks\Sciendo.Music.Mocks.csproj">
       <Project>{78a40273-5baa-4fef-82fb-390736d01503}</Project>
       <Name>Sciendo.Music.Mocks</Name>
@@ -152,6 +147,10 @@
     <ProjectReference Include="..\Sciendo.Music.Real\Sciendo.Music.Real.csproj">
       <Project>{3919d695-cbd3-48f8-b799-339f1f52525f}</Project>
       <Name>Sciendo.Music.Real</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Sciendo.Music.Solr\Sciendo.Music.Solr.csproj">
+      <Project>{66cc3581-c7c4-4486-9273-f20a705727ed}</Project>
+      <Name>Sciendo.Music.Solr</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

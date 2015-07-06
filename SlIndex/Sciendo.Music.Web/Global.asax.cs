@@ -7,6 +7,7 @@ using System.Web.Routing;
 using Sciendo.Common.Logging;
 using Sciendo.IOC;
 using Sciendo.Music.DataProviders.Configuration;
+using Sciendo.Music.Solr.Configuration;
 
 namespace Sciendo.Music.Web
 {
@@ -50,7 +51,7 @@ namespace Sciendo.Music.Web
             get
             {
                 if (!HttpContext.Current.Application.AllKeys.Contains("query"))
-                    HttpContext.Current.Application.Add("query", ConfigurationManager.GetSection(ConfigurationSectionNames.QueryProviderConfigurationName));
+                    HttpContext.Current.Application.Add("query", ConfigurationManager.GetSection(QueryConfigurationName.QueryProviderConfigurationName));
                 return HttpContext.Current.Application["query"] as QueryConfigurationSection;
             }
         }
