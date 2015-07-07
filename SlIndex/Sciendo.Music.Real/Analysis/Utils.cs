@@ -13,6 +13,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -110,12 +111,12 @@ namespace Sciendo.Music.Real.Analysis
 
         public static IndexedFlag GetIndexedFlag(string file,IResultsProvider resultsProvider)
         {
-            var solrQuery = string.Format("file_path_id:\"{0}\"",file);
+            var solrQuery = string.Format("file_path_id:{0}",WebUtility.UrlEncode(string.Format("\"{0}\"",file.ToLower().Replace(@"\",@"\\"))));
 
             try
             {
                 var results =
-                    resultsProvider.GetResultsPackageWithPreciseStrategy(solrQuery, 1, 0, RequestType.Post);
+                    resultsProvider.GetResultsPackageWithPreciseStrategy(solrQuery, 1, 0, RequestType.Get);
                 if (results == null || results.ResultRows == null || !results.ResultRows.Any())
                     return IndexedFlag.NotIndexed;
                 if (results.ResultRows[0] == null)

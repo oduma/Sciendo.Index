@@ -2,8 +2,10 @@
 using Sciendo.Music.Agent.Service;
 using Sciendo.Music.Contracts.Analysis;
 using Sciendo.Music.Real.Analysis;
+using Sciendo.Music.Solr.Query;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -192,9 +194,28 @@ namespace Sciendo.Music.Tests
         }
 
         [Test]
+        //[Ignore("performance test")]
         public void AnalyseThisTest()
         {
+            var globalStopwatch = new Stopwatch();
+            globalStopwatch.Start();
+            IResultsProvider resultsProvider = new SolrResultsProvider();
+            AnalysisService svc = new AnalysisService(@"c:\code\m\music", @"c:\code\m\lyrics", "*.mp3|*.ogg", resultsProvider);
 
+            Stopwatch stopwatch = new Stopwatch();
+
+            var snapshot = svc.CreateNewSnapshot("new test");
+            stopwatch.Start();
+
+            var processed = svc.AnaliseThis("c:\\code\\m\\music\\b\\beck\\Clock", snapshot.SnapshotId);
+
+            stopwatch.Stop();
+            globalStopwatch.Stop();
+            TimeSpan timeSpan = new TimeSpan(stopwatch.ElapsedTicks);
+            TimeSpan globalTimeSpan = new TimeSpan(globalStopwatch.ElapsedTicks);
+
+            Console.WriteLine("Processed {0} in {1}:{2}.{3}", processed, timeSpan.Minutes, timeSpan.Seconds,timeSpan.Milliseconds);
+            Console.WriteLine("Global time {0}:{1}.{2}", globalTimeSpan.Minutes, globalTimeSpan.Seconds, globalTimeSpan.Milliseconds);
         }
     }
 }

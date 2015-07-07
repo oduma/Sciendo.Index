@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net;
 
 namespace Sciendo.Music.Solr.Strategies
 {
@@ -13,7 +14,7 @@ namespace Sciendo.Music.Solr.Strategies
 
         public string GetQueryString()
         {
-            return _preciseQuery;
+            return string.Format("wt=json&q={0}",_preciseQuery);
         }
 
         public string GetFilterString()

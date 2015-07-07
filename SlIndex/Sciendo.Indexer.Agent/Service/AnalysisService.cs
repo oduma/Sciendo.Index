@@ -163,20 +163,36 @@ namespace Sciendo.Music.Agent.Service
 
         public int AnaliseThis(string folder, int snapshotId)
         {
-            List<Element> newElements = new List<Element>();
-            foreach(string file in Directory.GetFiles(folder))
+            var elements = Directory.GetDirectories(folder,
+                "*",
+                SearchOption.AllDirectories).Where(d => Directory.GetFiles(d).Any()).AsParallel().Select(f => GetListOfElementsForFolder(f, snapshotId));
+
+            var directElements = GetListOfElementsForFolder(folder, snapshotId);
+            int retValue = 0;
+            foreach(var newElements in elements)
             {
-                var musicFileFlag=Utils.GetMusicFlag(file,_pattern,Utils.Mp3MusicFile);
+                retValue += CreateElements(newElements.ToArray());
+            }
+            retValue += CreateElements(directElements.ToArray());
+            return retValue;
+        }
+
+        private List<Element> GetListOfElementsForFolder(string folder, int snapshotId)
+        {
+            var newElements = new List<Element>();
+            foreach (string file in Directory.GetFiles(folder))
+            {
+                var musicFileFlag = Utils.GetMusicFlag(file, _pattern, Utils.Mp3MusicFile);
                 newElements.Add(new Element
                 {
                     Name = file,
                     SnapshotId = snapshotId,
                     MusicFileFlag = musicFileFlag,
-                    LyricsFileFlag = (musicFileFlag==MusicFileFlag.NotAMusicFile)?LyricsFileFlag.NoLyricsFile:Utils.GetLyricsFlag(file,_pattern,_musicSourceFolder,_lyricsSourceFolder),
-                    IndexedFlag = (musicFileFlag==MusicFileFlag.NotAMusicFile)?IndexedFlag.NotIndexed:Utils.GetIndexedFlag(file,_resultsProvider)
+                    LyricsFileFlag = ((musicFileFlag&MusicFileFlag.IsMusicFile) != MusicFileFlag.IsMusicFile) ? LyricsFileFlag.NoLyricsFile : Utils.GetLyricsFlag(file, _pattern, _musicSourceFolder, _lyricsSourceFolder),
+                    IndexedFlag = ((musicFileFlag & MusicFileFlag.IsMusicFile) != MusicFileFlag.IsMusicFile) ? IndexedFlag.NotIndexed : Utils.GetIndexedFlag(file, _resultsProvider)
                 });
             }
-            return CreateElements(newElements.ToArray());
+            return newElements;
         }
     }
 }
