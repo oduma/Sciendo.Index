@@ -1,4 +1,6 @@
-﻿using Sciendo.Common.Logging;
+﻿using Microsoft.AspNet.SignalR.Hubs;
+using Sciendo.Common.Logging;
+using Sciendo.Music.Agent.Analysis;
 using Sciendo.Music.Contracts.Analysis;
 using Sciendo.Music.Data;
 using Sciendo.Music.Real.Analysis;
@@ -9,6 +11,7 @@ using System.IO;
 using System.Linq;
 using System.ServiceModel;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Sciendo.Music.Agent.Service
@@ -161,8 +164,14 @@ namespace Sciendo.Music.Agent.Service
         }
 
 
-        public int AnaliseThis(string folder, int snapshotId)
+        public void AnaliseThis(string folder, int snapshotId)
         {
+            CurrentActivity.Instance.SetAndBroadcast(snapshotId, ActivityStatus.Starting);
+            CurrentActivity.Instance.SetAndBroadcast(snapshotId, ActivityStatus.InProgress);
+            if(string.IsNullOrEmpty(folder))
+            {
+                folder = _musicSourceFolder;
+            }
             var elements = Directory.GetDirectories(folder,
                 "*",
                 SearchOption.AllDirectories).Where(d => Directory.GetFiles(d).Any()).AsParallel().Select(f => GetListOfElementsForFolder(f, snapshotId));
@@ -174,11 +183,16 @@ namespace Sciendo.Music.Agent.Service
                 retValue += CreateElements(newElements.ToArray());
             }
             retValue += CreateElements(directElements.ToArray());
-            return retValue;
+            CurrentActivity.Instance.BroadcastDetails("Total files analysed " + retValue);
+            Thread.Sleep(500);
+            CurrentActivity.Instance.SetAndBroadcast(snapshotId, ActivityStatus.Stopped);
+            Thread.Sleep(500);
+            CurrentActivity.Instance.ClearAndBroadcast();
         }
 
         private List<Element> GetListOfElementsForFolder(string folder, int snapshotId)
         {
+            CurrentActivity.Instance.BroadcastDetails(folder);
             var newElements = new List<Element>();
             foreach (string file in Directory.GetFiles(folder))
             {

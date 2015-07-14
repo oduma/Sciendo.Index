@@ -17,6 +17,9 @@ using Sciendo.Music.Real.Procesors.Configuration;
 using Sciendo.Music.Real.Procesors.MusicSourced;
 using Sciendo.Music.Contracts.Analysis;
 using Sciendo.Music.Solr.Query;
+using Microsoft.Owin.Hosting;
+using Microsoft.AspNet.SignalR;
+using Sciendo.Music.Agent.Analysis;
 
 namespace Sciendo.Music.Agent
 {
@@ -79,8 +82,14 @@ namespace Sciendo.Music.Agent
             }
 
             OpenServiceHost();
+            OpenSignalRHub();
             StartMonitoringInstances();
             LoggingManager.Debug("Agent started.");
+        }
+
+        private void OpenSignalRHub()
+        {
+            WebApp.Start<Startup>("http://*:5050/");
         }
 
         internal void ResolveComponents(string currentMusicComponentKey,int packageRetainerlimit)
