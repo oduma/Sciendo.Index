@@ -55,7 +55,7 @@
                                         <a href=\"#\" data-bind=\"click:$root.clickAction, attr:{'id': $parent[$root.keyColumn] }, html: typeof rowText == 'function' ? rowText($parent) : $parent[rowText]\"/></td>\
                                     <!-- /ko -->\
                                     <!-- ko ifnot:isLink-->\
-                                        <!-- ko ifnot:isSelect--><td data-bind=\"html: typeof rowText == 'function' ? rowText($parent) : $parent[rowText] \"></td>\
+                                        <!-- ko ifnot:isSelect--><td valign=\"top\" data-bind=\"html: typeof rowText == 'function' ? rowText($parent) : $parent[rowText] \"></td>\
                                     <!-- /ko--><!-- ko if:isSelect-->\
                                         <td><input type=\"checkbox\" data-bind=\"attr:{'id': $parent[$root.keyColumn] },checked:rowText == 'function' ? rowText($parent) : $parent[rowText], click:$parent.select\"/></td>\
                                     <!-- /ko -->\

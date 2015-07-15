@@ -100,17 +100,21 @@ namespace Sciendo.Music.Agent.Service
                 using(Statistics container = new Statistics())
                 {
                     List<StatisticRow> statisticRows = new List<StatisticRow>();
-                    foreach(var folder in container.Elements.Where(e=>e.SnapshotId==snapshotId && e.Name.StartsWith(fromPath) && e.Name.Replace(fromPath,"").IndexOf(@"\")>0).Select(e=>e.Name))
+
+                    var subElements = container.Elements.Where(e => e.SnapshotId == snapshotId
+                        && e.Name.StartsWith(fromPath)).Select(e => e.Name).ToList();
+                    foreach(var folder in subElements.Select(s=>fromPath+@"\" + s.Replace(fromPath+@"\","").Split(new char[]{'\\'})[0]).Distinct())
                     {
+
                         statisticRows.Add(GetAggregatedStatisticRow(container.Elements.Where(e=>e.SnapshotId==snapshotId && e.Name.StartsWith(folder)),folder));
                     }
-                    statisticRows.AddRange(GetStatisticRows(container.Elements.Where(e=>e.SnapshotId==snapshotId && e.Name.StartsWith(fromPath) && e.Name.Replace(fromPath,"").IndexOf(@"\")<=0)));
+                    statisticRows.AddRange(GetStatisticRows(container.Elements.Where(s=>s.SnapshotId==snapshotId && (s.Name.Replace(fromPath+@"\","").IndexOf(@"\")<=0))));
                     return statisticRows.ToArray();
                 }
             }
         }
 
-        private IEnumerable<StatisticRow> GetStatisticRows(IQueryable<Element> elements)
+        private IEnumerable<StatisticRow> GetStatisticRows(IEnumerable<Element> elements)
         {
             return elements.Select(e => new StatisticRow
             {
