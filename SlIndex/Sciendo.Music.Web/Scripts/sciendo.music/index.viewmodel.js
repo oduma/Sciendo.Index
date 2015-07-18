@@ -21,64 +21,9 @@
     });
 
     self.asyncOperationsHub = $.connection.asyncOperationsHub;
-
-    //self.monitoringHub = $.connection.monitoringHub;
-    //self.monitoringMessages = ko.observableArray([]);
-    //self.maximumMonitoringMessagesDisplay = ko.observable(10);
-    //self.monitoringActionName = ko.observable("Subscribe");
-
-    //self.toggle = function () {
-    //    var on = (self.monitoringActionName() == "Subscribe");
-    //    if ($.connection.hub.state != $.connection.connectionState.connected) {
-    //        $.connection.hub.start().done(function () {
-    //            self.monitoringHub.server.toggleSending(on);
-    //        });
-    //    }
-    //    else {
-    //        self.monitoringHub.server.toggleSending(on);
-    //    }
-    //    if (on) {
-    //        self.monitoringActionName("Unsubscribe");
-    //        if ($.connection.hub.state != $.connection.connectionState.connected)
-    //        {
-    //            $.connection.hub.start().done(function () {
-    //                self.monitoringHub.server.send();
-    //            });
-    //        }
-    //        else
-    //        {
-    //            self.monitoringHub.server.send();
-    //        }
-    //    } else {
-    //        self.monitoringActionName("Subscribe");
-    //    }
-        
-    //}
     self.notAcquiring = ko.computed(function () { return self.acquireLyricsText() == "Acquire Lyrics"; });
 
     self.notIndexing = ko.computed(function () { return self.indexText() == "Index"; });
-    //self.hasSubscription = ko.computed(function () { return self.monitoringActionName() == "Unsubscribe"; });
-
-    //self.monitoringHub.client.addNewMessageToPage = function (message) {
-    //    if (self.monitoringMessages().indexOf(message) != -1)
-    //        alert("mesaj nou");
-    //    if (self.monitoringMessages().length > self.maximumMonitoringMessagesDisplay())
-    //        self.monitoringMessages.removeAll();
-    //    message.StatusOk = (message.Status == 'Done' || message.Status == 'LyricsDownloadedOk') ? true : false;
-    //    message.DetailsVisible = ko.observable(false);
-    //    message.DetailsActionName = ko.observable("Details");
-    //    message.revealDetails = function () {
-    //        if (message.DetailsVisible()) {
-    //            message.DetailsVisible(false);
-    //            message.DetailsActionName("Details");
-    //        } else {
-    //            message.DetailsVisible(true);
-    //            message.DetailsActionName("Hide Details");
-    //        }
-    //    };
-    //    self.monitoringMessages.push(message);
-    //}
-
     self.selectValue = function (property, value) {
             self.indexFromPath(value);
     }
@@ -127,14 +72,6 @@
         self.indexingResult(lastActivity + data.NumberOfDocuments);
 
         self.indexingError(data.Error);
-        //if ($.connection.hub.state != $.connection.connectionState.connected) {
-        //    $.connection.hub.start().done(function () {
-        //        self.monitoringHub.server.send();
-        //    });
-        //}
-        //else {
-        //    self.monitoringHub.server.send();
-        //}
     }
 
 }

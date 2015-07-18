@@ -19,7 +19,7 @@ using Sciendo.Music.Contracts.Analysis;
 using Sciendo.Music.Solr.Query;
 using Microsoft.Owin.Hosting;
 using Microsoft.AspNet.SignalR;
-using Sciendo.Music.Agent.Analysis;
+using Sciendo.Music.Agent.Feedback;
 
 namespace Sciendo.Music.Agent
 {

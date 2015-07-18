@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNet.SignalR.Hubs;
 using Sciendo.Common.Logging;
-using Sciendo.Music.Agent.Analysis;
+using Sciendo.Music.Agent.Feedback;
 using Sciendo.Music.Contracts.Analysis;
 using Sciendo.Music.Data;
 using Sciendo.Music.Real.Analysis;
@@ -170,12 +170,12 @@ namespace Sciendo.Music.Agent.Service
 
         public void AnaliseThis(string folder, int snapshotId)
         {
-            CurrentActivity.Instance.SetAndBroadcast(snapshotId, ActivityStatus.Starting);
-            CurrentActivity.Instance.SetAndBroadcast(snapshotId, ActivityStatus.InProgress);
+            CurrentStatisticsActivity.Instance.SetAndBroadcast(snapshotId, ActivityStatus.Starting);
             if(string.IsNullOrEmpty(folder))
             {
                 folder = _musicSourceFolder;
             }
+            CurrentStatisticsActivity.Instance.SetAndBroadcast(snapshotId, ActivityStatus.InProgress);
             var elements = Directory.GetDirectories(folder,
                 "*",
                 SearchOption.AllDirectories).Where(d => Directory.GetFiles(d).Any()).AsParallel().Select(f => GetListOfElementsForFolder(f, snapshotId));
@@ -187,16 +187,16 @@ namespace Sciendo.Music.Agent.Service
                 retValue += CreateElements(newElements.ToArray());
             }
             retValue += CreateElements(directElements.ToArray());
-            CurrentActivity.Instance.BroadcastDetails("Total files analysed " + retValue);
+            CurrentStatisticsActivity.Instance.BroadcastDetails("Total files analysed " + retValue);
             Thread.Sleep(500);
-            CurrentActivity.Instance.SetAndBroadcast(snapshotId, ActivityStatus.Stopped);
+            CurrentStatisticsActivity.Instance.SetAndBroadcast(snapshotId, ActivityStatus.Stopped);
             Thread.Sleep(500);
-            CurrentActivity.Instance.ClearAndBroadcast();
+            CurrentStatisticsActivity.Instance.ClearAndBroadcast();
         }
 
         private List<Element> GetListOfElementsForFolder(string folder, int snapshotId)
         {
-            CurrentActivity.Instance.BroadcastDetails(folder);
+            CurrentStatisticsActivity.Instance.BroadcastDetails(folder);
             var newElements = new List<Element>();
             foreach (string file in Directory.GetFiles(folder))
             {

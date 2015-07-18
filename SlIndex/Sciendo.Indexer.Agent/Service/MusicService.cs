@@ -33,13 +33,6 @@ namespace Sciendo.Music.Agent.Service
             LoggingManager.Debug("MusicAgentService constructed.");
         }
 
-        private void ProgressEvent(Status arg1, string arg2)
-        {
-            var messageId = Guid.NewGuid();
-            LoggingManager.Debug("MessageId: " + messageId+ "Package: " +arg2+" status: " +arg1);
-            _progressStatuses.Enqueue(new ProgressStatus{Package="Look in server side logs for the Id",Status =arg1,Id=messageId});
-        }
-
         public int IndexOnDemand(string fromPath)
         {
             LoggingManager.Debug("Starting IndexOnDemand from path:" +fromPath);
@@ -53,7 +46,7 @@ namespace Sciendo.Music.Agent.Service
         {
             LoggingManager.Debug("Starting Index from path: " + fromPath);
             _indexingFilesProcessor.ResetCounter();
-            var reader = new Reader(ProgressEvent) {ProcessFiles = _indexingFilesProcessor.ProcessFilesBatch};
+            var reader = new Reader() {ProcessFiles = _indexingFilesProcessor.ProcessFilesBatch};
             reader.ParsePath(fromPath, _indexingFilesProcessor.CurrentConfiguration.Music.SearchPattern,processType);
             LoggingManager.Debug("Index on path: " + fromPath + " Counter: " + _indexingFilesProcessor.Counter);
             return _indexingFilesProcessor.Counter;
@@ -85,7 +78,7 @@ namespace Sciendo.Music.Agent.Service
             if (!Directory.Exists(fromPath) && !File.Exists(fromPath))
                 throw new ArgumentException("Invalid path " + fromPath);
 
-            var reader = new Reader(ProgressEvent);
+            var reader = new Reader();
             _lyricsAcquireFilesProcessor.ResetCounter();
             _lyricsAcquireFilesProcessor.RetryExisting = retryFailed;
             reader.ProcessFiles = _lyricsAcquireFilesProcessor.ProcessFilesBatch;
@@ -121,30 +114,13 @@ namespace Sciendo.Music.Agent.Service
             return _indexingFilesProcessor.CurrentConfiguration.Music.SourceDirectory;
         }
 
-        //public int UnIndexOnDemand(string musicFile)
-        //{
-        //    if (_indexingFilesProcessor.Sender.TrySend(new DeleteDocument(musicFile)).Status == Status.Error)
-        //    {
-        //        ProgressEvent(Status.Error,musicFile);
-        //        return 0;
-        //    }
-        //    if(_indexingFilesProcessor.Sender.TrySend(new Commit()).Status==Status.Error)
-        //    {
-        //        ProgressEvent(Status.Error,musicFile);
-        //        return 0;
-        //    }
-        //    ProgressEvent(Status.Done,musicFile);
-        //    return 1;
-        //}
-
         public int UnIndexOnDemand(string musicFile)
         {
             if (_indexingFilesProcessor.Sender.TrySend(new Document(musicFile,musicFile.ToLower().Replace(_indexingFilesProcessor.CurrentConfiguration.Music.SourceDirectory.ToLower(), "").Split(new[] { Path.DirectorySeparatorChar })[1],null,null,null,null)).Status!=Status.Done)
             {
-                ProgressEvent(Status.Error, musicFile);
+                LoggingManager.Debug(string.Format("{0} - {1}",Status.Error, musicFile));
                 return 0;
             }
-            ProgressEvent(Status.Done, musicFile);
             return 1;
         }
 

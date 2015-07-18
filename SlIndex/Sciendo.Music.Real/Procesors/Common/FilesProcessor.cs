@@ -19,7 +19,7 @@ namespace Sciendo.Music.Real.Procesors.Common
         }
 
         
-        public override void ProcessFilesBatch(IEnumerable<string> files, Action<Status,string> progressEvent)
+        public override void ProcessFilesBatch(IEnumerable<string> files)
         {
             LoggingManager.Debug("Starting process batch of files " +files.Count());
             DeletedDocuments=new List<DeleteDocument>();
@@ -27,23 +27,13 @@ namespace Sciendo.Music.Real.Procesors.Common
             if (Sender != null)
             {
                 var response = Sender.TrySend(package);
-                if (progressEvent != null)
-                {
-                    if (response != null && package != null && package.Length != 0 &&
-                        !string.IsNullOrEmpty(package[0].FilePathId))
-                        progressEvent(response.Status, JsonConvert.SerializeObject(package));
-                }
                 foreach (var deletedDocument in DeletedDocuments)
                 {
                     response = Sender.TrySend(deletedDocument);
-                    if (progressEvent != null)
-                        progressEvent(response.Status, JsonConvert.SerializeObject(deletedDocument));
                     Counter++;
                 }
                 var commit = new Commit();
                 response = Sender.TrySend(commit);
-                if (progressEvent != null)
-                    progressEvent(response.Status, (response.Status==Status.Done)?"Committed":"Not committed");
             }
             Counter += package.Length;
             LoggingManager.Debug("Processed batch of "+ package.Length +" files.");

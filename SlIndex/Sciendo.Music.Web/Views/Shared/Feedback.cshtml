@@ -1,20 +1,9 @@
 ﻿@Scripts.Render("~/bundles/feedback")
 <div id="feedbackArea">
     <div data-bind=" if:analysisStarted, visible:analysisStarted" class="feedbackMessages">
-        <p><label data-bind="text:staticText"/><label data-bind="text:statusMessage" /></p>
+        <p><label data-bind="text:statusMessage" /></p>
         <label data-bind="text:activityDetails" />
     </div>
 </div>
-@*<script src='@Model/hubs'></script>
-@Scripts.Render("~/bundles/feedback")
-<script>
-    alert("feedback area " + '@Model');
-    $.connection.hub.url = '@Model';
-    var appProxy = $.connection.feedbackHub;
-    var feedbackvm = new feedbackViewModel(appProxy);
-    $.connection.hub.start().done(feedbackvm.init);
-    ko.applyBindings(feedbackvm, document.getElementById("feedbackArea"));
-
-</script>*@
 
 

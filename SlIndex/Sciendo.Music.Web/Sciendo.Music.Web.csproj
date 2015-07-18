@@ -163,10 +163,6 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Hubs\AsyncOperationsHub.cs" />
-    <Compile Include="Hubs\ICacheProvider.cs" />
-    <Compile Include="Hubs\IndexingCacheData.cs" />
-    <Compile Include="Hubs\MonitoringHub.cs" />
-    <Compile Include="Hubs\WebCacheProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>

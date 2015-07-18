@@ -10,15 +10,6 @@ namespace Sciendo.Music.Agent.Processing
 {
     public class Reader
     {
-        private readonly Action<Status, string> _progressEvent;
-
-        public Reader(Action<Status, string> progressEvent)
-        {
-            LoggingManager.Debug("Constructing reader...");
-            _progressEvent = progressEvent;
-            LoggingManager.Debug("Reader constructed");
-        }
-
         public void ParsePath(string path, string searchPattern,ProcessType processType=ProcessType.None)
         {
             LoggingManager.Debug("Starting parsing path " + path +" for " + searchPattern);
@@ -29,7 +20,7 @@ namespace Sciendo.Music.Agent.Processing
             if (processType == ProcessType.Delete)
             {
                 LoggingManager.Debug("Attempting to delete " + path);
-                ProcessFiles(new[] {path}, _progressEvent);
+                ProcessFiles(new[] {path});
                 LoggingManager.Debug("Deleted " +path);
             }
             else
@@ -39,14 +30,14 @@ namespace Sciendo.Music.Agent.Processing
                     LoggingManager.Debug("Path is a directory...");
                     Directory.GetDirectories(path, "*", SearchOption.AllDirectories)
                         .ToList()
-                        .ForEach(s => ProcessFiles(GetFiles(s, searchPattern, SearchOption.TopDirectoryOnly), _progressEvent));
+                        .ForEach(s => ProcessFiles(GetFiles(s, searchPattern, SearchOption.TopDirectoryOnly)));
                     //Search the current directory also
-                    ProcessFiles(GetFiles(path, searchPattern, SearchOption.TopDirectoryOnly), _progressEvent);
+                    ProcessFiles(GetFiles(path, searchPattern, SearchOption.TopDirectoryOnly));
                 }
                 else if (File.Exists(path))
                 {
                     LoggingManager.Debug("Path is a file...");
-                    ProcessFiles(new[] { path }, _progressEvent);
+                    ProcessFiles(new[] { path });
                 }
                 else
                     throw new ArgumentException("Invalid path");
@@ -64,6 +55,6 @@ namespace Sciendo.Music.Agent.Processing
                     .SelectMany(filter => Directory.GetFiles(sourceFolder, filter, searchOption)));
         }
 
-        public Action<IEnumerable<string>, Action<Status,string>> ProcessFiles { private get; set; }
+        public Action<IEnumerable<string>> ProcessFiles { private get; set; }
     }
 }

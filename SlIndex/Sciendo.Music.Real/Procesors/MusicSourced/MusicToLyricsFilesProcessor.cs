@@ -17,7 +17,6 @@ namespace Sciendo.Music.Real.Procesors.MusicSourced
     public class MusicToLyricsFilesProcessor:FilesProcessorBase<SongInfo>
     {
         protected WebDownloaderBase WebClient;
-        private Action<Status, string> _progressEvent;
 
         public MusicToLyricsFilesProcessor()
         {
@@ -33,10 +32,9 @@ namespace Sciendo.Music.Real.Procesors.MusicSourced
 
         public bool RetryExisting { get; set; }
 
-        public override void ProcessFilesBatch(IEnumerable<string> files, Action<Status, string> progressEvent)
+        public override void ProcessFilesBatch(IEnumerable<string> files)
         {
             LoggingManager.Debug("Starting process batch of files " + files.Count());
-            _progressEvent = progressEvent;
             IEnumerable<string> subjectFiles;
             if(!RetryExisting)
             {
@@ -91,22 +89,16 @@ namespace Sciendo.Music.Real.Procesors.MusicSourced
                 using (StreamWriter fs = File.CreateText(lyricsFile))
                 {
                     fs.Write(downloadedFromApi);
-                    if (_progressEvent != null)
-                        _progressEvent(Status.LyricsDownloadedOk,  downloadedFromApi);
                     return result;
                 }
             }
             catch (PreSerializationCheckException pcex)
             {
                 LoggingManager.LogSciendoSystemError(downloadedFromApi, pcex);
-                if (_progressEvent != null)
-                    _progressEvent(Status.Error, pcex.Message);
             }
             catch (Exception ex)
             {
                 LoggingManager.LogSciendoSystemError(downloadedFromApi, ex);
-                if (_progressEvent != null)
-                    _progressEvent(Status.Error, ex.Message);
             }
             return null;
         }

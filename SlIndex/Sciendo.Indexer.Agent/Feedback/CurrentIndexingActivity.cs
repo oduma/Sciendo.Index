@@ -4,22 +4,22 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
-namespace Sciendo.Music.Agent.Analysis
+namespace Sciendo.Music.Agent.Feedback
 {
-    public class CurrentActivity
+    public class CurrentIndexingActivity
     {
-
-        private readonly static Lazy<CurrentActivity> _instance = new Lazy<CurrentActivity>(() => new CurrentActivity(GlobalHost.ConnectionManager.GetHubContext<FeedbackHub>().Clients));
+        private readonly static Lazy<CurrentIndexingActivity> _instance 
+            = new Lazy<CurrentIndexingActivity>(() => new CurrentIndexingActivity(GlobalHost.ConnectionManager.GetHubContext<FeedbackHub>().Clients));
         
-        private CurrentActivity(IHubConnectionContext<dynamic> clients)
+        private CurrentIndexingActivity(IHubConnectionContext<dynamic> clients)
         {
             Clients = clients;
-            SnapshotId = 0;
-            ActivityStatus = Analysis.ActivityStatus.None;
+            ActivityStatus = ActivityStatus.None;
         }
 
-        public static CurrentActivity Instance
+        public static CurrentIndexingActivity Instance
         {
             get
             {
@@ -27,9 +27,8 @@ namespace Sciendo.Music.Agent.Analysis
             }
         }
 
-        public void SetAndBroadcast(int snapshotId, ActivityStatus activityStatus)
+        public void SetAndBroadcast(ActivityStatus activityStatus)
         {
-            SnapshotId = snapshotId;
             ActivityStatus = activityStatus;
             BroadcastCurrentActivity();
 
@@ -42,23 +41,18 @@ namespace Sciendo.Music.Agent.Analysis
         }
         public void ClearAndBroadcast()
         {
-            SnapshotId = 0;
             ActivityStatus = ActivityStatus.None;
             Details = string.Empty;
             BroadcastCurrentActivity();
             BroadcastDetails();
         }
-        public int SnapshotId { get; private set; }
-
         public ActivityStatus ActivityStatus { get; private set; }
 
         public string Details { get; private set; }
 
         public override string ToString()
         {
-            if (SnapshotId <= 0)
-                return string.Empty;
-            return string.Format("Analysis for Snapshot with Id {0} change status to: {1}", SnapshotId, ActivityStatus.ToString());
+            return string.Format("Analysis for Snapshot with Id {0} change status to: {1}", ActivityStatus.ToString());
         }
 
         private void BroadcastDetails()
@@ -72,6 +66,7 @@ namespace Sciendo.Music.Agent.Analysis
         }
 
         private IHubConnectionContext<dynamic> Clients { get; set; }
+
 
     }
 }

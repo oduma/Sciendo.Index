@@ -7,19 +7,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Sciendo.Music.Agent.Analysis
+namespace Sciendo.Music.Agent.Feedback
 {
     public class FeedbackHub:Hub
     {
-        private CurrentActivity _currentActivity;
-        public FeedbackHub (CurrentActivity currentActivity)
+        private CurrentStatisticsActivity _currentActivity;
+        public FeedbackHub (CurrentStatisticsActivity currentActivity)
         {
             _currentActivity = currentActivity;
         }
 
         public FeedbackHub()
         {
-            _currentActivity = CurrentActivity.Instance;
+            _currentActivity = CurrentStatisticsActivity.Instance;
         }
         public string GetCurrentStatus()
         {
