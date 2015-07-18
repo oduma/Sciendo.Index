@@ -19,8 +19,6 @@ namespace Sciendo.Music.Agent.Service
         private readonly IndexingFilesProcessor _indexingFilesProcessor;
         private readonly MusicToLyricsFilesProcessor _lyricsAcquireFilesProcessor;
 
-        private readonly FixedSizedQueue<ProgressStatus> _progressStatuses;  
-
         public MusicService(IndexingFilesProcessor indexingFilesProcessor, MusicToLyricsFilesProcessor lyricsAcquireFilesProcessor, 
             int packagesRetainerLimit)
         {
@@ -29,7 +27,6 @@ namespace Sciendo.Music.Agent.Service
             _indexingFilesProcessor = indexingFilesProcessor;
             _lyricsAcquireFilesProcessor = lyricsAcquireFilesProcessor;
 
-            _progressStatuses= new FixedSizedQueue<ProgressStatus>(packagesRetainerLimit);
             LoggingManager.Debug("MusicAgentService constructed.");
         }
 
@@ -84,21 +81,6 @@ namespace Sciendo.Music.Agent.Service
             reader.ProcessFiles = _lyricsAcquireFilesProcessor.ProcessFilesBatch;
             reader.ParsePath(fromPath, _lyricsAcquireFilesProcessor.CurrentConfiguration.Music.SearchPattern,processType);
 
-        }
-
-        public ProgressStatus[] GetLastProcessedPackages()
-        {
-            LoggingManager.Debug("Starting Get last packages");
-            try
-            {
-                return _progressStatuses.GetAllInQueue();
-
-            }
-            catch(Exception ex)
-            {
-                LoggingManager.LogSciendoSystemError(ex);
-                return null;
-            }
         }
 
         public string[] ListAvailablePathsForIndexing(string fromPath)

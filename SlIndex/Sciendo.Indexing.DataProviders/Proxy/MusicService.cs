@@ -35,87 +35,6 @@ namespace Sciendo.Music.Contracts.MusicService
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="ProgressStatus", Namespace="http://schemas.datacontract.org/2004/07/Sciendo.Music.Contracts.MusicService")]
-    public partial class ProgressStatus : object, System.Runtime.Serialization.IExtensibleDataObject
-    {
-        
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        private System.Guid IdField;
-        
-        private System.DateTime MessageCreationDateTimeField;
-        
-        private string PackageField;
-        
-        private Sciendo.Music.Contracts.Common.Status StatusField;
-        
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData
-        {
-            get
-            {
-                return this.extensionDataField;
-            }
-            set
-            {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Guid Id
-        {
-            get
-            {
-                return this.IdField;
-            }
-            set
-            {
-                this.IdField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.DateTime MessageCreationDateTime
-        {
-            get
-            {
-                return this.MessageCreationDateTimeField;
-            }
-            set
-            {
-                this.MessageCreationDateTimeField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Package
-        {
-            get
-            {
-                return this.PackageField;
-            }
-            set
-            {
-                this.PackageField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public Sciendo.Music.Contracts.Common.Status Status
-        {
-            get
-            {
-                return this.StatusField;
-            }
-            set
-            {
-                this.StatusField = value;
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="WorkingSet", Namespace="http://schemas.datacontract.org/2004/07/Sciendo.Music.Contracts.MusicService")]
     public partial class WorkingSet : object, System.Runtime.Serialization.IExtensibleDataObject
     {
@@ -165,29 +84,6 @@ namespace Sciendo.Music.Contracts.MusicService
         }
     }
 }
-namespace Sciendo.Music.Contracts.Common
-{
-    using System.Runtime.Serialization;
-    
-    
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Status", Namespace="http://schemas.datacontract.org/2004/07/Sciendo.Music.Contracts.Common")]
-    public enum Status : int
-    {
-        
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        None = 0,
-        
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        Error = 1,
-        
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        LyricsDownloadedOk = 2,
-        
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        Done = 3,
-    }
-}
 
 
 [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -218,14 +114,6 @@ public interface IMusic
     System.IAsyncResult BeginAcquireLyricsOnDemandFor(string musicPath, bool retryFailed, System.AsyncCallback callback, object asyncState);
     
     int EndAcquireLyricsOnDemandFor(System.IAsyncResult result);
-    
-    [System.ServiceModel.OperationContractAttribute(Action="http://Sciendo.Music.Agent/IMusic/GetLastProcessedPackages", ReplyAction="http://Sciendo.Music.Agent/IMusic/GetLastProcessedPackagesResponse")]
-    Sciendo.Music.Contracts.MusicService.ProgressStatus[] GetLastProcessedPackages();
-    
-    [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://Sciendo.Music.Agent/IMusic/GetLastProcessedPackages", ReplyAction="http://Sciendo.Music.Agent/IMusic/GetLastProcessedPackagesResponse")]
-    System.IAsyncResult BeginGetLastProcessedPackages(System.AsyncCallback callback, object asyncState);
-    
-    Sciendo.Music.Contracts.MusicService.ProgressStatus[] EndGetLastProcessedPackages(System.IAsyncResult result);
     
     [System.ServiceModel.OperationContractAttribute(Action="http://Sciendo.Music.Agent/IMusic/ListAvailablePathsForIndexing", ReplyAction="http://Sciendo.Music.Agent/IMusic/ListAvailablePathsForIndexingResponse")]
     string[] ListAvailablePathsForIndexing(string fromPath);
@@ -330,29 +218,6 @@ public partial class AcquireLyricsOnDemandForCompletedEventArgs : System.Compone
         {
             base.RaiseExceptionIfNecessary();
             return ((int)(this.results[0]));
-        }
-    }
-}
-
-[System.Diagnostics.DebuggerStepThroughAttribute()]
-[System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-public partial class GetLastProcessedPackagesCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs
-{
-    
-    private object[] results;
-    
-    public GetLastProcessedPackagesCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-            base(exception, cancelled, userState)
-    {
-        this.results = results;
-    }
-    
-    public Sciendo.Music.Contracts.MusicService.ProgressStatus[] Result
-    {
-        get
-        {
-            base.RaiseExceptionIfNecessary();
-            return ((Sciendo.Music.Contracts.MusicService.ProgressStatus[])(this.results[0]));
         }
     }
 }
@@ -472,12 +337,6 @@ public partial class MusicClient : System.ServiceModel.ClientBase<IMusic>, IMusi
     
     private System.Threading.SendOrPostCallback onAcquireLyricsOnDemandForCompletedDelegate;
     
-    private BeginOperationDelegate onBeginGetLastProcessedPackagesDelegate;
-    
-    private EndOperationDelegate onEndGetLastProcessedPackagesDelegate;
-    
-    private System.Threading.SendOrPostCallback onGetLastProcessedPackagesCompletedDelegate;
-    
     private BeginOperationDelegate onBeginListAvailablePathsForIndexingDelegate;
     
     private EndOperationDelegate onEndListAvailablePathsForIndexingDelegate;
@@ -531,8 +390,6 @@ public partial class MusicClient : System.ServiceModel.ClientBase<IMusic>, IMusi
     public event System.EventHandler<IndexCompletedEventArgs> IndexCompleted;
     
     public event System.EventHandler<AcquireLyricsOnDemandForCompletedEventArgs> AcquireLyricsOnDemandForCompleted;
-    
-    public event System.EventHandler<GetLastProcessedPackagesCompletedEventArgs> GetLastProcessedPackagesCompleted;
     
     public event System.EventHandler<ListAvailablePathsForIndexingCompletedEventArgs> ListAvailablePathsForIndexingCompleted;
     
@@ -730,66 +587,6 @@ public partial class MusicClient : System.ServiceModel.ClientBase<IMusic>, IMusi
         base.InvokeAsync(this.onBeginAcquireLyricsOnDemandForDelegate, new object[] {
                     musicPath,
                     retryFailed}, this.onEndAcquireLyricsOnDemandForDelegate, this.onAcquireLyricsOnDemandForCompletedDelegate, userState);
-    }
-    
-    public Sciendo.Music.Contracts.MusicService.ProgressStatus[] GetLastProcessedPackages()
-    {
-        return base.Channel.GetLastProcessedPackages();
-    }
-    
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    public System.IAsyncResult BeginGetLastProcessedPackages(System.AsyncCallback callback, object asyncState)
-    {
-        return base.Channel.BeginGetLastProcessedPackages(callback, asyncState);
-    }
-    
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    public Sciendo.Music.Contracts.MusicService.ProgressStatus[] EndGetLastProcessedPackages(System.IAsyncResult result)
-    {
-        return base.Channel.EndGetLastProcessedPackages(result);
-    }
-    
-    private System.IAsyncResult OnBeginGetLastProcessedPackages(object[] inValues, System.AsyncCallback callback, object asyncState)
-    {
-        return this.BeginGetLastProcessedPackages(callback, asyncState);
-    }
-    
-    private object[] OnEndGetLastProcessedPackages(System.IAsyncResult result)
-    {
-        Sciendo.Music.Contracts.MusicService.ProgressStatus[] retVal = this.EndGetLastProcessedPackages(result);
-        return new object[] {
-                retVal};
-    }
-    
-    private void OnGetLastProcessedPackagesCompleted(object state)
-    {
-        if ((this.GetLastProcessedPackagesCompleted != null))
-        {
-            InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
-            this.GetLastProcessedPackagesCompleted(this, new GetLastProcessedPackagesCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
-        }
-    }
-    
-    public void GetLastProcessedPackagesAsync()
-    {
-        this.GetLastProcessedPackagesAsync(null);
-    }
-    
-    public void GetLastProcessedPackagesAsync(object userState)
-    {
-        if ((this.onBeginGetLastProcessedPackagesDelegate == null))
-        {
-            this.onBeginGetLastProcessedPackagesDelegate = new BeginOperationDelegate(this.OnBeginGetLastProcessedPackages);
-        }
-        if ((this.onEndGetLastProcessedPackagesDelegate == null))
-        {
-            this.onEndGetLastProcessedPackagesDelegate = new EndOperationDelegate(this.OnEndGetLastProcessedPackages);
-        }
-        if ((this.onGetLastProcessedPackagesCompletedDelegate == null))
-        {
-            this.onGetLastProcessedPackagesCompletedDelegate = new System.Threading.SendOrPostCallback(this.OnGetLastProcessedPackagesCompleted);
-        }
-        base.InvokeAsync(this.onBeginGetLastProcessedPackagesDelegate, null, this.onEndGetLastProcessedPackagesDelegate, this.onGetLastProcessedPackagesCompletedDelegate, userState);
     }
     
     public string[] ListAvailablePathsForIndexing(string fromPath)

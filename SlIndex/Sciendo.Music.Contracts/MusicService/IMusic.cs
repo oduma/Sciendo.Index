@@ -16,9 +16,6 @@ namespace Sciendo.Music.Contracts.MusicService
         int AcquireLyricsOnDemandFor(string musicPath, bool retryFailed);
 
         [OperationContract]
-        ProgressStatus[] GetLastProcessedPackages();
-
-        [OperationContract]
         string[] ListAvailablePathsForIndexing(string fromPath);
 
         [OperationContract]

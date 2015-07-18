@@ -71,7 +71,6 @@
     <Compile Include="Models\Analysis\StatisticsModel.cs" />
     <Compile Include="Models\Indexing\IndexingResult.cs" />
     <Compile Include="Models\Indexing\IndexModel.cs" />
-    <Compile Include="Models\Indexing\ProgressStatusModel.cs" />
     <Compile Include="Models\Playlist\LastFm\Info.cs" />
     <Compile Include="Models\Playlist\LastFm\LastFmResponse.cs" />
     <Compile Include="Models\Playlist\LastFm\LovedDate.cs" />

@@ -133,7 +133,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service\AnalysisService.cs" />
     <Compile Include="Service\MusicService.cs" />
-    <Compile Include="Service\Monitoring\FixedSizeQueue.cs" />
     <Compile Include="Service\Monitoring\MonitoringInstance.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
