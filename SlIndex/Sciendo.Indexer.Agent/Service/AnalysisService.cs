@@ -16,7 +16,7 @@ using System.Threading.Tasks;
 
 namespace Sciendo.Music.Agent.Service
 {
-    [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single)]
+    [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single,ConcurrencyMode=ConcurrencyMode.Multiple)]
     public class AnalysisService:IAnalysis
     {
         private readonly string _musicSourceFolder;

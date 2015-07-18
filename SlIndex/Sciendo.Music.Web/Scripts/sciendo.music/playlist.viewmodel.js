@@ -28,4 +28,4 @@
 }
 
 // Initiate the Knockout bindings
-ko.applyBindings(new playlistViewModel());
+ko.applyBindings(new playlistViewModel(), document.getElementById("body"));

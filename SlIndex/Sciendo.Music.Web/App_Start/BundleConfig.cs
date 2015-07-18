@@ -58,6 +58,7 @@ namespace Sciendo.Music.Web
     "~/Scripts/sciendo.music/knockout*",
 "~/Scripts/sciendo.music/statistics*"));
 
+            bundles.Add(new ScriptBundle("~/bundles/feedback").Include("~/Scripts/sciendo.music/feedback*"));
             // Set EnableOptimizations to false for debugging. For more information,
             // visit http://go.microsoft.com/fwlink/?LinkId=301862
             BundleTable.EnableOptimizations = false;

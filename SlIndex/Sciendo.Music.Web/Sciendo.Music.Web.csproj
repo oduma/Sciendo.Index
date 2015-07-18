@@ -248,6 +248,7 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\sciendo.music\feedback.viewmodel.js" />
     <Content Include="Scripts\sciendo.music\playlist.datacontext.js" />
     <Content Include="Scripts\sciendo.music\playlist.viewmodel.js" />
     <Content Include="Scripts\sciendo.music\index.autocomplete.js" />
@@ -276,6 +277,7 @@
     <Content Include="Views\Query\Index.cshtml" />
     <Content Include="Views\Query\BuildPlaylist.cshtml" />
     <Content Include="Views\Statistics\StatisticsView.cshtml" />
+    <Content Include="Views\Shared\Feedback.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\themes\base\images\" />

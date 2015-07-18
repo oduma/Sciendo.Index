@@ -15,6 +15,15 @@
                 contextPath: '@Url.Content("~")'
             };
         </script>
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/jqueryui")
+        @Scripts.Render("~/bundles/bootstrap")
+        @Scripts.Render("~/bundles/knockout")
+        @Scripts.Render("~/bundles/signalR")
+        @if(true)
+        {
+            Html.RenderPartial("~/Views/Shared/Feedback.cshtml",SciendoConfiguration.StatisticsConfiguration.FeedbackUrl);
+        }
         <header>
             <div class="content-wrapper">
                 <div class="float-right">
@@ -42,11 +51,17 @@
         <footer>
                 <p>&copy; @DateTime.Now.Year - Sciendo Music Web</p>
             </footer>
+        <script src='@SciendoConfiguration.StatisticsConfiguration.FeedbackUrl/hubs'></script>
+        @Scripts.Render("~/bundles/feedback")
+        <script>
+    $.connection.hub.url = '@SciendoConfiguration.StatisticsConfiguration.FeedbackUrl';
+    var appProxy = $.connection.feedbackHub;
+    var feedbackvm = new feedbackViewModel(appProxy);
+    $.connection.hub.start().done(feedbackvm.init);
+    ko.applyBindings(feedbackvm, document.getElementById("feedbackArea"));
 
-        @Scripts.Render("~/bundles/jquery")
-        @Scripts.Render("~/bundles/jqueryui")
-        @Scripts.Render("~/bundles/bootstrap")
-        @Scripts.Render("~/bundles/knockout")
+</script>
+
         @RenderSection("scripts", required: false)
     </body>
 </html>

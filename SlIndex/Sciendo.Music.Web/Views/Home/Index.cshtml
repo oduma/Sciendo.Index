@@ -50,9 +50,10 @@
     @Scripts.Render("~/bundles/jqueryui")
     @Scripts.Render("~/bundles/index")
     <script>
+
         // Initiate the Knockout bindings
         var vm = new indexViewModel("@Server.HtmlEncode(@Model.SourceFolder)");
-        ko.applyBindings(vm);
+        ko.applyBindings(vm, document.getElementById("body"));
         //$.connection.hub.start().done(function () {
         //    vm.toggle(true);
         //});

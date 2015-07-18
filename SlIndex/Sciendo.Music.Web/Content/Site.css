@@ -944,3 +944,11 @@ tr.pager td {
   border-top-color: #ffffff;
   border-bottom-color: #ffffff;
 }
+
+.feedbackMessages{
+    background-color:cadetblue;
+    color:white;
+    padding:20px;
+    width:100%;
+
+}
