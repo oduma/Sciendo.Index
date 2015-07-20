@@ -31,36 +31,19 @@ namespace Sciendo.Music.Real.Procesors.Common
                 if (package != null && package.Length > 0)
                 {
                     var response = Sender.TrySend(package);
-                    if (response.Status == Status.Done)
-                    {
-                        CurrentIndexingActivity.Instance.BroadcastDetails("Indexed OK: " + package.Stringify());
-                    }
-                    else
-                    {
-                        CurrentIndexingActivity.Instance.BroadcastDetails("Error Indexing: " + package.Stringify());
-                    }
                 }
                 foreach (var deletedDocument in DeletedDocuments)
                 {
                     var response = Sender.TrySend(deletedDocument);
                     if (response.Status == Status.Done)
                     {
-                        CurrentIndexingActivity.Instance.BroadcastDetails("Deleted: " + deletedDocument.DeleteById.Id);
                         Counter++;
-                    }
-                    else
-                    {
-                        CurrentIndexingActivity.Instance.BroadcastDetails("Error Deleting: " + deletedDocument.DeleteById.Id);
                     }
                 }
                 if(package.Length>0 && DeletedDocuments.Count()>0)
                 {
                     var commit = new Commit();
                     var commitResponse = Sender.TrySend(commit);
-                    if (commitResponse.Status == Status.Done)
-                        CurrentIndexingActivity.Instance.BroadcastDetails("Committed Ok.");
-                    else
-                        CurrentIndexingActivity.Instance.BroadcastDetails("Error Committing.");
                     
                 }
             }

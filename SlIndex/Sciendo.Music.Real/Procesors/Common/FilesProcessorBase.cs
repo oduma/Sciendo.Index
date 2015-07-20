@@ -4,12 +4,12 @@ using Sciendo.Common.Logging;
 using Sciendo.Music.Contracts.Common;
 using Sciendo.Music.Contracts.Processing;
 using Sciendo.Music.Real.Procesors.Configuration;
+using Sciendo.Music.Real.Feedback;
 
 namespace Sciendo.Music.Real.Procesors.Common
 {
     public abstract class FilesProcessorBase<TIn>
     {
-        
         public ILyricsDeserializer LyricsDeserializer { get; set; }
 
         public AgentConfigurationSection CurrentConfiguration { get; protected set; }

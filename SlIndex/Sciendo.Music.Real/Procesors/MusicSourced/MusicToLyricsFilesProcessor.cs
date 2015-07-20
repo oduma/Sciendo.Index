@@ -11,6 +11,7 @@ using Sciendo.Music.Contracts.Processing;
 using Sciendo.Music.Real.Lyrics.Provider;
 using Sciendo.Music.Real.Procesors.Common;
 using Sciendo.Music.Real.Procesors.Configuration;
+using Sciendo.Music.Real.Feedback;
 
 namespace Sciendo.Music.Real.Procesors.MusicSourced
 {

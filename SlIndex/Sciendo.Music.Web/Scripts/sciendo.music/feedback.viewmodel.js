@@ -7,11 +7,14 @@
     self.indexingActivityDetails = ko.observable("");
     self.playlistStatusMessage = ko.observable("");
     self.playlistActivityDetails = ko.observable("");
+    self.getLyricsStatusMessage = ko.observable("");
+    self.getLyricsActivityDetails = ko.observable("");
+    self.getLyricsStarted = ko.observable(false);
     self.playlistStarted = ko.observable(false);
     self.analysisStarted = ko.observable(false);
     self.indexingStarted = ko.observable(false);
     self.started = ko.computed(function () {
-        return self.analysisStarted() || self.indexingStarted() || self.playlistStarted();
+        return self.analysisStarted() || self.indexingStarted() || self.playlistStarted() || self.getLyricsStarted();
     });
     self.init = function () {
         appProxy.server.getCurrentAnalysisStatus().done(
@@ -29,6 +32,18 @@
                 if (message != "") {
                     self.indexingStarted(true);
                     self.indexingStatusMessage(message);
+                }
+
+            }
+            ).fail(function (a1, a2) {
+                alert(a1);
+            }
+            );
+        appProxy.server.getCurrentGetLyricsStatus().done(
+            function (message) {
+                if (message != "") {
+                    self.getLyricsStarted(true);
+                    self.getLyricsStatusMessage(message);
                 }
 
             }
@@ -64,5 +79,18 @@
 
     self.appProxy.client.updateIndexingDetails = function (data) {
         self.indexingActivityDetails(data);
+    }
+    self.appProxy.client.updateCurrentGetLyricsActivity = function (data) {
+        if (data != "") {
+            self.getLyricsStarted(true);
+            self.getLyricsStatusMessage(data);
+        }
+        else {
+            self.getLyricsStarted(false);
+        }
+    }
+
+    self.appProxy.client.updateGetLyricsDetails = function (data) {
+        self.getLyricsActivityDetails(data);
     }
 }

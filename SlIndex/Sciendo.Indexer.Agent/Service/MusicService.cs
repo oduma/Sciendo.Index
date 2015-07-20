@@ -19,7 +19,7 @@ namespace Sciendo.Music.Agent.Service
     public class MusicService:IMusic
     {
         private readonly IndexingFilesProcessor _indexingFilesProcessor;
-        private readonly MusicToLyricsFilesProcessor _lyricsAcquireFilesProcessor;
+        private readonly MusicToLyricsFilesProcessor _musicToLyricsFilesProcessor;
 
         public MusicService(IndexingFilesProcessor indexingFilesProcessor, MusicToLyricsFilesProcessor lyricsAcquireFilesProcessor, 
             int packagesRetainerLimit)
@@ -27,7 +27,7 @@ namespace Sciendo.Music.Agent.Service
             LoggingManager.Debug("Constructing MusicAgentService...");
 
             _indexingFilesProcessor = indexingFilesProcessor;
-            _lyricsAcquireFilesProcessor = lyricsAcquireFilesProcessor;
+            _musicToLyricsFilesProcessor = lyricsAcquireFilesProcessor;
 
             LoggingManager.Debug("MusicAgentService constructed.");
         }
@@ -46,7 +46,7 @@ namespace Sciendo.Music.Agent.Service
             LoggingManager.Debug("Starting Index from path: " + fromPath);
             _indexingFilesProcessor.ResetCounter();
             CurrentIndexingActivity.Instance.SetAndBroadcast(fromPath, ActivityStatus.Starting);
-            var reader = new Reader() {ProcessFiles = _indexingFilesProcessor.ProcessFilesBatch};
+            var reader = new Reader(CurrentIndexingActivity.Instance) {ProcessFiles = _indexingFilesProcessor.ProcessFilesBatch};
             reader.ParsePath(fromPath, _indexingFilesProcessor.CurrentConfiguration.Music.SearchPattern,processType);
             CurrentIndexingActivity.Instance.BroadcastDetails("Total Files indexed: " + _indexingFilesProcessor.Counter);
             Thread.Sleep(500);
@@ -67,11 +67,11 @@ namespace Sciendo.Music.Agent.Service
             catch(Exception ex)
             {
                 LoggingManager.LogSciendoSystemError(ex);
-                LoggingManager.Debug("Errored while AcquiringLyricsOnDemand on path: " + musicPath + " Counter: " + _lyricsAcquireFilesProcessor.Counter);
-                return _lyricsAcquireFilesProcessor.Counter;
+                LoggingManager.Debug("Errored while AcquiringLyricsOnDemand on path: " + musicPath + " Counter: " + _musicToLyricsFilesProcessor.Counter);
+                return _musicToLyricsFilesProcessor.Counter;
             }
-            LoggingManager.Debug("AcquiredLyricsOnDemand on path: " + musicPath + " Counter: " + _lyricsAcquireFilesProcessor.Counter);
-            return _lyricsAcquireFilesProcessor.Counter;
+            LoggingManager.Debug("AcquiredLyricsOnDemand on path: " + musicPath + " Counter: " + _musicToLyricsFilesProcessor.Counter);
+            return _musicToLyricsFilesProcessor.Counter;
         }
 
         private void AcquireLyrics(string fromPath, bool retryFailed, ProcessType processType)
@@ -81,13 +81,17 @@ namespace Sciendo.Music.Agent.Service
                 throw new ArgumentNullException("fromPath");
             if (!Directory.Exists(fromPath) && !File.Exists(fromPath))
                 throw new ArgumentException("Invalid path " + fromPath);
-
-            var reader = new Reader();
-            _lyricsAcquireFilesProcessor.ResetCounter();
-            _lyricsAcquireFilesProcessor.RetryExisting = retryFailed;
-            reader.ProcessFiles = _lyricsAcquireFilesProcessor.ProcessFilesBatch;
-            reader.ParsePath(fromPath, _lyricsAcquireFilesProcessor.CurrentConfiguration.Music.SearchPattern,processType);
-
+            CurrentGetLyricsActivity.Instance.SetAndBroadcast(fromPath, ActivityStatus.Starting);
+            var reader = new Reader(CurrentGetLyricsActivity.Instance);
+            _musicToLyricsFilesProcessor.ResetCounter();
+            _musicToLyricsFilesProcessor.RetryExisting = retryFailed;
+            reader.ProcessFiles = _musicToLyricsFilesProcessor.ProcessFilesBatch;
+            reader.ParsePath(fromPath, _musicToLyricsFilesProcessor.CurrentConfiguration.Music.SearchPattern,processType);
+            CurrentGetLyricsActivity.Instance.BroadcastDetails("Total Lyrics Acquired: " + _musicToLyricsFilesProcessor.Counter);
+            Thread.Sleep(500);
+            CurrentGetLyricsActivity.Instance.SetAndBroadcast(fromPath, ActivityStatus.Stopped);
+            Thread.Sleep(500);
+            CurrentGetLyricsActivity.Instance.ClearAndBroadcast();
         }
 
         public string[] ListAvailablePathsForIndexing(string fromPath)
@@ -118,7 +122,7 @@ namespace Sciendo.Music.Agent.Service
             return new WorkingSet
             {
                 IndexingFilesProcessorType = _indexingFilesProcessor.GetType(),
-                LyricsAcquirerFilesProcessorType = _lyricsAcquireFilesProcessor.GetType()
+                LyricsAcquirerFilesProcessorType = _musicToLyricsFilesProcessor.GetType()
             };
         }
     }

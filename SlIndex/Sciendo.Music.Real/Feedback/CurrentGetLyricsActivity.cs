@@ -8,18 +8,18 @@ using System.Threading.Tasks;
 
 namespace Sciendo.Music.Real.Feedback
 {
-    public class CurrentIndexingActivity : ICurrentFileActivity
+    public class CurrentGetLyricsActivity:ICurrentFileActivity
     {
-        private readonly static Lazy<CurrentIndexingActivity> _instance 
-            = new Lazy<CurrentIndexingActivity>(() => new CurrentIndexingActivity(GlobalHost.ConnectionManager.GetHubContext<FeedbackHub>().Clients));
-        
-        private CurrentIndexingActivity(IHubConnectionContext<dynamic> clients)
+        private readonly static Lazy<CurrentGetLyricsActivity> _instance
+            = new Lazy<CurrentGetLyricsActivity>(() => new CurrentGetLyricsActivity(GlobalHost.ConnectionManager.GetHubContext<FeedbackHub>().Clients));
+
+        private CurrentGetLyricsActivity(IHubConnectionContext<dynamic> clients)
         {
             Clients = clients;
             ActivityStatus = ActivityStatus.None;
         }
 
-        public static CurrentIndexingActivity Instance
+        public static CurrentGetLyricsActivity Instance
         {
             get
             {
@@ -55,17 +55,17 @@ namespace Sciendo.Music.Real.Feedback
         {
             if (ActivityStatus == ActivityStatus.None)
                 return "";
-            return string.Format("Indexing from: {0} change status to: {1}",FromPath, ActivityStatus.ToString());
+            return string.Format("AcquireLyrics from: {0} change status to: {1}", FromPath, ActivityStatus.ToString());
         }
 
         private void BroadcastDetails()
         {
-            Clients.All.updateIndexingDetails(Details);
+            Clients.All.updateGetLyricsDetails(Details);
         }
 
         private void BroadcastCurrentActivity()
         {
-            Clients.All.updateCurrentIndexingActivity(this.ToString());
+            Clients.All.updateCurrentGetLyricsActivity(this.ToString());
         }
 
         private IHubConnectionContext<dynamic> Clients { get; set; }

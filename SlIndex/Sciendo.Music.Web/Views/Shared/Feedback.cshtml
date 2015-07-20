@@ -5,6 +5,10 @@
             <span data-bind="text:indexingStatusMessage" style="display:inline;" /></span>
             <span data-bind="text:indexingActivityDetails" class="messages-details"></span>
         </div>
+        <div data-bind="visible:getLyricsStarted" class="indexingMessages">
+            <span data-bind="text:getLyricsStatusMessage" style="display:inline;" /></span>
+            <span data-bind="text:getLyricsActivityDetails" class="messages-details"></span>
+        </div>
         <div data-bind="visible:playlistStarted" class="playlistMessages">
             <span data-bind="text:playlistStatusMessage" style="display:inline;" /></span>
             <span data-bind="text:playlistActivityDetails" class="messages-details"></span>
