@@ -5,7 +5,7 @@ namespace Sciendo.Music.Contracts.Monitoring
     public interface IFolderMonitor
     {
         void Stop();
-        Func<string,ProcessType, int>[] ProcessFile { set; }
+        Action<string,ProcessType> ProcessFile { set; }
         bool More { get; }
         void Start();
     }

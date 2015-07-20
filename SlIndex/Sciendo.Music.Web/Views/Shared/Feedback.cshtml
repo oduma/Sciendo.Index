@@ -1,8 +1,18 @@
 ﻿@Scripts.Render("~/bundles/feedback")
 <div id="feedbackArea">
-    <div data-bind=" if:analysisStarted, visible:analysisStarted" class="feedbackMessages">
-        <p><label data-bind="text:statusMessage" /></p>
-        <label data-bind="text:activityDetails" />
+    <div class="feedbackMessages" data-bind="if:started, visible:started">
+        <div data-bind="visible:indexingStarted" class="indexingMessages">
+            <span data-bind="text:indexingStatusMessage" style="display:inline;" /></span>
+            <span data-bind="text:indexingActivityDetails" class="messages-details"></span>
+        </div>
+        <div data-bind="visible:playlistStarted" class="playlistMessages">
+            <span data-bind="text:playlistStatusMessage" style="display:inline;" /></span>
+            <span data-bind="text:playlistActivityDetails" class="messages-details"></span>
+        </div>
+        <div data-bind="visible:analysisStarted" class="analysisMessages">
+            <span id="analysisStatus" data-bind="text:analysisStatusMessage" style="display:inline;"></span>
+            <span id="analysisDetails" data-bind="text:analysisActivityDetails" class="messages-details"></span>
+        </div>
     </div>
 </div>
 

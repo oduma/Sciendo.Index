@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Sciendo.Music.Agent.Feedback
+namespace Sciendo.Music.Real.Feedback
 {
     public enum ActivityStatus
     {

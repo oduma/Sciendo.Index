@@ -6,6 +6,8 @@ using Newtonsoft.Json;
 using Sciendo.Common.Logging;
 using Sciendo.Music.Contracts.Common;
 using Sciendo.Music.Contracts.Solr;
+using Sciendo.Music.Real.Feedback;
+using System.Threading;
 
 namespace Sciendo.Music.Real.Procesors.Common
 {
@@ -26,14 +28,41 @@ namespace Sciendo.Music.Real.Procesors.Common
             var package = TransformFiles(files,TransformToDocument).Where(p=>p!=null).ToArray();
             if (Sender != null)
             {
-                var response = Sender.TrySend(package);
+                if (package != null && package.Length > 0)
+                {
+                    var response = Sender.TrySend(package);
+                    if (response.Status == Status.Done)
+                    {
+                        CurrentIndexingActivity.Instance.BroadcastDetails("Indexed OK: " + package.Stringify());
+                    }
+                    else
+                    {
+                        CurrentIndexingActivity.Instance.BroadcastDetails("Error Indexing: " + package.Stringify());
+                    }
+                }
                 foreach (var deletedDocument in DeletedDocuments)
                 {
-                    response = Sender.TrySend(deletedDocument);
-                    Counter++;
+                    var response = Sender.TrySend(deletedDocument);
+                    if (response.Status == Status.Done)
+                    {
+                        CurrentIndexingActivity.Instance.BroadcastDetails("Deleted: " + deletedDocument.DeleteById.Id);
+                        Counter++;
+                    }
+                    else
+                    {
+                        CurrentIndexingActivity.Instance.BroadcastDetails("Error Deleting: " + deletedDocument.DeleteById.Id);
+                    }
                 }
-                var commit = new Commit();
-                response = Sender.TrySend(commit);
+                if(package.Length>0 && DeletedDocuments.Count()>0)
+                {
+                    var commit = new Commit();
+                    var commitResponse = Sender.TrySend(commit);
+                    if (commitResponse.Status == Status.Done)
+                        CurrentIndexingActivity.Instance.BroadcastDetails("Committed Ok.");
+                    else
+                        CurrentIndexingActivity.Instance.BroadcastDetails("Error Committing.");
+                    
+                }
             }
             Counter += package.Length;
             LoggingManager.Debug("Processed batch of "+ package.Length +" files.");

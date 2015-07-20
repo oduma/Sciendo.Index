@@ -69,7 +69,7 @@ namespace Sciendo.Music.Real.Monitoring
 
         private DirectoryMonitor _fsWatcher;
 
-        public Func<string,ProcessType,int>[] ProcessFile { private get; set; }
+        public Action<string,ProcessType> ProcessFile { private get; set; }
 
         public void Start()
         {
@@ -108,11 +108,8 @@ namespace Sciendo.Music.Real.Monitoring
 
             if (ProcessFile != null)
             {
-                foreach (var processFile in ProcessFile)
-                {
-                    processFile(frompath,ProcessType.Delete);
-                    processFile(topath, ProcessType.Update);
-                }
+                ProcessFile(frompath,ProcessType.Delete);
+                ProcessFile(topath, ProcessType.Update);
             }
         }
 
@@ -128,10 +125,7 @@ namespace Sciendo.Music.Real.Monitoring
                 return;
             if (ProcessFile != null)
             {
-                foreach (var processFile in ProcessFile)
-                {
-                    processFile(path, ProcessType.Delete);
-                }
+                ProcessFile(path, ProcessType.Delete);
             }
         }
 
@@ -156,8 +150,7 @@ namespace Sciendo.Music.Real.Monitoring
             //queue an update;
             if (ProcessFile != null)
             {
-                foreach (var processFile in ProcessFile)
-                    processFile(path,ProcessType.Update);
+                ProcessFile(path,ProcessType.Update);
             }
         }
 

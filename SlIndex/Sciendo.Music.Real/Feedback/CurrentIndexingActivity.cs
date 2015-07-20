@@ -4,22 +4,22 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
-namespace Sciendo.Music.Agent.Feedback
+namespace Sciendo.Music.Real.Feedback
 {
-    public class CurrentStatisticsActivity
+    public class CurrentIndexingActivity
     {
-
-        private readonly static Lazy<CurrentStatisticsActivity> _instance = new Lazy<CurrentStatisticsActivity>(() => new CurrentStatisticsActivity(GlobalHost.ConnectionManager.GetHubContext<FeedbackHub>().Clients));
+        private readonly static Lazy<CurrentIndexingActivity> _instance 
+            = new Lazy<CurrentIndexingActivity>(() => new CurrentIndexingActivity(GlobalHost.ConnectionManager.GetHubContext<FeedbackHub>().Clients));
         
-        private CurrentStatisticsActivity(IHubConnectionContext<dynamic> clients)
+        private CurrentIndexingActivity(IHubConnectionContext<dynamic> clients)
         {
             Clients = clients;
-            SnapshotId = 0;
             ActivityStatus = ActivityStatus.None;
         }
 
-        public static CurrentStatisticsActivity Instance
+        public static CurrentIndexingActivity Instance
         {
             get
             {
@@ -27,10 +27,10 @@ namespace Sciendo.Music.Agent.Feedback
             }
         }
 
-        public void SetAndBroadcast(int snapshotId, ActivityStatus activityStatus)
+        public void SetAndBroadcast(string fromPath, ActivityStatus activityStatus)
         {
-            SnapshotId = snapshotId;
             ActivityStatus = activityStatus;
+            FromPath = fromPath;
             BroadcastCurrentActivity();
 
         }
@@ -42,36 +42,34 @@ namespace Sciendo.Music.Agent.Feedback
         }
         public void ClearAndBroadcast()
         {
-            SnapshotId = 0;
             ActivityStatus = ActivityStatus.None;
             Details = string.Empty;
             BroadcastCurrentActivity();
             BroadcastDetails();
         }
-        public int SnapshotId { get; private set; }
-
         public ActivityStatus ActivityStatus { get; private set; }
 
         public string Details { get; private set; }
 
         public override string ToString()
         {
-            if (SnapshotId <= 0)
-                return string.Empty;
-            return string.Format("Analysis for Snapshot with Id {0} change status to: {1}", SnapshotId, ActivityStatus.ToString());
+            if (ActivityStatus == ActivityStatus.None)
+                return "";
+            return string.Format("Indexing from: {0} change status to: {1}",FromPath, ActivityStatus.ToString());
         }
 
         private void BroadcastDetails()
         {
-            Clients.All.updateDetails(Details);
+            Clients.All.updateIndexingDetails(Details);
         }
 
         private void BroadcastCurrentActivity()
         {
-            Clients.All.updateCurrentActivity(this.ToString());
+            Clients.All.updateCurrentIndexingActivity(this.ToString());
         }
 
         private IHubConnectionContext<dynamic> Clients { get; set; }
 
+        public string FromPath { get; private set; }
     }
 }

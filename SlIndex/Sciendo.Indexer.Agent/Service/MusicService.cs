@@ -10,6 +10,8 @@ using Sciendo.Music.Contracts.Monitoring;
 using Sciendo.Music.Contracts.MusicService;
 using Sciendo.Music.Contracts.Solr;
 using Sciendo.Music.Real.Procesors.MusicSourced;
+using Sciendo.Music.Real.Feedback;
+using System.Threading;
 
 namespace Sciendo.Music.Agent.Service
 {
@@ -39,14 +41,19 @@ namespace Sciendo.Music.Agent.Service
             return _indexingFilesProcessor.Counter;
         }
 
-        public int Index(string fromPath,ProcessType processType)
+        public void Index(string fromPath,ProcessType processType)
         {
             LoggingManager.Debug("Starting Index from path: " + fromPath);
             _indexingFilesProcessor.ResetCounter();
+            CurrentIndexingActivity.Instance.SetAndBroadcast(fromPath, ActivityStatus.Starting);
             var reader = new Reader() {ProcessFiles = _indexingFilesProcessor.ProcessFilesBatch};
             reader.ParsePath(fromPath, _indexingFilesProcessor.CurrentConfiguration.Music.SearchPattern,processType);
+            CurrentIndexingActivity.Instance.BroadcastDetails("Total Files indexed: " + _indexingFilesProcessor.Counter);
+            Thread.Sleep(500);
+            CurrentIndexingActivity.Instance.SetAndBroadcast(fromPath, ActivityStatus.Stopped);
+            Thread.Sleep(500);
+            CurrentIndexingActivity.Instance.ClearAndBroadcast();
             LoggingManager.Debug("Index on path: " + fromPath + " Counter: " + _indexingFilesProcessor.Counter);
-            return _indexingFilesProcessor.Counter;
         }
 
         public int AcquireLyricsOnDemandFor(string musicPath, bool retryFailed)

@@ -9,6 +9,7 @@ namespace Sciendo.Music.Real.Procesors.Common
 {
     public abstract class FilesProcessorBase<TIn>
     {
+        
         public ILyricsDeserializer LyricsDeserializer { get; set; }
 
         public AgentConfigurationSection CurrentConfiguration { get; protected set; }

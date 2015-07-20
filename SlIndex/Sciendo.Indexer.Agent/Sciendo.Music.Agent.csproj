@@ -112,10 +112,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Feedback\ActivityStatus.cs" />
-    <Compile Include="Feedback\CurrentIndexingActivity.cs" />
-    <Compile Include="Feedback\CurrentStatisticsActivity.cs" />
-    <Compile Include="Feedback\FeedbackHub.cs" />
     <Compile Include="MusicAgent.cs">
       <SubType>Component</SubType>
     </Compile>

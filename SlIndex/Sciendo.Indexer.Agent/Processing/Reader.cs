@@ -5,6 +5,7 @@ using System.Linq;
 using Sciendo.Common.Logging;
 using Sciendo.Music.Contracts.Common;
 using Sciendo.Music.Contracts.Monitoring;
+using Sciendo.Music.Real.Feedback;
 
 namespace Sciendo.Music.Agent.Processing
 {
@@ -17,6 +18,7 @@ namespace Sciendo.Music.Agent.Processing
                 throw new ArgumentNullException("path");
             if(string.IsNullOrEmpty(searchPattern))
                 throw new ArgumentNullException("searchPattern");
+            CurrentIndexingActivity.Instance.SetAndBroadcast(path, ActivityStatus.InProgress);
             if (processType == ProcessType.Delete)
             {
                 LoggingManager.Debug("Attempting to delete " + path);

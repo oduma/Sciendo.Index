@@ -4,22 +4,22 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
-namespace Sciendo.Music.Agent.Feedback
+namespace Sciendo.Music.Real.Feedback
 {
-    public class CurrentIndexingActivity
+    public class CurrentStatisticsActivity
     {
-        private readonly static Lazy<CurrentIndexingActivity> _instance 
-            = new Lazy<CurrentIndexingActivity>(() => new CurrentIndexingActivity(GlobalHost.ConnectionManager.GetHubContext<FeedbackHub>().Clients));
+
+        private readonly static Lazy<CurrentStatisticsActivity> _instance = new Lazy<CurrentStatisticsActivity>(() => new CurrentStatisticsActivity(GlobalHost.ConnectionManager.GetHubContext<FeedbackHub>().Clients));
         
-        private CurrentIndexingActivity(IHubConnectionContext<dynamic> clients)
+        private CurrentStatisticsActivity(IHubConnectionContext<dynamic> clients)
         {
             Clients = clients;
+            SnapshotId = 0;
             ActivityStatus = ActivityStatus.None;
         }
 
-        public static CurrentIndexingActivity Instance
+        public static CurrentStatisticsActivity Instance
         {
             get
             {
@@ -27,8 +27,9 @@ namespace Sciendo.Music.Agent.Feedback
             }
         }
 
-        public void SetAndBroadcast(ActivityStatus activityStatus)
+        public void SetAndBroadcast(int snapshotId, ActivityStatus activityStatus)
         {
+            SnapshotId = snapshotId;
             ActivityStatus = activityStatus;
             BroadcastCurrentActivity();
 
@@ -41,32 +42,36 @@ namespace Sciendo.Music.Agent.Feedback
         }
         public void ClearAndBroadcast()
         {
+            SnapshotId = 0;
             ActivityStatus = ActivityStatus.None;
             Details = string.Empty;
             BroadcastCurrentActivity();
             BroadcastDetails();
         }
+        public int SnapshotId { get; private set; }
+
         public ActivityStatus ActivityStatus { get; private set; }
 
         public string Details { get; private set; }
 
         public override string ToString()
         {
-            return string.Format("Analysis for Snapshot with Id {0} change status to: {1}", ActivityStatus.ToString());
+            if (SnapshotId <= 0)
+                return string.Empty;
+            return string.Format("Analysis for Snapshot with Id {0} change status to: {1}", SnapshotId, ActivityStatus.ToString());
         }
 
         private void BroadcastDetails()
         {
-            Clients.All.updateDetails(Details);
+            Clients.All.updateAnalysisDetails(Details);
         }
 
         private void BroadcastCurrentActivity()
         {
-            Clients.All.updateCurrentActivity(this.ToString());
+            Clients.All.updateCurrentAnalysisActivity(this.ToString());
         }
 
         private IHubConnectionContext<dynamic> Clients { get; set; }
-
 
     }
 }

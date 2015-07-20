@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNet.SignalR.Hubs;
 using Sciendo.Common.Logging;
-using Sciendo.Music.Agent.Feedback;
+using Sciendo.Music.Real.Feedback;
 using Sciendo.Music.Contracts.Analysis;
 using Sciendo.Music.Data;
 using Sciendo.Music.Real.Analysis;
