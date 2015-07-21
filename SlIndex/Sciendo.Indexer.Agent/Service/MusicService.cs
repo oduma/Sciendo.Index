@@ -4,7 +4,6 @@ using System.Linq;
 using System.ServiceModel;
 using Sciendo.Common.Logging;
 using Sciendo.Music.Agent.Processing;
-using Sciendo.Music.Agent.Service.Monitoring;
 using Sciendo.Music.Contracts.Common;
 using Sciendo.Music.Contracts.Monitoring;
 using Sciendo.Music.Contracts.MusicService;
