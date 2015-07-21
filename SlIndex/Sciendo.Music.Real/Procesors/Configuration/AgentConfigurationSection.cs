@@ -42,19 +42,6 @@ namespace Sciendo.Music.Real.Procesors.Configuration
             }
         }
 
-        [ConfigurationProperty("packagesRetainerLimt", DefaultValue = 100, IsRequired = false)]
-        public int PackagesRetainerLimit
-        {
-            get
-            {
-                return (int)this["packagesRetainerLimt"];
-            }
-            set
-            {
-                this["packagesRetainerLimt"] = value;
-            }
-        }
-
         [ConfigurationProperty("currentProcessingComponentKey", DefaultValue = "", IsRequired = true)]
         public string CurrentProcessingComponentKey
         {
@@ -81,10 +68,23 @@ namespace Sciendo.Music.Real.Procesors.Configuration
             }
         }
 
+        [ConfigurationProperty("feedbackUrl", DefaultValue = "", IsRequired = true)]
+        public string FeedbackUrl
+        {
+            get
+            {
+                return (string)this["feedbackUrl"];
+            }
+            set
+            {
+                this["feedbackUrl"] = value;
+            }
+        }
+
 
         public override string ToString()
         {
-            return string.Format("SolrConnectionString: {0} Packages Retainer Limit: {1}\r\n\tCurrent Processing Implementation:{2}\r\n\tCurrent monitoring implementation:{3}\r\nMusic:\r\n{4}\r\nLyrics:\r\n{5}.", SolrConnectionString, PackagesRetainerLimit, CurrentProcessingComponentKey, CurrentMonitoringComponentKey, Music.ToString(),
+            return string.Format("SolrConnectionString: {0} Feedback Url: {1}\r\n\tCurrent Processing Implementation:{2}\r\n\tCurrent monitoring implementation:{3}\r\nMusic:\r\n{4}\r\nLyrics:\r\n{5}.", SolrConnectionString, FeedbackUrl, CurrentProcessingComponentKey, CurrentMonitoringComponentKey, Music.ToString(),
                 Lyrics.ToString());
         }
     }

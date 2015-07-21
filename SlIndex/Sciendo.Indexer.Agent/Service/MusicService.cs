@@ -21,8 +21,7 @@ namespace Sciendo.Music.Agent.Service
         private readonly IndexingFilesProcessor _indexingFilesProcessor;
         private readonly MusicToLyricsFilesProcessor _musicToLyricsFilesProcessor;
 
-        public MusicService(IndexingFilesProcessor indexingFilesProcessor, MusicToLyricsFilesProcessor lyricsAcquireFilesProcessor, 
-            int packagesRetainerLimit)
+        public MusicService(IndexingFilesProcessor indexingFilesProcessor, MusicToLyricsFilesProcessor lyricsAcquireFilesProcessor)
         {
             LoggingManager.Debug("Constructing MusicAgentService...");
 

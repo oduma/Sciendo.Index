@@ -72,8 +72,7 @@ namespace Sciendo.Music.Agent
 
             try
             {
-                ResolveComponents(_agentConfigurationSection.CurrentProcessingComponentKey,
-                    _agentConfigurationSection.PackagesRetainerLimit);
+                ResolveComponents(_agentConfigurationSection.CurrentProcessingComponentKey);
             }
             catch (Exception ex)
             {
@@ -89,10 +88,10 @@ namespace Sciendo.Music.Agent
 
         private void OpenSignalRHub()
         {
-            WebApp.Start<Startup>("http://*:5050/");
+            WebApp.Start<Startup>(_agentConfigurationSection.FeedbackUrl);
         }
 
-        internal void ResolveComponents(string currentMusicComponentKey,int packageRetainerlimit)
+        internal void ResolveComponents(string currentMusicComponentKey)
         {
             LoggingManager.Debug("Resolving current Indexing Procesor...");
             var mProc =
@@ -106,8 +105,7 @@ namespace Sciendo.Music.Agent
             LoggingManager.Debug("Current Music To Lyrics Procesor resolved.");
 
             _musicService = new MusicService(mProc,
-                m2LProc,
-                packageRetainerlimit);
+                m2LProc);
             _analysisService = new AnalysisService(mProc.CurrentConfiguration.Music.SourceDirectory,
                 m2LProc.CurrentConfiguration.Lyrics.SourceDirectory,
                 mProc.CurrentConfiguration.Music.SearchPattern,new SolrResultsProvider());
