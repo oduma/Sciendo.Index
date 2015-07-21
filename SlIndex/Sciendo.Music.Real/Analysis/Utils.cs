@@ -4,6 +4,7 @@ using Sciendo.Common.Logging;
 using Sciendo.Common.Serialization;
 using Sciendo.Music.Contracts.Analysis;
 using Sciendo.Music.Contracts.Common;
+using Sciendo.Music.Real.IO;
 using Sciendo.Music.Real.Lyrics.Provider;
 using Sciendo.Music.Solr;
 using Sciendo.Music.Solr.Query;
@@ -15,6 +16,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Sciendo.Music.Real.Analysis
@@ -25,6 +27,11 @@ namespace Sciendo.Music.Real.Analysis
 
         public static IMp3Stream Mp3MusicFile(string file)
         {
+            FileInfo fileInfo = new FileInfo(file);
+            while (FileAccessChecker.IsFileLocked(fileInfo))
+            {
+                Thread.Sleep(750);
+            }
             return new Mp3File(file);
         }
         public static MusicFileFlag GetMusicFlag(string file,string pattern,Func<string,IMp3Stream> musicFile)
@@ -74,8 +81,6 @@ namespace Sciendo.Music.Real.Analysis
 
         public static LyricsFileFlag GetLyricsFlag(string file,string pattern, string musicSourceFolder, string lyricsSourceFolder)
         {
-            if (File.Exists(@"TestData\Lyrics\Sub1\MockOggWithoutLyrics.lrc"))
-                File.Delete(@"TestData\Lyrics\Sub1\MockOggWithoutLyrics.lrc");
             var musicExtension = pattern.Split('|').FirstOrDefault(p => file.ToLower().EndsWith(p.Replace("*", "")));
             if (musicExtension == null)
                 return LyricsFileFlag.NoLyricsFile;

@@ -96,6 +96,7 @@
     <Compile Include="Feedback\DocumentsExtensions.cs" />
     <Compile Include="Feedback\FeedbackHub.cs" />
     <Compile Include="Feedback\ICurrentFileActivity.cs" />
+    <Compile Include="IO\FileAccessChecker.cs" />
     <Compile Include="Lyrics\Provider\LyricsDeserializer.cs" />
     <Compile Include="Lyrics\Provider\WebDownloader.cs" />
     <Compile Include="Lyrics\Provider\WebDownloaderBase.cs" />

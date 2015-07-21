@@ -4,6 +4,7 @@ using System.Threading;
 using Sciendo.Common.IO;
 using Sciendo.Common.Logging;
 using Sciendo.Music.Contracts.Monitoring;
+using Sciendo.Music.Real.IO;
 
 namespace Sciendo.Music.Real.Monitoring
 {
@@ -33,38 +34,6 @@ namespace Sciendo.Music.Real.Monitoring
             }
             More = false;
             LoggingManager.Debug("FolderMonitor stopped.");
-        }
-
-        static bool IsFileLocked(FileInfo file)
-        {
-            FileStream stream = null;
-
-            try
-            {
-                if ((file.Attributes & FileAttributes.ReadOnly) == FileAttributes.ReadOnly)
-                    stream = file.Open(FileMode.Open,
-                         FileAccess.Read, FileShare.None);
-                else
-                    stream = file.Open(FileMode.Open,
-                         FileAccess.ReadWrite, FileShare.None);
-
-            }
-            catch (IOException)
-            {
-                //the file is unavailable because it is:
-                //still being written to
-                //or being processed by another thread
-                //or does not exist (has already been processed)
-                return true;
-            }
-            finally
-            {
-                if (stream != null)
-                    stream.Close();
-            }
-
-            //file is not locked
-            return false;
         }
 
         private DirectoryMonitor _fsWatcher;
@@ -101,9 +70,9 @@ namespace Sciendo.Music.Real.Monitoring
                 return;
             // Wait if file is still open
             FileInfo fileInfo = new FileInfo(topath);
-            while (IsFileLocked(fileInfo))
+            while (FileAccessChecker.IsFileLocked(fileInfo))
             {
-                Thread.Sleep(500);
+                Thread.Sleep(750);
             }
 
             if (ProcessFile != null)
@@ -143,9 +112,9 @@ namespace Sciendo.Music.Real.Monitoring
             //queue an insert;
             // Wait if file is still open
             FileInfo fileInfo = new FileInfo(path);
-            while (IsFileLocked(fileInfo))
+            while (FileAccessChecker.IsFileLocked(fileInfo))
             {
-                Thread.Sleep(500);
+                Thread.Sleep(750);
             }
             //queue an update;
             if (ProcessFile != null)
