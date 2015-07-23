@@ -44,13 +44,21 @@ namespace Sciendo.Music.Web
 "~/Scripts/sciendo.music/index.viewmodel.js",
 "~/Scripts/sciendo.music/index.autocomplete.js"));
             bundles.Add(new ScriptBundle("~/bundles/query").Include(
+    "~/Scripts/sciendo.music/sciendo.common*", 
     "~/Scripts/sciendo.music/knockout*",
 "~/Scripts/sciendo.music/query*"));
 
             bundles.Add(new ScriptBundle("~/bundles/playlist").Include(
+    "~/Scripts/sciendo.music/sciendo.common*",
     "~/Scripts/sciendo.music/knockout*",
 "~/Scripts/sciendo.music/playlist*"));
 
+            bundles.Add(new ScriptBundle("~/bundles/statistics").Include(
+    "~/Scripts/sciendo.music/sciendo.common*",
+    "~/Scripts/sciendo.music/knockout*",
+"~/Scripts/sciendo.music/statistics*"));
+
+            bundles.Add(new ScriptBundle("~/bundles/feedback").Include("~/Scripts/sciendo.music/feedback*"));
             // Set EnableOptimizations to false for debugging. For more information,
             // visit http://go.microsoft.com/fwlink/?LinkId=301862
             BundleTable.EnableOptimizations = false;

@@ -944,3 +944,34 @@ tr.pager td {
   border-top-color: #ffffff;
   border-bottom-color: #ffffff;
 }
+
+.feedbackMessages{
+    background-color:black;
+    padding-top:5px;
+    width:100%;
+}
+.analysisMessages{
+    color:cadetblue;
+    padding-bottom:5px;
+}
+.indexingMessages{
+    color:darksalmon;
+    padding-bottom:5px;
+}
+.playlistMessages{
+    color:goldenrod;
+    padding-bottom:5px;
+}
+ul#menu li#analysisMenu a{
+    color:cadetblue;
+}
+ul#menu li#indexingMenu a{
+    color:darksalmon;
+}
+ul#menu li#playlistMenu a{
+    color:goldenrod;
+}
+span#messages-details{
+    float:right;
+    display:inline;
+}

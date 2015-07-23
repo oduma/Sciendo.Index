@@ -9,6 +9,7 @@
 /// <reference path="ko.autocomplete.js" />
 /// <reference path="modernizr-2.6.2.js" />
 /// <reference path="respond.js" />
+/// <reference path="sciendo.music/feedback.viewmodel.js" />
 /// <reference path="sciendo.music/index.autocomplete.js" />
 /// <reference path="sciendo.music/index.viewmodel.js" />
 /// <reference path="sciendo.music/knockout.simplegrid.1.3.js" />

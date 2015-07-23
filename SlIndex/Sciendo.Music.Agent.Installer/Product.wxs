@@ -7,7 +7,6 @@
     <Property Id="SOLRHOSTNAME" Value="localhost"/>
     <Property Id="SOLRPORT" Value="8090"/>
     <Property Id="SOLRCORE" Value="medialib"/>
-    <Property Id="PACKAGERETAINERLIMIT" Value="25" />
     <Property Id="MUSICROOTDIR" Value="C:\"/>
     <Property Id="LYRICSROOTDIR" Value="C:\"/>
     <Property Id="AGENTHTTPADDRESS" Value="http://localhost:7080/"/>
@@ -19,59 +18,13 @@
 
     <Feature Id="Sciendo.Music.Agent" Title="Sciendo Music Agent" Level="1" ConfigurableDirectory="INSTALLLOCATION" AllowAdvertise="no">
       <ComponentRef Id="ProgramMenuDir"/>
-      <Component Id="cmp1" Directory="INSTALLLOCATION" Guid="{55E6555D-BE00-42C4-91A4-0F43A55A7351}">
-        <File Id="fil1" KeyPath="yes" Source="..\MusicAgent\log4net.config" />
-      </Component>
-      <Component Id="cmp2" Directory="INSTALLLOCATION" Guid="{EE7DD892-DF81-447D-808B-748B0044EA12}">
-        <File Id="fil2" KeyPath="yes" Source="..\MusicAgent\log4net.dll" />
-      </Component>
-      <Component Id="cmp3" Directory="INSTALLLOCATION" Guid="{0EAF7B84-6C0A-48D4-A210-4CBE2AA9E0FC}">
-        <File Id="fil3" KeyPath="yes" Source="..\MusicAgent\ExampleNeedsPostProcessing.xml" />
-      </Component>
-      <Component Id="cmp4" Directory="INSTALLLOCATION" Guid="{49F474DE-4E13-4C4B-9411-E5714AB91A63}">
-        <File Id="fil4" KeyPath="yes" Source="..\MusicAgent\ExampleNoLyrics.xml" />
-      </Component>
-      <Component Id="cmp5" Directory="INSTALLLOCATION" Guid="{94A1E764-ECCA-4324-A6B4-D75CC4BF5741}">
-        <File Id="fil5" KeyPath="yes" Source="..\MusicAgent\Id3.dll" />
-      </Component>
-      <Component Id="cmp6" Directory="INSTALLLOCATION" Guid="{24BC2DEF-470D-4AD9-B224-AB4E9E07E035}">
-        <File Id="fil6" KeyPath="yes" Source="..\MusicAgent\Id3.Files.dll" />
-      </Component>
-      <Component Id="cmp7" Directory="INSTALLLOCATION" Guid="{0F937A74-02C1-458D-A4C6-A8389CFC2FA3}">
-        <File Id="fil7" KeyPath="yes" Source="..\MusicAgent\Newtonsoft.Json.dll" />
-      </Component>
-      <Component Id="cmp8" Directory="INSTALLLOCATION" Guid="{17B7AE46-5626-4317-9E3E-D3F26840B6A6}">
-        <File Id="fil8" KeyPath="yes" Source="..\MusicAgent\Sciendo.Common.dll" />
-      </Component>
-      <Component Id="cmp9" Directory="INSTALLLOCATION" Guid="{9D948D7A-67D5-4F02-8EE4-B37CE1861BE3}">
-        <File Id="fil9" KeyPath="yes" Source="..\MusicAgent\Sciendo.IOC.dll" />
-      </Component>
-      <Component Id="cmp10" Directory="INSTALLLOCATION" Guid="{B3D05113-A73C-4F09-B2F0-495805D86E76}">
-        <File Id="fil10" KeyPath="yes" Source="..\MusicAgent\Sciendo.IOC.Configuration.dll" />
-      </Component>
-      <Component Id="cmp11" Directory="INSTALLLOCATION" Guid="{0519C324-129C-4BDB-A82D-1C1D28319677}">
-        <File Id="fil11" KeyPath="yes" Source="..\MusicAgent\Sciendo.Music.Contracts.dll" />
-      </Component>
-      <Component Id="cmp12" Directory="INSTALLLOCATION" Guid="{B856A4BC-7C31-409F-9B95-E986D4BCF498}">
-        <File Id="fil12" KeyPath="yes" Source="..\MusicAgent\Sciendo.Music.Mocks.dll" />
-      </Component>
-      <Component Id="cmp13" Directory="INSTALLLOCATION" Guid="{7E6A2802-2944-44EF-9A55-8B5C350C13FA}">
-        <File Id="fil13" KeyPath="yes" Source="..\MusicAgent\Sciendo.Music.Real.dll" />
-      </Component>
-      <Component Id="cmp14" Directory="INSTALLLOCATION" Guid="{BDD904BD-DDAA-4185-BDF6-FF82CCEF9159}">
-        <File Id="fil14" KeyPath="yes" Source="..\MusicAgent\System.Net.Http.Formatting.dll" />
-      </Component>
+      <ComponentGroupRef Id="Binaries"/>
       <Component Id="Sciendo.Music.Agent.exe.config" Directory="INSTALLLOCATION" Guid="{40F2FA20-26E2-4F97-9731-1A036B29C5AE}">
         <File Id="Sciendo.Music.Agent.exe.config" KeyPath="yes" Source="..\MusicAgent\Sciendo.Music.Agent.exe.config" />
         <util:XmlFile Id="SetSolrConnectionString"
                       Action="setValue"
                       ElementPath="//agent/@solrConnectionString"
                       Value="http://[SOLRHOSTNAME]:[SOLRPORT]/solr/[SOLRCORE]/update/json?commitWithin=1000"
-                      File="[#Sciendo.Music.Agent.exe.config]" />
-        <util:XmlFile Id="SetRetainerLimit"
-                      Action="setValue"
-                      ElementPath="//agent/@packagesRetainerLimt"
-                      Value="[PACKAGERETAINERLIMIT]"
                       File="[#Sciendo.Music.Agent.exe.config]" />
         <util:XmlFile Id="SetMusicRootFolder"
                       Action="setValue"
@@ -233,13 +186,9 @@
         <Control Id="SolrCoreNameLabel" Type ="Text" X="25" Y="149" Width="150" Height="15" TabSkip="no" Text="Solr &amp;Core Name:"/>
         <Control Id="SolrCoreNameValue" Type ="Edit" X="25" Y="164" Width="150" Height="18" Property="SOLRCORE"/>
 
-        <!-- Package Retainer Limit prompt-->
-        <Control Id="PackageRetainerLimitLabel" Type ="Text" X="190" Y="149" Width="150" Height="15" TabSkip="no" Text="Package &amp;Retainer Limit:"/>
-        <Control Id="PackageRetainerLimitValue" Type ="Edit" X="190" Y="164" Width="150" Height="18" Integer="yes" Property="PACKAGERETAINERLIMIT"/>
-
         <!-- Agent Http Address prompt-->
-        <Control Id="AgentHttpAddressLabel" Type ="Text" X="25" Y="182" Width="100" Height="15" TabSkip="no" Text="&amp;Agent Http Address:"/>
-        <Control Id="AgentHttpAddressValue" Type ="Edit" X="25" Y="197" Width="315" Height="18" Property="AGENTHTTPADDRESS"/>
+        <Control Id="AgentHttpAddressLabel" Type ="Text" X="190" Y="149" Width="100" Height="15" TabSkip="no" Text="&amp;Agent Http Address:"/>
+        <Control Id="AgentHttpAddressValue" Type ="Edit" X="190" Y="164" Width="150" Height="18" Property="AGENTHTTPADDRESS"/>
 
         <!-- Back button -->
         <Control Id="Back" Type="PushButton" X="180" Y="248"

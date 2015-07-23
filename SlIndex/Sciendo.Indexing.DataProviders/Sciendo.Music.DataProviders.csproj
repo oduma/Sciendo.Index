@@ -57,21 +57,20 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ClementinePlayerProcess.cs" />
-    <Compile Include="Common\WebRetriever.cs" />
     <Compile Include="Configuration\ConfigurationSectionNames.cs" />
+    <Compile Include="Configuration\FeedbackProviderConfigurationSection.cs" />
     <Compile Include="Configuration\IndexDataProviderConfigurationSection.cs" />
     <Compile Include="Configuration\PlayerConfigurationSection.cs" />
     <Compile Include="Configuration\PlaylistProviderConfigurationSection.cs" />
-    <Compile Include="Configuration\QueryConfigurationSection.cs" />
+    <Compile Include="Configuration\StatisticsProviderConfigurationSection.cs" />
     <Compile Include="DataProvider.cs" />
+    <Compile Include="IStatisticsProvider.cs" />
     <Compile Include="IDataProvider.cs" />
     <Compile Include="IPlayerProcess.cs" />
     <Compile Include="IPlaylistProvider.cs" />
-    <Compile Include="IResultsProvider.cs" />
-    <Compile Include="ISolrQueryStrategy.cs" />
+    <Compile Include="Models\Analysis\StatisticsModel.cs" />
     <Compile Include="Models\Indexing\IndexingResult.cs" />
     <Compile Include="Models\Indexing\IndexModel.cs" />
-    <Compile Include="Models\Indexing\ProgressStatusModel.cs" />
     <Compile Include="Models\Playlist\LastFm\Info.cs" />
     <Compile Include="Models\Playlist\LastFm\LastFmResponse.cs" />
     <Compile Include="Models\Playlist\LastFm\LovedDate.cs" />
@@ -82,25 +81,11 @@
     <Compile Include="Models\Playlist\PlaylistItem.cs" />
     <Compile Include="Models\Playlist\PlaylistModel.cs" />
     <Compile Include="Models\Playlist\PlaylistPageModel.cs" />
-    <Compile Include="Models\Query\Doc.cs" />
-    <Compile Include="Models\Query\Field.cs" />
-    <Compile Include="Models\Query\FieldValue.cs" />
-    <Compile Include="Models\Query\PageInfo.cs" />
-    <Compile Include="Models\Query\ResultsPackage.cs" />
     <Compile Include="PlaylistProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Proxy\AnalysisService.cs" />
     <Compile Include="Proxy\MusicService.cs" />
-    <Compile Include="ResultsProviderBase.cs" />
-    <Compile Include="SolrContracts\FacetFields.cs" />
-    <Compile Include="SolrContracts\Facets.cs" />
-    <Compile Include="SolrContracts\FieldProperty.cs" />
-    <Compile Include="SolrContracts\Highlighting.cs" />
-    <Compile Include="SolrContracts\Response.cs" />
-    <Compile Include="SolrContracts\ResponseHeader.cs" />
-    <Compile Include="SolrContracts\SolrResponse.cs" />
-    <Compile Include="SolrPreciseQueryStrategy.cs" />
-    <Compile Include="SolrVagueQueryStrategy.cs" />
-    <Compile Include="SolrResultsProvider.cs" />
+    <Compile Include="StatisticsProvider.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -108,6 +93,15 @@
     <None Include="Properties\DataSources\Sciendo.Music.Contracts.MusicService.ProgressStatus.datasource" />
     <None Include="Properties\DataSources\Sciendo.Music.Contracts.MusicService.SourceFolders.datasource" />
     <None Include="Proxy\RegenerateProxy.bat" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Models\Query\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Sciendo.Music.Solr\Sciendo.Music.Solr.csproj">
+      <Project>{66cc3581-c7c4-4486-9273-f20a705727ed}</Project>
+      <Name>Sciendo.Music.Solr</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

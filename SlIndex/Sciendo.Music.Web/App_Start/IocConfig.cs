@@ -2,6 +2,7 @@
 using Sciendo.IOC;
 using Sciendo.IOC.Configuration;
 using Sciendo.Music.DataProviders;
+using Sciendo.Music.Solr.Query;
 
 namespace Sciendo.Music.Web
 {
@@ -14,6 +15,7 @@ namespace Sciendo.Music.Web
             container.UsingConfiguration().AddAllFromFilteredAssemblies<IResultsProvider>(LifeStyle.Transient);
             container.UsingConfiguration().AddAllFromFilteredAssemblies<IPlayerProcess>(LifeStyle.Transient);
             container.UsingConfiguration().AddAllFromFilteredAssemblies<IPlaylistProvider>(LifeStyle.Transient);
+            container.UsingConfiguration().AddAllFromFilteredAssemblies<IStatisticsProvider>(LifeStyle.Transient);
             LoggingManager.Debug("Registering Ioc Components finished.");
         }
     }

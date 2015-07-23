@@ -1,0 +1,40 @@
+﻿
+@{
+    ViewBag.Title = "Statistics";
+}
+
+<h2>Statistics</h2>
+
+<div>
+    <div>Snapshots</div>
+    <p class="error" data-bind="text: error"></p>
+    <ul data-bind="foreach:snapshots">
+        <li>
+            <!--ko if: SnapshotId!=-1-->
+            <a data-bind="attr:{href: '/#', id:SnapshotId},click:$root.getSnapshotDetails, html:Name + ' taken at: ' +$root.parseDate(TakenAt)"></a>
+            <!-- /ko-->
+            <!--ko if: SnapshotId==-1-->
+            <label data-bind="text:Name"></label>
+            <!-- /ko-->
+        </li>
+    </ul>
+    <input type="button" value="Take new" data-bind="click:takeNew, visible:noDataCollection"/>
+    <div data-bind="ifnot:noDataCollection">
+        New Snapshot Name: <span class="error">*</span><input type="text" data-bind="value:newSnapshotName"/>
+        <input type="button" value="Save" data-bind="click:save"/><input type="button" value="Cancel" data-bind="click:cancel"/>
+    </div>
+</div>
+<div data-bind="with:resultData">
+    <div data-bind="simpleGrid:gridViewModel"></div>
+</div>
+@section scripts
+{
+    @Scripts.Render("~/bundles/statistics")
+<script>
+    // Initiate the Knockout bindings
+    var vm = new statisticsViewModel(@Html.Raw(Json.Encode(Model.Snapshots)));
+    ko.applyBindings(vm,document.getElementById("body"));
+</script>
+}
+
+

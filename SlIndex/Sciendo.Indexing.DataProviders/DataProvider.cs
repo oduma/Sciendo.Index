@@ -38,21 +38,6 @@ namespace Sciendo.Music.DataProviders
             ((MusicClient)_svc).IndexOnDemandAsync(fromPath);
         }
 
-        public ProgressStatusModel[] GetMonitoring()
-        {
-            try
-            {
-                return _svc.GetLastProcessedPackages().Select(p => new ProgressStatusModel { Id = p.Id.ToString(), Package = p.Package.ToString(CultureInfo.InvariantCulture), Status = p.Status.ToString(), CreateDateTime = p.MessageCreationDateTime }).ToArray();
-            }
-            catch(Exception ex)
-            {
-                LoggingManager.LogSciendoSystemError(ex);
-                return new ProgressStatusModel[] { new ProgressStatusModel { CreateDateTime = DateTime.Now, Id = "Unknown error on service", Status = "Error" ,Package="Most likely the server has timed out."} };
-            }
-
-        }
-
-
         public void StartAcquyringLyrics(string fromPath, bool retryExisting,Action<object,AcquireLyricsOnDemandForCompletedEventArgs> acquireLyricsCallBack)
         {
             ((MusicClient)_svc).AcquireLyricsOnDemandForCompleted += new EventHandler<AcquireLyricsOnDemandForCompletedEventArgs>(acquireLyricsCallBack);

@@ -25,22 +25,6 @@
     <label id="errorIndexed" data-bind="text:indexingError"></label>
 </div>
 
-@*<h3>Monitoring</h3>
-<a href="#" data-bind="click:toggle, text:monitoringActionName"></a>
-<!--ko if: hasSubscription-->
-<div class="container" data-bind="foreach: monitoringMessages">
-    <span class="messages identifier">
-        <span data-bind="if:$data.StatusOk"><img src="~/Content/indexing/images/Done.png" alt="Done" width="16" height="16" /></span>
-        <span data-bind="if:$data.StatusOk==false"><img src="~/Content/indexing/images/Error.png" alt="Error" width="16" height="16" /></span>
-        <label data-bind="text: 'Message Id: ' + $data.Id"></label>
-        <label data-bind="text: 'From: ' + $data.CreateDateTime"></label>
-        <a href="#" data-bind="click:$data.revealDetails,text:$data.DetailsActionName"></a>
-    </span>
-    <span class="messages details">
-        <label data-bind="text: $data.Package, visible:$data.DetailsVisible"></label>
-    </span>
-</div>
-<!-- /ko-->*@
 @section scripts
 {
     @Scripts.Render("~/bundles/signalR")
@@ -50,12 +34,9 @@
     @Scripts.Render("~/bundles/jqueryui")
     @Scripts.Render("~/bundles/index")
     <script>
+
         // Initiate the Knockout bindings
         var vm = new indexViewModel("@Server.HtmlEncode(@Model.SourceFolder)");
-        ko.applyBindings(vm);
-        //$.connection.hub.start().done(function () {
-        //    vm.toggle(true);
-        //});
-
+        ko.applyBindings(vm, document.getElementById("body"));
     </script>
 }

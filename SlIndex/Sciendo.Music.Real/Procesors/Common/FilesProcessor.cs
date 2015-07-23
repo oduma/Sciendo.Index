@@ -6,6 +6,8 @@ using Newtonsoft.Json;
 using Sciendo.Common.Logging;
 using Sciendo.Music.Contracts.Common;
 using Sciendo.Music.Contracts.Solr;
+using Sciendo.Music.Real.Feedback;
+using System.Threading;
 
 namespace Sciendo.Music.Real.Procesors.Common
 {
@@ -19,31 +21,31 @@ namespace Sciendo.Music.Real.Procesors.Common
         }
 
         
-        public override void ProcessFilesBatch(IEnumerable<string> files, Action<Status,string> progressEvent)
+        public override void ProcessFilesBatch(IEnumerable<string> files)
         {
             LoggingManager.Debug("Starting process batch of files " +files.Count());
             DeletedDocuments=new List<DeleteDocument>();
             var package = TransformFiles(files,TransformToDocument).Where(p=>p!=null).ToArray();
             if (Sender != null)
             {
-                var response = Sender.TrySend(package);
-                if (progressEvent != null)
+                if (package != null && package.Length > 0)
                 {
-                    if (response != null && package != null && package.Length != 0 &&
-                        !string.IsNullOrEmpty(package[0].FilePathId))
-                        progressEvent(response.Status, JsonConvert.SerializeObject(package));
+                    var response = Sender.TrySend(package);
                 }
                 foreach (var deletedDocument in DeletedDocuments)
                 {
-                    response = Sender.TrySend(deletedDocument);
-                    if (progressEvent != null)
-                        progressEvent(response.Status, JsonConvert.SerializeObject(deletedDocument));
-                    Counter++;
+                    var response = Sender.TrySend(deletedDocument);
+                    if (response.Status == Status.Done)
+                    {
+                        Counter++;
+                    }
                 }
-                var commit = new Commit();
-                response = Sender.TrySend(commit);
-                if (progressEvent != null)
-                    progressEvent(response.Status, (response.Status==Status.Done)?"Committed":"Not committed");
+                if(package.Length>0 && DeletedDocuments.Count()>0)
+                {
+                    var commit = new Commit();
+                    var commitResponse = Sender.TrySend(commit);
+                    
+                }
             }
             Counter += package.Length;
             LoggingManager.Debug("Processed batch of "+ package.Length +" files.");

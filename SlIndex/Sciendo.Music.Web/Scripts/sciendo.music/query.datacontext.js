@@ -44,6 +44,16 @@
         }
     }
 
+    self.queue = function (itemId, e) {
+        var element = e.srcElement;
+
+        if (e.srcElement == null)
+            element = e.originalEvent.srcElement;
+
+        self.addToQueue((element.id != "") ? element.id : element.parentElement.id);
+    };
+
+
     function displayResults(data,resultObservable, errorObservable, facetFilteredObservable, pageInfoObservable, filtered)
     {
         var grdModel = new ko.simpleGrid.viewModel({
@@ -56,7 +66,7 @@
                 { headerText: "Title", rowText: "Title", isKey: false, isLink: true, isSelect: false, colWidth: "300px" },
                 { headerText: "Lyrics", rowText: "Lyrics", isKey: false, isLink: false, isSelect: false, colWidth: "500px" }
             ]
-        },self);
+        },self.queue);
         resultObservable({ fields: data.Fields, resultRows: data.ResultRows, gridViewModel: grdModel });
 
         errorObservable("");
@@ -74,22 +84,6 @@
 
     // Private
     function clearErrorMessage(entity) { entity.errorMessage(null); }
-    function ajaxRequest(type, url, data, dataType) { // Ajax helper
-        var options = {
-            dataType: dataType || "json",
-            contentType: "application/json",
-            cache: false,
-            type: type,
-            data: data ? data.toJson() : null
-        };
-        var antiForgeryToken = $("#antiForgeryToken").val();
-        if (antiForgeryToken) {
-            options.headers = {
-                'RequestVerificationToken': antiForgeryToken
-            }
-        }
-        return $.ajax(url, options);
-    }
     // routes
     function solrUrl(id, pageInfo)
     {

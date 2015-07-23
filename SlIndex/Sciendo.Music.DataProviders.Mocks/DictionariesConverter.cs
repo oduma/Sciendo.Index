@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using Sciendo.Music.DataProviders.SolrContracts;
+using Sciendo.Music.Solr.Query.FromSolr;
 
 namespace Sciendo.Music.DataProviders.Mocks
 {

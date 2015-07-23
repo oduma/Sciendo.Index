@@ -10,7 +10,6 @@ namespace Sciendo.Music.DataProviders
         string[] GetIndexingAutocomplete(string term);
         string GetSourceFolder();
         void StartIndexing(string fromPath, Action<object,IndexOnDemandCompletedEventArgs> indexMusicCompletedCallback);
-        ProgressStatusModel[] GetMonitoring();
         void StartAcquyringLyrics(string fromPath, bool retryExisting,Action<object,AcquireLyricsOnDemandForCompletedEventArgs> acquireLyricsCallback);
     }
 }

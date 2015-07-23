@@ -9,14 +9,11 @@ namespace Sciendo.Music.Contracts.MusicService
         [OperationContract]
         int IndexOnDemand(string fromPath);
 
-        [OperationContract]
-        int Index(string fromPath,ProcessType processType);
+        [OperationContract(IsOneWay=true)]
+        void Index(string fromPath,ProcessType processType);
 
         [OperationContract]
         int AcquireLyricsOnDemandFor(string musicPath, bool retryFailed);
-
-        [OperationContract]
-        ProgressStatus[] GetLastProcessedPackages();
 
         [OperationContract]
         string[] ListAvailablePathsForIndexing(string fromPath);

@@ -13,7 +13,7 @@
 
     ko.simpleGrid = {
         // Defines a view model class you can use to populate a grid
-        viewModel: function (configuration, dataContextInstance) {
+        viewModel: function (configuration, action) {
             this.data = configuration.data;
 
             // If you don't specify columns configuration, we'll use scaffolding
@@ -25,17 +25,9 @@
 
             this.selectColumn = configuration.selectColumn;
 
-            this.sendToPlaylist = dataContextInstance.sendToPlaylist;
+            //this.sendToPlaylist = dataContextInstance.sendToPlaylist;
 
-            queue = function (itemId, e) {
-                var element = e.srcElement;
-
-                if (e.srcElement == null)
-                    element = e.originalEvent.srcElement;
-
-                dataContextInstance.addToQueue((element.id != "") ? element.id : element.parentElement.id);
-            };
-
+            this.clickAction = action;
         }
     };
 
@@ -60,10 +52,10 @@
                                 <!-- ko ifnot:$root.keyColumn==rowText-->\
                                     <!-- ko if:isLink-->\
                                         <td>\
-                                        <a href=\"#\" data-bind=\"click:queue, attr:{'id': $parent[$root.keyColumn] }, html: typeof rowText == 'function' ? rowText($parent) : $parent[rowText]\"/></td>\
+                                        <a href=\"#\" data-bind=\"click:$root.clickAction, attr:{'id': $parent[$root.keyColumn] }, html: typeof rowText == 'function' ? rowText($parent) : $parent[rowText]\"/></td>\
                                     <!-- /ko -->\
                                     <!-- ko ifnot:isLink-->\
-                                        <!-- ko ifnot:isSelect--><td data-bind=\"html: typeof rowText == 'function' ? rowText($parent) : $parent[rowText] \"></td>\
+                                        <!-- ko ifnot:isSelect--><td valign=\"top\" data-bind=\"html: typeof rowText == 'function' ? rowText($parent) : $parent[rowText] \"></td>\
                                     <!-- /ko--><!-- ko if:isSelect-->\
                                         <td><input type=\"checkbox\" data-bind=\"attr:{'id': $parent[$root.keyColumn] },checked:rowText == 'function' ? rowText($parent) : $parent[rowText], click:$parent.select\"/></td>\
                                     <!-- /ko -->\

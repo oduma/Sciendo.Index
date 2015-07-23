@@ -4,12 +4,14 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Sciendo.Music.DataProviders.Common;
 using Sciendo.Music.DataProviders.Models.Playlist.LastFm;
-using Sciendo.Music.DataProviders.Models.Query;
 using Sciendo.Music.DataProviders.Models.Playlist;
 using System.IO.Compression;
-using Sciendo.Music.DataProviders.SolrContracts;
+using Sciendo.Music.Solr.Query;
+using Sciendo.Music.Solr.Strategies;
+using Sciendo.Music.Solr.Query.FromSolr;
+using Sciendo.Music.Solr.Query.ToConsummer;
+using Sciendo.Music.Solr;
 
 namespace Sciendo.Music.DataProviders
 {
@@ -88,9 +90,8 @@ namespace Sciendo.Music.DataProviders
             var solrQuery = TranslateLastFmToSolr(lastFmResponse);
 
             var results =
-                resultsProvider.GetResultsPackage(solrQuery
-                    , lastFmResponse.LovedTracks.Info.PerPage, 0, new SolrPreciseQueryStrategy(solrQuery), 
-                    WebRetriever.TryPost<SolrResponse>);
+                resultsProvider.GetResultsPackageWithPreciseStrategy(solrQuery
+                    , lastFmResponse.LovedTracks.Info.PerPage, 0,RequestType.Post);
 
             var playlistPage = new PlaylistPageModel();
             playlistPage.PageInfo=
@@ -116,8 +117,9 @@ namespace Sciendo.Music.DataProviders
 
         protected virtual LastFmResponse GetLastFmResponse()
         {
-           return WebRetriever.TryGet<LastFmResponse>(_lastFmBaseApiUrl,
-                LastFmQueryStringProvider);
+            var queryString = LastFmQueryStringProvider();
+           return WebRetriever.TryRetrieve<LastFmResponse>(_lastFmBaseApiUrl,
+                queryString,RequestType.Get);
         }
 
         private string LastFmQueryStringProvider()

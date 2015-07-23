@@ -21,9 +21,9 @@
     </Condition>
     <!-- IIS Version 7 or higher check. -->
     <PropertyRef Id="IISMAJORVERSION"/>
-    <Condition Message="This setup requires IIS 7.0 or higher installed.">
+    <!--<Condition Message="This setup requires IIS 7.0 or higher installed.">
       <![CDATA[IISMAJORVERSION >= "#7"]]>
-    </Condition>
+    </Condition>-->
 
       <!--Ensures that these tables are present in the MSI table
         Required by WebAppPool and WebVitualDir -->
@@ -62,7 +62,7 @@
       <util:XmlFile Id="SetTheIocToReal"
               Action="setValue"
               ElementPath="//queryDataProvider/@currentDataProvider"
-              Value="real"
+              Value="realSolr"
               File="[#filewebconfig]" />
       <util:XmlFile Id="SetTheIocToReal1"
               Action="setValue"
@@ -73,6 +73,16 @@
               Action="setValue"
               ElementPath="//playerProcessProvider/@currentPlayerProcess"
               Value="real"
+              File="[#filewebconfig]" />
+      <util:XmlFile Id="SetTheIocToReal3"
+              Action="setValue"
+              ElementPath="//statisticsProvider/@currentStatisticsProvider"
+              Value="real"
+              File="[#filewebconfig]" />
+      <util:XmlFile Id="SetTheFeedbackUrl"
+              Action="setValue"
+              ElementPath="//feedbackProvider/@feedbackUrl"
+              Value="http://localhost:5060/signalr"
               File="[#filewebconfig]" />
     </Component>
     <Component Id="cmplog4netconfigtransform" Directory="INSTALLLOCATION" Guid="{E9AC0381-17FB-45A1-B62C-652E21C0C61D}">

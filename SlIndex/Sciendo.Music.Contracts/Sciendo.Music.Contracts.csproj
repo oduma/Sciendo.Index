@@ -35,6 +35,7 @@
       <HintPath>..\packages\Newtonsoft.Json.6.0.7\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
@@ -45,6 +46,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Analysis\Element.cs" />
+    <Compile Include="Analysis\IAnalysis.cs" />
+    <Compile Include="Analysis\IndexedFlag.cs" />
+    <Compile Include="Analysis\LyricsFileFlag.cs" />
+    <Compile Include="Analysis\MusicFileFlag.cs" />
+    <Compile Include="Analysis\Snapshot.cs" />
+    <Compile Include="Analysis\StatisticRow.cs" />
     <Compile Include="Common\ArtistSong.cs" />
     <Compile Include="Common\LyricsResult.cs" />
     <Compile Include="Common\Status.cs" />
@@ -67,8 +75,10 @@
     <Compile Include="Solr\TrySendResponse.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -54,4 +54,4 @@
 }
 
 // Initiate the Knockout bindings
-ko.applyBindings(new queryViewModel());
+ko.applyBindings(new queryViewModel(), document.getElementById("body"));

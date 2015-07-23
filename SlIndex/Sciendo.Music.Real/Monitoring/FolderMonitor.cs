@@ -4,6 +4,7 @@ using System.Threading;
 using Sciendo.Common.IO;
 using Sciendo.Common.Logging;
 using Sciendo.Music.Contracts.Monitoring;
+using Sciendo.Music.Real.IO;
 
 namespace Sciendo.Music.Real.Monitoring
 {
@@ -35,41 +36,9 @@ namespace Sciendo.Music.Real.Monitoring
             LoggingManager.Debug("FolderMonitor stopped.");
         }
 
-        static bool IsFileLocked(FileInfo file)
-        {
-            FileStream stream = null;
-
-            try
-            {
-                if ((file.Attributes & FileAttributes.ReadOnly) == FileAttributes.ReadOnly)
-                    stream = file.Open(FileMode.Open,
-                         FileAccess.Read, FileShare.None);
-                else
-                    stream = file.Open(FileMode.Open,
-                         FileAccess.ReadWrite, FileShare.None);
-
-            }
-            catch (IOException)
-            {
-                //the file is unavailable because it is:
-                //still being written to
-                //or being processed by another thread
-                //or does not exist (has already been processed)
-                return true;
-            }
-            finally
-            {
-                if (stream != null)
-                    stream.Close();
-            }
-
-            //file is not locked
-            return false;
-        }
-
         private DirectoryMonitor _fsWatcher;
 
-        public Func<string,ProcessType,int>[] ProcessFile { private get; set; }
+        public Action<string,ProcessType> ProcessFile { private get; set; }
 
         public void Start()
         {
@@ -101,18 +70,15 @@ namespace Sciendo.Music.Real.Monitoring
                 return;
             // Wait if file is still open
             FileInfo fileInfo = new FileInfo(topath);
-            while (IsFileLocked(fileInfo))
+            while (FileAccessChecker.IsFileLocked(fileInfo))
             {
-                Thread.Sleep(500);
+                Thread.Sleep(750);
             }
 
             if (ProcessFile != null)
             {
-                foreach (var processFile in ProcessFile)
-                {
-                    processFile(frompath,ProcessType.Delete);
-                    processFile(topath, ProcessType.Update);
-                }
+                ProcessFile(frompath,ProcessType.Delete);
+                ProcessFile(topath, ProcessType.Update);
             }
         }
 
@@ -128,10 +94,7 @@ namespace Sciendo.Music.Real.Monitoring
                 return;
             if (ProcessFile != null)
             {
-                foreach (var processFile in ProcessFile)
-                {
-                    processFile(path, ProcessType.Delete);
-                }
+                ProcessFile(path, ProcessType.Delete);
             }
         }
 
@@ -149,15 +112,14 @@ namespace Sciendo.Music.Real.Monitoring
             //queue an insert;
             // Wait if file is still open
             FileInfo fileInfo = new FileInfo(path);
-            while (IsFileLocked(fileInfo))
+            while (FileAccessChecker.IsFileLocked(fileInfo))
             {
-                Thread.Sleep(500);
+                Thread.Sleep(750);
             }
             //queue an update;
             if (ProcessFile != null)
             {
-                foreach (var processFile in ProcessFile)
-                    processFile(path,ProcessType.Update);
+                ProcessFile(path,ProcessType.Update);
             }
         }
 
