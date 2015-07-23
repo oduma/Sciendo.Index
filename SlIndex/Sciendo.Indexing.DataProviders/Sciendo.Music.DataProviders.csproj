@@ -64,7 +64,6 @@
     <Compile Include="Configuration\PlaylistProviderConfigurationSection.cs" />
     <Compile Include="Configuration\StatisticsProviderConfigurationSection.cs" />
     <Compile Include="DataProvider.cs" />
-    <Compile Include="DictionariesConverter.cs" />
     <Compile Include="IStatisticsProvider.cs" />
     <Compile Include="IDataProvider.cs" />
     <Compile Include="IPlayerProcess.cs" />

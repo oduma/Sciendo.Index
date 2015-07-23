@@ -52,6 +52,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DictionariesConverter.cs" />
     <Compile Include="MockDataProvider.cs" />
     <Compile Include="MockPlayerProcess.cs" />
     <Compile Include="MockPlaylistProvider.cs" />

@@ -4,7 +4,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Sciendo.Music.Solr.Query.FromSolr;
 
-namespace Sciendo.Music.DataProviders
+namespace Sciendo.Music.DataProviders.Mocks
 {
     public class DictionariesConverter : JsonConverter
     {
