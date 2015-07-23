@@ -24,9 +24,10 @@ namespace Sciendo.Music.Tests
     }
     public static class SolrResultsProviderMocks
     {
+        private static string queryTemplate="file_path_id:%22{0}%22";
         public static IResultsProvider GetExceptionMock(string query)
         {
-            var solrQuery = string.Format("file_path_id:\"{0}\"", query);
+            var solrQuery = string.Format(queryTemplate, query);
             var mockResultsProvider = MockRepository.GenerateStub<IResultsProvider>();
             mockResultsProvider.Stub(m => m.GetResultsPackageWithPreciseStrategy(solrQuery,1,0,RequestType.Post)).Throw(new Exception());
             return mockResultsProvider;
@@ -35,7 +36,7 @@ namespace Sciendo.Music.Tests
 
         internal static IResultsProvider GetNullResultsMock(string query)
         {
-            var solrQuery = string.Format("file_path_id:\"{0}\"", query);
+            var solrQuery = string.Format(queryTemplate, query);
             var mockResultsProvider = MockRepository.GenerateStub<IResultsProvider>();
             mockResultsProvider.Stub(m => m.GetResultsPackageWithPreciseStrategy(solrQuery, 1, 0, RequestType.Post)).Return(null);
             return mockResultsProvider;
@@ -43,7 +44,7 @@ namespace Sciendo.Music.Tests
 
         internal static IResultsProvider GetNullResultRowsMock(string query)
         {
-            var solrQuery = string.Format("file_path_id:\"{0}\"", query);
+            var solrQuery = string.Format(queryTemplate, query);
             var mockResultsProvider = MockRepository.GenerateStub<IResultsProvider>();
             mockResultsProvider.Stub(m => m.GetResultsPackageWithPreciseStrategy(solrQuery, 1, 0, RequestType.Post)).Return(new ResultsPackage());
             return mockResultsProvider;
@@ -51,7 +52,7 @@ namespace Sciendo.Music.Tests
 
         internal static IResultsProvider GetNoResultRowsMock(string query)
         {
-            var solrQuery = string.Format("file_path_id:\"{0}\"", query);
+            var solrQuery = string.Format(queryTemplate, query);
             var mockResultsProvider = MockRepository.GenerateStub<IResultsProvider>();
             mockResultsProvider.Stub(m => m.GetResultsPackageWithPreciseStrategy(solrQuery, 1, 0, RequestType.Post)).Return(new ResultsPackage { ResultRows=new Doc[]{}});
             return mockResultsProvider;
@@ -59,7 +60,7 @@ namespace Sciendo.Music.Tests
 
         internal static IResultsProvider GetOneEmptyResultRowsMock(string query)
         {
-            var solrQuery = string.Format("file_path_id:\"{0}\"", query);
+            var solrQuery = string.Format(queryTemplate, query);
             var mockResultsProvider = MockRepository.GenerateStub<IResultsProvider>();
             mockResultsProvider.Stub(m => m.GetResultsPackageWithPreciseStrategy(solrQuery, 1, 0, RequestType.Post)).Return(new ResultsPackage { ResultRows = new Doc[] { null} });
             return mockResultsProvider;
@@ -68,9 +69,9 @@ namespace Sciendo.Music.Tests
         internal static IResultsProvider GetIndexedResultMock(string query, MissingType missingType)
         {
             Doc returnedDoc = GetDoc(missingType);
-            var solrQuery = string.Format("file_path_id:\"{0}\"", query);
+            var solrQuery = string.Format(queryTemplate, query);
             var mockResultsProvider = MockRepository.GenerateStub<IResultsProvider>();
-            mockResultsProvider.Stub(m => m.GetResultsPackageWithPreciseStrategy(solrQuery, 1, 0, RequestType.Post)).Return(new ResultsPackage { ResultRows = new Doc[] { returnedDoc } });
+            mockResultsProvider.Stub(m => m.GetResultsPackageWithPreciseStrategy(solrQuery, 1, 0, RequestType.Get)).Return(new ResultsPackage { ResultRows = new Doc[] { returnedDoc } });
             return mockResultsProvider;
 
         }

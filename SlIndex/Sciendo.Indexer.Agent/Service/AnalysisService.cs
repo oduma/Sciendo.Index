@@ -57,6 +57,7 @@ namespace Sciendo.Music.Agent.Service
         {
             using(Statistics container = new Statistics())
             {
+                container.Database.Log = LoggingManager.Debug;
                 var newSnapshot = new Snapshot { Name = name };
                 container.Snapshots.Add(newSnapshot);
                 container.SaveChanges();
@@ -71,6 +72,7 @@ namespace Sciendo.Music.Agent.Service
             {
                 using (Statistics container = new Statistics())
                 {
+                    container.Database.Log = LoggingManager.Debug;
                     container.Elements.AddRange(newElements);
                     container.SaveChanges();
                     return newElements.Length;
@@ -90,8 +92,9 @@ namespace Sciendo.Music.Agent.Service
             if(string.IsNullOrEmpty(fromPath))
             {
                 //GetTotals for the source folder
-                using(Statistics container = new Statistics())
+                using (Statistics container = new Statistics())
                 {
+                    container.Database.Log = LoggingManager.Debug;
                     return new StatisticRow[] {GetAggregatedStatisticRow(container.Elements.Where(e=>e.SnapshotId==snapshotId),_musicSourceFolder)};
                 }
             }
@@ -99,6 +102,7 @@ namespace Sciendo.Music.Agent.Service
             {
                 using(Statistics container = new Statistics())
                 {
+                    container.Database.Log = LoggingManager.Debug;
                     List<StatisticRow> statisticRows = new List<StatisticRow>();
 
                     var subElements = container.Elements.Where(e => e.SnapshotId == snapshotId

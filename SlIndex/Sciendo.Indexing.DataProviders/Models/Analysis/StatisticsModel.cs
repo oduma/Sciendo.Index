@@ -10,7 +10,5 @@ namespace Sciendo.Music.DataProviders.Models.Analysis
     public class StatisticsModel
     {
         public Snapshot[] Snapshots { get; set; }
-
-        public string FeedbackUrl { get; set; }
     }
 }

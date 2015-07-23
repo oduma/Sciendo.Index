@@ -23,12 +23,14 @@ namespace Sciendo.Music.Agent.Processing
                 throw new ArgumentNullException("path");
             if(string.IsNullOrEmpty(searchPattern))
                 throw new ArgumentNullException("searchPattern");
-            _currentFileActivity.SetAndBroadcast(path, ActivityStatus.InProgress);
+            if(_currentFileActivity!=null)
+                _currentFileActivity.SetAndBroadcast(path, ActivityStatus.InProgress);
             if (processType == ProcessType.Delete)
             {
                 LoggingManager.Debug("Attempting to delete " + path);
                 ProcessFiles(new[] {path});
-                _currentFileActivity.BroadcastDetails("Deleting: " + path);
+                if(_currentFileActivity!=null)
+                    _currentFileActivity.BroadcastDetails("Deleting: " + path);
                 LoggingManager.Debug("Deleted " +path);
             }
             else
@@ -38,16 +40,19 @@ namespace Sciendo.Music.Agent.Processing
                     LoggingManager.Debug("Path is a directory...");
                     Directory.GetDirectories(path, "*", SearchOption.AllDirectories)
                         .ToList()
-                        .ForEach(s => {_currentFileActivity.BroadcastDetails("Processing: " + s);
+                        .ForEach(s => {if(_currentFileActivity!=null)
+                                _currentFileActivity.BroadcastDetails("Processing: " + s);
                             ProcessFiles(GetFiles(s, searchPattern, SearchOption.TopDirectoryOnly));});
                     //Search the current directory also
-                    _currentFileActivity.BroadcastDetails("Processing: " + path);
+                    if(_currentFileActivity!=null)
+                        _currentFileActivity.BroadcastDetails("Processing: " + path);
                     ProcessFiles(GetFiles(path, searchPattern, SearchOption.TopDirectoryOnly));
                 }
                 else if (File.Exists(path))
                 {
                     LoggingManager.Debug("Path is a file...");
-                    _currentFileActivity.BroadcastDetails("Processing: " + path);
+                    if(_currentFileActivity!=null)
+                        _currentFileActivity.BroadcastDetails("Processing: " + path);
                     ProcessFiles(new[] { path });
                 }
                 else

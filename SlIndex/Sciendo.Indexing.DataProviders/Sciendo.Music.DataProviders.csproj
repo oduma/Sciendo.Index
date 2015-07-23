@@ -58,6 +58,7 @@
   <ItemGroup>
     <Compile Include="ClementinePlayerProcess.cs" />
     <Compile Include="Configuration\ConfigurationSectionNames.cs" />
+    <Compile Include="Configuration\FeedbackProviderConfigurationSection.cs" />
     <Compile Include="Configuration\IndexDataProviderConfigurationSection.cs" />
     <Compile Include="Configuration\PlayerConfigurationSection.cs" />
     <Compile Include="Configuration\PlaylistProviderConfigurationSection.cs" />

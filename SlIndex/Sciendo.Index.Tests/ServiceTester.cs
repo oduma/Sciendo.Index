@@ -12,7 +12,7 @@ namespace Sciendo.Music.Tests
         public void IndexAFolderOk()
         {
             IndexingFilesProcessor musicFilesProcessor= new MockIndexingFilesProcessor();
-            MusicService svc = new MusicService(musicFilesProcessor,null,2);
+            MusicService svc = new MusicService(musicFilesProcessor,null);
             Assert.AreEqual(6,svc.IndexOnDemand(@"TestData\Music"));
         }
 
@@ -20,7 +20,7 @@ namespace Sciendo.Music.Tests
         public void IndexAFileOk()
         {
             IndexingFilesProcessor musicFilesProcessor = new MockIndexingFilesProcessor();
-            MusicService svc = new MusicService(musicFilesProcessor, null,2);
+            MusicService svc = new MusicService(musicFilesProcessor, null);
             Assert.AreEqual(1, svc.IndexOnDemand(@"TestData\Music\MockMp3.mp3"));
         }
 
@@ -28,7 +28,7 @@ namespace Sciendo.Music.Tests
         public void GetSourceFolderOk()
         {
             IndexingFilesProcessor musicFilesProcessor = new MockIndexingFilesProcessor();
-            MusicService svc = new MusicService(musicFilesProcessor, null, 2);
+            MusicService svc = new MusicService(musicFilesProcessor, null);
             Assert.AreEqual(@"TestData\Music",svc.GetSourceFolder());
         }
 

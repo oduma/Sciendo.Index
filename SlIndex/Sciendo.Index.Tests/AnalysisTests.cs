@@ -192,30 +192,5 @@ namespace Sciendo.Music.Tests
         {
             Assert.AreEqual(IndexedFlag.Indexed | IndexedFlag.IndexedArtist | IndexedFlag.IndexedAlbum | IndexedFlag.IndexedTitle |IndexedFlag.IndexedLyrics, Utils.GetIndexedFlag("something.else", SolrResultsProviderMocks.GetIndexedResultMock("something.else", MissingType.None)));
         }
-
-        [Test]
-        //[Ignore("performance test")]
-        public void AnalyseThisTest()
-        {
-            var globalStopwatch = new Stopwatch();
-            globalStopwatch.Start();
-            IResultsProvider resultsProvider = new SolrResultsProvider();
-            AnalysisService svc = new AnalysisService(@"c:\code\m\music", @"c:\code\m\lyrics", "*.mp3|*.ogg", resultsProvider);
-
-            Stopwatch stopwatch = new Stopwatch();
-
-            var snapshot = svc.CreateNewSnapshot("new test");
-            stopwatch.Start();
-
-            var processed = svc.AnaliseThis("c:\\code\\m\\music\\b\\beck\\Clock", snapshot.SnapshotId);
-
-            stopwatch.Stop();
-            globalStopwatch.Stop();
-            TimeSpan timeSpan = new TimeSpan(stopwatch.ElapsedTicks);
-            TimeSpan globalTimeSpan = new TimeSpan(globalStopwatch.ElapsedTicks);
-
-            Console.WriteLine("Processed {0} in {1}:{2}.{3}", processed, timeSpan.Minutes, timeSpan.Seconds,timeSpan.Milliseconds);
-            Console.WriteLine("Global time {0}:{1}.{2}", globalTimeSpan.Minutes, globalTimeSpan.Seconds, globalTimeSpan.Milliseconds);
-        }
     }
 }

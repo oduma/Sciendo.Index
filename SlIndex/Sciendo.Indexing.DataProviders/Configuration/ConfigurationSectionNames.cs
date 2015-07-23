@@ -12,5 +12,7 @@ namespace Sciendo.Music.DataProviders.Configuration
         public static string PlayerProcessConfigurationName = "playerProcessProvider";
         public static string PlaylistProviderConfigurationName = "playlistProvider";
         public static string StatisticsProviderConfigurationName = "statisticsProvider";
+
+        public static string FeedbackProviderConfigurationName = "feedbackProvider";
     }
 }

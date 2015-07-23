@@ -25,7 +25,7 @@ namespace Sciendo.Music.Tests
         public void ResolveIOCComponentsToMock()
         {
             MusicAgent musicAgent = new MusicAgent();
-            musicAgent.ResolveComponents("mock",20);
+            musicAgent.ResolveComponents("mock");
             var currentWorkigSet = musicAgent.AgentService.GetCurrentWorkingSet();
             Assert.AreEqual(typeof(MockIndexingFilesProcessor),currentWorkigSet.IndexingFilesProcessorType);
             Assert.AreEqual(typeof(MockMusicToLyricsFilesProcessor), currentWorkigSet.LyricsAcquirerFilesProcessorType);

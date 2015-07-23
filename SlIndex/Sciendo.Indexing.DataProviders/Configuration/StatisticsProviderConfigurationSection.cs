@@ -21,26 +21,12 @@ namespace Sciendo.Music.DataProviders.Configuration
                 this["currentStatisticsProvider"] = value;
             }
         }
-
-
-        [ConfigurationProperty("feedbackUrl", IsRequired = true)]
-        public string FeedbackUrl
-        {
-            get
-            {
-                return (string)this["feedbackUrl"];
-            }
-            set
-            {
-                this["feedbackUrl"] = value;
-            }
-        }
         public override string ToString()
         {
             return
                 string.Format(
-                    "\r\n\tCurrent Statistics Provider:{0}\tFeedback Url:{1}",
-                    CurrentStatisticsProvider,FeedbackUrl);
+                    "\r\n\tCurrent Statistics Provider:{0}",
+                    CurrentStatisticsProvider);
         }
 
     }

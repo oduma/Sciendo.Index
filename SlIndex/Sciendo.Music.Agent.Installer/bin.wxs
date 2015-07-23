@@ -1,0 +1,165 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+    <Fragment>
+        <DirectoryRef Id="INSTALLLOCATION">
+            <Component Id="cmp8E2F2FD13D13DA4BA79AC5044F2D6E6B" Guid="*">
+                <File Id="fil85A075D72DB090C7AEA736711C510694" KeyPath="yes" Source="$(var.SourceFolder)\Analysis.mdf" />
+            </Component>
+            <Component Id="cmpF172CABD5D7076A3AB4FE3ABC9C1D871" Guid="*">
+                <File Id="fil1C86DCEAACB69A08589819C541113C0D" KeyPath="yes" Source="$(var.SourceFolder)\Analysis_log.ldf" />
+            </Component>
+            <Component Id="cmp27EA2B61687E5A7DC650AE74087C769C" Guid="*">
+                <File Id="fil0F065753A31F13E6321AE36B2AAD06E5" KeyPath="yes" Source="$(var.SourceFolder)\EntityFramework.dll" />
+            </Component>
+            <Component Id="cmpC089A10BB84F4EFA42B4AD836B628DFA" Guid="*">
+                <File Id="fil45C508C3172777941868E32F1A08EC7F" KeyPath="yes" Source="$(var.SourceFolder)\EntityFramework.SqlServer.dll" />
+            </Component>
+            
+            
+            
+            
+            <Component Id="cmp33951FE5651551636FC21134ACD34AB9" Guid="*">
+                <File Id="fil82B9DDDCD08429A7CF10FB75FC709E72" KeyPath="yes" Source="$(var.SourceFolder)\Id3.dll" />
+            </Component>
+            <Component Id="cmp764B1302C31C7E3EB73F8475071AF483" Guid="*">
+                <File Id="filCA7DD23EB9E3D76B59B9639A81AF67D3" KeyPath="yes" Source="$(var.SourceFolder)\Id3.Files.dll" />
+            </Component>
+            <Component Id="cmp1F6DF8646619108DFBB033EF4679F1AC" Guid="*">
+                <File Id="filCAAC665964D1DB313016DB15221ED3C8" KeyPath="yes" Source="$(var.SourceFolder)\log4net.config" />
+            </Component>
+            <Component Id="cmpE5C01B5677C30D575CC15B4B558A57E0" Guid="*">
+                <File Id="filD17F9AFAC4DF3D7A44817DFBA8510C1A" KeyPath="yes" Source="$(var.SourceFolder)\log4net.dll" />
+            </Component>
+            
+            <Component Id="cmp785F54B58080E6491BF1E84E09B16A81" Guid="*">
+                <File Id="fil23A3B95EBE61A286FA7ABAFD01B7ADF5" KeyPath="yes" Source="$(var.SourceFolder)\Microsoft.AspNet.SignalR.Core.dll" />
+            </Component>
+            
+            <Component Id="cmp09CC8B2D571E9921EF6FF27C6188695B" Guid="*">
+                <File Id="filA5B6B1EE55196A48EB301434BBBF65C0" KeyPath="yes" Source="$(var.SourceFolder)\Microsoft.Owin.Cors.dll" />
+            </Component>
+            
+            <Component Id="cmp196B2E0E9504900A93FFE2BB866DD259" Guid="*">
+                <File Id="filCADD4451AD0A57758A347ADA41FAC155" KeyPath="yes" Source="$(var.SourceFolder)\Microsoft.Owin.Diagnostics.dll" />
+            </Component>
+            
+            <Component Id="cmpC7BC2CB5A0A63501D89C7D7BC6DCB97B" Guid="*">
+                <File Id="fil0B50BC7111AADC2B0C0D576F0FFB29C3" KeyPath="yes" Source="$(var.SourceFolder)\Microsoft.Owin.dll" />
+            </Component>
+            <Component Id="cmp1CAF53E1325D6DE1FF0C6B1DC686F2EC" Guid="*">
+                <File Id="fil0C18A1FCD00961A9BACE19A4E8EB3D4B" KeyPath="yes" Source="$(var.SourceFolder)\Microsoft.Owin.Host.HttpListener.dll" />
+            </Component>
+            
+            <Component Id="cmp4A19503B4C88966032CA75F37FF921A8" Guid="*">
+                <File Id="filFC6E8BAF5AF7B019D3F1B6C17FCDC101" KeyPath="yes" Source="$(var.SourceFolder)\Microsoft.Owin.Hosting.dll" />
+            </Component>
+            
+            <Component Id="cmpF4A654EAFEBF32DF7A58239AF35A93BE" Guid="*">
+                <File Id="filBCA6671D0E9973553ADC6D7CA520515C" KeyPath="yes" Source="$(var.SourceFolder)\Microsoft.Owin.Security.dll" />
+            </Component>
+            
+            
+            <Component Id="cmpE48528C4F5932A4EFD89F7331108F45D" Guid="*">
+                <File Id="filF1B84C2C6BCC693224B7A7959445B74F" KeyPath="yes" Source="$(var.SourceFolder)\Newtonsoft.Json.dll" />
+            </Component>
+            
+            <Component Id="cmp060E0EAB19A08B32377F04956A2BAA1F" Guid="*">
+                <File Id="fil997A5C3BF9E356D4D06B9EC2DAC04313" KeyPath="yes" Source="$(var.SourceFolder)\Owin.dll" />
+            </Component>
+            <Component Id="cmp51AFE4BD8A2FDEC7739EA8E3F87882C3" Guid="*">
+                <File Id="fil5BD49C91774C71FC26EAA02C737E6581" KeyPath="yes" Source="$(var.SourceFolder)\Sciendo.Common.dll" />
+            </Component>
+            <Component Id="cmp690E6E5868AC761F31C03050F8F152BB" Guid="*">
+                <File Id="fil7DD54326E6CE5913B2318F99D4993F8B" KeyPath="yes" Source="$(var.SourceFolder)\Sciendo.IOC.Configuration.dll" />
+            </Component>
+            <Component Id="cmp0640DD15322A996C33CCB1FF9C81923D" Guid="*">
+                <File Id="fil83E931E4DC1CC6064C7EDC74E96F8905" KeyPath="yes" Source="$(var.SourceFolder)\Sciendo.IOC.dll" />
+            </Component>
+            
+            
+            
+            <Component Id="cmpEA7E7567B536A60EDF5DA40272F02FA0" Guid="*">
+                <File Id="fil9ABC2CCCF6D6B9C6E42E6E896C527C70" KeyPath="yes" Source="$(var.SourceFolder)\Sciendo.Music.Contracts.dll" />
+            </Component>
+            
+            
+            <Component Id="cmp2B075123F898395033A1B9FC9EBCC941" Guid="*">
+                <File Id="filC363B99AE02791F75BF31DF97488BCDB" KeyPath="yes" Source="$(var.SourceFolder)\Sciendo.Music.Data.dll" />
+            </Component>
+            
+            
+            <Component Id="cmpCAD5BF4534527C81B6EAD4167345607A" Guid="*">
+                <File Id="fil5621571E69D0B4397F71C110A559936E" KeyPath="yes" Source="$(var.SourceFolder)\Sciendo.Music.Mocks.dll" />
+            </Component>
+            
+            
+            <Component Id="cmp0B43627F0F3ECE2AF4AD678FD7C05D0C" Guid="*">
+                <File Id="fil0B2731D4F1436244BAC2F487DB191930" KeyPath="yes" Source="$(var.SourceFolder)\Sciendo.Music.Real.dll" />
+            </Component>
+            
+            
+            <Component Id="cmp9D4CF336887CE3902A9889324448B559" Guid="*">
+                <File Id="filB93AFE4C9936FE1A910E43F7374EBDDB" KeyPath="yes" Source="$(var.SourceFolder)\Sciendo.Music.Solr.dll" />
+            </Component>
+            
+            <Component Id="cmpED14316F6DE38D199E923D25CEEA540E" Guid="*">
+                <File Id="fil2CDC593D885D20F9ABDF518168DABC41" KeyPath="yes" Source="$(var.SourceFolder)\System.Web.Cors.dll" />
+            </Component>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <ComponentGroup Id="Binaries">
+            <ComponentRef Id="cmp8E2F2FD13D13DA4BA79AC5044F2D6E6B" />
+            <ComponentRef Id="cmpF172CABD5D7076A3AB4FE3ABC9C1D871" />
+            <ComponentRef Id="cmp27EA2B61687E5A7DC650AE74087C769C" />
+            <ComponentRef Id="cmpC089A10BB84F4EFA42B4AD836B628DFA" />
+            
+            
+            
+            
+            <ComponentRef Id="cmp33951FE5651551636FC21134ACD34AB9" />
+            <ComponentRef Id="cmp764B1302C31C7E3EB73F8475071AF483" />
+            <ComponentRef Id="cmp1F6DF8646619108DFBB033EF4679F1AC" />
+            <ComponentRef Id="cmpE5C01B5677C30D575CC15B4B558A57E0" />
+            
+            <ComponentRef Id="cmp785F54B58080E6491BF1E84E09B16A81" />
+            
+            <ComponentRef Id="cmp09CC8B2D571E9921EF6FF27C6188695B" />
+            
+            <ComponentRef Id="cmp196B2E0E9504900A93FFE2BB866DD259" />
+            
+            <ComponentRef Id="cmpC7BC2CB5A0A63501D89C7D7BC6DCB97B" />
+            <ComponentRef Id="cmp1CAF53E1325D6DE1FF0C6B1DC686F2EC" />
+            
+            <ComponentRef Id="cmp4A19503B4C88966032CA75F37FF921A8" />
+            
+            <ComponentRef Id="cmpF4A654EAFEBF32DF7A58239AF35A93BE" />
+            
+            
+            <ComponentRef Id="cmpE48528C4F5932A4EFD89F7331108F45D" />
+            
+            <ComponentRef Id="cmp060E0EAB19A08B32377F04956A2BAA1F" />
+            <ComponentRef Id="cmp51AFE4BD8A2FDEC7739EA8E3F87882C3" />
+            <ComponentRef Id="cmp690E6E5868AC761F31C03050F8F152BB" />
+            <ComponentRef Id="cmp0640DD15322A996C33CCB1FF9C81923D" />
+            
+            
+            
+            <ComponentRef Id="cmpEA7E7567B536A60EDF5DA40272F02FA0" />
+            
+            
+            <ComponentRef Id="cmp2B075123F898395033A1B9FC9EBCC941" />
+            
+            
+            <ComponentRef Id="cmpCAD5BF4534527C81B6EAD4167345607A" />
+            
+            
+            <ComponentRef Id="cmp0B43627F0F3ECE2AF4AD678FD7C05D0C" />
+            
+            
+            <ComponentRef Id="cmp9D4CF336887CE3902A9889324448B559" />
+            
+            <ComponentRef Id="cmpED14316F6DE38D199E923D25CEEA540E" />
+        </ComponentGroup>
+    </Fragment>
+</Wix>

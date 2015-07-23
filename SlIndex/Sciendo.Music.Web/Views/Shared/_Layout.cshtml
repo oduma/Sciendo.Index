@@ -22,7 +22,7 @@
         @Scripts.Render("~/bundles/signalR")
         @if(true)
         {
-            Html.RenderPartial("~/Views/Shared/Feedback.cshtml",SciendoConfiguration.StatisticsConfiguration.FeedbackUrl);
+            Html.RenderPartial("~/Views/Shared/Feedback.cshtml",SciendoConfiguration.FeedbackConfiguration.FeedbackUrl);
         }
         <header>
             <div class="content-wrapper">
@@ -51,10 +51,10 @@
         <footer>
                 <p>&copy; @DateTime.Now.Year - Sciendo Music Web</p>
             </footer>
-        <script src='@SciendoConfiguration.StatisticsConfiguration.FeedbackUrl/hubs'></script>
+        <script src='@SciendoConfiguration.FeedbackConfiguration.FeedbackUrl/hubs'></script>
         @Scripts.Render("~/bundles/feedback")
         <script>
-    $.connection.hub.url = '@SciendoConfiguration.StatisticsConfiguration.FeedbackUrl';
+    $.connection.hub.url = '@SciendoConfiguration.FeedbackConfiguration.FeedbackUrl';
     var appProxy = $.connection.feedbackHub;
     var feedbackvm = new feedbackViewModel(appProxy);
     $.connection.hub.start().done(feedbackvm.init);

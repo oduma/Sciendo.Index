@@ -15,7 +15,6 @@ namespace Sciendo.Music.Web.Controllers
             var statisticsModel = SciendoConfiguration.Container.Resolve<IStatisticsProvider>(
                 SciendoConfiguration.StatisticsConfiguration.CurrentStatisticsProvider)
                 .GetStatisticsModel();
-            statisticsModel.FeedbackUrl = SciendoConfiguration.StatisticsConfiguration.FeedbackUrl;
             return View("StatisticsView",statisticsModel);
         }
 
