@@ -29,10 +29,10 @@
                 <div class="float-right">
                     <nav>
                         <ul id="menu">
-                            <li>@Html.ActionLink("Query", "Index", "Query")</li>
-                            <li id="indexingMenu">@Html.ActionLink("Index", "Index", "Home")</li>
-                            <li id="playlistMenu">@Html.ActionLink("Build Playlist", "Buildplaylist", "Query")</li>
-                            <li id="analysisMenu">@Html.ActionLink("Statistics", "Index", "Statistics")</li>
+                            <li id="queryMenu" class="@ViewBag.SearchSelected">@Html.ActionLink("Query", "Index", "Query")</li>
+                            <li id="indexingMenu" class="@ViewBag.IndexingSelected">@Html.ActionLink("Index", "Index", "Home")</li>
+                            <li id="playlistMenu" class="@ViewBag.PlaylistSelected">@Html.ActionLink("Build Playlist", "Buildplaylist", "Query")</li>
+                            <li id="analysisMenu" class="@ViewBag.AnalysisSelected">@Html.ActionLink("Statistics", "Index", "Statistics")</li>
                             <li>@Html.ActionLink("About", "About", "Home")</li>
                             <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                         </ul>
@@ -41,7 +41,7 @@
             </div>
         </header>
         <div id="body">
-            <div class="float-left site-title">
+            <div class="float-left site-title @ViewBag.Current">
                 @ViewBag.Title
             </div>
             <section class="content-wrapper main-content clear-fix">

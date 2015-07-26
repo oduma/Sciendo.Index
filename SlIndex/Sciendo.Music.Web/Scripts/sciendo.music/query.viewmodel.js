@@ -1,5 +1,6 @@
 ﻿function queryViewModel() {
     var self = this;
+    self.criteriaPlaceholder = ko.observable("Search for:");
     self.criteria = ko.observable();
     self.resultData = ko.observable(),
         self.error = ko.observable(),
@@ -18,7 +19,8 @@
         return self.resultData()!=null && self.resultData().fields!=null;
     }, self);
     self.getResults = function () {
-        (new datacontext()).doSearch(self.criteria, self.resultData, self.error, self.facetFiltered,self.pageInfo);
+        if(self.criteria()!="Search for:")
+            (new datacontext()).doSearch(self.criteria, self.resultData, self.error, self.facetFiltered,self.pageInfo);
     }
     self.getNextPage = function () {
         self.pageInfo().PageStartRow += self.pageInfo().RowsPerPage;

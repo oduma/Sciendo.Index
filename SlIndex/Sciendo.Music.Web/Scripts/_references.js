@@ -17,3 +17,5 @@
 /// <reference path="sciendo.music/playlist.viewmodel.js" />
 /// <reference path="sciendo.music/query.datacontext.js" />
 /// <reference path="sciendo.music/query.viewmodel.js" />
+/// <reference path="sciendo.music/sciendo.common.js" />
+/// <reference path="sciendo.music/statistics.viewmodel.js" />

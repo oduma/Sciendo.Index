@@ -1,16 +1,12 @@
 ﻿@{
     ViewBag.Title = "Search";
+    ViewBag.SearchSelected = "selected";
+    ViewBag.Current = "query";
 }
-<input data-bind="value: criteria, selected: true, blurOnEnter: true" />
-<button data-bind="click: getResults">Go</button>
+<input id="text" type="text"  data-bind="attr: {placeholder: criteriaPlaceholder}, value: criteria, selected: false, blurOnEnter: true, valueUpdate: 'afterkeydown', enterkey: getResults"/>
 <p class="error" data-bind="text: error"></p>
 <div data-bind="with: resultData">
-    <h3>Results</h3>
-    <a href="#" data-bind="text: 'Previous ' + $root.pageInfo().RowsPerPage, visible:$root.pageInfo().PageStartRow, click:$root.getPreviousPage"></a>
-    <p style="display:inline;" data-bind="text: 'Showing items ' +$root.pageInfo().PageStartRow + ' to ' + $root.pageLastIndex() +' of ' + $root.pageInfo().TotalRows"></p>
-    <a href="#" data-bind="text: 'Next ' + $root.pageInfo().RowsPerPage, visible:$root.notMaxPage, click:$root.getNextPage"></a>
-        <br/>
-        <input style="display:block" type= "button" value="Show All" data-bind="visible:$root.facetFiltered, click: $root.getResults"/>
+        <input id="removeFilter" type= "button" value="Remove filter" data-bind="visible:$root.facetFiltered, click: $root.getResults"/>
         <div class="all-facets" data-bind="if:$root.hasFacets()">
             <div class="facet-titles-row">
                 <div class="facet-title" data-bind="text: fields[0].Name"></div>
@@ -31,7 +27,13 @@
 
             </div>
     </div>
-    <div data-bind="simpleGrid:gridViewModel"></div>
+    <a href="#" id="navigationquery" class="previous" data-bind="text: 'Previous ' + $root.pageInfo().RowsPerPage, visible:$root.pageInfo().PageStartRow, click:$root.getPreviousPage"></a>
+    <span id="paginginfo" data-bind="text: 'Showing items ' +$root.pageInfo().PageStartRow + ' to ' + $root.pageLastIndex() +' of ' + $root.pageInfo().TotalRows"></span>
+    <a href="#" id="navigationquery" class="next" data-bind="text: 'Next ' + $root.pageInfo().RowsPerPage, visible:$root.notMaxPage, click:$root.getNextPage"></a>
+    <div class="queryGrid" data-bind="simpleGrid:gridViewModel"></div>
+    <a href="#" id="navigationquery" class="previous" data-bind="text: 'Previous ' + $root.pageInfo().RowsPerPage, visible:$root.pageInfo().PageStartRow, click:$root.getPreviousPage"></a>
+    <a href="#" id="navigationquery" class="next" data-bind="text: 'Next ' + $root.pageInfo().RowsPerPage, visible:$root.notMaxPage, click:$root.getNextPage"></a>
+
 </div>
 
 @section scripts
