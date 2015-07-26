@@ -11,7 +11,7 @@ namespace Sciendo.Music.DataProviders
             {
                 return false;
             }
-            playerProcess.StartInfo = new ProcessStartInfo(playerProcess.MainModule.FileName, @"-a """ + filePath +@"""");
+            playerProcess.StartInfo = new ProcessStartInfo(playerProcess.MainModule.FileName, @"-a """ + filePath.Replace(@"file:///","") +@"""");
             playerProcess.Start();
             return !playerProcess.HasExited;
         }
@@ -20,7 +20,7 @@ namespace Sciendo.Music.DataProviders
         {
             foreach (Process clsProcess in Process.GetProcesses())
             {
-                if (clsProcess.ProcessName.Contains(name))
+                if (clsProcess.ProcessName==name)
                 {
                     playerProcess = clsProcess;
                     return true;
