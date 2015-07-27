@@ -246,6 +246,7 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\sciendo.music\feedback.viewmodel.js" />
+    <Content Include="Scripts\sciendo.music\index.wireup.js" />
     <Content Include="Scripts\sciendo.music\playlist.datacontext.js" />
     <Content Include="Scripts\sciendo.music\playlist.viewmodel.js" />
     <Content Include="Scripts\sciendo.music\index.autocomplete.js" />

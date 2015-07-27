@@ -19,3 +19,4 @@
 /// <reference path="sciendo.music/query.viewmodel.js" />
 /// <reference path="sciendo.music/sciendo.common.js" />
 /// <reference path="sciendo.music/statistics.viewmodel.js" />
+/// <reference path="sciendo.music/index.wireup.js" />

@@ -9,7 +9,6 @@
     @Styles.Render("~/Content/autocomplete")
     @Styles.Render("~/Content/indexing")
 }
-<h3>Actions @Model.ErrorMessage</h3>
 <div>
     <label for="indexFromPath">From music path:</label>
     <input 
@@ -18,8 +17,8 @@
         name="indexFromPath"
         class="longfield"
         data-autocomplete="@Url.Action("GetIndexingAutocomplete", "Home")" />
-    <button data-bind="click:index, text:indexText, enable:notIndexing"></button>
-    <input type="checkbox" data-bind="checked:retryExisting"/>Retry existing <button data-bind="click:acquireLyrics, text:acquireLyricsText, enable:notAcquiring"></button>
+    <select id="actions" data-bind="options:actions, optionsCaption: 'Choose an action ...', value:selectedAction, event:{change:actionSelected}">
+    </select>
 </div>
 <div data-bind="if:indexedOccured">
     <label id="resultsIndexed" data-bind="text:indexingResultMessage"></label>

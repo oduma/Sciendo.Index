@@ -1,15 +1,30 @@
 ﻿function indexViewModel(musicSource) {
     var self = this;
-    self.indexFromPath = ko.observable(replaceAll(musicSource,"/","\\"));
-    self.retryExisting = ko.observable(false);
+    self.indexFromPath = ko.observable(replaceAll(musicSource, "/", "\\"));
+    self.actions = ko.observableArray(["Acquire and Index", "Acquire only no retry", "Acquire only retry existing"]);
+    self.selectedAction = ko.observable("Choose an action ...");
     self.indexingResult = ko.observable();
     self.indexingError = ko.observable();
-    self.acquireLyricsText = ko.observable("Acquire Lyrics");
-    self.indexText = ko.observable("Index");
+    self.actionSelected = function (event, data) {
+        if (self.selectedAction() == "Acquire and Index") {
+            self.index();
+            return;
+        }
+        else if(self.selectedAction()=="Acquire only no retry")
+        {
+            self.acquireLyrics(false);
+            return;
+        }
+        else if (self.selectedAction()=="Acquire only retry existing")
+        {
+            self.acquireLyrics(true);
+            return;
+        }
+    }
     self.indexedOccured = ko.computed(function() {
          return self.indexingResult() != null || self.indexingError() != null;
     });
-    self.indexedWithError = ko.constructor(function() { return self.indexingError() != null; });
+    self.indexedWithError = ko.computed(function() { return self.indexingError() != null; });
     self.indexingResultMessage = ko.computed(function () {
         if (!self.indexedWithError()) {
             if (self.indexingResult() != "")
@@ -21,14 +36,11 @@
     });
 
     self.asyncOperationsHub = $.connection.asyncOperationsHub;
-    self.notAcquiring = ko.computed(function () { return self.acquireLyricsText() == "Acquire Lyrics"; });
 
-    self.notIndexing = ko.computed(function () { return self.indexText() == "Index"; });
     self.selectValue = function (property, value) {
             self.indexFromPath(value);
     }
     self.index = function () {
-        self.indexText("Indexing...");
         self.indexingError(null);
         self.indexingResult("");
         if ($.connection.hub.state != $.connection.connectionState.connected) {
@@ -42,34 +54,24 @@
 
     }
 
-    self.acquireLyrics = function () {
-        self.acquireLyricsText("Acquiring Lyrics...");
+    self.acquireLyrics = function (retry) {
         self.indexingError(null);
         self.indexingResult("");
 
         if ($.connection.hub.state != $.connection.connectionState.connected) {
             $.connection.hub.start().done(function () {
-                self.asyncOperationsHub.server.startAcquiringLyrics(self.indexFromPath(), self.retryExisting());
+                self.asyncOperationsHub.server.startAcquiringLyrics(self.indexFromPath(), retry);
             });
         }
         else {
-            self.asyncOperationsHub.server.startAcquiringLyrics(self.indexFromPath(), self.retryExisting());
+            self.asyncOperationsHub.server.startAcquiringLyrics(self.indexFromPath(), retry);
         }
 
     }
 
     self.asyncOperationsHub.client.returnCompletedMessage = function (data)
     {
-        var lastActivity = "Indexed ";
-        if (self.acquireLyricsText() == "Acquiring Lyrics...") {
-            self.acquireLyricsText("Acquire Lyrics");
-            lastActivity = "Acquired Lyrics for ";
-        }
-        else {
-            self.indexText("Index");
-
-        }
-        self.indexingResult(lastActivity + data.NumberOfDocuments);
+        self.indexingResult("Processed: " + data.NumberOfDocuments);
 
         self.indexingError(data.Error);
     }
