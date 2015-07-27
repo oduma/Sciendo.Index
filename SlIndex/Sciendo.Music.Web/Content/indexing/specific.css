@@ -3,10 +3,29 @@
     overflow: hidden;
     text-overflow: ellipsis;
     -o-text-overflow: ellipsis;
+    border-color:darksalmon;
+    width:75%;
 }
 
-input {
-    width: 600px;
-    max-width: 800px;
+.ui-autocomplete {
+    max-height: 200px;
+    overflow-y: auto;
+    /* prevent horizontal scrollbar */
+    overflow-x: hidden;
+    /* add padding to account for vertical scrollbar */
+    padding-right: 20px;
+    border-color:darksalmon;
+}
+/* IE 6 doesn't support max-height
+ * we use height instead, but this forces the menu to always be this tall
+ */
+* html .ui-autocomplete {
+    height: 200px;
 }
 
+select#actions{
+    font-size:1.2em;
+    padding:4px;
+    color:darksalmon;
+    border-color:darksalmon;
+}
