@@ -1,6 +1,6 @@
-﻿function playlistViewModel() {
+﻿function playlistViewModel(defaultUserName) {
     var self = this;
-    self.lastFmUser = ko.observable();
+    self.lastFmUser = ko.observable(defaultUserName);
     self.resultData = ko.observable(),
         self.error = ko.observable(),
         self.pageInfo = ko.observable({ TotalRows: 0, RowsPerPage: 0, PageStartRow: 0 }),
@@ -27,5 +27,4 @@
     }
 }
 
-// Initiate the Knockout bindings
-ko.applyBindings(new playlistViewModel(), document.getElementById("body"));
+

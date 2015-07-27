@@ -6,6 +6,12 @@
     self.noDataCollection = ko.observable(true);
     self.newSnapshotName = ko.observable("");
     self.selectedSnapshotId = ko.observable("");
+    self.canSave = ko.computed(function () {
+        if (self.newSnapshotName() == "")
+            return "disabled";
+        else
+            return "";
+    });
 
     self.takeNew = function (itemId, e)
     {
@@ -48,10 +54,10 @@
             element = e.originalEvent.srcElement;
         var id = (element.id != "") ? element.id : element.parentElement.id;
 
-        self.getDetails(self.snapshotUrl(id));
+        self.getDetails(self.snapshotUrl(id),id);
     };
 
-    self.getDetails=function(url)
+    self.getDetails=function(url, id)
     {
 
         return ajaxRequest("get", url)
@@ -99,12 +105,12 @@
                 { headerText: "Id", rowText: "Id", isKey: true, isSelect: false, isLink: false, colWidth: "0px" },
                 { headerText: "Name", rowText: "Name", isKey: false, isSelect: false, isLink: true, colWidth: "300px" },
                 { headerText: "Files", rowText: "Files", isKey: false, isLink: false, isSelect: false, colWidth: "50px" },
-                { headerText: "Music Files", rowText: "MusicFiles", isKey: false, isLink: false, isSelect: false, colWidth: "50px" },
+                { headerText: "Music Files", rowText: "MusicFiles", isKey: false, isLink: false, isSelect: false, colWidth: "80px" },
                 { headerText: "Tag", rowText: "TaggedWithDetails", isKey: false, isLink: false, isSelect: false, colWidth: "50px" },
                 { headerText: "No Tag", rowText: "NotTagged", isKey: false, isLink: false, isSelect: false, colWidth: "50px" },
                 { headerText: "Lyrics", rowText: "LyricsWithDetails", isKey: false, isLink: false, isSelect: false, colWidth: "50px" },
-                { headerText: "No Lyrics", rowText: "LyricsNotFound", isKey: false, isLink: false, isSelect: false, colWidth: "50px" },
-                { headerText: "Not Indexed", rowText: "NotIndexed", isKey: false, isLink: false, isSelect: false, colWidth: "50px" },
+                { headerText: "No Lyrics", rowText: "LyricsNotFound", isKey: false, isLink: false, isSelect: false, colWidth: "80px" },
+                { headerText: "Not Indexed", rowText: "NotIndexed", isKey: false, isLink: false, isSelect: false, colWidth: "80px" },
                 { headerText: "Indexed", rowText: "IndexedWithDetails", isKey: false, isLink: false, isSelect: false, colWidth: "50px" }]
         }, self.drillDown);
 
@@ -112,7 +118,7 @@
         self.error("");
     }
     self.getFolderUrl = function (folderName, snapshotId) {
-        return config.contextPath + "statistics/getFolderDetails?folderName=" + (folderName || "") + "&id="+(snapshotId || 0);
+        return config.contextPath + "statistics/getFolderDetails?folderName=" + (folderName || "") + "&id="+(snapshotId() || 0);
     }
 
     self.drillDown = function (itemId, e) {
@@ -123,6 +129,6 @@
 
         var id = (element.id != "") ? element.id : element.parentElement.id;
 
-        self.getDetails(self.getFolderUrl(id,self.selectedSnapshotId));
+        self.getDetails(self.getFolderUrl(id,self.selectedSnapshotId),self.selectedSnapshotId());
     }
 }

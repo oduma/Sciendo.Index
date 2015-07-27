@@ -1084,6 +1084,25 @@ a#navigationquery:hover{
     text-decoration:none;
 }
 
+a#navigationplaylist{
+    background-color:goldenrod;
+    padding:4px;
+    border-radius:4px;
+    border:1px solid;
+    border-color:white;
+    text-decoration:none;
+}
+
+a#navigationplaylist:hover{
+    color:goldenrod;
+    background-color:darkgoldenrod;
+    padding:4px;
+    border-radius:3px;
+    border:1px solid;
+    border-color:goldenrod;
+    text-decoration:none;
+}
+
 #removeFilter{
     background-color:palegreen;
     font-size:smaller;
@@ -1100,4 +1119,63 @@ div.queryGrid table.ko-grid thead.ko-grid-header th{
     color:darkgreen;
     font-size:smaller;
     
+}
+
+div.statisticsGrid table.ko-grid{
+    border-color:cadetblue;
+    border-collapse:separate;
+}
+
+div.statisticsGrid table.ko-grid thead.ko-grid-header th{
+    background-color:cadetblue;
+    color:blue;
+    font-size:smaller;
+    
+}
+
+div.playlistGrid table.ko-grid{
+    border-color:goldenrod;
+    border-collapse:separate;
+}
+
+div.playlistGrid table.ko-grid thead.ko-grid-header th{
+    background-color:goldenrod;
+    color:orange;
+    font-size:smaller;
+    
+}
+
+input#lastFmUser{
+    width:60%;
+    border-color:goldenrod;
+}
+
+button#createNew{
+    font-size:smaller;
+    margin-top:0px;
+    padding-bottom:4px;
+    background-color:goldenrod;
+    border:2px solid goldenrod;
+}
+
+input#newSnapshot{
+    width:85%;
+    border-color:cadetblue;
+}
+
+input.statisticsActions{
+    font-size:smaller;
+    margin-top:0px;
+    padding-bottom:4px;
+    background-color:cadetblue;
+    border:2px solid cadetblue;
+}
+
+input[disabled=disabled].statisticsActions{
+    font-size:smaller;
+    margin-top:0px;
+    padding-bottom:4px;
+    background-color:lightgray;
+    border:2px solid lightgray;
+    color:dimgray;
 }

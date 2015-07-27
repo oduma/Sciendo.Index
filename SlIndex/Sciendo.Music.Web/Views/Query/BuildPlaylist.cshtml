@@ -4,24 +4,28 @@
     ViewBag.PlaylistSelected = "selected";
     ViewBag.Current = "playlist";
 }
-Last fm user:&nbsp;<input data-bind="value: lastFmUser, selected: true, blurOnEnter: true" />
-<button data-bind="click: getResults">Create new</button>
+Using loved songs from user:&nbsp;<input id="lastFmUser" data-bind="value: lastFmUser, selected: true, blurOnEnter: true" />
+<button id="createNew" data-bind="click: getResults">Create New Playlist</button>
 <p class="error" data-bind="text: error"></p>
 <a href="/query/createplaylist">Download playlist</a>
 <div data-bind="with: resultData">
-    <h3>Results</h3>
-    <a href="#" data-bind="text: 'Previous ' + $root.pageInfo().RowsPerPage, visible:$root.pageInfo().PageStartRow, click:$root.getPreviousPage"></a>
-    <p style="display:inline;" data-bind="text: 'Showing items ' +$root.pageInfo().PageStartRow + ' to ' + $root.pageLastIndex() +' of ' + $root.pageInfo().TotalRows"></p>
-    <a href="#" data-bind="text: 'Next ' + $root.pageInfo().RowsPerPage, visible:$root.notMaxPage, click:$root.getNextPage"></a>
-    <br />
-    <div data-bind="simpleGrid:gridViewModel"></div>
+    <a href="#" id="navigationplaylist" class="previous" data-bind="text: 'Previous ' + $root.pageInfo().RowsPerPage, visible:$root.pageInfo().PageStartRow, click:$root.getPreviousPage"></a>
+    <span id="paginginfo" data-bind="text: 'Showing items ' +$root.pageInfo().PageStartRow + ' to ' + $root.pageLastIndex() +' of ' + $root.pageInfo().TotalRows"></span>
+    <a href="#" id="navigationplaylist" class="next" data-bind="text: 'Next ' + $root.pageInfo().RowsPerPage, visible:$root.notMaxPage, click:$root.getNextPage"></a>
+    <div class="playlistGrid" data-bind="simpleGrid:gridViewModel"></div>
+    <a href="#" id="navigationplaylist" class="previous" data-bind="text: 'Previous ' + $root.pageInfo().RowsPerPage, visible:$root.pageInfo().PageStartRow, click:$root.getPreviousPage"></a>
+    <a href="#" id="navigationplaylist" class="next" data-bind="text: 'Next ' + $root.pageInfo().RowsPerPage, visible:$root.notMaxPage, click:$root.getNextPage"></a>
 </div>
 
 @section scripts
 {
 
     @Scripts.Render("~/bundles/playlist")
-
+<script>
+    var vm = new playlistViewModel("@SciendoConfiguration.PlaylistConfiguration.LastFmUser");
+    // Initiate the Knockout bindings
+    ko.applyBindings(vm, document.getElementById("body"));
+</script>
 }
 
 

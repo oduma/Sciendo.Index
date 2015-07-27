@@ -4,11 +4,8 @@
     ViewBag.AnalysisSelected = "selected";
     ViewBag.Current = "statistics";
 }
-
-<h2>Statistics</h2>
-
 <div>
-    <div>Snapshots</div>
+    <div>Existing Snapshots</div>
     <p class="error" data-bind="text: error"></p>
     <ul data-bind="foreach:snapshots">
         <li>
@@ -20,14 +17,14 @@
             <!-- /ko-->
         </li>
     </ul>
-    <input type="button" value="Take new" data-bind="click:takeNew, visible:noDataCollection"/>
+    <input class="statisticsActions" type="button" value="Take new" data-bind="click:takeNew, visible:noDataCollection" />
     <div data-bind="ifnot:noDataCollection">
-        New Snapshot Name: <span class="error">*</span><input type="text" data-bind="value:newSnapshotName"/>
-        <input type="button" value="Save" data-bind="click:save"/><input type="button" value="Cancel" data-bind="click:cancel"/>
+        <input id="newSnapshot" type="text" data-bind="value:newSnapshotName, valueUpdate:'keyup'" placeholder="Snapshot Name (mandatory)"/>
+        <input class="statisticsActions" type="button" value="Save" data-bind="attr: {disabled:canSave}, click:save" /><input class="statisticsActions" type="button" value="Cancel" data-bind="click:cancel" />
     </div>
 </div>
 <div data-bind="with:resultData">
-    <div data-bind="simpleGrid:gridViewModel"></div>
+    <div class="statisticsGrid" data-bind="simpleGrid:gridViewModel"></div>
 </div>
 @section scripts
 {
