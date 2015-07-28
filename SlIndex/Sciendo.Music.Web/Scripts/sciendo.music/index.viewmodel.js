@@ -3,8 +3,26 @@
     self.indexFromPath = ko.observable(replaceAll(musicSource, "/", "\\"));
     self.actions = ko.observableArray(["Acquire and Index", "Acquire only no retry", "Acquire only retry existing"]);
     self.selectedAction = ko.observable("Choose an action ...");
-    self.indexingResult = ko.observable();
+    self.IsIndexing = ko.observable(false);
+    self.IsGettingLyrics = ko.observable(false);
     self.indexingError = ko.observable();
+    self.indexingReaction = function (indexingOccures) {
+        self.IsIndexing(indexingOccures);
+    }
+    self.getLyricsReaction = function (lyricsAcquisitionInProcess) {
+        self.IsGettingLyrics(lyricsAcquisitionInProcess);
+    }
+
+    self.isActive = ko.computed(function () {
+        return !self.IsIndexing() && !self.IsGettingLyrics();
+    });
+
+    self.showAs = ko.computed(function () {
+        if (self.isActive())
+            return "active";
+        else
+            return "inactive";
+    });
     self.actionSelected = function (event, data) {
         if (self.selectedAction() == "Acquire and Index") {
             self.index();
@@ -21,59 +39,37 @@
             return;
         }
     }
-    self.indexedOccured = ko.computed(function() {
-         return self.indexingResult() != null || self.indexingError() != null;
-    });
-    self.indexedWithError = ko.computed(function() { return self.indexingError() != null; });
-    self.indexingResultMessage = ko.computed(function () {
-        if (!self.indexedWithError()) {
-            if (self.indexingResult() != "")
-                return self.indexingResult() + " files Ok.";
-            else
-                return "";
-        }
-        return "Error during last operation:";
-    });
-
-    self.asyncOperationsHub = $.connection.asyncOperationsHub;
 
     self.selectValue = function (property, value) {
             self.indexFromPath(value);
     }
     self.index = function () {
-        self.indexingError(null);
-        self.indexingResult("");
-        if ($.connection.hub.state != $.connection.connectionState.connected) {
-            $.connection.hub.start().done(function () {
-                self.asyncOperationsHub.server.startIndexing(self.indexFromPath());
-            });
+
+        return ajaxRequest("get", self.getStartIndexingUrl())
+            .fail(getFailed);
+
+        function getFailed() {
+            self.indexingError("Error contacting the server.");
         }
-        else {
-            self.asyncOperationsHub.server.startIndexing(self.indexFromPath());
-        }
+
+    }
+
+    self.getStartIndexingUrl = function () {
+        return config.contextPath + "home/startIndexing?fromPath=" + (self.indexFromPath() || "");
 
     }
 
     self.acquireLyrics = function (retry) {
-        self.indexingError(null);
-        self.indexingResult("");
+        return ajaxRequest("get", self.getStartGetLyricsUrl(retry))
+            .fail(getFailed);
 
-        if ($.connection.hub.state != $.connection.connectionState.connected) {
-            $.connection.hub.start().done(function () {
-                self.asyncOperationsHub.server.startAcquiringLyrics(self.indexFromPath(), retry);
-            });
+        function getFailed() {
+            self.indexingError("Error contacting the server.");
         }
-        else {
-            self.asyncOperationsHub.server.startAcquiringLyrics(self.indexFromPath(), retry);
-        }
-
     }
+    self.getStartGetLyricsUrl = function () {
+        return config.contextPath + "home/startAcquireLyrics?fromPath=" + (self.indexFromPath() || "") + "&retry="+retry;
 
-    self.asyncOperationsHub.client.returnCompletedMessage = function (data)
-    {
-        self.indexingResult("Processed: " + data.NumberOfDocuments);
-
-        self.indexingError(data.Error);
     }
 
 }

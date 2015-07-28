@@ -91,29 +91,29 @@ namespace Sciendo.Music.Contracts.MusicService
 public interface IMusic
 {
     
-    [System.ServiceModel.OperationContractAttribute(Action="http://Sciendo.Music.Agent/IMusic/IndexOnDemand", ReplyAction="http://Sciendo.Music.Agent/IMusic/IndexOnDemandResponse")]
-    int IndexOnDemand(string fromPath);
+    [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://Sciendo.Music.Agent/IMusic/IndexOnDemand")]
+    void IndexOnDemand(string fromPath);
     
-    [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://Sciendo.Music.Agent/IMusic/IndexOnDemand", ReplyAction="http://Sciendo.Music.Agent/IMusic/IndexOnDemandResponse")]
+    [System.ServiceModel.OperationContractAttribute(IsOneWay=true, AsyncPattern=true, Action="http://Sciendo.Music.Agent/IMusic/IndexOnDemand")]
     System.IAsyncResult BeginIndexOnDemand(string fromPath, System.AsyncCallback callback, object asyncState);
     
-    int EndIndexOnDemand(System.IAsyncResult result);
+    void EndIndexOnDemand(System.IAsyncResult result);
     
-    [System.ServiceModel.OperationContractAttribute(Action="http://Sciendo.Music.Agent/IMusic/Index", ReplyAction="http://Sciendo.Music.Agent/IMusic/IndexResponse")]
-    int Index(string fromPath, Sciendo.Music.Contracts.Monitoring.ProcessType processType);
+    [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://Sciendo.Music.Agent/IMusic/Index")]
+    void Index(string fromPath, Sciendo.Music.Contracts.Monitoring.ProcessType processType);
     
-    [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://Sciendo.Music.Agent/IMusic/Index", ReplyAction="http://Sciendo.Music.Agent/IMusic/IndexResponse")]
+    [System.ServiceModel.OperationContractAttribute(IsOneWay=true, AsyncPattern=true, Action="http://Sciendo.Music.Agent/IMusic/Index")]
     System.IAsyncResult BeginIndex(string fromPath, Sciendo.Music.Contracts.Monitoring.ProcessType processType, System.AsyncCallback callback, object asyncState);
     
-    int EndIndex(System.IAsyncResult result);
+    void EndIndex(System.IAsyncResult result);
     
-    [System.ServiceModel.OperationContractAttribute(Action="http://Sciendo.Music.Agent/IMusic/AcquireLyricsOnDemandFor", ReplyAction="http://Sciendo.Music.Agent/IMusic/AcquireLyricsOnDemandForResponse")]
-    int AcquireLyricsOnDemandFor(string musicPath, bool retryFailed);
+    [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://Sciendo.Music.Agent/IMusic/AcquireLyricsOnDemandFor")]
+    void AcquireLyricsOnDemandFor(string musicPath, bool retryFailed);
     
-    [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://Sciendo.Music.Agent/IMusic/AcquireLyricsOnDemandFor", ReplyAction="http://Sciendo.Music.Agent/IMusic/AcquireLyricsOnDemandForResponse")]
+    [System.ServiceModel.OperationContractAttribute(IsOneWay=true, AsyncPattern=true, Action="http://Sciendo.Music.Agent/IMusic/AcquireLyricsOnDemandFor")]
     System.IAsyncResult BeginAcquireLyricsOnDemandFor(string musicPath, bool retryFailed, System.AsyncCallback callback, object asyncState);
     
-    int EndAcquireLyricsOnDemandFor(System.IAsyncResult result);
+    void EndAcquireLyricsOnDemandFor(System.IAsyncResult result);
     
     [System.ServiceModel.OperationContractAttribute(Action="http://Sciendo.Music.Agent/IMusic/ListAvailablePathsForIndexing", ReplyAction="http://Sciendo.Music.Agent/IMusic/ListAvailablePathsForIndexingResponse")]
     string[] ListAvailablePathsForIndexing(string fromPath);
@@ -131,13 +131,13 @@ public interface IMusic
     
     string EndGetSourceFolder(System.IAsyncResult result);
     
-    [System.ServiceModel.OperationContractAttribute(Action="http://Sciendo.Music.Agent/IMusic/UnIndexOnDemand", ReplyAction="http://Sciendo.Music.Agent/IMusic/UnIndexOnDemandResponse")]
-    int UnIndexOnDemand(string musicFile);
+    [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://Sciendo.Music.Agent/IMusic/UnIndexOnDemand")]
+    void UnIndexOnDemand(string musicFile);
     
-    [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://Sciendo.Music.Agent/IMusic/UnIndexOnDemand", ReplyAction="http://Sciendo.Music.Agent/IMusic/UnIndexOnDemandResponse")]
+    [System.ServiceModel.OperationContractAttribute(IsOneWay=true, AsyncPattern=true, Action="http://Sciendo.Music.Agent/IMusic/UnIndexOnDemand")]
     System.IAsyncResult BeginUnIndexOnDemand(string musicFile, System.AsyncCallback callback, object asyncState);
     
-    int EndUnIndexOnDemand(System.IAsyncResult result);
+    void EndUnIndexOnDemand(System.IAsyncResult result);
     
     [System.ServiceModel.OperationContractAttribute(Action="http://Sciendo.Music.Agent/IMusic/GetCurrentWorkingSet", ReplyAction="http://Sciendo.Music.Agent/IMusic/GetCurrentWorkingSetResponse")]
     Sciendo.Music.Contracts.MusicService.WorkingSet GetCurrentWorkingSet();
@@ -151,75 +151,6 @@ public interface IMusic
 [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
 public interface IMusicChannel : IMusic, System.ServiceModel.IClientChannel
 {
-}
-
-[System.Diagnostics.DebuggerStepThroughAttribute()]
-[System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-public partial class IndexOnDemandCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs
-{
-    
-    private object[] results;
-    
-    public IndexOnDemandCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-            base(exception, cancelled, userState)
-    {
-        this.results = results;
-    }
-    
-    public int Result
-    {
-        get
-        {
-            base.RaiseExceptionIfNecessary();
-            return ((int)(this.results[0]));
-        }
-    }
-}
-
-[System.Diagnostics.DebuggerStepThroughAttribute()]
-[System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-public partial class IndexCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs
-{
-    
-    private object[] results;
-    
-    public IndexCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-            base(exception, cancelled, userState)
-    {
-        this.results = results;
-    }
-    
-    public int Result
-    {
-        get
-        {
-            base.RaiseExceptionIfNecessary();
-            return ((int)(this.results[0]));
-        }
-    }
-}
-
-[System.Diagnostics.DebuggerStepThroughAttribute()]
-[System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-public partial class AcquireLyricsOnDemandForCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs
-{
-    
-    private object[] results;
-    
-    public AcquireLyricsOnDemandForCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-            base(exception, cancelled, userState)
-    {
-        this.results = results;
-    }
-    
-    public int Result
-    {
-        get
-        {
-            base.RaiseExceptionIfNecessary();
-            return ((int)(this.results[0]));
-        }
-    }
 }
 
 [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -264,29 +195,6 @@ public partial class GetSourceFolderCompletedEventArgs : System.ComponentModel.A
         {
             base.RaiseExceptionIfNecessary();
             return ((string)(this.results[0]));
-        }
-    }
-}
-
-[System.Diagnostics.DebuggerStepThroughAttribute()]
-[System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-public partial class UnIndexOnDemandCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs
-{
-    
-    private object[] results;
-    
-    public UnIndexOnDemandCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-            base(exception, cancelled, userState)
-    {
-        this.results = results;
-    }
-    
-    public int Result
-    {
-        get
-        {
-            base.RaiseExceptionIfNecessary();
-            return ((int)(this.results[0]));
         }
     }
 }
@@ -385,23 +293,23 @@ public partial class MusicClient : System.ServiceModel.ClientBase<IMusic>, IMusi
     {
     }
     
-    public event System.EventHandler<IndexOnDemandCompletedEventArgs> IndexOnDemandCompleted;
+    public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> IndexOnDemandCompleted;
     
-    public event System.EventHandler<IndexCompletedEventArgs> IndexCompleted;
+    public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> IndexCompleted;
     
-    public event System.EventHandler<AcquireLyricsOnDemandForCompletedEventArgs> AcquireLyricsOnDemandForCompleted;
+    public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> AcquireLyricsOnDemandForCompleted;
     
     public event System.EventHandler<ListAvailablePathsForIndexingCompletedEventArgs> ListAvailablePathsForIndexingCompleted;
     
     public event System.EventHandler<GetSourceFolderCompletedEventArgs> GetSourceFolderCompleted;
     
-    public event System.EventHandler<UnIndexOnDemandCompletedEventArgs> UnIndexOnDemandCompleted;
+    public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> UnIndexOnDemandCompleted;
     
     public event System.EventHandler<GetCurrentWorkingSetCompletedEventArgs> GetCurrentWorkingSetCompleted;
     
-    public int IndexOnDemand(string fromPath)
+    public void IndexOnDemand(string fromPath)
     {
-        return base.Channel.IndexOnDemand(fromPath);
+        base.Channel.IndexOnDemand(fromPath);
     }
     
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -411,9 +319,9 @@ public partial class MusicClient : System.ServiceModel.ClientBase<IMusic>, IMusi
     }
     
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    public int EndIndexOnDemand(System.IAsyncResult result)
+    public void EndIndexOnDemand(System.IAsyncResult result)
     {
-        return base.Channel.EndIndexOnDemand(result);
+        base.Channel.EndIndexOnDemand(result);
     }
     
     private System.IAsyncResult OnBeginIndexOnDemand(object[] inValues, System.AsyncCallback callback, object asyncState)
@@ -424,9 +332,8 @@ public partial class MusicClient : System.ServiceModel.ClientBase<IMusic>, IMusi
     
     private object[] OnEndIndexOnDemand(System.IAsyncResult result)
     {
-        int retVal = this.EndIndexOnDemand(result);
-        return new object[] {
-                retVal};
+        this.EndIndexOnDemand(result);
+        return null;
     }
     
     private void OnIndexOnDemandCompleted(object state)
@@ -434,7 +341,7 @@ public partial class MusicClient : System.ServiceModel.ClientBase<IMusic>, IMusi
         if ((this.IndexOnDemandCompleted != null))
         {
             InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
-            this.IndexOnDemandCompleted(this, new IndexOnDemandCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            this.IndexOnDemandCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(e.Error, e.Cancelled, e.UserState));
         }
     }
     
@@ -461,9 +368,9 @@ public partial class MusicClient : System.ServiceModel.ClientBase<IMusic>, IMusi
                     fromPath}, this.onEndIndexOnDemandDelegate, this.onIndexOnDemandCompletedDelegate, userState);
     }
     
-    public int Index(string fromPath, Sciendo.Music.Contracts.Monitoring.ProcessType processType)
+    public void Index(string fromPath, Sciendo.Music.Contracts.Monitoring.ProcessType processType)
     {
-        return base.Channel.Index(fromPath, processType);
+        base.Channel.Index(fromPath, processType);
     }
     
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -473,9 +380,9 @@ public partial class MusicClient : System.ServiceModel.ClientBase<IMusic>, IMusi
     }
     
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    public int EndIndex(System.IAsyncResult result)
+    public void EndIndex(System.IAsyncResult result)
     {
-        return base.Channel.EndIndex(result);
+        base.Channel.EndIndex(result);
     }
     
     private System.IAsyncResult OnBeginIndex(object[] inValues, System.AsyncCallback callback, object asyncState)
@@ -487,9 +394,8 @@ public partial class MusicClient : System.ServiceModel.ClientBase<IMusic>, IMusi
     
     private object[] OnEndIndex(System.IAsyncResult result)
     {
-        int retVal = this.EndIndex(result);
-        return new object[] {
-                retVal};
+        this.EndIndex(result);
+        return null;
     }
     
     private void OnIndexCompleted(object state)
@@ -497,7 +403,7 @@ public partial class MusicClient : System.ServiceModel.ClientBase<IMusic>, IMusi
         if ((this.IndexCompleted != null))
         {
             InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
-            this.IndexCompleted(this, new IndexCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            this.IndexCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(e.Error, e.Cancelled, e.UserState));
         }
     }
     
@@ -525,9 +431,9 @@ public partial class MusicClient : System.ServiceModel.ClientBase<IMusic>, IMusi
                     processType}, this.onEndIndexDelegate, this.onIndexCompletedDelegate, userState);
     }
     
-    public int AcquireLyricsOnDemandFor(string musicPath, bool retryFailed)
+    public void AcquireLyricsOnDemandFor(string musicPath, bool retryFailed)
     {
-        return base.Channel.AcquireLyricsOnDemandFor(musicPath, retryFailed);
+        base.Channel.AcquireLyricsOnDemandFor(musicPath, retryFailed);
     }
     
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -537,9 +443,9 @@ public partial class MusicClient : System.ServiceModel.ClientBase<IMusic>, IMusi
     }
     
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    public int EndAcquireLyricsOnDemandFor(System.IAsyncResult result)
+    public void EndAcquireLyricsOnDemandFor(System.IAsyncResult result)
     {
-        return base.Channel.EndAcquireLyricsOnDemandFor(result);
+        base.Channel.EndAcquireLyricsOnDemandFor(result);
     }
     
     private System.IAsyncResult OnBeginAcquireLyricsOnDemandFor(object[] inValues, System.AsyncCallback callback, object asyncState)
@@ -551,9 +457,8 @@ public partial class MusicClient : System.ServiceModel.ClientBase<IMusic>, IMusi
     
     private object[] OnEndAcquireLyricsOnDemandFor(System.IAsyncResult result)
     {
-        int retVal = this.EndAcquireLyricsOnDemandFor(result);
-        return new object[] {
-                retVal};
+        this.EndAcquireLyricsOnDemandFor(result);
+        return null;
     }
     
     private void OnAcquireLyricsOnDemandForCompleted(object state)
@@ -561,7 +466,7 @@ public partial class MusicClient : System.ServiceModel.ClientBase<IMusic>, IMusi
         if ((this.AcquireLyricsOnDemandForCompleted != null))
         {
             InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
-            this.AcquireLyricsOnDemandForCompleted(this, new AcquireLyricsOnDemandForCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            this.AcquireLyricsOnDemandForCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(e.Error, e.Cancelled, e.UserState));
         }
     }
     
@@ -711,9 +616,9 @@ public partial class MusicClient : System.ServiceModel.ClientBase<IMusic>, IMusi
         base.InvokeAsync(this.onBeginGetSourceFolderDelegate, null, this.onEndGetSourceFolderDelegate, this.onGetSourceFolderCompletedDelegate, userState);
     }
     
-    public int UnIndexOnDemand(string musicFile)
+    public void UnIndexOnDemand(string musicFile)
     {
-        return base.Channel.UnIndexOnDemand(musicFile);
+        base.Channel.UnIndexOnDemand(musicFile);
     }
     
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -723,9 +628,9 @@ public partial class MusicClient : System.ServiceModel.ClientBase<IMusic>, IMusi
     }
     
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    public int EndUnIndexOnDemand(System.IAsyncResult result)
+    public void EndUnIndexOnDemand(System.IAsyncResult result)
     {
-        return base.Channel.EndUnIndexOnDemand(result);
+        base.Channel.EndUnIndexOnDemand(result);
     }
     
     private System.IAsyncResult OnBeginUnIndexOnDemand(object[] inValues, System.AsyncCallback callback, object asyncState)
@@ -736,9 +641,8 @@ public partial class MusicClient : System.ServiceModel.ClientBase<IMusic>, IMusi
     
     private object[] OnEndUnIndexOnDemand(System.IAsyncResult result)
     {
-        int retVal = this.EndUnIndexOnDemand(result);
-        return new object[] {
-                retVal};
+        this.EndUnIndexOnDemand(result);
+        return null;
     }
     
     private void OnUnIndexOnDemandCompleted(object state)
@@ -746,7 +650,7 @@ public partial class MusicClient : System.ServiceModel.ClientBase<IMusic>, IMusi
         if ((this.UnIndexOnDemandCompleted != null))
         {
             InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
-            this.UnIndexOnDemandCompleted(this, new UnIndexOnDemandCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
+            this.UnIndexOnDemandCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(e.Error, e.Cancelled, e.UserState));
         }
     }
     

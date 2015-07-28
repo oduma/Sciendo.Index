@@ -32,16 +32,14 @@ namespace Sciendo.Music.DataProviders
             }
         }
 
-        public void StartIndexing(string fromPath, Action<object,IndexOnDemandCompletedEventArgs> indexCompletedCallback)
+        public void StartIndexing(string fromPath)
         {
-            ((MusicClient)_svc).IndexOnDemandCompleted += new EventHandler<IndexOnDemandCompletedEventArgs>(indexCompletedCallback);
-            ((MusicClient)_svc).IndexOnDemandAsync(fromPath);
+            _svc.IndexOnDemand(fromPath);
         }
 
-        public void StartAcquyringLyrics(string fromPath, bool retryExisting,Action<object,AcquireLyricsOnDemandForCompletedEventArgs> acquireLyricsCallBack)
+        public void StartAcquyringLyrics(string fromPath, bool retryExisting)
         {
-            ((MusicClient)_svc).AcquireLyricsOnDemandForCompleted += new EventHandler<AcquireLyricsOnDemandForCompletedEventArgs>(acquireLyricsCallBack);
-            ((MusicClient)_svc).AcquireLyricsOnDemandForAsync(fromPath, retryExisting);
+            _svc.AcquireLyricsOnDemandFor(fromPath, retryExisting);
         }
 
         public void Dispose()

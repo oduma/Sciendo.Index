@@ -23,9 +23,17 @@
     height: 200px;
 }
 
-select#actions{
+select#actions.active{
     font-size:1.2em;
     padding:4px;
     color:darksalmon;
     border-color:darksalmon;
+}
+
+select#actions.inactive{
+    font-size:1.2em;
+    padding:4px;
+    color:lightgray;
+    border-color:lightgray;
+    color:dimgray;
 }

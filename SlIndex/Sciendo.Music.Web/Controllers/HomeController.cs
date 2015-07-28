@@ -29,6 +29,21 @@ namespace Sciendo.Music.Web.Controllers
                         .GetIndexingAutocomplete(term), JsonRequestBehavior.AllowGet);
         }
 
+        [HttpGet]
+        public JsonResult StartIndexing(string fromPath)
+        {
+            
+            SciendoConfiguration.Container.Resolve<IDataProvider>(SciendoConfiguration.IndexingConfiguration.CurrentDataProvider).StartIndexing(fromPath);
+            return Json("yes", JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        public JsonResult StartAcquireLyrics(string fromPath,bool retry)
+        {
+            SciendoConfiguration.Container.Resolve<IDataProvider>(SciendoConfiguration.IndexingConfiguration.CurrentDataProvider).StartAcquyringLyrics(fromPath,retry);
+            return Json("yes", JsonRequestBehavior.AllowGet);
+
+        }
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";

@@ -1,6 +1,8 @@
 ﻿function feedbackViewModel(appProxy) {
     var self = this;
     self.appProxy = appProxy;
+    self.reactToIndexing = null;
+    self.reactToGetLyrics = null;
     self.analysisStatusMessage = ko.observable("");
     self.analysisActivityDetails = ko.observable("");
     self.indexingStatusMessage = ko.observable("");
@@ -31,6 +33,8 @@
             function (message) {
                 if (message != "") {
                     self.indexingStarted(true);
+                    if (self.reactToIndexing != null)
+                        self.reactToIndexing(true);
                     self.indexingStatusMessage(message);
                 }
 
@@ -43,6 +47,8 @@
             function (message) {
                 if (message != "") {
                     self.getLyricsStarted(true);
+                    if (self.reactToGetLyrics != null)
+                        self.reactToGetLyrics(true);
                     self.getLyricsStatusMessage(message);
                 }
 
@@ -71,9 +77,14 @@
         if (data != "") {
             self.indexingStarted(true);
             self.indexingStatusMessage(data);
+            if (self.reactToIndexing != null)
+                self.reactToIndexing(true);
         }
         else {
             self.indexingStarted(false);
+
+            if (self.reactToIndexing != null)
+                self.reactToIndexing(false);
         }
     }
 
@@ -84,9 +95,13 @@
         if (data != "") {
             self.getLyricsStarted(true);
             self.getLyricsStatusMessage(data);
+            if (self.reactToGetLyrics != null)
+                self.reactToGetLyrics(true);
         }
         else {
             self.getLyricsStarted(false);
+            if (self.reactToGetLyrics != null)
+                self.reactToGetLyrics(false);
         }
     }
 

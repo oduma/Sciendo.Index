@@ -6,14 +6,14 @@ namespace Sciendo.Music.Contracts.MusicService
     [ServiceContract(Namespace = "http://Sciendo.Music.Agent")]
     public interface IMusic
     {
-        [OperationContract]
-        int IndexOnDemand(string fromPath);
+        [OperationContract(IsOneWay=true)]
+        void IndexOnDemand(string fromPath);
 
         [OperationContract(IsOneWay=true)]
         void Index(string fromPath,ProcessType processType);
 
-        [OperationContract]
-        int AcquireLyricsOnDemandFor(string musicPath, bool retryFailed);
+        [OperationContract(IsOneWay=true)]
+        void AcquireLyricsOnDemandFor(string musicPath, bool retryFailed);
 
         [OperationContract]
         string[] ListAvailablePathsForIndexing(string fromPath);
@@ -21,8 +21,8 @@ namespace Sciendo.Music.Contracts.MusicService
         [OperationContract]
         string GetSourceFolder();
 
-        [OperationContract]
-        int UnIndexOnDemand(string musicFile);
+        [OperationContract(IsOneWay=true)]
+        void UnIndexOnDemand(string musicFile);
 
         [OperationContract]
         WorkingSet GetCurrentWorkingSet();

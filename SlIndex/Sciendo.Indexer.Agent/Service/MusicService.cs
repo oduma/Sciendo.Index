@@ -14,7 +14,7 @@ using System.Threading;
 
 namespace Sciendo.Music.Agent.Service
 {
-    [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single)]
+    [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single, ConcurrencyMode = ConcurrencyMode.Multiple)]
     public class MusicService:IMusic
     {
         private readonly IndexingFilesProcessor _indexingFilesProcessor;
@@ -30,13 +30,11 @@ namespace Sciendo.Music.Agent.Service
             LoggingManager.Debug("MusicAgentService constructed.");
         }
 
-        public int IndexOnDemand(string fromPath)
+        public void IndexOnDemand(string fromPath)
         {
             LoggingManager.Debug("Starting IndexOnDemand from path:" +fromPath);
             Index(fromPath,ProcessType.Update);
             LoggingManager.Debug("IndexOnDemand on path: " + fromPath + " Counter: " + _indexingFilesProcessor.Counter);
-
-            return _indexingFilesProcessor.Counter;
         }
 
         public void Index(string fromPath,ProcessType processType)
@@ -54,7 +52,7 @@ namespace Sciendo.Music.Agent.Service
             LoggingManager.Debug("Index on path: " + fromPath + " Counter: " + _indexingFilesProcessor.Counter);
         }
 
-        public int AcquireLyricsOnDemandFor(string musicPath, bool retryFailed)
+        public void AcquireLyricsOnDemandFor(string musicPath, bool retryFailed)
         {
             LoggingManager.Debug("Starting AcquireLyricsOnDemand from path:" + musicPath);
             try
@@ -66,10 +64,8 @@ namespace Sciendo.Music.Agent.Service
             {
                 LoggingManager.LogSciendoSystemError(ex);
                 LoggingManager.Debug("Errored while AcquiringLyricsOnDemand on path: " + musicPath + " Counter: " + _musicToLyricsFilesProcessor.Counter);
-                return _musicToLyricsFilesProcessor.Counter;
             }
             LoggingManager.Debug("AcquiredLyricsOnDemand on path: " + musicPath + " Counter: " + _musicToLyricsFilesProcessor.Counter);
-            return _musicToLyricsFilesProcessor.Counter;
         }
 
         private void AcquireLyrics(string fromPath, bool retryFailed, ProcessType processType)
@@ -105,14 +101,12 @@ namespace Sciendo.Music.Agent.Service
             return _indexingFilesProcessor.CurrentConfiguration.Music.SourceDirectory;
         }
 
-        public int UnIndexOnDemand(string musicFile)
+        public void UnIndexOnDemand(string musicFile)
         {
             if (_indexingFilesProcessor.Sender.TrySend(new Document(musicFile,musicFile.ToLower().Replace(_indexingFilesProcessor.CurrentConfiguration.Music.SourceDirectory.ToLower(), "").Split(new[] { Path.DirectorySeparatorChar })[1],null,null,null,null)).Status!=Status.Done)
             {
                 LoggingManager.Debug(string.Format("{0} - {1}",Status.Error, musicFile));
-                return 0;
             }
-            return 1;
         }
 
         public WorkingSet GetCurrentWorkingSet()
