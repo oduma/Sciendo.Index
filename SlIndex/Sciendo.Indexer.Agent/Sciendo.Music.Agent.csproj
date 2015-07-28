@@ -169,10 +169,6 @@
       <Project>{f40150da-b8a9-496b-99f3-ec4c2a52c08e}</Project>
       <Name>Sciendo.Music.Data</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Sciendo.Music.Mocks\Sciendo.Music.Mocks.csproj">
-      <Project>{78a40273-5baa-4fef-82fb-390736d01503}</Project>
-      <Name>Sciendo.Music.Mocks</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Sciendo.Music.Real\Sciendo.Music.Real.csproj">
       <Project>{3919d695-cbd3-48f8-b799-339f1f52525f}</Project>
       <Name>Sciendo.Music.Real</Name>

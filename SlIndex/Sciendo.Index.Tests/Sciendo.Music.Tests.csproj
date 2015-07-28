@@ -89,7 +89,6 @@
     <Compile Include="MusicAgentTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReaderTests.cs" />
-    <Compile Include="ServiceTester.cs" />
     <Compile Include="SolrQueryStrategyTests.cs" />
     <Compile Include="SolrResultsProviderMocks.cs" />
     <Compile Include="SongInfoTests.cs" />
@@ -139,10 +138,6 @@
     <ProjectReference Include="..\Sciendo.Music.Contracts\Sciendo.Music.Contracts.csproj">
       <Project>{d132d9c7-2fb8-4c89-84ab-54a1a65532f1}</Project>
       <Name>Sciendo.Music.Contracts</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Sciendo.Music.Mocks\Sciendo.Music.Mocks.csproj">
-      <Project>{78a40273-5baa-4fef-82fb-390736d01503}</Project>
-      <Name>Sciendo.Music.Mocks</Name>
     </ProjectReference>
     <ProjectReference Include="..\Sciendo.Music.Real\Sciendo.Music.Real.csproj">
       <Project>{3919d695-cbd3-48f8-b799-339f1f52525f}</Project>

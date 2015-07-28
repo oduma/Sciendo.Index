@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.30723.0
+VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sciendo.Music.Tests", "Sciendo.Index.Tests\Sciendo.Music.Tests.csproj", "{5E5FAE5D-0401-4BF0-ACA0-88E1AE109F8F}"
 EndProject
@@ -13,8 +13,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{2EF93D
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sciendo.Music.DataProviders", "Sciendo.Indexing.DataProviders\Sciendo.Music.DataProviders.csproj", "{E0E60437-5683-4AE7-A448-4848B4BDDD2A}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sciendo.Music.Mocks", "Sciendo.Music.Mocks\Sciendo.Music.Mocks.csproj", "{78A40273-5BAA-4FEF-82FB-390736D01503}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sciendo.Music.Contracts", "Sciendo.Music.Contracts\Sciendo.Music.Contracts.csproj", "{D132D9C7-2FB8-4C89-84AB-54A1A65532F1}"
 EndProject
@@ -72,16 +70,6 @@ Global
 		{E0E60437-5683-4AE7-A448-4848B4BDDD2A}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{E0E60437-5683-4AE7-A448-4848B4BDDD2A}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{E0E60437-5683-4AE7-A448-4848B4BDDD2A}.Release|x86.ActiveCfg = Release|Any CPU
-		{78A40273-5BAA-4FEF-82FB-390736D01503}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{78A40273-5BAA-4FEF-82FB-390736D01503}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{78A40273-5BAA-4FEF-82FB-390736D01503}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{78A40273-5BAA-4FEF-82FB-390736D01503}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{78A40273-5BAA-4FEF-82FB-390736D01503}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{78A40273-5BAA-4FEF-82FB-390736D01503}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{78A40273-5BAA-4FEF-82FB-390736D01503}.Release|Any CPU.Build.0 = Release|Any CPU
-		{78A40273-5BAA-4FEF-82FB-390736D01503}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{78A40273-5BAA-4FEF-82FB-390736D01503}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{78A40273-5BAA-4FEF-82FB-390736D01503}.Release|x86.ActiveCfg = Release|Any CPU
 		{D132D9C7-2FB8-4C89-84AB-54A1A65532F1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D132D9C7-2FB8-4C89-84AB-54A1A65532F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D132D9C7-2FB8-4C89-84AB-54A1A65532F1}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU

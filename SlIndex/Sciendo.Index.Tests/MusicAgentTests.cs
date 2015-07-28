@@ -2,7 +2,6 @@
 using NUnit.Framework;
 using Sciendo.Music.Agent;
 using Sciendo.Music.Contracts.Monitoring;
-using Sciendo.Music.Mocks.Processing;
 using Sciendo.Music.Real.Procesors.MusicSourced;
 
 namespace Sciendo.Music.Tests
@@ -19,16 +18,6 @@ namespace Sciendo.Music.Tests
             Assert.AreEqual(2, IOC.Container.GetInstance().ResolveAll<IFolderMonitor>().Count());
             Assert.IsNotNull(musicAgent.MonitoringInstance);
 
-        }
-
-        [Test]
-        public void ResolveIOCComponentsToMock()
-        {
-            MusicAgent musicAgent = new MusicAgent();
-            musicAgent.ResolveComponents("mock");
-            var currentWorkigSet = musicAgent.AgentService.GetCurrentWorkingSet();
-            Assert.AreEqual(typeof(MockIndexingFilesProcessor),currentWorkigSet.IndexingFilesProcessorType);
-            Assert.AreEqual(typeof(MockMusicToLyricsFilesProcessor), currentWorkigSet.LyricsAcquirerFilesProcessorType);
         }
     }
 }
