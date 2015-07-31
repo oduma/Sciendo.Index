@@ -15,7 +15,7 @@
     <Property Id="TARGETWEBSITE" Value="Default Web Site"/>
 
     <MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
-    <MediaTemplate />
+    <MediaTemplate EmbedCab="yes"/>
     <Condition Message='This setup requires the .NET Framework 4.5 installed.'>
       <![CDATA[Installed OR NETFRAMEWORK45]]>
     </Condition>
@@ -56,8 +56,13 @@
             File="[#filewebconfig]" />
       <util:XmlFile Id="SetAgentBaseHTTPAddress"
               Action="setValue"
-              ElementPath="//system.serviceModel/client/endpoint/@address"
+              ElementPath="//system.serviceModel/client/endpoint[\[]@contract='IMusic'[\]]/@address"
               Value="[AGENTHTTPADDRESS]MusicAgentService"
+              File="[#filewebconfig]" />
+      <util:XmlFile Id="SetAgentBaseHTTPAddress1"
+              Action="setValue"
+              ElementPath="//system.serviceModel/client/endpoint[\[]@contract='IAnalysis'[\]]/@address"
+              Value="[AGENTHTTPADDRESS]AnalysisService"
               File="[#filewebconfig]" />
       <util:XmlFile Id="SetTheIocToReal"
               Action="setValue"

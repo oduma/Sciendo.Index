@@ -1,6 +1,8 @@
 ﻿using System.Web.Mvc;
 using Sciendo.Music.DataProviders;
 using Sciendo.Music.DataProviders.Models.Indexing;
+using System;
+using Sciendo.Common.Logging;
 
 namespace Sciendo.Music.Web.Controllers
 {
@@ -32,8 +34,15 @@ namespace Sciendo.Music.Web.Controllers
         [HttpGet]
         public JsonResult StartIndexing(string fromPath)
         {
-            
-            SciendoConfiguration.Container.Resolve<IDataProvider>(SciendoConfiguration.IndexingConfiguration.CurrentDataProvider).StartIndexing(fromPath);
+            try
+            {
+                SciendoConfiguration.Container.Resolve<IDataProvider>(SciendoConfiguration.IndexingConfiguration.CurrentDataProvider).StartIndexing(fromPath);
+
+            }
+            catch(Exception ex)
+            {
+                LoggingManager.LogSciendoSystemError(ex);
+            }
             return Json("yes", JsonRequestBehavior.AllowGet);
         }
 

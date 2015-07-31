@@ -9,9 +9,8 @@
     <Property Id="SOLRCORE" Value="medialib"/>
     <Property Id="MUSICROOTDIR" Value="C:\"/>
     <Property Id="LYRICSROOTDIR" Value="C:\"/>
-    <Property Id="AGENTHTTPADDRESS" Value="http://localhost:7080/"/>
     <MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
-    <MediaTemplate />
+    <MediaTemplate EmbedCab="yes"/>
     <Condition Message='This setup requires the .NET Framework 4.5 installed.'>
       <![CDATA[Installed OR NETFRAMEWORK45]]>
     </Condition>
@@ -36,11 +35,6 @@
                       ElementPath="//agent/lyrics/@sourceDirectory"
                       Value="[LYRICSROOTDIR]"
                       File="[#Sciendo.Music.Agent.exe.config]" />
-        <util:XmlFile Id="SetAgentBaseHTTPAddress"
-                Action="setValue"
-                ElementPath="//system.serviceModel/services/service/host/baseAddresses/add/@baseAddress"
-                Value="[AGENTHTTPADDRESS]MusicAgentService"
-                File="[#Sciendo.Music.Agent.exe.config]" />
       </Component>
       <Component Id="Sciendo.Music.Agent" Directory="INSTALLLOCATION" Guid="{4BB26F14-6AAD-41D0-90DB-B0249A139725}">
         <File Id="Sciendo.Music.Agent.exe" Name="Sciendo.Music.Agent.exe" Source="..\MusicAgent\Sciendo.Music.Agent.exe" Vital="yes" KeyPath="yes"/>
@@ -185,10 +179,6 @@
         <!-- Solr Core Name prompt-->
         <Control Id="SolrCoreNameLabel" Type ="Text" X="25" Y="149" Width="150" Height="15" TabSkip="no" Text="Solr &amp;Core Name:"/>
         <Control Id="SolrCoreNameValue" Type ="Edit" X="25" Y="164" Width="150" Height="18" Property="SOLRCORE"/>
-
-        <!-- Agent Http Address prompt-->
-        <Control Id="AgentHttpAddressLabel" Type ="Text" X="190" Y="149" Width="100" Height="15" TabSkip="no" Text="&amp;Agent Http Address:"/>
-        <Control Id="AgentHttpAddressValue" Type ="Edit" X="190" Y="164" Width="150" Height="18" Property="AGENTHTTPADDRESS"/>
 
         <!-- Back button -->
         <Control Id="Back" Type="PushButton" X="180" Y="248"

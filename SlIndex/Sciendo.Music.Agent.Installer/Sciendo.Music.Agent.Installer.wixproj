@@ -46,6 +46,15 @@
   <PropertyGroup>
     <PreBuildEvent>call "C:\Program Files (x86)\WiX Toolset v3.8\bin\heat.exe" dir "$(Solutiondir)MusicAgent" -t "$(Solutiondir)Sciendo.Music.Agent.Installer\Filter.xslt" -var var.SourceFolder -dr INSTALLLOCATION -cg Binaries -ag -scom -sreg -sfrag -srd -o "$(Solutiondir)Sciendo.Music.Agent.Installer\bin.wxs"</PreBuildEvent>
   </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x64' ">
+    <OutputPath>bin\$(Platform)\$(Configuration)\</OutputPath>
+    <IntermediateOutputPath>obj\$(Platform)\$(Configuration)\</IntermediateOutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x64' ">
+    <OutputPath>bin\$(Platform)\$(Configuration)\</OutputPath>
+    <IntermediateOutputPath>obj\$(Platform)\$(Configuration)\</IntermediateOutputPath>
+    <DefineConstants>SourceFolder=..\MusicAgent</DefineConstants>
+  </PropertyGroup>
   <!--
 	To modify your build process, add your task inside one of the targets below and uncomment it.
 	Other similar extension points exist, see Wix.targets.

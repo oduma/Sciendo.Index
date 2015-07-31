@@ -41,7 +41,7 @@ namespace Sciendo.Music.Web
 "~/Scripts/jquery.signalR-{version}.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/index").Include(
-    "~/Scripts/sciendo.music/sciendo.common*",
+    "~/Scripts/sciendo.music/sciendo.common.js",
 "~/Scripts/sciendo.music/index.viewmodel.js",
 "~/Scripts/sciendo.music/index.autocomplete.js"));
             bundles.Add(new ScriptBundle("~/bundles/query").Include(

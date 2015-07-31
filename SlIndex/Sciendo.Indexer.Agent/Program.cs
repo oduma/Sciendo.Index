@@ -14,6 +14,10 @@ namespace Sciendo.Music.Agent
             { 
                 new MusicAgent() 
             };
+            ServicesToRun[0].AutoLog = true;
+            ServicesToRun[0].CanHandlePowerEvent = true;
+            ServicesToRun[0].CanHandleSessionChangeEvent = true;
+            ServicesToRun[0].CanPauseAndContinue = false;
             ServiceBase.Run(ServicesToRun);
         }
     }

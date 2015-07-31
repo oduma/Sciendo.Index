@@ -150,14 +150,31 @@ namespace Sciendo.Music.Agent
             LoggingManager.Debug("Stoping Agent...");
 
             _monitoringInstance.CancellationTokenSource.Cancel();
-
+            
             if(_agentServiceHosts!= null)
                 foreach (var agentServiceHost in _agentServiceHosts)
                 {
                     if (agentServiceHost != null)
+                    {
                         agentServiceHost.Close();
+                    }
                 }
+            
             LoggingManager.Debug("Agent stopped.");
+        }
+
+        protected override bool OnPowerEvent(PowerBroadcastStatus powerStatus)
+        {
+            if(powerStatus==PowerBroadcastStatus.ResumeSuspend)
+            {
+                LoggingManager.Debug(string.Format("Music Service: {0}; {1}; ",_musicService.GetSourceFolder(),_analysisService!=null));
+            }
+            return base.OnPowerEvent(powerStatus);
+        }
+
+        protected override void OnSessionChange(SessionChangeDescription changeDescription)
+        {
+            LoggingManager.Debug("Service change its session mode to: " + changeDescription.Reason.ToString() + " session id " + changeDescription.SessionId);
         }
     }
 }

@@ -16,8 +16,6 @@
             </Component>
             
             
-            
-            
             <Component Id="cmp33951FE5651551636FC21134ACD34AB9" Guid="*">
                 <File Id="fil82B9DDDCD08429A7CF10FB75FC709E72" KeyPath="yes" Source="$(var.SourceFolder)\Id3.dll" />
             </Component>
@@ -88,11 +86,6 @@
             </Component>
             
             
-            <Component Id="cmpCAD5BF4534527C81B6EAD4167345607A" Guid="*">
-                <File Id="fil5621571E69D0B4397F71C110A559936E" KeyPath="yes" Source="$(var.SourceFolder)\Sciendo.Music.Mocks.dll" />
-            </Component>
-            
-            
             <Component Id="cmp0B43627F0F3ECE2AF4AD678FD7C05D0C" Guid="*">
                 <File Id="fil0B2731D4F1436244BAC2F487DB191930" KeyPath="yes" Source="$(var.SourceFolder)\Sciendo.Music.Real.dll" />
             </Component>
@@ -113,8 +106,6 @@
             <ComponentRef Id="cmpF172CABD5D7076A3AB4FE3ABC9C1D871" />
             <ComponentRef Id="cmp27EA2B61687E5A7DC650AE74087C769C" />
             <ComponentRef Id="cmpC089A10BB84F4EFA42B4AD836B628DFA" />
-            
-            
             
             
             <ComponentRef Id="cmp33951FE5651551636FC21134ACD34AB9" />
@@ -149,9 +140,6 @@
             
             
             <ComponentRef Id="cmp2B075123F898395033A1B9FC9EBCC941" />
-            
-            
-            <ComponentRef Id="cmpCAD5BF4534527C81B6EAD4167345607A" />
             
             
             <ComponentRef Id="cmp0B43627F0F3ECE2AF4AD678FD7C05D0C" />
