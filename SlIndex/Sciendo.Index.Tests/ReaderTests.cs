@@ -4,6 +4,10 @@ using System.IO;
 using NUnit.Framework;
 using Sciendo.Music.Agent.Processing;
 using Sciendo.Music.Contracts.Monitoring;
+using Sciendo.Music.Real.Procesors.MusicSourced;
+using Sciendo.Music.Real.Feedback;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Sciendo.Music.Tests
 {
@@ -58,45 +62,78 @@ namespace Sciendo.Music.Tests
             }
         }
 
-        //[Test]
-        //[ExpectedException(typeof(ArgumentException),ExpectedMessage="Invalid path")]
-        //public void ReaderTestsInvalidPathNotDelete()
-        //{
-        //    MockIndexingFilesProcessor _fileProcessor = new MockIndexingFilesProcessor();
-        //    Reader reader = new Reader(null);
-        //    reader.ProcessFiles = _fileProcessor.ProcessFilesBatch;
-        //    reader.ParsePath(@"c:\users\something\something", "*.mp3|*.ogg");
-        //}
+        [Test]
+        [ExpectedException(typeof(ArgumentException), ExpectedMessage = "Invalid path")]
+        public void ReaderTestsInvalidPathNotDelete()
+        {
+            IndexingFilesProcessor _fileProcessor = new IndexingFilesProcessor();
+            Reader reader = new Reader(ReaderMocks.MockFileActivityInvalidPath(@"c:\users\something\something",RecordNegativeActivity));
+            reader.ProcessFiles = _fileProcessor.ProcessFilesBatch;
+            try
+            {
+                reader.ParsePath(@"c:\users\something\something", "*.mp3|*.ogg");
 
-        //[Test]
-        //public void ReaderMusicTestsFolderOk()
-        //{
-        //    MockIndexingFilesProcessor _fileProcessor = new MockIndexingFilesProcessor();
-        //    Reader reader = new Reader(null);
-        //    reader.ProcessFiles = _fileProcessor.ProcessFilesBatch;
-        //    reader.ParsePath(@"TestData\Music", "*.mp3|*.ogg");
-        //    Assert.AreEqual(6,_fileProcessor.Counter);
-        //}
+            }
+            catch(Exception ex)
+            {
 
-        //[Test]
-        //public void ReaderMusicTestsFileOk()
-        //{
-        //    MockIndexingFilesProcessor _fileProcessor = new MockIndexingFilesProcessor();
-        //    Reader reader = new Reader(null);
-        //    reader.ProcessFiles = _fileProcessor.ProcessFilesBatch;
-        //    reader.ParsePath(@"TestData\Music\MockMp3.mp3", "*.mp3|*.ogg");
-        //    Assert.AreEqual(1, _fileProcessor.Counter);
-        //}
+                throw ex;
+            }
+        }
 
-        //[Test]
-        //[ExpectedException(typeof(ArgumentException), ExpectedMessage = "Invalid path")]
-        //public void ReaderTestsInvalidPath1()
-        //{
-        //    MockMusicToLyricsFilesProcessor _fileProcessor = new MockMusicToLyricsFilesProcessor();
-        //    Reader reader = new Reader(null);
-        //    reader.ProcessFiles = _fileProcessor.ProcessFilesBatch;
-        //    reader.ParsePath(@"c:\users\something\something", "*.mp3|*.ogg");
-        //}
+        private void RecordNegativeActivity(string path, ActivityStatus activityStatus)
+        {
+            Assert.AreNotEqual(ActivityStatus.None, activityStatus);
+        }
+
+        [Test]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void ReaderTestsNoPath()
+        {
+            IndexingFilesProcessor _fileProcessor = new IndexingFilesProcessor();
+            Reader reader = new Reader(null);
+            reader.ProcessFiles = _fileProcessor.ProcessFilesBatch;
+            reader.ParsePath(null, "*.mp3|*.ogg");
+        }
+
+        [Test]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void ReaderTestsNoSearchPattern()
+        {
+            IndexingFilesProcessor _fileProcessor = new IndexingFilesProcessor();
+            Reader reader = new Reader(null);
+            reader.ProcessFiles = _fileProcessor.ProcessFilesBatch;
+            reader.ParsePath(@"c:\users\something\something", "");
+        }
+
+        [Test]
+        public void ReaderTestsDeletingPath()
+        {
+            Reader reader = new Reader(ReaderMocks.MockFileActivityDelete(@"c:\users\something\something",RecordNegativeActivity));
+            reader.ProcessFiles = ProcessFiles;
+            reader.ParsePath(@"c:\users\something\something", "*.mp3|*.ogg",ProcessType.Delete);
+        }
+
+        private void ProcessFiles(IEnumerable<string> paths)
+        {
+            Assert.True(paths.Any());
+        }
+
+        [Test]
+        public void ReaderMusicTestsFolderOk()
+        {
+            Reader reader = new Reader(ReaderMocks.MockFileActivityProcessFolder(@"TestData\Music",RecordNegativeActivity));
+            reader.ProcessFiles = ProcessFiles;
+            reader.ParsePath(@"TestData\Music", "*.mp3|*.ogg");
+        }
+
+        [Test]
+        public void ReaderMusicTestsFileOk()
+        {
+            Reader reader = new Reader(ReaderMocks.MockFileActivityProcessFile(@"TestData\Music\MockMp3.mp3",RecordNegativeActivity));
+            reader.ProcessFiles = ProcessFiles;
+            reader.ParsePath(@"TestData\Music\MockMp3.mp3", "*.mp3|*.ogg");
+        }
 
         //[Test]
         //public void ReaderMusicToLyricsTestsFolderOkSomethingNew()

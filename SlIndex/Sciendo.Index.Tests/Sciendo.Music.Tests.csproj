@@ -88,6 +88,7 @@
     <Compile Include="Mp3StreamMockUtils.cs" />
     <Compile Include="MusicAgentTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReaderMocks.cs" />
     <Compile Include="ReaderTests.cs" />
     <Compile Include="SolrQueryStrategyTests.cs" />
     <Compile Include="SolrResultsProviderMocks.cs" />

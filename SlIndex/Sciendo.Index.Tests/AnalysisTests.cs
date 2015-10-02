@@ -2,6 +2,7 @@
 using Sciendo.Music.Agent.Service;
 using Sciendo.Music.Contracts.Analysis;
 using Sciendo.Music.Real.Analysis;
+using Sciendo.Music.Real.Feedback;
 using Sciendo.Music.Solr.Query;
 using System;
 using System.Collections.Generic;
@@ -19,7 +20,7 @@ namespace Sciendo.Music.Tests
         [Test]
         public void GetAllSnapshotsOk()
         {
-            AnalysisService analysisService = new AnalysisService("","","",null);
+            AnalysisService analysisService = new AnalysisService("","","",null,null);
             var actual = analysisService.GetAllAnalysisSnaphots();
             Assert.IsNotNull(actual);
             Assert.Greater(actual.Length,1);
@@ -27,7 +28,7 @@ namespace Sciendo.Music.Tests
         [Test]
         public void GetElementsBySnapshotOk()
         {
-            AnalysisService analysisService = new AnalysisService("","","",null);
+            AnalysisService analysisService = new AnalysisService("","","",null,null);
             var actual = analysisService.GetAnalysis("leaf", 3);
             Assert.IsNotNull(actual);
             Assert.Greater(actual.Length, 1);
@@ -38,11 +39,11 @@ namespace Sciendo.Music.Tests
         {
             using(TransactionScope transactionScope= new TransactionScope(TransactionScopeOption.RequiresNew))
             {
-                AnalysisService analysisService = new AnalysisService("","","",null);
+                AnalysisService analysisService = new AnalysisService("","","",null,null);
                 var actual = analysisService.CreateNewSnapshot("test");
                 Assert.IsNotNull(actual);
                 Assert.Greater(actual.SnapshotId, 1);
-                analysisService = new AnalysisService("","","",null);
+                analysisService = new AnalysisService("","","",null,null);
                 var actualsnapshots = analysisService.GetAllAnalysisSnaphots();
                 Assert.AreEqual(4, actualsnapshots.Length);
             }
@@ -52,7 +53,7 @@ namespace Sciendo.Music.Tests
         {
             using (TransactionScope transactionScope = new TransactionScope(TransactionScopeOption.RequiresNew))
             {
-                AnalysisService analysisService = new AnalysisService("","","",null);
+                AnalysisService analysisService = new AnalysisService("","","",null,null);
                 var actual = analysisService.CreateElements(new Element[] { new Element {IndexedFlag = IndexedFlag.NotIndexed, LyricsFileFlag = LyricsFileFlag.HasLyricsFile | LyricsFileFlag.LyricsFileOk, MusicFileFlag = MusicFileFlag.HasTag | MusicFileFlag.IsMusicFile | MusicFileFlag.HasArtistTag, Name = "test element one", SnapshotId = 3 } });
                 Assert.IsNotNull(actual);
                 Assert.AreEqual(1, actual);
@@ -61,136 +62,209 @@ namespace Sciendo.Music.Tests
         }
 
         [Test]
-        public void AnalysisUtilsGetMusciFileFlagNoMusicFileTest()
+        public void GetStatisticsFromRoot_Ok()
         {
-            Assert.AreEqual(MusicFileFlag.NotAMusicFile, Utils.GetMusicFlag("something.else", "*.mp3|*.ogg",null));
+            AnalysisService svc = new AnalysisService("trunk", "", "", null,null);
+            var actual = svc.GetStatistics(null, 3);
+            Assert.IsNotNull(actual);
+            Assert.AreEqual(1, actual.Length);
         }
+
         [Test]
-        public void AnalysisUtilsGetMusciFileFlagMusicFileNoTagTest()
+        public void AnalyseThisFromRoot()
         {
-            Assert.AreEqual(MusicFileFlag.IsMusicFile, Utils.GetMusicFlag("something.mp3", "*.mp3|*.ogg",Mp3StreamMockUtils.MockedMp3FileLoader_NoTag));
+            IAnalysis svc = ReaderMocks.MockAnalysisServiceForAnalyseThis(@"TestData\Music", 
+@"TestData\Lyrics", "*.mp3|*.ogg", 23, recordStatisticsActivity);
+            svc.AnaliseThis("", 23);
         }
-        [Test]
-        public void AnalysisUtilsGetMusciFileFlagMusicFileUnknownTagTest()
+
+        private void recordStatisticsActivity(int snapshotId, Real.Feedback.ActivityStatus activityStatus)
         {
-            Assert.AreEqual(MusicFileFlag.IsMusicFile, Utils.GetMusicFlag("something.mp3", "*.mp3|*.ogg", Mp3StreamMockUtils.MockedMp3FileLoader_UnknownTag));
+            Assert.AreEqual(23, snapshotId);
+            Assert.AreNotEqual(ActivityStatus.None, activityStatus);
         }
-        [Test]
-        public void AnalysisUtilsGetMusciFileFlagMusicFileNoTagTest1()
-        {
-            Assert.AreEqual(MusicFileFlag.IsMusicFile, Utils.GetMusicFlag("something.mp3", "*.mp3|*.ogg", Mp3StreamMockUtils.MockedMp3FileLoader_NoTag1));
-        }
-        [Test]
-        public void AnalysisUtilsGetMusciFileFlagMusicFileErrorTagTest()
-        {
-            Assert.AreEqual(MusicFileFlag.IsMusicFile, Utils.GetMusicFlag("something.mp3", "*.mp3|*.ogg", Mp3StreamMockUtils.MockedMp3FileLoader_ErrorTag));
-        }
-        [Test]
-        public void AnalysisUtilsGetMusciFileFlagMusicFileEmptyTagTest()
-        {
-            Assert.AreEqual(MusicFileFlag.IsMusicFile, Utils.GetMusicFlag("something.mp3", "*.mp3|*.ogg", Mp3StreamMockUtils.MockedMp3FileLoader_EmptyTag));
-        }
-        [Test]
-        public void AnalysisUtilsGetMusciFileFlagMusicFileNoArtistTest()
-        {
-            Assert.AreEqual(MusicFileFlag.IsMusicFile|MusicFileFlag.HasAlbumTag|MusicFileFlag.HasTitleTag|MusicFileFlag.HasTag, Utils.GetMusicFlag("something.mp3", "*.mp3|*.ogg", Mp3StreamMockUtils.MockedMp3FileLoader_EverythingButArtist));
-        }
-        [Test]
-        public void AnalysisUtilsGetMusciFileFlagMusicFileNoAlbumTest()
-        {
-            Assert.AreEqual(MusicFileFlag.IsMusicFile | MusicFileFlag.HasArtistTag | MusicFileFlag.HasTitleTag | MusicFileFlag.HasTag, Utils.GetMusicFlag("something.mp3", "*.mp3|*.ogg", Mp3StreamMockUtils.MockedMp3FileLoader_TagOk));
-        }
-        [Test]
-        public void AnalysisUtilsGetMusciFileFlagMusicFileNoTitleTest()
-        {
-            Assert.AreEqual(MusicFileFlag.IsMusicFile | MusicFileFlag.HasArtistTag | MusicFileFlag.HasAlbumTag | MusicFileFlag.HasTag, Utils.GetMusicFlag("something.mp3", "*.mp3|*.ogg", Mp3StreamMockUtils.MockedMp3FileLoader_EverythingButTitle));
-        }
-        [Test]
-        public void AnalysisUtilsGetMusciFileFlagMusicFileFullTagTest()
-        {
-            Assert.AreEqual(MusicFileFlag.IsMusicFile | MusicFileFlag.HasArtistTag | MusicFileFlag.HasAlbumTag | MusicFileFlag.HasTag | MusicFileFlag.HasTitleTag, Utils.GetMusicFlag("something.mp3", "*.mp3|*.ogg", Mp3StreamMockUtils.MockedMp3FileLoader_FullTag));
-        }
+
+        //[Test]
+        //public void AnalysisUtilsGetMusciFileFlagNoMusicFileTest()
+        //{
+        //    var utils = new Utils();
+        //    Assert.AreEqual(MusicFileFlag.NotAMusicFile, utils.GetMusicFlag("something.else", "*.mp3|*.ogg"));
+        //}
+        //[Test]
+        //public void AnalysisUtilsGetMusciFileFlagMusicFileNoTagTest()
+        //{
+        //    var utils = new Utils();
+        //    Assert.AreEqual(MusicFileFlag.IsMusicFile, utils.GetMusicFlag("something.mp3", "*.mp3|*.ogg", Mp3StreamMockUtils.MockedMp3FileLoader_NoTag));
+        //}
+        //[Test]
+        //public void AnalysisUtilsGetMusciFileFlagMusicFileUnknownTagTest()
+        //{
+        //    var utils = new Utils();
+
+        //    Assert.AreEqual(MusicFileFlag.IsMusicFile, utils.GetMusicFlag("something.mp3", "*.mp3|*.ogg", Mp3StreamMockUtils.MockedMp3FileLoader_UnknownTag));
+        //}
+        //[Test]
+        //public void AnalysisUtilsGetMusciFileFlagMusicFileNoTagTest1()
+        //{
+        //    var utils = new Utils();
+
+        //    Assert.AreEqual(MusicFileFlag.IsMusicFile, utils.GetMusicFlag("something.mp3", "*.mp3|*.ogg", Mp3StreamMockUtils.MockedMp3FileLoader_NoTag1));
+        //}
+        //[Test]
+        //public void AnalysisUtilsGetMusciFileFlagMusicFileErrorTagTest()
+        //{
+        //    var utils = new Utils();
+
+        //    Assert.AreEqual(MusicFileFlag.IsMusicFile, utils.GetMusicFlag("something.mp3", "*.mp3|*.ogg", Mp3StreamMockUtils.MockedMp3FileLoader_ErrorTag));
+        //}
+        //[Test]
+        //public void AnalysisUtilsGetMusciFileFlagMusicFileEmptyTagTest()
+        //{
+        //    var utils = new Utils();
+
+        //    Assert.AreEqual(MusicFileFlag.IsMusicFile, utils.GetMusicFlag("something.mp3", "*.mp3|*.ogg", Mp3StreamMockUtils.MockedMp3FileLoader_EmptyTag));
+        //}
+        //[Test]
+        //public void AnalysisUtilsGetMusciFileFlagMusicFileNoArtistTest()
+        //{
+        //    var utils = new Utils();
+
+        //    Assert.AreEqual(MusicFileFlag.IsMusicFile|MusicFileFlag.HasAlbumTag|MusicFileFlag.HasTitleTag|MusicFileFlag.HasTag, utils.GetMusicFlag("something.mp3", "*.mp3|*.ogg", Mp3StreamMockUtils.MockedMp3FileLoader_EverythingButArtist));
+        //}
+        //[Test]
+        //public void AnalysisUtilsGetMusciFileFlagMusicFileNoAlbumTest()
+        //{
+        //    var utils = new Utils();
+
+        //    Assert.AreEqual(MusicFileFlag.IsMusicFile | MusicFileFlag.HasArtistTag | MusicFileFlag.HasTitleTag | MusicFileFlag.HasTag, utils.GetMusicFlag("something.mp3", "*.mp3|*.ogg", Mp3StreamMockUtils.MockedMp3FileLoader_TagOk));
+        //}
+        //[Test]
+        //public void AnalysisUtilsGetMusciFileFlagMusicFileNoTitleTest()
+        //{
+        //    var utils = new Utils();
+
+        //    Assert.AreEqual(MusicFileFlag.IsMusicFile | MusicFileFlag.HasArtistTag | MusicFileFlag.HasAlbumTag | MusicFileFlag.HasTag, utils.GetMusicFlag("something.mp3", "*.mp3|*.ogg", Mp3StreamMockUtils.MockedMp3FileLoader_EverythingButTitle));
+        //}
+        //[Test]
+        //public void AnalysisUtilsGetMusciFileFlagMusicFileFullTagTest()
+        //{
+        //    var utils = new Utils();
+
+        //    Assert.AreEqual(MusicFileFlag.IsMusicFile | MusicFileFlag.HasArtistTag | MusicFileFlag.HasAlbumTag | MusicFileFlag.HasTag | MusicFileFlag.HasTitleTag, utils.GetMusicFlag("something.mp3", "*.mp3|*.ogg", Mp3StreamMockUtils.MockedMp3FileLoader_FullTag));
+        //}
 
         [Test]
         public void AnalysisUtilsLyricsFileFlagNoFileTest1()
         {
-            Assert.AreEqual(LyricsFileFlag.NoLyricsFile, Utils.GetLyricsFlag("something.else", "*.mp3|*.ogg", "", ""));
+            var utils = new Utils(null);
+
+            Assert.AreEqual(LyricsFileFlag.NoLyricsFile, utils.GetLyricsFlag("something.else", "*.mp3|*.ogg", "", ""));
         }
         [Test]
         public void AnalysisUtilsLyricsFileFlagNoFileTest2()
         {
-            Assert.AreEqual(LyricsFileFlag.NoLyricsFile, Utils.GetLyricsFlag(@"TestData\Music\Sub1\MockOggWithoutLyrics.ogg", "*.mp3|*.ogg", @"TestData\Music", @"TestData\Lyrics"));
+            var utils = new Utils(null);
+
+            Assert.AreEqual(LyricsFileFlag.NoLyricsFile, utils.GetLyricsFlag(@"TestData\Music\Sub1\MockOggWithoutLyrics.ogg", "*.mp3|*.ogg", @"TestData\Music", @"TestData\Lyrics"));
         }
         [Test]
         public void AnalysisUtilsLyricsFileFlagLyricsNotFoundTest()
         {
-            Assert.AreEqual(LyricsFileFlag.HasLyricsFile | LyricsFileFlag.LyricsFileNoLyrics, Utils.GetLyricsFlag(@"TestData\Music\Sub1\MockOggLyricsNotFound.ogg", "*.mp3|*.ogg", @"TestData\Music", @"TestData\Lyrics"));
+            var utils = new Utils(null);
+
+            Assert.AreEqual(LyricsFileFlag.HasLyricsFile | LyricsFileFlag.LyricsFileNoLyrics, utils.GetLyricsFlag(@"TestData\Music\Sub1\MockOggLyricsNotFound.ogg", "*.mp3|*.ogg", @"TestData\Music", @"TestData\Lyrics"));
         }
         [Test]
         public void AnalysisUtilsLyricsFileFlagLyricsWithErrorTest()
         {
-            Assert.AreEqual(LyricsFileFlag.HasLyricsFile | LyricsFileFlag.LyricsFileWithError, Utils.GetLyricsFlag(@"TestData\Music\Sub1\MockOggWithErrorLyrics.ogg", "*.mp3|*.ogg", @"TestData\Music", @"TestData\Lyrics"));
+            var utils = new Utils(null);
+
+            Assert.AreEqual(LyricsFileFlag.HasLyricsFile | LyricsFileFlag.LyricsFileWithError, utils.GetLyricsFlag(@"TestData\Music\Sub1\MockOggWithErrorLyrics.ogg", "*.mp3|*.ogg", @"TestData\Music", @"TestData\Lyrics"));
         }
         [Test]
         public void AnalysisUtilsLyricsFileFlagOkTest()
         {
-            Assert.AreEqual(LyricsFileFlag.HasLyricsFile | LyricsFileFlag.LyricsFileOk, Utils.GetLyricsFlag(@"TestData\Music\Sub1\MockOggWithLyrics.ogg", "*.mp3|*.ogg", @"TestData\Music", @"TestData\Lyrics"));
+            var utils = new Utils(null);
+
+            Assert.AreEqual(LyricsFileFlag.HasLyricsFile | LyricsFileFlag.LyricsFileOk, utils.GetLyricsFlag(@"TestData\Music\Sub1\MockOggWithLyrics.ogg", "*.mp3|*.ogg", @"TestData\Music", @"TestData\Lyrics"));
         }
 
         [Test]
         public void AnalysisUtilsIndexedFlagNotIndexedTest1()
         {
-            Assert.AreEqual(IndexedFlag.NotIndexed, Utils.GetIndexedFlag("something.else", SolrResultsProviderMocks.GetExceptionMock("something.else")));
+            var utils = new Utils(SolrResultsProviderMocks.GetExceptionMock("something.else"));
+
+            Assert.AreEqual(IndexedFlag.NotIndexed, utils.GetIndexedFlag("something.else"));
         }
         [Test]
         public void AnalysisUtilsIndexedFlagNotIndexedTest2()
         {
-            Assert.AreEqual(IndexedFlag.NotIndexed, Utils.GetIndexedFlag("something.else", SolrResultsProviderMocks.GetNullResultsMock("something.else")));
+            var utils = new Utils(SolrResultsProviderMocks.GetNullResultsMock("something.else"));
+
+            Assert.AreEqual(IndexedFlag.NotIndexed, utils.GetIndexedFlag("something.else"));
         }
         [Test]
         public void AnalysisUtilsIndexedFlagNotIndexedTest3()
         {
-            Assert.AreEqual(IndexedFlag.NotIndexed, Utils.GetIndexedFlag("something.else", SolrResultsProviderMocks.GetNullResultRowsMock("something.else")));
+            var utils = new Utils(SolrResultsProviderMocks.GetNullResultRowsMock("something.else"));
+
+            Assert.AreEqual(IndexedFlag.NotIndexed, utils.GetIndexedFlag("something.else"));
         }
         [Test]
         public void AnalysisUtilsIndexedFlagNotIndexedTest4()
         {
-            Assert.AreEqual(IndexedFlag.NotIndexed, Utils.GetIndexedFlag("something.else", SolrResultsProviderMocks.GetNoResultRowsMock("something.else")));
+            var utils = new Utils(SolrResultsProviderMocks.GetNoResultRowsMock("something.else"));
+
+            Assert.AreEqual(IndexedFlag.NotIndexed, utils.GetIndexedFlag("something.else"));
         }
         [Test]
         public void AnalysisUtilsIndexedFlagNotIndexedTest5()
         {
-            Assert.AreEqual(IndexedFlag.NotIndexed, Utils.GetIndexedFlag("something.else", SolrResultsProviderMocks.GetOneEmptyResultRowsMock("something.else")));
+            var utils = new Utils(SolrResultsProviderMocks.GetOneEmptyResultRowsMock("something.else"));
+
+            Assert.AreEqual(IndexedFlag.NotIndexed, utils.GetIndexedFlag("something.else"));
         }
         [Test]
         public void AnalysisUtilsIndexedFlagIndexedEverythingButTheAlbumTest()
         {
-            Assert.AreEqual(IndexedFlag.Indexed|IndexedFlag.IndexedArtist|IndexedFlag.IndexedLyrics|IndexedFlag.IndexedTitle, Utils.GetIndexedFlag("something.else", SolrResultsProviderMocks.GetIndexedResultMock("something.else",MissingType.Album)));
+            var utils = new Utils(SolrResultsProviderMocks.GetIndexedResultMock("something.else",MissingType.Album));
+
+            Assert.AreEqual(IndexedFlag.Indexed|IndexedFlag.IndexedArtist|IndexedFlag.IndexedLyrics|IndexedFlag.IndexedTitle, utils.GetIndexedFlag("something.else"));
         }
         [Test]
         public void AnalysisUtilsIndexedFlagIndexedEverythingButTheArtistTest()
         {
-            Assert.AreEqual(IndexedFlag.Indexed | IndexedFlag.IndexedAlbum | IndexedFlag.IndexedLyrics | IndexedFlag.IndexedTitle, Utils.GetIndexedFlag("something.else", SolrResultsProviderMocks.GetIndexedResultMock("something.else", MissingType.Artist)));
+            var utils = new Utils(SolrResultsProviderMocks.GetIndexedResultMock("something.else", MissingType.Artist));
+
+            Assert.AreEqual(IndexedFlag.Indexed | IndexedFlag.IndexedAlbum | IndexedFlag.IndexedLyrics | IndexedFlag.IndexedTitle, utils.GetIndexedFlag("something.else"));
         }
         [Test]
         public void AnalysisUtilsIndexedFlagIndexedEverythingButTheTitleTest()
         {
-            Assert.AreEqual(IndexedFlag.Indexed | IndexedFlag.IndexedArtist | IndexedFlag.IndexedLyrics | IndexedFlag.IndexedAlbum, Utils.GetIndexedFlag("something.else", SolrResultsProviderMocks.GetIndexedResultMock("something.else", MissingType.Title)));
+            var utils = new Utils(SolrResultsProviderMocks.GetIndexedResultMock("something.else", MissingType.Title));
+
+            Assert.AreEqual(IndexedFlag.Indexed | IndexedFlag.IndexedArtist | IndexedFlag.IndexedLyrics | IndexedFlag.IndexedAlbum, utils.GetIndexedFlag("something.else"));
         }
         [Test]
         public void AnalysisUtilsIndexedFlagIndexedEverythingButTheLyricsTest()
         {
-            Assert.AreEqual(IndexedFlag.Indexed | IndexedFlag.IndexedArtist | IndexedFlag.IndexedAlbum | IndexedFlag.IndexedTitle, Utils.GetIndexedFlag("something.else", SolrResultsProviderMocks.GetIndexedResultMock("something.else", MissingType.Lyrics)));
+            var utils = new Utils(SolrResultsProviderMocks.GetIndexedResultMock("something.else", MissingType.Lyrics));
+
+            Assert.AreEqual(IndexedFlag.Indexed | IndexedFlag.IndexedArtist | IndexedFlag.IndexedAlbum | IndexedFlag.IndexedTitle, utils.GetIndexedFlag("something.else"));
         }
         [Test]
         public void AnalysisUtilsIndexedFlagIndexedOnlyFileTest()
         {
-            Assert.AreEqual(IndexedFlag.Indexed , Utils.GetIndexedFlag("something.else", SolrResultsProviderMocks.GetIndexedResultMock("something.else", MissingType.All)));
+            var utils = new Utils(SolrResultsProviderMocks.GetIndexedResultMock("something.else", MissingType.All));
+
+            Assert.AreEqual(IndexedFlag.Indexed , utils.GetIndexedFlag("something.else"));
         }
         [Test]
         public void AnalysisUtilsIndexedFlagIndexedEverythingTest()
         {
-            Assert.AreEqual(IndexedFlag.Indexed | IndexedFlag.IndexedArtist | IndexedFlag.IndexedAlbum | IndexedFlag.IndexedTitle |IndexedFlag.IndexedLyrics, Utils.GetIndexedFlag("something.else", SolrResultsProviderMocks.GetIndexedResultMock("something.else", MissingType.None)));
+            var utils = new Utils(SolrResultsProviderMocks.GetIndexedResultMock("something.else", MissingType.None));
+
+            Assert.AreEqual(IndexedFlag.Indexed | IndexedFlag.IndexedArtist | IndexedFlag.IndexedAlbum | IndexedFlag.IndexedTitle |IndexedFlag.IndexedLyrics, utils.GetIndexedFlag("something.else"));
         }
     }
 }

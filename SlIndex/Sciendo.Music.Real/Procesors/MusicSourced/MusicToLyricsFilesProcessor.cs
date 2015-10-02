@@ -33,9 +33,10 @@ namespace Sciendo.Music.Real.Procesors.MusicSourced
 
         public bool RetryExisting { get; set; }
 
-        public override void ProcessFilesBatch(IEnumerable<string> files)
+        public override ProcessResponse ProcessFilesBatch(IEnumerable<string> files)
         {
             LoggingManager.Debug("Starting process batch of files " + files.Count());
+            var processResponse = new ProcessResponse { Status = true };
             IEnumerable<string> subjectFiles;
             if(!RetryExisting)
             {
@@ -48,10 +49,11 @@ namespace Sciendo.Music.Real.Procesors.MusicSourced
             }
             if (!subjectFiles.Any())
             {
-                return;
+                return processResponse;
             }
             var package = TransformFiles<LyricsResult>(subjectFiles, TransformToLyricsResult).ToArray();
             Counter += package.Count(p => p != null);
+            return processResponse;
             LoggingManager.Debug("Processed batch of " + package.Length + " files.");
         }
 

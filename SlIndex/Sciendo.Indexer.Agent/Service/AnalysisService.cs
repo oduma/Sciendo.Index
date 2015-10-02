@@ -22,15 +22,22 @@ namespace Sciendo.Music.Agent.Service
         private readonly string _musicSourceFolder;
         private readonly string _lyricsSourceFolder; 
         private readonly string _pattern;
-        private readonly IResultsProvider _resultsProvider;
 
-        public AnalysisService(string musicSourceFolder, string lyricsSourceFolder, string pattern, IResultsProvider solrResultsProvider)
+        private readonly ICurrentStatisticsActivity _currentStatisticsActivity;
+
+        private readonly Utils _utils;
+
+        public AnalysisService(string musicSourceFolder, string lyricsSourceFolder, 
+            string pattern, 
+            ICurrentStatisticsActivity currentStatisticsActivity,
+            Utils utils)
         {
             LoggingManager.Debug("Constructing Analysis Service...");
             _musicSourceFolder = musicSourceFolder;
             _lyricsSourceFolder = lyricsSourceFolder;
             _pattern = pattern;
-            _resultsProvider = solrResultsProvider;
+            _currentStatisticsActivity = currentStatisticsActivity;
+            _utils = utils;
             LoggingManager.Debug("Analysis service constructed with: " + _musicSourceFolder);
         }
 
@@ -66,7 +73,7 @@ namespace Sciendo.Music.Agent.Service
         }
 
 
-        public int CreateElements(Element[] newElements)
+        public virtual int CreateElements(Element[] newElements)
         {
             try
             {
@@ -174,12 +181,12 @@ namespace Sciendo.Music.Agent.Service
 
         public void AnaliseThis(string folder, int snapshotId)
         {
-            CurrentStatisticsActivity.Instance.SetAndBroadcast(snapshotId, ActivityStatus.Starting);
+            _currentStatisticsActivity.SetAndBroadcast(snapshotId, ActivityStatus.Starting);
             if(string.IsNullOrEmpty(folder))
             {
                 folder = _musicSourceFolder;
             }
-            CurrentStatisticsActivity.Instance.SetAndBroadcast(snapshotId, ActivityStatus.InProgress);
+            _currentStatisticsActivity.SetAndBroadcast(snapshotId, ActivityStatus.InProgress);
             var elements = Directory.GetDirectories(folder,
                 "*",
                 SearchOption.AllDirectories).Where(d => Directory.GetFiles(d).Any()).AsParallel().Select(f => GetListOfElementsForFolder(f, snapshotId));
@@ -191,27 +198,27 @@ namespace Sciendo.Music.Agent.Service
                 retValue += CreateElements(newElements.ToArray());
             }
             retValue += CreateElements(directElements.ToArray());
-            CurrentStatisticsActivity.Instance.BroadcastDetails("Total files analysed " + retValue);
+            _currentStatisticsActivity.BroadcastDetails("Total files analysed " + retValue);
             Thread.Sleep(500);
-            CurrentStatisticsActivity.Instance.SetAndBroadcast(snapshotId, ActivityStatus.Stopped);
+            _currentStatisticsActivity.SetAndBroadcast(snapshotId, ActivityStatus.Stopped);
             Thread.Sleep(500);
-            CurrentStatisticsActivity.Instance.ClearAndBroadcast();
+            _currentStatisticsActivity.ClearAndBroadcast();
         }
 
         private List<Element> GetListOfElementsForFolder(string folder, int snapshotId)
         {
-            CurrentStatisticsActivity.Instance.BroadcastDetails(folder);
+            _currentStatisticsActivity.BroadcastDetails(folder);
             var newElements = new List<Element>();
             foreach (string file in Directory.GetFiles(folder))
             {
-                var musicFileFlag = Utils.GetMusicFlag(file, _pattern, Utils.Mp3MusicFile);
+                var musicFileFlag = _utils.GetMusicFlag(file, _pattern);
                 newElements.Add(new Element
                 {
                     Name = file,
                     SnapshotId = snapshotId,
                     MusicFileFlag = musicFileFlag,
-                    LyricsFileFlag = ((musicFileFlag&MusicFileFlag.IsMusicFile) != MusicFileFlag.IsMusicFile) ? LyricsFileFlag.NoLyricsFile : Utils.GetLyricsFlag(file, _pattern, _musicSourceFolder, _lyricsSourceFolder),
-                    IndexedFlag = ((musicFileFlag & MusicFileFlag.IsMusicFile) != MusicFileFlag.IsMusicFile) ? IndexedFlag.NotIndexed : Utils.GetIndexedFlag(file, _resultsProvider)
+                    LyricsFileFlag = ((musicFileFlag&MusicFileFlag.IsMusicFile) != MusicFileFlag.IsMusicFile) ? LyricsFileFlag.NoLyricsFile : _utils.GetLyricsFlag(file, _pattern, _musicSourceFolder, _lyricsSourceFolder),
+                    IndexedFlag = ((musicFileFlag & MusicFileFlag.IsMusicFile) != MusicFileFlag.IsMusicFile) ? IndexedFlag.NotIndexed : _utils.GetIndexedFlag(file)
                 });
             }
             return newElements;

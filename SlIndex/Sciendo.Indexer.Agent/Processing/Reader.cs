@@ -6,6 +6,7 @@ using Sciendo.Common.Logging;
 using Sciendo.Music.Contracts.Common;
 using Sciendo.Music.Contracts.Monitoring;
 using Sciendo.Music.Real.Feedback;
+using Sciendo.Music.Real.Procesors.Common;
 
 namespace Sciendo.Music.Agent.Processing
 {
@@ -28,10 +29,12 @@ namespace Sciendo.Music.Agent.Processing
             if (processType == ProcessType.Delete)
             {
                 LoggingManager.Debug("Attempting to delete " + path);
-                ProcessFiles(new[] {path});
-                if(_currentFileActivity!=null)
+                if (_currentFileActivity != null)
                     _currentFileActivity.BroadcastDetails("Deleting: " + path);
-                LoggingManager.Debug("Deleted " +path);
+                ProcessFiles(new[] { path });
+                if (_currentFileActivity != null)
+                    _currentFileActivity.SetAndBroadcast(path,ActivityStatus.Stopped);
+                LoggingManager.Debug("Deleted " + path);
             }
             else
             {
@@ -40,23 +43,36 @@ namespace Sciendo.Music.Agent.Processing
                     LoggingManager.Debug("Path is a directory...");
                     Directory.GetDirectories(path, "*", SearchOption.AllDirectories)
                         .ToList()
-                        .ForEach(s => {if(_currentFileActivity!=null)
-                                _currentFileActivity.BroadcastDetails("Processing: " + s);
-                            ProcessFiles(GetFiles(s, searchPattern, SearchOption.TopDirectoryOnly));});
+                        .ForEach(s => {
+                                if(_currentFileActivity!=null)
+                                    _currentFileActivity.BroadcastDetails("Processing: " + s);
+                                    var processResponse = ProcessFiles(GetFiles(s, searchPattern, SearchOption.TopDirectoryOnly));
+                                    if (_currentFileActivity != null)
+                                        _currentFileActivity.BroadcastDetails("Processed: " + s + " " + processResponse.Status);
+                        });
                     //Search the current directory also
                     if(_currentFileActivity!=null)
                         _currentFileActivity.BroadcastDetails("Processing: " + path);
-                    ProcessFiles(GetFiles(path, searchPattern, SearchOption.TopDirectoryOnly));
+                    var processResponse1 = ProcessFiles(GetFiles(path, searchPattern, SearchOption.TopDirectoryOnly));
+                    if (_currentFileActivity != null)
+                        _currentFileActivity.BroadcastDetails("Processed: " + path + " " + processResponse1.Status);
+
                 }
                 else if (File.Exists(path))
                 {
                     LoggingManager.Debug("Path is a file...");
-                    if(_currentFileActivity!=null)
+                    if (_currentFileActivity != null)
                         _currentFileActivity.BroadcastDetails("Processing: " + path);
                     ProcessFiles(new[] { path });
                 }
                 else
+                {
+                    if (_currentFileActivity != null)
+                    {
+                        _currentFileActivity.SetAndBroadcast(path, ActivityStatus.Stopped);
+                    }
                     throw new ArgumentException("Invalid path");
+                }
                 LoggingManager.Debug("Path parsed.");
             }
         }
@@ -71,6 +87,6 @@ namespace Sciendo.Music.Agent.Processing
                     .SelectMany(filter => Directory.GetFiles(sourceFolder, filter, searchOption)));
         }
 
-        public Action<IEnumerable<string>> ProcessFiles { private get; set; }
+        public Func<IEnumerable<string>,ProcessResponse> ProcessFiles { private get; set; }
     }
 }

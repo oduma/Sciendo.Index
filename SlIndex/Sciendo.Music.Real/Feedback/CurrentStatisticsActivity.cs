@@ -7,7 +7,7 @@ using System.Text;
 
 namespace Sciendo.Music.Real.Feedback
 {
-    public class CurrentStatisticsActivity
+    public class CurrentStatisticsActivity : Sciendo.Music.Real.Feedback.ICurrentStatisticsActivity
     {
 
         private readonly static Lazy<CurrentStatisticsActivity> _instance = new Lazy<CurrentStatisticsActivity>(() => new CurrentStatisticsActivity(GlobalHost.ConnectionManager.GetHubContext<FeedbackHub>().Clients));

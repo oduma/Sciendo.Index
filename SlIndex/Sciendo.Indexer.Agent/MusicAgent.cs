@@ -20,6 +20,7 @@ using Sciendo.Music.Solr.Query;
 using Microsoft.Owin.Hosting;
 using Microsoft.AspNet.SignalR;
 using Sciendo.Music.Real.Feedback;
+using Sciendo.Music.Real.Analysis;
 
 namespace Sciendo.Music.Agent
 {
@@ -28,7 +29,7 @@ namespace Sciendo.Music.Agent
         private IMusic _musicService;
         private IAnalysis _analysisService;
         private ServiceHost[] _agentServiceHosts;
-        private readonly AgentConfigurationSection _agentConfigurationSection;
+        private AgentConfigurationSection _agentConfigurationSection;
         private MonitoringInstance _monitoringInstance;
         public MonitoringInstance MonitoringInstance { get { return _monitoringInstance; } }
         public IMusic AgentService { get { return _musicService; } }
@@ -39,16 +40,21 @@ namespace Sciendo.Music.Agent
             AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
             LoggingManager.Debug("Constructing the Agent...");
             InitializeComponent();
+            Init();
+            LoggingManager.Debug("Agent constructed.");
+        }
+
+        internal void Init()
+        {
             _agentConfigurationSection = (AgentConfigurationSection)ConfigurationManager.GetSection("agent");
             LoggingManager.Debug(_agentConfigurationSection.ToString());
             RegisterIocComponents();
             _monitoringInstance = new MonitoringInstance(
                 IOC.Container.GetInstance()
                     .Resolve<IFolderMonitor>(_agentConfigurationSection.CurrentMonitoringComponentKey));
-            LoggingManager.Debug("Agent constructed.");
         }
 
-        private void RegisterIocComponents()
+        internal void RegisterIocComponents()
         {
             LoggingManager.Debug("Starting Registration of IOC Components...");
             var configuredContainer = IOC.Container.GetInstance().UsingConfiguration();
@@ -108,7 +114,7 @@ namespace Sciendo.Music.Agent
                 m2LProc);
             _analysisService = new AnalysisService(mProc.CurrentConfiguration.Music.SourceDirectory,
                 m2LProc.CurrentConfiguration.Lyrics.SourceDirectory,
-                mProc.CurrentConfiguration.Music.SearchPattern,new SolrResultsProvider());
+                mProc.CurrentConfiguration.Music.SearchPattern,CurrentStatisticsActivity.Instance, new Utils(new SolrResultsProvider()));
         }
 
         private void StartMonitoringInstances()

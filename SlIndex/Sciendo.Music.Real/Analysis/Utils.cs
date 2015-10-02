@@ -21,11 +21,16 @@ using System.Threading.Tasks;
 
 namespace Sciendo.Music.Real.Analysis
 {
-    public static class Utils
+    public class Utils
     {
-        public static readonly string _lrcExtension = ".lrc";
+        public Utils (IResultsProvider resultsProvider)
+        {
+            _resultsProvider = resultsProvider;
+        }
+        private static readonly string _lrcExtension = ".lrc";
+        private readonly IResultsProvider _resultsProvider;
 
-        public static IMp3Stream Mp3MusicFile(string file)
+        public virtual IMp3Stream Mp3MusicFile(string file)
         {
             FileInfo fileInfo = new FileInfo(file);
             while (FileAccessChecker.IsFileLocked(fileInfo))
@@ -34,11 +39,12 @@ namespace Sciendo.Music.Real.Analysis
             }
             return new Mp3File(file);
         }
-        public static MusicFileFlag GetMusicFlag(string file,string pattern,Func<string,IMp3Stream> musicFile)
+
+        public virtual MusicFileFlag GetMusicFlag(string file,string pattern)
         {
             if (pattern.Split('|').All(p => !file.ToLower().EndsWith(p.Replace("*",""))))
                 return MusicFileFlag.NotAMusicFile;
-            var mp3File = musicFile(file);
+            var mp3File = Mp3MusicFile(file);
             
             if (mp3File.HasTags && mp3File.AvailableTagVersions != null)
             {
@@ -79,7 +85,7 @@ namespace Sciendo.Music.Real.Analysis
             }
         }
 
-        public static LyricsFileFlag GetLyricsFlag(string file,string pattern, string musicSourceFolder, string lyricsSourceFolder)
+        public virtual LyricsFileFlag GetLyricsFlag(string file,string pattern, string musicSourceFolder, string lyricsSourceFolder)
         {
             var musicExtension = pattern.Split('|').FirstOrDefault(p => file.ToLower().EndsWith(p.Replace("*", "")));
             if (musicExtension == null)
@@ -114,14 +120,14 @@ namespace Sciendo.Music.Real.Analysis
             }
         }
 
-        public static IndexedFlag GetIndexedFlag(string file,IResultsProvider resultsProvider)
+        public virtual IndexedFlag GetIndexedFlag(string file)
         {
             var solrQuery = string.Format("file_path_id:{0}",WebUtility.UrlEncode(string.Format("\"{0}\"",file.ToLower().Replace(@"\",@"\\"))));
 
             try
             {
                 var results =
-                    resultsProvider.GetResultsPackageWithPreciseStrategy(solrQuery, 1, 0, RequestType.Get);
+                    _resultsProvider.GetResultsPackageWithPreciseStrategy(solrQuery, 1, 0, RequestType.Get);
                 if (results == null || results.ResultRows == null || !results.ResultRows.Any())
                     return IndexedFlag.NotIndexed;
                 if (results.ResultRows[0] == null)

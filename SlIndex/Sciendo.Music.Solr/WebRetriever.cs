@@ -4,6 +4,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using Sciendo.Common.Logging;
 
 namespace Sciendo.Music.Solr
 {
@@ -15,14 +16,22 @@ namespace Sciendo.Music.Solr
         }
         private static T TryGet<T>(string url, string queryString) where T : class, new()
         {
-            var httpClient = new HttpClient();
-            using (var getTask = httpClient.GetStringAsync(new Uri(url+"?" +queryString))
-                .ContinueWith(p => p).Result)
+            try
             {
-                if (getTask.Status == TaskStatus.RanToCompletion || !string.IsNullOrEmpty(getTask.Result))
+                var httpClient = new HttpClient();
+                using (var getTask = httpClient.GetStringAsync(new Uri(url + "?" + queryString))
+                    .ContinueWith(p => p).Result)
                 {
-                    return JsonConvert.DeserializeObject<T>(getTask.Result);
+                    if (getTask.Status == TaskStatus.RanToCompletion || !string.IsNullOrEmpty(getTask.Result))
+                    {
+                        return JsonConvert.DeserializeObject<T>(getTask.Result);
+                    }
+                    return null as T;
                 }
+            }
+            catch(Exception ex)
+            {
+                LoggingManager.LogSciendoSystemError(ex);
                 return null as T;
             }
 

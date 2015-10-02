@@ -28,7 +28,7 @@ namespace Sciendo.Music.Real.Procesors.Common
             LoggingManager.Debug("Counter reseted.");
         }
 
-        public abstract void ProcessFilesBatch(IEnumerable<string> files);
+        public abstract ProcessResponse ProcessFilesBatch(IEnumerable<string> files);
 
         protected abstract IEnumerable<T> TransformFiles<T>(IEnumerable<string> files, Func<TIn, string, T> specfifcTranformMethod);
 
