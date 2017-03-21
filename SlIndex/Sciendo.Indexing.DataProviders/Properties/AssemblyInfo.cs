@@ -8,9 +8,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("Sciendo.Indexing.DataProviders")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Spencer Stuart")]
+[assembly: AssemblyCompany("Sciendo")]
 [assembly: AssemblyProduct("Sciendo.Indexing.DataProviders")]
-[assembly: AssemblyCopyright("Copyright © Spencer Stuart 2015")]
+[assembly: AssemblyCopyright("Copyright © Sciendo 2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

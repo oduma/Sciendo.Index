@@ -8,9 +8,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("Sciendo.Music.Real")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Spencer Stuart")]
+[assembly: AssemblyCompany("Sciendo")]
 [assembly: AssemblyProduct("Sciendo.Music.Real")]
-[assembly: AssemblyCopyright("Copyright © Spencer Stuart 2015")]
+[assembly: AssemblyCopyright("Copyright © Sciendo 2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

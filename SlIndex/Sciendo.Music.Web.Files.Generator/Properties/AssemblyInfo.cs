@@ -8,9 +8,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("Sciendo.Music.Web.Files.Generator")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Spencer Stuart")]
+[assembly: AssemblyCompany("Sciendo")]
 [assembly: AssemblyProduct("Sciendo.Music.Web.Files.Generator")]
-[assembly: AssemblyCopyright("Copyright © Spencer Stuart 2015")]
+[assembly: AssemblyCopyright("Copyright © Sciendo 2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
